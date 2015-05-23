@@ -1,0 +1,545 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>逆向基础第十七篇：数组和指针 | 鸡哥</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="John·Huang">
+    
+
+    
+    <meta name="description" content="数组和指针都是针对地址进行操作，但是他们有很多不同之处。数组是相同类型的数据集合，是以线性的方式存储在内存中；而指针是保存4个字节的地址变量。
+数组名是一个地址常量，保存数组第一个元素的地址（不可以更改），只能作为基址访问内存数据；指针是一个变量，只要修改所保存的地址数据，就可以随意访问，不受约束。
+1、数组的定义int _tmain(int argc, _TCHAR* argv[])
+{">
+<meta property="og:type" content="article">
+<meta property="og:title" content="逆向基础第十七篇：数组和指针">
+<meta property="og:url" content="http://0x520.com/2015/05/23/reverse/17/index.html">
+<meta property="og:site_name" content="鸡哥">
+<meta property="og:description" content="数组和指针都是针对地址进行操作，但是他们有很多不同之处。数组是相同类型的数据集合，是以线性的方式存储在内存中；而指针是保存4个字节的地址变量。
+数组名是一个地址常量，保存数组第一个元素的地址（不可以更改），只能作为基址访问内存数据；指针是一个变量，只要修改所保存的地址数据，就可以随意访问，不受约束。
+1、数组的定义int _tmain(int argc, _TCHAR* argv[])
+{">
+<meta property="og:image" content="http://0x520.com/uploads/2014/07/1117015845.png">
+<meta property="og:updated_time" content="2015-05-23T02:59:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="逆向基础第十七篇：数组和指针">
+<meta name="twitter:description" content="数组和指针都是针对地址进行操作，但是他们有很多不同之处。数组是相同类型的数据集合，是以线性的方式存储在内存中；而指针是保存4个字节的地址变量。
+数组名是一个地址常量，保存数组第一个元素的地址（不可以更改），只能作为基址访问内存数据；指针是一个变量，只要修改所保存的地址数据，就可以随意访问，不受约束。
+1、数组的定义int _tmain(int argc, _TCHAR* argv[])
+{">
+
+    
+    <link rel="alternative" href="/atom.xml" title="鸡哥" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="鸡哥">鸡哥</a></h1>
+				<h2 class="blog-motto">不乱于心,不困于情。不念过往，不畏将来。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:0x520.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/23/reverse/17/" title="逆向基础第十七篇：数组和指针" itemprop="url">逆向基础第十七篇：数组和指针</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-23T02:27:25.000Z" itemprop="datePublished"> 发表于 2015-05-23</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、数组的定义"><span class="toc-number">1.</span> <span class="toc-text">1、数组的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、数组作为参数"><span class="toc-number">2.</span> <span class="toc-text">2、数组作为参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、数组作为返回值"><span class="toc-number">3.</span> <span class="toc-text">3、数组作为返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、下标寻址和指针寻址"><span class="toc-number">4.</span> <span class="toc-text">4、下标寻址和指针寻址</span></a></li></ol>
+		
+		</div>
+		
+		<p>数组和指针都是针对地址进行操作，但是他们有很多不同之处。数组是相同类型的数据集合，是以线性的方式存储在内存中；而指针是保存4个字节的地址变量。</p>
+<p>数组名是一个地址常量，保存数组第一个元素的地址（不可以更改），只能作为基址访问内存数据；<br>指针是一个变量，只要修改所保存的地址数据，就可以随意访问，不受约束。</p>
+<h2 id="1、数组的定义">1、数组的定义</h2><pre><code><span class="function"><span class="keyword">int</span> <span class="title">_tmain</span><span class="params">(<span class="keyword">int</span> argc, _TCHAR* argv[])</span>
+</span>{
+    <span class="keyword">int</span> aArray[<span class="number">5</span>] = {<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>};
+    <span class="keyword">int</span> var1 = <span class="number">1</span>;
+    <span class="keyword">int</span> var2 = <span class="number">2</span>;
+    <span class="keyword">int</span> var3 = <span class="number">3</span>;
+    <span class="keyword">int</span> var4 = <span class="number">4</span>;
+    <span class="keyword">int</span> var5 = <span class="number">5</span>;
+}
+</code></pre><p>反汇编结果：</p>
+<pre><code>    <span class="keyword">int</span> aArray[<span class="number">5</span>] = {<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>}<span class="comment">;</span>
+011B2F98  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">1Ch</span>],<span class="number">1</span>  
+011B2F9F  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">18h</span>],<span class="number">2</span>  
+011B2FA6  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">14h</span>],<span class="number">3</span>  
+011B2FAD  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">10h</span>],<span class="number">4</span>  
+011B2FB4  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">0Ch</span>],<span class="number">5</span>  
+    <span class="keyword">int</span> var1 = <span class="number">1</span><span class="comment">;</span>
+011B2FBB  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">28h</span>],<span class="number">1</span>  
+    <span class="keyword">int</span> var2 = <span class="number">2</span><span class="comment">;</span>
+011B2FC2  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">34h</span>],<span class="number">2</span>  
+    <span class="keyword">int</span> var3 = <span class="number">3</span><span class="comment">;</span>
+011B2FC9  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">40h</span>],<span class="number">3</span>  
+    <span class="keyword">int</span> var4 = <span class="number">4</span><span class="comment">;</span>
+011B2FD0  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4Ch</span>],<span class="number">4</span>  
+    <span class="keyword">int</span> var5 = <span class="number">5</span><span class="comment">;</span>
+011B2FD7  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">58h</span>],<span class="number">5</span>  
+</code></pre><p>可以看出，连续定义同一种类型的变量，这点和数组相同。如果连续定义的变量数据类型不同，则跟数组的反汇编结果就完全不一样了，根据这些特征可以判断是否为数组。</p>
+<h2 id="2、数组作为参数">2、数组作为参数</h2><p>数组所占的内存，通常大于4个字节，那么它是如何传递参数的呢？<br>测试代码如下：</p>
+<pre><code><span class="function"><span class="keyword">void</span> <span class="title">Show</span><span class="params">(<span class="keyword">char</span> szBuff[])</span>
+</span>{
+    <span class="built_in">strcpy</span>(szBuff,<span class="string">"hello world"</span>);
+    <span class="built_in">printf</span>(szBuff);
+}
+
+<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
+{
+    <span class="keyword">char</span> szHello[<span class="number">20</span>] = {<span class="number">0</span>};
+    Show(szHello);
+}
+</code></pre><p>反汇编代码：</p>
+<p><img src="/uploads/2014/07/1117015845.png" alt="1.png"></p>
+<p>通过上图，可以看出，当数组作为参数时，传递的是数组的首地址（指针变量）。因为是参数是指针变量，因此，使用sizeof只能得到指针长度，因此，应该避免如下错误代码：</p>
+<pre><code><span class="function"><span class="keyword">void</span> <span class="title">Show</span><span class="params">(<span class="keyword">char</span> szBuff[])</span>
+</span>{
+    <span class="keyword">int</span> nLen = <span class="number">0</span>;
+
+    <span class="comment">//这里是错误代码，得到的是指针长度,4字节</span>
+    nLen =  <span class="keyword">sizeof</span>(szBuff);
+    <span class="built_in">printf</span>(<span class="string">"%d ,"</span>,nLen);
+
+    <span class="comment">//正确的使用方法</span>
+    nLen = <span class="built_in">strlen</span>(szBuff);
+    <span class="built_in">printf</span>(<span class="string">"%d ,"</span>,nLen);
+
+    getchar();
+}
+</code></pre><h2 id="3、数组作为返回值">3、数组作为返回值</h2><p>数组作为返回值时，与作为参数时相同，都是返回数组第一个元素的地址。注意，数组作为参数时，其定义的作用域必然在函数外，但是作为返回值时，如果数组在函数内定义，作为函数的局部变量，那么开辟的栈空间，在函数结束的时候要进行堆栈平衡，esp归位。这样，函数所在的内存空间就会极不稳定，随时可能会被破坏，影响程序的结果。<br><strong>因此，如果想使用数组作为返回值，可以使用“<code>全局数组，静态数组，或者上层调用函数中定义的局部数组</code>”</strong></p>
+<h2 id="4、下标寻址和指针寻址">4、下标寻址和指针寻址</h2><p>访问数组有两种方式：<code>下标寻址</code>和<code>指针寻址</code>。 </p>
+<p>测试代码：</p>
+<pre><code><span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
+{
+    <span class="keyword">char</span> * pChar    = NULL;
+    <span class="keyword">char</span> szBuff[]    = <span class="string">"hello"</span>;
+    pChar            = szBuff;
+    <span class="built_in">printf</span>(<span class="string">"%c"</span>,*pChar);
+    <span class="built_in">printf</span>(<span class="string">"%c"</span>,szBuff[<span class="number">0</span>]);
+}
+</code></pre><p>反汇编结果：</p>
+<pre><code>    char * pChar    = NULL<span class="comment">;</span>
+00F83318  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">0Ch</span>],<span class="number">0</span>                      <span class="comment">;初始化指针变量</span>
+    char szBuff[]    = <span class="string">"hello"</span><span class="comment">;</span>
+00F8331F  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [string <span class="string">"hello"</span> (<span class="number">0F85834h</span>)]  <span class="comment">;初始化字符数组</span>
+00F83324  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">1Ch</span>],<span class="number">eax</span>  
+00F83327  <span class="keyword">mov</span>         <span class="number">cx</span>,<span class="preprocessor">word</span> <span class="preprocessor">ptr</span> <span class="literal">ds</span>:[<span class="number">0F85838h</span>]  
+00F8332E  <span class="keyword">mov</span>         <span class="preprocessor">word</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">18h</span>],<span class="number">cx</span>  
+    pChar            = szBuff<span class="comment">;</span>
+00F83332  <span class="keyword">lea</span>         <span class="number">eax</span>,[<span class="literal">ebp</span>-<span class="number">1Ch</span>]  
+00F83335  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">0Ch</span>],<span class="number">eax</span>                    <span class="comment">;对pCha重新赋值</span>
+    printf(<span class="string">"%c"</span>,*pChar)<span class="comment">;</span>
+00F83338  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">0Ch</span>]                    <span class="comment">;取数组首地址 </span>
+00F8333B  <span class="keyword">movsx</span>       <span class="number">ecx</span>,<span class="preprocessor">byte</span> <span class="preprocessor">ptr</span> [<span class="number">eax</span>]                         <span class="comment">;对首地址取值</span>
+00F8333E  <span class="keyword">mov</span>         <span class="literal">esi</span>,<span class="literal">esp</span>  
+00F83340  <span class="keyword">push</span>        <span class="number">ecx</span>  
+00F83341  <span class="keyword">push</span>        offset string <span class="string">"hello world"</span> (<span class="number">0F85830h</span>)  
+00F83346  <span class="keyword">call</span>        <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [__imp__printf (<span class="number">0F882B0h</span>)]  
+00F8334C  <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">8</span>  
+00F8334F  <span class="keyword">cmp</span>         <span class="literal">esi</span>,<span class="literal">esp</span>  
+00F83351  <span class="keyword">call</span>        @ILT+<span class="number">440</span>(__RTC_CheckEsp) (<span class="number">0F811BDh</span>)  
+    printf(<span class="string">"%c"</span>,szBuff[<span class="number">0</span>])<span class="comment">;</span>
+00F83356  <span class="keyword">movsx</span>       <span class="number">eax</span>,<span class="preprocessor">byte</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">1Ch</span>]                     <span class="comment">;数组首地址取值</span>
+00F8335A  <span class="keyword">mov</span>         <span class="literal">esi</span>,<span class="literal">esp</span>  
+00F8335C  <span class="keyword">push</span>        <span class="number">eax</span>  
+00F8335D  <span class="keyword">push</span>        offset string <span class="string">"hello world"</span> (<span class="number">0F85830h</span>)  
+00F83362  <span class="keyword">call</span>        <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [__imp__printf (<span class="number">0F882B0h</span>)]  
+00F83368  <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">8</span>  
+00F8336B  <span class="keyword">cmp</span>         <span class="literal">esi</span>,<span class="literal">esp</span>  
+00F8336D  <span class="keyword">call</span>        @ILT+<span class="number">440</span>(__RTC_CheckEsp) (<span class="number">0F811BDh</span>)  
+</code></pre><p>通过上面分析，指针需要两次间接访问，才能得到数组中的值。效率比下标方式要低。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/全部/">全部</a>►<a class="article-category-link" href="/categories/全部/逆向基础/">逆向基础</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://0x520.com/2015/05/23/reverse/17/" data-title="逆向基础第十七篇：数组和指针 | 鸡哥" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/05/23/reverse/18/" title="逆向基础第十八篇：对象的内存分布">
+  <strong>上一篇：</strong><br/>
+  <span>
+  逆向基础第十八篇：对象的内存分布</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/05/23/reverse/16/"  title="逆向基础第十六篇：堆空间的申请与释放">
+ <strong>下一篇：</strong><br/> 
+ <span>逆向基础第十六篇：堆空间的申请与释放
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、数组的定义"><span class="toc-number">1.</span> <span class="toc-text">1、数组的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、数组作为参数"><span class="toc-number">2.</span> <span class="toc-text">2、数组作为参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、数组作为返回值"><span class="toc-number">3.</span> <span class="toc-text">3、数组作为返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、下标寻址和指针寻址"><span class="toc-number">4.</span> <span class="toc-text">4、下标寻址和指针寻址</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/全部/" title="全部">全部<sup>23</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/全部/逆向基础/" title="逆向基础">逆向基础<sup>22</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/逆向/" title="逆向">逆向<sup>22</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/反汇编/" title="反汇编">反汇编<sup>22</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m John. <br/>
+			This is my blog, believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="John·Huang">John·Huang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
