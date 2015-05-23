@@ -1,0 +1,688 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Shell基础 | 鸡哥</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="John·Huang">
+    
+
+    
+    <meta name="description" content="管道和重定向
+0 代表标准输入
+1 代表标准输出
+2 代表标准错误输出
+
+重定向输出#将标准输入和标准输出分别重定向到不同的文件中
+$ kill -HUP 1234 &amp;gt;killout.txt 2&amp;gt;killerr.txt
+
+#将两组输出都重定向到一个文件中，可以使用&amp;amp;&amp;gt;操作符来结合两个输出
+$ kill -1 1234 &amp;gt;killout.txt 2&amp;amp;&amp;gt;1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shell基础">
+<meta property="og:url" content="http://0x520.com/2013/08/02/shell/1/index.html">
+<meta property="og:site_name" content="鸡哥">
+<meta property="og:description" content="管道和重定向
+0 代表标准输入
+1 代表标准输出
+2 代表标准错误输出
+
+重定向输出#将标准输入和标准输出分别重定向到不同的文件中
+$ kill -HUP 1234 &amp;gt;killout.txt 2&amp;gt;killerr.txt
+
+#将两组输出都重定向到一个文件中，可以使用&amp;amp;&amp;gt;操作符来结合两个输出
+$ kill -1 1234 &amp;gt;killout.txt 2&amp;amp;&amp;gt;1">
+<meta property="og:updated_time" content="2015-05-23T03:29:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shell基础">
+<meta name="twitter:description" content="管道和重定向
+0 代表标准输入
+1 代表标准输出
+2 代表标准错误输出
+
+重定向输出#将标准输入和标准输出分别重定向到不同的文件中
+$ kill -HUP 1234 &amp;gt;killout.txt 2&amp;gt;killerr.txt
+
+#将两组输出都重定向到一个文件中，可以使用&amp;amp;&amp;gt;操作符来结合两个输出
+$ kill -1 1234 &amp;gt;killout.txt 2&amp;amp;&amp;gt;1">
+
+    
+    <link rel="alternative" href="/atom.xml" title="鸡哥" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="鸡哥">鸡哥</a></h1>
+				<h2 class="blog-motto">不乱于心,不困于情。不念过往，不畏将来。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:0x520.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2013/08/02/shell/1/" title="Shell基础" itemprop="url">Shell基础</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2013-08-01T16:00:00.000Z" itemprop="datePublished"> 发表于 2013-08-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#管道和重定向"><span class="toc-number">1.</span> <span class="toc-text">管道和重定向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#重定向输出"><span class="toc-number">1.1.</span> <span class="toc-text">重定向输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重定向输入"><span class="toc-number">1.2.</span> <span class="toc-text">重定向输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shell_环境变量"><span class="toc-number">1.3.</span> <span class="toc-text">shell 环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数变量"><span class="toc-number">1.4.</span> <span class="toc-text">参数变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条件测试"><span class="toc-number">2.</span> <span class="toc-text">条件测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#test_或者_[_命令"><span class="toc-number">2.1.</span> <span class="toc-text">test 或者 [ 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串比较"><span class="toc-number">2.1.1.</span> <span class="toc-text">字符串比较</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算数比较"><span class="toc-number">2.1.2.</span> <span class="toc-text">算数比较</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件测试"><span class="toc-number">2.1.3.</span> <span class="toc-text">文件测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验"><span class="toc-number">2.1.4.</span> <span class="toc-text">实验</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#控制结构"><span class="toc-number">3.</span> <span class="toc-text">控制结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#if-elif-else…fi语句"><span class="toc-number">3.1.</span> <span class="toc-text">if..elif..else…fi语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for_语句"><span class="toc-number">3.2.</span> <span class="toc-text">for 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#while语句"><span class="toc-number">3.3.</span> <span class="toc-text">while语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#until语句"><span class="toc-number">3.4.</span> <span class="toc-text">until语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#case语句"><span class="toc-number">3.5.</span> <span class="toc-text">case语句</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实验1"><span class="toc-number">3.5.1.</span> <span class="toc-text">实验1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验2"><span class="toc-number">3.5.2.</span> <span class="toc-text">实验2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AND列表"><span class="toc-number">3.6.</span> <span class="toc-text">AND列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OR列表"><span class="toc-number">3.7.</span> <span class="toc-text">OR列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数"><span class="toc-number">3.8.</span> <span class="toc-text">函数</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="管道和重定向">管道和重定向</h2><ul>
+<li>0 代表标准输入</li>
+<li>1 代表标准输出</li>
+<li>2 代表标准错误输出</li>
+</ul>
+<h3 id="重定向输出">重定向输出</h3><pre><code><span class="comment">#将标准输入和标准输出分别重定向到不同的文件中</span>
+<span class="variable">$ </span>kill -<span class="constant">HUP </span><span class="number">1234</span> &gt;killout.txt <span class="number">2</span>&gt;killerr.txt
+
+<span class="comment">#将两组输出都重定向到一个文件中，可以使用&amp;&gt;操作符来结合两个输出</span>
+<span class="variable">$ </span>kill -<span class="number">1</span> <span class="number">1234</span> &gt;killout.txt <span class="number">2</span>&amp;&gt;<span class="number">1</span>
+
+<span class="comment">#使用Linux回收站丢弃所有的输出信息</span>
+<span class="variable">$ </span>kill -<span class="number">1</span> <span class="number">1234</span> &gt;<span class="regexp">/dev/null</span> <span class="number">2</span>&amp;&gt;<span class="number">1</span>
+</code></pre><h3 id="重定向输入">重定向输入</h3><pre><code>$ <span class="built_in">more</span> &lt; killout.txt
+</code></pre><h3 id="shell_环境变量">shell 环境变量</h3><pre><code><span class="variable">$HOME</span>       当前用户的家目录
+<span class="variable">$PATH</span> 
+<span class="variable">$PS1</span>        命令提示符，通常是<span class="variable">$。</span> 也可以设置更复杂的值，如：[\u<span class="variable">@\</span>h \W]<span class="variable">$，</span>给出了用户名、机器名、当前目录、
+<span class="variable">$PS2</span>        二级目录用来提示后续的输入，通常是&gt;字符
+<span class="variable">$IFS</span>        输入域分隔符。当shell读取输入时，它给出用来分割单词的一组字符，他们通常是空格、制表符和换行符。
+<span class="variable">$0</span>          shell脚本的名字
+<span class="variable">$#</span>          传递给脚本的参数个数
+<span class="variable">$$</span>          shell脚本的进程号，脚本程序通常会用它来生成一个唯一的临时文件，如 /tmp/tmpfile_<span class="variable">$$</span>
+</code></pre><h3 id="参数变量">参数变量</h3><pre><code><span class="variable">$1</span>,<span class="variable">$2</span>,...   脚本程序的参数
+<span class="variable">$*</span>          在一个变量中列出所有的参数，各参数之间用环境变量 <span class="constant">IFS </span>中的第一个字符分隔开。
+<span class="variable">$@</span>          它是<span class="variable">$*</span>的一个变种，即使<span class="constant">IFS位</span>空，参数也不会挤在一起。
+</code></pre><p>通过下面的例子，你可以很容易的看出$@和$*之间的区别：</p>
+<pre><code>macbook:~ john$ IFS=<span class="string">''</span>
+macbook:~ john$ <span class="built_in">set</span> foo bar bam
+macbook:~ john$ <span class="built_in">echo</span> <span class="string">"<span class="variable">$@</span>"</span>
+foo bar bam
+macbook:~ john$ <span class="built_in">echo</span> <span class="string">"$*"</span>
+foobarbam
+macbook:~ john$ <span class="built_in">unset</span> IFS
+macbook:~ john$ <span class="built_in">echo</span> <span class="string">"$*"</span>
+foo bar bam
+</code></pre><p>一般来说，如果你想访问程序的参数，使用$@是明智的选择。</p>
+<h2 id="条件测试">条件测试</h2><h3 id="test_或者_[_命令">test 或者 [ 命令</h3><pre><code><span class="keyword">if</span> <span class="built_in">test</span> <span class="operator">-f</span> fred.c
+<span class="keyword">then</span>
+...
+<span class="keyword">fi</span>
+</code></pre><p>也可以写成下面这样：</p>
+<pre><code><span class="keyword">if</span> [ <span class="operator">-f</span> fred.c ]
+<span class="keyword">then</span>
+...
+<span class="keyword">fi</span>
+</code></pre><p>也可以写成这样：</p>
+<pre><code><span class="keyword">if</span> [ <span class="operator">-f</span> fred.c ];<span class="keyword">then</span>
+...
+<span class="keyword">fi</span>
+</code></pre><h4 id="字符串比较">字符串比较</h4><pre><code><span class="keyword">string1 </span>= <span class="keyword">string2 </span>      如果两个字符串相同则为真
+<span class="keyword">string1 </span>!= <span class="keyword">string2 </span>     如果两个字符串不同则为真
+-n <span class="keyword">string </span>              如果字符串不为空则为真
+-z <span class="keyword">string </span>              如果字符串为null（一个空串）则为真
+</code></pre><h4 id="算数比较">算数比较</h4><pre><code><span class="built_in">exp1</span> -eq <span class="built_in">exp2</span>   两个表达式相等则为真
+<span class="built_in">exp1</span> -ne <span class="built_in">exp2</span>   两个表达式不等则为真
+<span class="built_in">exp1</span> -gt <span class="built_in">exp2</span>   <span class="built_in">exp1</span> 大于 <span class="built_in">exp2</span> 则为真
+<span class="built_in">exp1</span> -ge <span class="built_in">exp2</span>   <span class="built_in">exp1</span> 大于等于 <span class="built_in">exp2</span> 则为真
+<span class="built_in">exp1</span> -lt <span class="built_in">exp2</span>   <span class="built_in">exp1</span> 小于 <span class="built_in">exp2</span> 则为真
+<span class="built_in">exp1</span> -le <span class="built_in">exp2</span>   <span class="built_in">exp1</span> 小于等于 <span class="built_in">exp2</span> 则为真
+! <span class="built_in">exp</span>           表达式为假则为真（反之亦然）
+</code></pre><h4 id="文件测试">文件测试</h4><pre><code>-<span class="ruby">d file     如果文件是一个目录则为真
+</span>-<span class="ruby">e file     如果文件存在则为真。 注意：历史上-e选项不可移植，所以，我们通常使用-f选项
+</span>-<span class="ruby">f file     如果文件存在则为真
+</span>-<span class="ruby">g file     如果文件的 set-group-id 位被设置则为真
+</span>-<span class="ruby">u file     如果文件的 set-user-id 位被设置则为真
+</span>-<span class="ruby">s file     如果文件大小不为<span class="number">0</span>则为真
+</span>-<span class="ruby">r file     如果文件可读则为真
+</span>-<span class="ruby">w file     如果文件可写则为真
+</span>-<span class="ruby">x file     如果文件可执行则为真</span>
+</code></pre><h4 id="实验">实验</h4><pre><code><span class="shebang">#!/bin/sh
+</span>
+<span class="keyword">if</span> [ <span class="operator">-f</span> /bin/bash ]
+<span class="keyword">then</span>
+    <span class="built_in">echo</span> <span class="string">"file /bin/bash exists"</span>
+<span class="keyword">fi</span>
+
+<span class="keyword">if</span> [ <span class="operator">-d</span> /bin/bash ]
+<span class="keyword">then</span>
+    <span class="built_in">echo</span> <span class="string">"/bin/bash is a directory"</span>
+<span class="keyword">else</span>
+    <span class="built_in">echo</span> <span class="string">"/bin/bash is NOT a directory"</span>
+<span class="keyword">fi</span>
+</code></pre><h2 id="控制结构">控制结构</h2><h3 id="if-elif-else…fi语句">if..elif..else…fi语句</h3><pre><code><span class="shebang">#!/bin/sh</span>
+<span class="built_in">echo</span> <span class="string">"Is it morning? Please answer yes or no"</span>
+<span class="built_in">read</span> timeofday
+
+<span class="keyword">if</span> [ <span class="string">"<span class="variable">$timeofday</span>"</span> == <span class="string">"yes"</span> ]
+<span class="keyword">then</span>
+    <span class="built_in">echo</span> <span class="string">"Good morning"</span>
+<span class="keyword">elif</span> [ <span class="string">"<span class="variable">$timeofday</span>"</span> = <span class="string">"no"</span> ];<span class="keyword">then</span>
+    <span class="built_in">echo</span> <span class="string">"Good afternoon"</span>
+<span class="keyword">else</span>
+    <span class="built_in">echo</span> <span class="string">"Sorry, <span class="variable">$timeofday</span> not recognized. Enter yes or no"</span>
+    <span class="built_in">exit</span> <span class="number">1</span>
+<span class="keyword">fi</span>
+
+<span class="built_in">exit</span> <span class="number">0</span>
+</code></pre><h3 id="for_语句">for 语句</h3><p>实验1：</p>
+<pre><code><span class="shebang">#!/bin/sh</span>
+<span class="keyword">for</span> foo <span class="keyword">in</span> bar fud <span class="number">43</span>
+<span class="keyword">do</span>
+    <span class="built_in">echo</span> <span class="variable">$foo</span>
+<span class="keyword">done</span>
+<span class="built_in">exit</span> <span class="number">0</span>
+</code></pre><p>实验2：</p>
+<pre><code><span class="shebang">#!/bin/sh</span>
+<span class="keyword">for</span> line <span class="keyword">in</span> $(ls <span class="operator">-a</span>);<span class="keyword">do</span>
+    <span class="built_in">echo</span> <span class="variable">$line</span>
+<span class="keyword">done</span>
+<span class="built_in">exit</span> <span class="number">0</span>
+</code></pre><h3 id="while语句">while语句</h3><pre><code><span class="shebang">#!/bin/sh</span>
+<span class="built_in">echo</span> <span class="string">"Enter password"</span>
+<span class="built_in">read</span> trythis
+<span class="keyword">while</span> [ <span class="string">"<span class="variable">$trythis</span>"</span> != <span class="string">"secret"</span> ];<span class="keyword">do</span>
+    <span class="built_in">echo</span> <span class="string">"Sorry,try again"</span>
+    <span class="built_in">read</span> trythis
+<span class="keyword">done</span>
+<span class="built_in">exit</span> <span class="number">0</span>
+</code></pre><h3 id="until语句">until语句</h3><pre><code>until condition
+<span class="keyword">do</span>
+    statements
+<span class="keyword">done</span>
+</code></pre><h3 id="case语句">case语句</h3><pre><code><span class="keyword">case</span> variable <span class="keyword">in</span>
+    <span class="literal">pattern</span> [ | <span class="literal">pattern</span>] ...) statements;;
+    <span class="literal">pattern</span> [ | <span class="literal">pattern</span>] ...) statements;;
+esac
+</code></pre><h4 id="实验1">实验1</h4><pre><code><span class="shebang">#!/bin/sh</span>
+<span class="built_in">echo</span> <span class="string">"Is it morning? Please answer yes or no"</span>
+<span class="built_in">read</span> timeofday
+<span class="keyword">case</span> <span class="string">"<span class="variable">$timeofday</span>"</span> <span class="keyword">in</span>
+    yes )   <span class="built_in">echo</span> <span class="string">"Good Morning"</span>;;
+    no  )   <span class="built_in">echo</span> <span class="string">"Good Afternoon"</span>;;
+    y   )   <span class="built_in">echo</span> <span class="string">"Good Morning"</span>;;
+    n   )   <span class="built_in">echo</span> <span class="string">"Good Afternoon"</span>;;
+    *   )   <span class="built_in">echo</span> <span class="string">"Sorry, answer not recognized"</span>;;
+<span class="keyword">esac</span>
+<span class="built_in">exit</span> <span class="number">0</span>
+</code></pre><h4 id="实验2">实验2</h4><pre><code><span class="shebang">#!/bin/sh</span>
+<span class="built_in">echo</span> <span class="string">"Is it morning? Please answer yes or no"</span>
+<span class="built_in">read</span> timeofday
+<span class="keyword">case</span> <span class="string">"<span class="variable">$timeofday</span>"</span> <span class="keyword">in</span>
+    y | yes | Y | Yes | YES )   <span class="built_in">echo</span> <span class="string">"Good Morning"</span>;;
+    n* | N*                 )   <span class="built_in">echo</span> <span class="string">"Good Afternoon"</span>;;
+    *                       )   <span class="built_in">echo</span> <span class="string">"Sorry, answer not recognized"</span>;;
+<span class="keyword">esac</span>
+<span class="built_in">exit</span> <span class="number">0</span>
+</code></pre><h3 id="AND列表">AND列表</h3><pre><code><span class="shebang">#!/bin/sh</span>
+touch file_one
+rm <span class="operator">-f</span> file_two
+<span class="keyword">if</span> [ <span class="operator">-f</span> file_one ] &amp;&amp; <span class="built_in">echo</span> <span class="string">"hello"</span> &amp;&amp; [ <span class="operator">-f</span> file_two ] &amp;&amp; <span class="built_in">echo</span> <span class="string">"there"</span>
+<span class="keyword">then</span>
+    <span class="built_in">echo</span> <span class="string">"in if"</span>
+<span class="keyword">else</span>
+    <span class="built_in">echo</span> <span class="string">"in else"</span>
+<span class="keyword">fi</span>
+<span class="built_in">exit</span> <span class="number">0</span>
+</code></pre><h3 id="OR列表">OR列表</h3><pre><code><span class="shebang">#!/bin/sh</span>
+rm <span class="operator">-f</span> file_one
+<span class="keyword">if</span> [ <span class="operator">-f</span> file_one ] || <span class="built_in">echo</span> <span class="string">"hello"</span> || <span class="built_in">echo</span> <span class="string">"there"</span>
+<span class="keyword">then</span>
+    <span class="built_in">echo</span> <span class="string">"in if"</span>
+<span class="keyword">else</span>
+    <span class="built_in">echo</span> <span class="string">"in else"</span>
+<span class="keyword">fi</span>
+<span class="built_in">exit</span> <span class="number">0</span>
+</code></pre><p>解析：第一条指令<code>if [ -f file_one ]</code>失败了，但是接下来的echo语句，它返回的是true。</p>
+<h3 id="函数">函数</h3><pre><code><span class="shebang">#!/bin/sh</span>
+<span class="function"><span class="title">foo</span></span>() {
+    <span class="built_in">echo</span> <span class="string">"Function foo is executing"</span>
+}
+<span class="built_in">echo</span> <span class="string">"script starting"</span>
+foo
+<span class="built_in">echo</span> <span class="string">"script ended"</span>
+<span class="built_in">exit</span> <span class="number">0</span>
+</code></pre>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/linux/">linux</a><a href="/tags/shell/">shell</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://0x520.com/2013/08/02/shell/1/" data-title="Shell基础 | 鸡哥" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/01/01/hello-world/" title="Hello World">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Hello World</span>
+</a>
+</div>
+
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#管道和重定向"><span class="toc-number">1.</span> <span class="toc-text">管道和重定向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#重定向输出"><span class="toc-number">1.1.</span> <span class="toc-text">重定向输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重定向输入"><span class="toc-number">1.2.</span> <span class="toc-text">重定向输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shell_环境变量"><span class="toc-number">1.3.</span> <span class="toc-text">shell 环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数变量"><span class="toc-number">1.4.</span> <span class="toc-text">参数变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条件测试"><span class="toc-number">2.</span> <span class="toc-text">条件测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#test_或者_[_命令"><span class="toc-number">2.1.</span> <span class="toc-text">test 或者 [ 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串比较"><span class="toc-number">2.1.1.</span> <span class="toc-text">字符串比较</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算数比较"><span class="toc-number">2.1.2.</span> <span class="toc-text">算数比较</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件测试"><span class="toc-number">2.1.3.</span> <span class="toc-text">文件测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验"><span class="toc-number">2.1.4.</span> <span class="toc-text">实验</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#控制结构"><span class="toc-number">3.</span> <span class="toc-text">控制结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#if-elif-else…fi语句"><span class="toc-number">3.1.</span> <span class="toc-text">if..elif..else…fi语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for_语句"><span class="toc-number">3.2.</span> <span class="toc-text">for 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#while语句"><span class="toc-number">3.3.</span> <span class="toc-text">while语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#until语句"><span class="toc-number">3.4.</span> <span class="toc-text">until语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#case语句"><span class="toc-number">3.5.</span> <span class="toc-text">case语句</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实验1"><span class="toc-number">3.5.1.</span> <span class="toc-text">实验1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验2"><span class="toc-number">3.5.2.</span> <span class="toc-text">实验2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AND列表"><span class="toc-number">3.6.</span> <span class="toc-text">AND列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OR列表"><span class="toc-number">3.7.</span> <span class="toc-text">OR列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数"><span class="toc-number">3.8.</span> <span class="toc-text">函数</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MongoDB/" title="MongoDB">MongoDB<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/运维/PHP/" title="PHP">PHP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/运维/Python/" title="Python">Python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/运维/" title="运维">运维<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/逆向基础/" title="逆向基础">逆向基础<sup>22</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/逆向/" title="逆向">逆向<sup>22</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/反汇编/" title="反汇编">反汇编<sup>22</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shell/" title="shell">shell<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/运维/" title="运维">运维<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/nginx/" title="nginx">nginx<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mongodb/" title="mongodb">mongodb<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/pptpd/" title="pptpd">pptpd<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/翻墙/" title="翻墙">翻墙<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vpn/" title="vpn">vpn<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m John. <br/>
+			This is my blog, believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="John·Huang">John·Huang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
