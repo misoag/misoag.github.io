@@ -1,0 +1,532 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>逆向基础第五篇：条件表达式 | 鸡哥</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="John·Huang">
+    
+
+    
+    <meta name="description" content="条件表达式又成为三目运算，语句结构如下：
+&amp;lt;表达式1&amp;gt;?&amp;lt;表达式2&amp;gt;:&amp;lt;表达式3&amp;gt;;
+条件表达式一般是先判断再选择，但是编译器不一定按这种方式编译，当表达式2和表达式3为常量时，条件表达式可以被优化；当表达式2或表达式3有一个为变量时，表达式不可以被优化，会变成分支结构。当表达式1为常量时， 编译器编译期间将得到答案，将不会有表达式存在。
+第一种方式
+7:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="逆向基础第五篇：条件表达式">
+<meta property="og:url" content="http://0x520.com/2014/05/04/reverse/4/index.html">
+<meta property="og:site_name" content="鸡哥">
+<meta property="og:description" content="条件表达式又成为三目运算，语句结构如下：
+&amp;lt;表达式1&amp;gt;?&amp;lt;表达式2&amp;gt;:&amp;lt;表达式3&amp;gt;;
+条件表达式一般是先判断再选择，但是编译器不一定按这种方式编译，当表达式2和表达式3为常量时，条件表达式可以被优化；当表达式2或表达式3有一个为变量时，表达式不可以被优化，会变成分支结构。当表达式1为常量时， 编译器编译期间将得到答案，将不会有表达式存在。
+第一种方式
+7:">
+<meta property="og:updated_time" content="2015-05-23T03:14:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="逆向基础第五篇：条件表达式">
+<meta name="twitter:description" content="条件表达式又成为三目运算，语句结构如下：
+&amp;lt;表达式1&amp;gt;?&amp;lt;表达式2&amp;gt;:&amp;lt;表达式3&amp;gt;;
+条件表达式一般是先判断再选择，但是编译器不一定按这种方式编译，当表达式2和表达式3为常量时，条件表达式可以被优化；当表达式2或表达式3有一个为变量时，表达式不可以被优化，会变成分支结构。当表达式1为常量时， 编译器编译期间将得到答案，将不会有表达式存在。
+第一种方式
+7:">
+
+    
+    <link rel="alternative" href="/atom.xml" title="鸡哥" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="鸡哥">鸡哥</a></h1>
+				<h2 class="blog-motto">不乱于心,不困于情。不念过往，不畏将来。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:0x520.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/05/04/reverse/4/" title="逆向基础第五篇：条件表达式" itemprop="url">逆向基础第五篇：条件表达式</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2014-05-03T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-05-04</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<p>条件表达式又成为三目运算，语句结构如下：</p>
+<pre><code><span class="tag">&lt;<span class="title">表达式1</span>&gt;</span>?<span class="tag">&lt;<span class="title">表达式2</span>&gt;</span>:<span class="tag">&lt;<span class="title">表达式3</span>&gt;</span>;
+</code></pre><p>条件表达式一般是先判断再选择，但是编译器不一定按这种方式编译，当<code>表达式2</code>和<code>表达式3</code>为常量时，条件表达式可以被优化；当<code>表达式2</code>或<code>表达式3</code>有一个为变量时，表达式不可以被优化，会变成分支结构。<br>当<code>表达式1</code>为常量时， 编译器编译期间将得到答案，将不会有表达式存在。</p>
+<p><strong>第一种方式</strong></p>
+<pre><code><span class="number">7</span>:    <span class="keyword">int</span> main(<span class="keyword">int</span> argc, char* argv[])
+<span class="number">8</span>:    {
+<span class="number">9</span>:        return argc == <span class="number">5</span> ? <span class="number">5</span> : <span class="number">6</span><span class="comment">;</span>
+<span class="number">00401028</span>   <span class="keyword">xor</span>         <span class="number">eax</span>,<span class="number">eax</span>
+0040102A   <span class="keyword">cmp</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">5</span>
+//<span class="keyword">setne</span>检查ZF标记位，当ZF==<span class="number">1</span>时，则赋值<span class="literal">al</span>为<span class="number">0</span>，否则赋值<span class="literal">al</span>为<span class="number">1</span>
+0040102E   <span class="keyword">setne</span>       <span class="literal">al</span>
+//如果argc==<span class="number">5</span> 则 <span class="literal">al</span>==<span class="number">0</span>，否则 <span class="literal">al</span> == <span class="number">1</span>
+<span class="number">00401031</span>   <span class="keyword">add</span>         <span class="number">eax</span>,<span class="number">5</span>
+<span class="number">10</span>:   }
+</code></pre><p>上面的<code>表达式2</code> 和 <code>表达式3</code>的差值为1，使用setne指令平衡。</p>
+<p><strong>第二种方式</strong></p>
+<pre><code><span class="number">7</span>:    <span class="keyword">int</span> main(<span class="keyword">int</span> argc, char* argv[])
+<span class="number">8</span>:    {
+<span class="number">9</span>:        return argc == <span class="number">5</span> ? <span class="number">4</span> : <span class="number">10</span><span class="comment">;</span>
+<span class="number">00401028</span>   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
+0040102B   <span class="keyword">sub</span>         <span class="number">eax</span>,<span class="number">5</span>
+0040102E   <span class="keyword">neg</span>         <span class="number">eax</span>
+<span class="number">00401030</span>   <span class="keyword">sbb</span>         <span class="number">eax</span>,<span class="number">eax</span>
+<span class="number">00401032</span>   <span class="keyword">and</span>         <span class="number">eax</span>,<span class="number">6</span>
+<span class="number">00401035</span>   <span class="keyword">add</span>         <span class="number">eax</span>,<span class="number">4</span>
+<span class="number">10</span>:   }
+</code></pre><ul>
+<li>执行sub指令后，eax 值就不为 0 </li>
+<li>执行neg指令后，eax 的符号位就会发生改变，CF 置 1 。</li>
+<li>执行sbb eax,eax ，错位减法指令，等价于 eax = eax - eax - CF。当CF为1时，eax中的值将会是0xFFFFFFFF，否则为0 。</li>
+<li>使用 eax 与 6 做位运算后，如果eax中的数值原来为 -1，则记过为6，加4后得到数值 10</li>
+<li>当条件表达式 argc == 5 成立，那么eax中的值始终为 0 。用0与6做位运算结果还是0 ，加4后为4 。</li>
+</ul>
+<blockquote>
+<p>总结：遇到 sub/neg/sbb 就表明是等值比较了，其判定值为A</p>
+<pre><code>sub        <span class="keyword">reg</span>, A
+neg        <span class="keyword">reg</span>
+sbb        <span class="keyword">reg</span>, <span class="keyword">reg</span>
+<span class="built_in">and</span>        <span class="keyword">reg</span>, B
+<span class="built_in">add</span>        <span class="keyword">reg</span>, C ;若等值条件成立，其结果为C，否则为B+C
+</code></pre><p>这样的代码块可以直接还原成如下形式的高级代码：</p>
+<pre><code>reg == <span class="keyword">A</span> ? C : B + C<span class="comment">;</span>
+</code></pre></blockquote>
+<p><strong>第三种方式</strong></p>
+<pre><code><span class="number">7</span>:    <span class="keyword">int</span> main(<span class="keyword">int</span> argc, char* argv[])
+<span class="number">8</span>:    {
+<span class="number">9</span>:        return argc &lt;= <span class="number">8</span> ? <span class="number">4</span> : <span class="number">10</span><span class="comment">;</span>
+//清空<span class="number">eax</span>，与第一种方式类似
+<span class="number">00401028</span>   <span class="keyword">xor</span>         <span class="number">eax</span>,<span class="number">eax</span>
+0040102A   <span class="keyword">cmp</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>], <span class="number">8</span>
+//根据变量与<span class="number">8</span>比较的结果，使用<span class="keyword">setg</span>指令，当标记位SF=OF 且 ZF=<span class="number">0</span> 赋值 <span class="literal">al</span>为<span class="number">1</span>
+//用于检查变量是否大于<span class="number">8</span>，大于则赋值<span class="number">1</span>
+0040102E   <span class="keyword">setg</span>        <span class="literal">al</span>
+//此时<span class="literal">al</span>中只能是<span class="number">0</span>或<span class="number">1</span>，执行自减操作，<span class="number">eax</span>中为 <span class="number">0xFFFFFFFF</span> 或 <span class="number">0</span>
+<span class="number">00401031</span>   <span class="keyword">dec</span>         <span class="number">eax</span>
+//使用<span class="literal">al</span>与<span class="number">0xFA</span>做位运算。 <span class="number">eax</span> 中为 <span class="number">0xFFFFFFFA</span> 或 <span class="number">0</span>
+//此数值为 表达式<span class="number">2</span> - 表达式<span class="number">3</span> 的数值 
+<span class="number">00401032</span>   <span class="keyword">and</span>         <span class="literal">al</span>,<span class="number">0FAh</span>
+//由于<span class="number">eax</span>中只能有两个结果 <span class="number">0xFFFFFFFA</span>(-<span class="number">6</span>) 或 <span class="number">0</span>，加 <span class="number">0x0A</span> 后结果必然为 <span class="number">4</span> 或 <span class="number">10</span> 
+<span class="number">00401034</span>   <span class="keyword">add</span>         <span class="number">eax</span>,<span class="number">0Ah</span>
+<span class="number">10</span>:   }
+</code></pre><p>这种方式与<code>第二种方式</code>在逻辑上是相反的，它是 <code>表达式2</code> <code>减去</code> <code>表达式3</code> 得到的数值。</p>
+<blockquote>
+<p>总结：先调整reg为0 或 -1</p>
+<pre><code><span class="built_in">and</span>         <span class="keyword">reg</span>, A
+<span class="built_in">add</span>         <span class="keyword">reg</span>, B
+</code></pre><p>遇到这样的代码块，需要重点考察and前的指令，以判断真假逻辑的处理方式。 对于这个例子中的 dec reg 这样的指令，之前 reg 只能是 0 或 1，因此 这里的 dec 其实是对reg进行修正。 如果reg为1 修正后为0 ，否则为 0xffffffff，便于后面的and运算。 这时候要根据and前的指令流程，分析原来的判定在什么情况下会导致reg为0xffffffff 或 0 ，以便于还原。</p>
+</blockquote>
+<p><strong>第四种方式</strong><br>当 <code>表达式2</code> 或 <code>表达式3</code> 的值未知时，编译器就会按常规流程处理了：</p>
+<pre><code><span class="number">7</span>:    <span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">int</span> n)
+<span class="number">8</span>:    {
+<span class="number">9</span>:        return argc ? <span class="number">8</span> : n<span class="comment">;</span>
+//比较变量argc
+<span class="number">00401028</span>   <span class="keyword">cmp</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">0</span>
+//如果argc值为<span class="number">0</span>，则跳转到地址 <span class="number">00401037</span> 处
+0040102C   <span class="keyword">je</span>          main+<span class="number">27h</span> (<span class="number">00401037</span>)
+//如果argc不为<span class="number">0</span>，则使用立即数<span class="number">8</span>赋值，并跳转到地址<span class="number">0040103d</span>处结束函数
+0040102E   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">8</span>
+<span class="number">00401035</span>   <span class="keyword">jmp</span>         main+<span class="number">2Dh</span> (<span class="number">0040103d</span>)
+//取n的值并返回。
+<span class="number">00401037</span>   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">0Ch</span>]
+0040103A   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">eax</span>
+//将结果放入<span class="number">eax</span>，函数结束
+<span class="number">0040103D</span>   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>]
+<span class="number">10</span>:   }
+</code></pre>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/全部/">全部</a>►<a class="article-category-link" href="/categories/全部/逆向基础/">逆向基础</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://0x520.com/2014/05/04/reverse/4/" data-title="逆向基础第五篇：条件表达式 | 鸡哥" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/05/05/reverse/6/" title="逆向基础第六篇：位运算">
+  <strong>上一篇：</strong><br/>
+  <span>
+  逆向基础第六篇：位运算</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/05/03/reverse/3/"  title="逆向基础第三篇：汇编中的四则运算">
+ <strong>下一篇：</strong><br/> 
+ <span>逆向基础第三篇：汇编中的四则运算
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/全部/" title="全部">全部<sup>23</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/全部/逆向基础/" title="逆向基础">逆向基础<sup>22</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/逆向/" title="逆向">逆向<sup>22</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/反汇编/" title="反汇编">反汇编<sup>22</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m John. <br/>
+			This is my blog, believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="John·Huang">John·Huang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
