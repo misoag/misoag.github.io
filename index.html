@@ -77,69 +77,6 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/05/23/hello-world/" title="Hello World" itemprop="url">Hello World</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-05-23T03:07:36.000Z" itemprop="datePublished"> 发表于 2015-05-23</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/全部/">全部</a>
-</div>
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
       <a href="/2015/05/22/reverse/22/" title="逆向基础第二十二篇：构造函数" itemprop="url">逆向基础第二十二篇：构造函数</a>
   </h1>
   <p class="article-author">By
@@ -1236,6 +1173,141 @@ void ShowFunTest(CTest <span class="keyword">Test</span>)
 <li>ecx的值是重复的次数。</li>
 <li>stos指令的作用是，将eax中的值拷贝到es:[edi]指向的地址。</li>
 </ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/全部/">全部</a>►<a class="article-category-link" href="/categories/全部/逆向基础/">逆向基础</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/13/reverse/13/" title="逆向基础第十三篇：编译器对循环的优化" itemprop="url">逆向基础第十三篇：编译器对循环的优化</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-12T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-05-13</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>之前，我已经对do、while、和for循环做了详细的介绍。</p>
+<p>do循环：<a href="http://www.0x520.com/2014/07/04/247.html" target="_blank" rel="external">http://www.0x520.com/2014/07/04/247.html</a><br>while循环：<a href="http://www.0x520.com/2014/07/04/251.html" target="_blank" rel="external">http://www.0x520.com/2014/07/04/251.html</a><br>for循环：<a href="http://www.0x520.com/2014/07/05/264.html" target="_blank" rel="external">http://www.0x520.com/2014/07/05/264.html</a></p>
+<p>通过对比，我们已经知道，do循环的速度最快，while次之，for的速度是最慢的。 因为，do只用到一个跳转指令，while用到两个跳转指令，而for用到了三个跳转指令。</p>
+<h3 id="1、优化while循环">1、优化while循环</h3><p>在 <a href="http://while%E5%BE%AA%E7%8E%AF" target="_blank" rel="external">while循环</a> 中我们讲过，是可以将while转换为do循环的，可以将do循环结构嵌套在if中，来完成while结构的优化。<br>while循环代码：</p>
+<pre><code><span class="function"><span class="keyword">void</span> <span class="title">loop_while</span><span class="params">(<span class="keyword">int</span> loopTimes)</span>
+</span>{
+    <span class="keyword">while</span>(loopTimes&gt;=<span class="number">0</span>)
+    {
+        <span class="comment">//do something</span>
+        loopTimes --;
+    }
+}
+</code></pre><p>优化代码：</p>
+<pre><code><span class="function"><span class="keyword">void</span> <span class="title">loop_do</span><span class="params">(<span class="keyword">int</span> loopTimes)</span>
+</span>{
+    <span class="keyword">if</span>(loopTimes&gt;=<span class="number">0</span>)
+    {
+        <span class="keyword">do</span>{
+            <span class="comment">//do something</span>
+            loopTimes --;
+        }<span class="keyword">while</span>(loopTimes&gt;=<span class="number">0</span>);
+    }
+}
+</code></pre><p>如果编译器使用O2选项进行优化，那么，反汇编之后的代码将是上面这种形式。</p>
+<h3 id="2、优化for循环">2、优化for循环</h3><p>for循环，从结构上看，其结构特征和while循环类似。由于赋初值部分不属于循环体，可以忽略。只要将比较部分放入循环体，那么就是一个while循环。既然可以转换成while循环，那么必然也可以转换成do循环。</p>
+<p>for循环代码：</p>
+<pre><code><span class="keyword">int</span> nSum = <span class="number">0</span>;
+<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="keyword">loop_t</span>imes ; i++)
+{
+    nSum += i;
+}
+</code></pre><p>for转换成while循环：</p>
+<pre><code><span class="keyword">int</span> i = <span class="number">0</span>;
+<span class="keyword">while</span>(i&lt;<span class="keyword">loop_t</span>imes){
+    nSum += i;
+    i++;
+}
+</code></pre><p>while循环转换成do循环：</p>
+<pre><code><span class="keyword">int</span> nSum = <span class="number">0</span>;
+<span class="keyword">int</span> i = <span class="number">0</span>;
+<span class="keyword">if</span>(i&lt;<span class="keyword">loop_t</span>imes){
+    <span class="keyword">do</span> {
+        nSum += i;
+        i++;
+    } <span class="keyword">while</span> (i&lt;argc);
+}
+</code></pre><p>编译器真的会这样优化吗？我们打开O2选项（选择Release，默认就是O2）：</p>
+<p><img src="/uploads/2014/07/3121390140.png" alt="1.png"></p>
+<p>编译如下代码：</p>
+<pre><code><span class="function"><span class="keyword">int</span> <span class="title">loop_for</span><span class="params">(<span class="keyword">int</span> loop_times)</span>
+</span>{
+    <span class="keyword">int</span> nSum = <span class="number">0</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="keyword">loop_t</span>imes ; i++)
+    {
+        nSum += i;
+    }
+    <span class="keyword">return</span> nSum;
+}
+</code></pre><p>我们使用IDA分析：</p>
+<p><img src="/uploads/2014/07/344158898.png" alt="2.png"></p>
+<p>上图中for循环优化之后的结构一目了然，但是有些朋友表示还是看不懂，表示对下面这段代码不知所云：</p>
+<pre><code><span class="keyword">add</span>     <span class="number">edx</span>,<span class="number">eax</span>
+<span class="keyword">lea</span>     <span class="number">ecx</span>,[<span class="number">ecx</span>+<span class="number">eax</span>+<span class="number">1</span>]
+<span class="keyword">add</span>     <span class="number">eax</span>,<span class="number">2</span>
+<span class="keyword">cmp</span>     <span class="number">eax</span>,<span class="literal">esi</span>
+<span class="keyword">jle</span>     short loc_401020
+</code></pre><p>这里我来讲解一下，其实这已经不是编译器对for循环优化的范畴了，这里是编译器对当前算法的优化 <code>nSum += (i++);</code></p>
+<ul>
+<li>edx 等于变量 nSum 的偶数和</li>
+<li>ecx 等于变量 nSum 的奇数和</li>
+<li>eax 等于变量 i  </li>
+</ul>
+<p>最后，在地址00401034处，<code>lea eax,[ecx+edx]</code>，这里 eax = <code>奇数和</code>+<code>偶数和</code> 。</p>
+<p>————— 致谢 ————— </p>
+<p>这里要感谢 <code>sollyu</code> 和 <code>0XE9</code> 两位兄弟的无私帮助。<br>sollyu对上面的反汇编代码进行了逆向还原，这是还原后的代码：</p>
+<p><img src="/uploads/2014/07/493634735.jpg" alt="3.jpg"></p>
 
         
         

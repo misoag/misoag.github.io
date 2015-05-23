@@ -77,141 +77,6 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/05/13/reverse/13/" title="逆向基础第十三篇：编译器对循环的优化" itemprop="url">逆向基础第十三篇：编译器对循环的优化</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-05-12T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-05-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>之前，我已经对do、while、和for循环做了详细的介绍。</p>
-<p>do循环：<a href="http://www.0x520.com/2014/07/04/247.html" target="_blank" rel="external">http://www.0x520.com/2014/07/04/247.html</a><br>while循环：<a href="http://www.0x520.com/2014/07/04/251.html" target="_blank" rel="external">http://www.0x520.com/2014/07/04/251.html</a><br>for循环：<a href="http://www.0x520.com/2014/07/05/264.html" target="_blank" rel="external">http://www.0x520.com/2014/07/05/264.html</a></p>
-<p>通过对比，我们已经知道，do循环的速度最快，while次之，for的速度是最慢的。 因为，do只用到一个跳转指令，while用到两个跳转指令，而for用到了三个跳转指令。</p>
-<h3 id="1、优化while循环">1、优化while循环</h3><p>在 <a href="http://while%E5%BE%AA%E7%8E%AF" target="_blank" rel="external">while循环</a> 中我们讲过，是可以将while转换为do循环的，可以将do循环结构嵌套在if中，来完成while结构的优化。<br>while循环代码：</p>
-<pre><code><span class="function"><span class="keyword">void</span> <span class="title">loop_while</span><span class="params">(<span class="keyword">int</span> loopTimes)</span>
-</span>{
-    <span class="keyword">while</span>(loopTimes&gt;=<span class="number">0</span>)
-    {
-        <span class="comment">//do something</span>
-        loopTimes --;
-    }
-}
-</code></pre><p>优化代码：</p>
-<pre><code><span class="function"><span class="keyword">void</span> <span class="title">loop_do</span><span class="params">(<span class="keyword">int</span> loopTimes)</span>
-</span>{
-    <span class="keyword">if</span>(loopTimes&gt;=<span class="number">0</span>)
-    {
-        <span class="keyword">do</span>{
-            <span class="comment">//do something</span>
-            loopTimes --;
-        }<span class="keyword">while</span>(loopTimes&gt;=<span class="number">0</span>);
-    }
-}
-</code></pre><p>如果编译器使用O2选项进行优化，那么，反汇编之后的代码将是上面这种形式。</p>
-<h3 id="2、优化for循环">2、优化for循环</h3><p>for循环，从结构上看，其结构特征和while循环类似。由于赋初值部分不属于循环体，可以忽略。只要将比较部分放入循环体，那么就是一个while循环。既然可以转换成while循环，那么必然也可以转换成do循环。</p>
-<p>for循环代码：</p>
-<pre><code><span class="keyword">int</span> nSum = <span class="number">0</span>;
-<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="keyword">loop_t</span>imes ; i++)
-{
-    nSum += i;
-}
-</code></pre><p>for转换成while循环：</p>
-<pre><code><span class="keyword">int</span> i = <span class="number">0</span>;
-<span class="keyword">while</span>(i&lt;<span class="keyword">loop_t</span>imes){
-    nSum += i;
-    i++;
-}
-</code></pre><p>while循环转换成do循环：</p>
-<pre><code><span class="keyword">int</span> nSum = <span class="number">0</span>;
-<span class="keyword">int</span> i = <span class="number">0</span>;
-<span class="keyword">if</span>(i&lt;<span class="keyword">loop_t</span>imes){
-    <span class="keyword">do</span> {
-        nSum += i;
-        i++;
-    } <span class="keyword">while</span> (i&lt;argc);
-}
-</code></pre><p>编译器真的会这样优化吗？我们打开O2选项（选择Release，默认就是O2）：</p>
-<p><img src="/uploads/2014/07/3121390140.png" alt="1.png"></p>
-<p>编译如下代码：</p>
-<pre><code><span class="function"><span class="keyword">int</span> <span class="title">loop_for</span><span class="params">(<span class="keyword">int</span> loop_times)</span>
-</span>{
-    <span class="keyword">int</span> nSum = <span class="number">0</span>;
-    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="keyword">loop_t</span>imes ; i++)
-    {
-        nSum += i;
-    }
-    <span class="keyword">return</span> nSum;
-}
-</code></pre><p>我们使用IDA分析：</p>
-<p><img src="/uploads/2014/07/344158898.png" alt="2.png"></p>
-<p>上图中for循环优化之后的结构一目了然，但是有些朋友表示还是看不懂，表示对下面这段代码不知所云：</p>
-<pre><code><span class="keyword">add</span>     <span class="number">edx</span>,<span class="number">eax</span>
-<span class="keyword">lea</span>     <span class="number">ecx</span>,[<span class="number">ecx</span>+<span class="number">eax</span>+<span class="number">1</span>]
-<span class="keyword">add</span>     <span class="number">eax</span>,<span class="number">2</span>
-<span class="keyword">cmp</span>     <span class="number">eax</span>,<span class="literal">esi</span>
-<span class="keyword">jle</span>     short loc_401020
-</code></pre><p>这里我来讲解一下，其实这已经不是编译器对for循环优化的范畴了，这里是编译器对当前算法的优化 <code>nSum += (i++);</code></p>
-<ul>
-<li>edx 等于变量 nSum 的偶数和</li>
-<li>ecx 等于变量 nSum 的奇数和</li>
-<li>eax 等于变量 i  </li>
-</ul>
-<p>最后，在地址00401034处，<code>lea eax,[ecx+edx]</code>，这里 eax = <code>奇数和</code>+<code>偶数和</code> 。</p>
-<p>————— 致谢 ————— </p>
-<p>这里要感谢 <code>sollyu</code> 和 <code>0XE9</code> 两位兄弟的无私帮助。<br>sollyu对上面的反汇编代码进行了逆向还原，这是还原后的代码：</p>
-<p><img src="/uploads/2014/07/493634735.jpg" alt="3.jpg"></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/全部/">全部</a>►<a class="article-category-link" href="/categories/全部/逆向基础/">逆向基础</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
       <a href="/2015/05/12/reverse/12/" title="逆向基础第十二篇：控制流程 之 for循环" itemprop="url">逆向基础第十二篇：控制流程 之 for循环</a>
   </h1>
   <p class="article-author">By
@@ -886,6 +751,135 @@ ELSE_END
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/05/05/reverse/5/" title="逆向基础第四篇：条件跳转与短路运算" itemprop="url">逆向基础第四篇：条件跳转与短路运算</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-04T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-05-05</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="1、条件跳转指令表">1、条件跳转指令表</h2><pre><code>指令助记符        检查标记位                说明
+
+JZ               <span class="variable">ZF =</span>= <span class="number">1</span>                 等于<span class="number">0</span>则跳转
+JE               <span class="variable">ZF =</span>= <span class="number">1</span>                 相等则跳转
+JNZ              <span class="variable">ZF =</span>= <span class="number">0</span>                 不等于<span class="number">0</span>则跳转
+JNE              <span class="variable">ZF =</span>= <span class="number">0</span>                 不相等则跳转
+
+JS               <span class="variable">SF =</span>= <span class="number">1</span>                 符号为负则跳转
+JNS              <span class="variable">SF =</span>= <span class="number">0</span>                 符号为正则跳转
+
+JP/JPE           <span class="variable">PF =</span>= <span class="number">1</span>                 <span class="string">"1"</span> 的个数为偶数则跳转
+JNP/JPO          <span class="variable">PF =</span>= <span class="number">0</span>                 <span class="string">"1"</span> 的个数为奇数则跳转
+
+JO               <span class="variable">OF =</span>= <span class="number">1</span>                 溢出则跳转
+JNO              <span class="variable">OF =</span>= <span class="number">0</span>                 无溢出则跳转
+
+JC               <span class="variable">CF =</span>= <span class="number">1</span>                 进位则跳转
+JB               <span class="variable">CF =</span>= <span class="number">1</span>                 小于则跳转
+JNAE             <span class="variable">CF =</span>= <span class="number">1</span>                 不大于等于则跳转
+JNC              <span class="variable">CF =</span>= <span class="number">0</span>                 无进位则跳转
+JNB              <span class="variable">CF =</span>= <span class="number">0</span>                 不小于则跳转
+JAE              <span class="variable">CF =</span>= <span class="number">0</span>                 大于则跳转
+JBE              <span class="variable">CF =</span>= <span class="number">1</span> 或 <span class="variable">ZF =</span>= <span class="number">1</span>      小于等于则跳转   
+JNA              <span class="variable">CF =</span>= <span class="number">1</span> 或 <span class="variable">ZF =</span>= <span class="number">1</span>      不大于则跳转
+JNBE             <span class="variable">CF =</span>= <span class="number">0</span> 或 <span class="variable">ZF =</span>= <span class="number">0</span>      不小于等于则跳转
+JA               <span class="variable">CF =</span>= <span class="number">0</span> 或 <span class="variable">ZF =</span>= <span class="number">0</span>      不大于则跳转
+
+JL               SF != OF                小于则跳转
+JNGE             SF != OF                不大于等于则跳转
+JNL              <span class="variable">SF =</span>= OF                不小于则跳转
+JGE              <span class="variable">SF =</span>= OF                不大于等于则跳转
+
+JLE              ZF != OF 或 <span class="variable">ZF =</span>= <span class="number">1</span>     小于等于则跳转
+JNG              ZF != OF 或 <span class="variable">ZF =</span>= <span class="number">1</span>     不大于则跳转
+JNLE             <span class="variable">SF =</span>= OF 且 <span class="variable">ZF =</span>= <span class="number">0</span>     不小于等于则跳转
+JG               <span class="variable">SF =</span>= OF 且 <span class="variable">ZF =</span>= <span class="number">0</span>     大于则跳转
+</code></pre><p>通常，这些条件跳转指令都与CMP 和 TEST 匹配出现，但是条件跳转是检查的<code>标志位</code> 。因此，在有修改标记位的代码处，可以根据需求使用跳转指令来修改程序。</p>
+<h2 id="2、短路与（&amp;&amp;）_短路或_（||）">2、短路与（&amp;&amp;） 短路或 （||）</h2><p>测试代码：</p>
+<pre><code><span class="function"><span class="keyword">int</span> <span class="title">Accumulation</span><span class="params">(<span class="keyword">int</span> nNumber)</span>
+</span>{
+    nNumber &amp;&amp; (nNumber += Accumulation(nNumber - <span class="number">1</span>));
+    <span class="keyword">return</span> nNumber;
+}
+</code></pre><p>反编译汇编代码：</p>
+<pre><code><span class="keyword">int</span> Accumulation(<span class="keyword">int</span> nNumber)
+{
+    <span class="number">17</span>:       nNumber &amp;&amp; (nNumber += Accumulation(nNumber - <span class="number">1</span>))<span class="comment">;</span>
+    //短路模式汇编代码，比较nNumber是否等于<span class="number">0</span>
+    0040D448   <span class="keyword">cmp</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">0</span>
+    //通过<span class="keyword">JE</span>跳转，检查ZF标记位等于<span class="number">1</span>跳转
+    0040D44C   <span class="keyword">je</span>          Accumulation+<span class="number">35h</span> (0040d465)
+
+    //跳转失败，递归，准备参数
+    0040D44E   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
+    0040D451   <span class="keyword">sub</span>         <span class="number">eax</span>,<span class="number">1</span>
+    0040D454   <span class="keyword">push</span>        <span class="number">eax</span>
+    //递归，调用自己
+    0040D455   <span class="keyword">call</span>        @ILT+<span class="number">5</span>(Accumulation) (0040100a)
+    //<span class="literal">esp</span>指针偏移？？我还没搞明白？？？
+    0040D45A   <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">4</span>
+    //找到nNumber变量
+    0040D45D   <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
+    //<span class="number">eax</span>中存放了 Accumulation函数返回值。nNumber + <span class="number">eax</span>
+    0040D460   <span class="keyword">add</span>         <span class="number">ecx</span>,<span class="number">eax</span>
+    //将最终结果存回 <span class="literal">ebp</span>+<span class="number">8</span>地址处 ，即nNumber地址处。 
+    0040D462   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">ecx</span>
+
+    <span class="number">18</span>:       return nNumber<span class="comment">;</span>
+    0040D465   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
+}
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/全部/">全部</a>►<a class="article-category-link" href="/categories/全部/逆向基础/">逆向基础</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/05/05/reverse/6/" title="逆向基础第六篇：位运算" itemprop="url">逆向基础第六篇：位运算</a>
   </h1>
   <p class="article-author">By
@@ -976,135 +970,6 @@ ELSE_END
 <span class="number">16</span>:   }
 </code></pre><p>对于左移运算，无符号数和有符号数的操作是一样的，都不需要考虑符号位。但右移运算则有变化，有符号数使用sar可以保留符号位。 无符号数不需要符号位，直接使用shr 将最高位补0</p>
 
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/全部/">全部</a>►<a class="article-category-link" href="/categories/全部/逆向基础/">逆向基础</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/05/05/reverse/5/" title="逆向基础第四篇：条件跳转与短路运算" itemprop="url">逆向基础第四篇：条件跳转与短路运算</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-05-04T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-05-05</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="1、条件跳转指令表">1、条件跳转指令表</h2><pre><code>指令助记符        检查标记位                说明
-
-JZ               <span class="variable">ZF =</span>= <span class="number">1</span>                 等于<span class="number">0</span>则跳转
-JE               <span class="variable">ZF =</span>= <span class="number">1</span>                 相等则跳转
-JNZ              <span class="variable">ZF =</span>= <span class="number">0</span>                 不等于<span class="number">0</span>则跳转
-JNE              <span class="variable">ZF =</span>= <span class="number">0</span>                 不相等则跳转
-
-JS               <span class="variable">SF =</span>= <span class="number">1</span>                 符号为负则跳转
-JNS              <span class="variable">SF =</span>= <span class="number">0</span>                 符号为正则跳转
-
-JP/JPE           <span class="variable">PF =</span>= <span class="number">1</span>                 <span class="string">"1"</span> 的个数为偶数则跳转
-JNP/JPO          <span class="variable">PF =</span>= <span class="number">0</span>                 <span class="string">"1"</span> 的个数为奇数则跳转
-
-JO               <span class="variable">OF =</span>= <span class="number">1</span>                 溢出则跳转
-JNO              <span class="variable">OF =</span>= <span class="number">0</span>                 无溢出则跳转
-
-JC               <span class="variable">CF =</span>= <span class="number">1</span>                 进位则跳转
-JB               <span class="variable">CF =</span>= <span class="number">1</span>                 小于则跳转
-JNAE             <span class="variable">CF =</span>= <span class="number">1</span>                 不大于等于则跳转
-JNC              <span class="variable">CF =</span>= <span class="number">0</span>                 无进位则跳转
-JNB              <span class="variable">CF =</span>= <span class="number">0</span>                 不小于则跳转
-JAE              <span class="variable">CF =</span>= <span class="number">0</span>                 大于则跳转
-JBE              <span class="variable">CF =</span>= <span class="number">1</span> 或 <span class="variable">ZF =</span>= <span class="number">1</span>      小于等于则跳转   
-JNA              <span class="variable">CF =</span>= <span class="number">1</span> 或 <span class="variable">ZF =</span>= <span class="number">1</span>      不大于则跳转
-JNBE             <span class="variable">CF =</span>= <span class="number">0</span> 或 <span class="variable">ZF =</span>= <span class="number">0</span>      不小于等于则跳转
-JA               <span class="variable">CF =</span>= <span class="number">0</span> 或 <span class="variable">ZF =</span>= <span class="number">0</span>      不大于则跳转
-
-JL               SF != OF                小于则跳转
-JNGE             SF != OF                不大于等于则跳转
-JNL              <span class="variable">SF =</span>= OF                不小于则跳转
-JGE              <span class="variable">SF =</span>= OF                不大于等于则跳转
-
-JLE              ZF != OF 或 <span class="variable">ZF =</span>= <span class="number">1</span>     小于等于则跳转
-JNG              ZF != OF 或 <span class="variable">ZF =</span>= <span class="number">1</span>     不大于则跳转
-JNLE             <span class="variable">SF =</span>= OF 且 <span class="variable">ZF =</span>= <span class="number">0</span>     不小于等于则跳转
-JG               <span class="variable">SF =</span>= OF 且 <span class="variable">ZF =</span>= <span class="number">0</span>     大于则跳转
-</code></pre><p>通常，这些条件跳转指令都与CMP 和 TEST 匹配出现，但是条件跳转是检查的<code>标志位</code> 。因此，在有修改标记位的代码处，可以根据需求使用跳转指令来修改程序。</p>
-<h2 id="2、短路与（&amp;&amp;）_短路或_（||）">2、短路与（&amp;&amp;） 短路或 （||）</h2><p>测试代码：</p>
-<pre><code><span class="function"><span class="keyword">int</span> <span class="title">Accumulation</span><span class="params">(<span class="keyword">int</span> nNumber)</span>
-</span>{
-    nNumber &amp;&amp; (nNumber += Accumulation(nNumber - <span class="number">1</span>));
-    <span class="keyword">return</span> nNumber;
-}
-</code></pre><p>反编译汇编代码：</p>
-<pre><code><span class="keyword">int</span> Accumulation(<span class="keyword">int</span> nNumber)
-{
-    <span class="number">17</span>:       nNumber &amp;&amp; (nNumber += Accumulation(nNumber - <span class="number">1</span>))<span class="comment">;</span>
-    //短路模式汇编代码，比较nNumber是否等于<span class="number">0</span>
-    0040D448   <span class="keyword">cmp</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">0</span>
-    //通过<span class="keyword">JE</span>跳转，检查ZF标记位等于<span class="number">1</span>跳转
-    0040D44C   <span class="keyword">je</span>          Accumulation+<span class="number">35h</span> (0040d465)
-
-    //跳转失败，递归，准备参数
-    0040D44E   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-    0040D451   <span class="keyword">sub</span>         <span class="number">eax</span>,<span class="number">1</span>
-    0040D454   <span class="keyword">push</span>        <span class="number">eax</span>
-    //递归，调用自己
-    0040D455   <span class="keyword">call</span>        @ILT+<span class="number">5</span>(Accumulation) (0040100a)
-    //<span class="literal">esp</span>指针偏移？？我还没搞明白？？？
-    0040D45A   <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">4</span>
-    //找到nNumber变量
-    0040D45D   <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-    //<span class="number">eax</span>中存放了 Accumulation函数返回值。nNumber + <span class="number">eax</span>
-    0040D460   <span class="keyword">add</span>         <span class="number">ecx</span>,<span class="number">eax</span>
-    //将最终结果存回 <span class="literal">ebp</span>+<span class="number">8</span>地址处 ，即nNumber地址处。 
-    0040D462   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">ecx</span>
-
-    <span class="number">18</span>:       return nNumber<span class="comment">;</span>
-    0040D465   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-}
-</code></pre>
         
         
         <p class="article-more-link">
@@ -1249,6 +1114,356 @@ sbb        <span class="keyword">reg</span>, <span class="keyword">reg</span>
 <span class="number">0040103D</span>   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>]
 <span class="number">10</span>:   }
 </code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/全部/">全部</a>►<a class="article-category-link" href="/categories/全部/逆向基础/">逆向基础</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/03/reverse/3/" title="逆向基础第三篇：汇编中的四则运算" itemprop="url">逆向基础第三篇：汇编中的四则运算</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-02T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-05-03</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="一、算术运算和赋值">一、算术运算和赋值</h2><p>赋值运算是将一个内存空间中的数据传递到另外一个内存空间中。由于内存没有处理器那样的控制能力，各个内存单元之间是无法传递数据的，必须通过处理器访问中转，需要借助寄存器实现赋值。</p>
+<h3 id="1-1、加法">1.1、加法</h3><p>在VC++ 6.0 中编辑代码，如下：</p>
+<pre><code><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span>
+</span>{
+    <span class="keyword">int</span> nVar1 = <span class="number">0</span>;
+    <span class="keyword">int</span> nVar2 = <span class="number">0</span>;
+
+    nVar1 = nVar2 + <span class="number">1</span>;
+    nVar1 = <span class="number">1</span> + <span class="number">2</span>;
+
+    nVar1 = nVar1 + nVar2;
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><p>快捷键F10运行，然后选择Desassembly，（VS2010下右击菜单选择反汇编）如下图。</p>
+<p><img src="/uploads/2014/07/3478118839.png" alt="1.png"></p>
+<p>反汇编代码如下：</p>
+<pre><code><span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="number">8</span>:        <span class="keyword">int</span> nVar1 = <span class="number">0</span><span class="comment">;</span>
+<span class="number">00401028</span>   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">0</span>
+<span class="number">9</span>:        <span class="keyword">int</span> nVar2 = <span class="number">0</span><span class="comment">;</span>
+0040102F   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">8</span>],<span class="number">0</span>
+
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+//使用寄存器中转
+<span class="number">11</span>:       nVar1 = nVar2 + <span class="number">1</span><span class="comment">;</span>
+<span class="number">00401036</span>   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">8</span>]
+<span class="number">00401039</span>   <span class="keyword">add</span>         <span class="number">eax</span>,<span class="number">1</span>
+0040103C   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">eax</span>
+
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+//编译器计算出结果，操作“立即数”
+<span class="number">12</span>:       nVar1 = <span class="number">1</span> + <span class="number">2</span><span class="comment">;</span>
+0040103F   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">3</span>
+
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+//使用寄存器中转
+<span class="number">14</span>:       nVar1 = nVar1 + nVar2<span class="comment">;</span>
+<span class="number">00401046</span>   <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>]
+<span class="number">00401049</span>   <span class="keyword">add</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">8</span>]
+0040104C   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">ecx</span>
+
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="number">16</span>:       return <span class="number">0</span><span class="comment">;</span>
+0040104F   <span class="keyword">xor</span>         <span class="number">eax</span>,<span class="number">eax</span>
+</code></pre><h5 id="编译器优化_之_常量传播">编译器优化 之 常量传播</h5><p>编译期间可计算出的结果的变量转换成常量</p>
+<pre><code><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+    <span class="keyword">int</span> nVar = <span class="number">1</span>;
+    <span class="built_in">printf</span>(<span class="string">"nVar = %d \r\n"</span>, nVar);
+}
+</code></pre><p>变量nVar是一个在编译期间就可以计算出结果的变量。因此，程序中所有引用到nVar的地方都会被常量1替换。</p>
+<pre><code><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> 
+</span>{
+    <span class="built_in">printf</span>(<span class="string">"nVar = %d \r\n"</span>, <span class="number">1</span>);
+}
+</code></pre><h5 id="编译器优化_之_常量折叠">编译器优化 之 常量折叠</h5><p>下面这段代码：</p>
+<pre><code><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span>
+</span>{
+    <span class="keyword">int</span> nVar1 = argc;
+    <span class="keyword">int</span> nVar2 = argc;
+
+    nVar1 = nVar1 + <span class="number">1</span>;
+    nVar1 = <span class="number">1</span> + <span class="number">2</span>;
+
+    nVar1 = nVar1 + nVar2;
+    <span class="built_in">printf</span>(<span class="string">"nVar1 = %d \r\n"</span>, nVar1);
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><p>在Release模式（默认使用O2优化）下编译出EXE文件，用IDA分析之后，结果如下：</p>
+<pre><code><span class="comment">; int __cdecl main(int argc, const char **argv, const char **envp)</span>
+_main proc <span class="preprocessor">near</span>
+
+argc= <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span>  <span class="number">8</span>
+argv= <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span>  <span class="number">0Ch</span>
+envp= <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span>  <span class="number">10h</span>
+
+<span class="keyword">push</span>    <span class="literal">ebp</span>
+<span class="keyword">mov</span>     <span class="literal">ebp</span>, <span class="literal">esp</span>
+<span class="keyword">mov</span>     <span class="number">eax</span>, [<span class="literal">ebp</span>+argc] // <span class="literal">ebp</span> + argc 是 <span class="literal">ebp</span> + <span class="number">8</span> ，即“获取参数”
+<span class="keyword">add</span>     <span class="number">eax</span>, <span class="number">3</span>
+<span class="keyword">push</span>    <span class="number">eax</span>
+<span class="keyword">push</span>    offset Format   <span class="comment">; "nVar1 = %d \r\n"</span>
+<span class="keyword">call</span>    <span class="literal">ds</span>:__imp__printf
+<span class="keyword">add</span>     <span class="literal">esp</span>, <span class="number">8</span>
+<span class="keyword">xor</span>     <span class="number">eax</span>, <span class="number">eax</span>
+<span class="keyword">pop</span>     <span class="literal">ebp</span>
+<span class="keyword">retn</span>
+_main endp
+</code></pre><p>通过编译器计算，常量折叠之后的代码为：</p>
+<pre><code><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span>
+</span>{
+    <span class="built_in">printf</span>(<span class="string">"nVar1 = %d \r\n"</span>, <span class="number">3</span> + argc);
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><h3 id="1-2、_减法">1.2、 减法</h3><p>在汇编中有sub指令用于减法计算，虽然计算机只会做加法，但是可以通过补码的转换将减法转变为加法完成。<br>关于补码的知识可以参考我这篇文章：<a href="http://www.0x520.com/2014/07/01/175.html" target="_blank" rel="external">http://www.0x520.com/2014/07/01/175.html</a></p>
+<h3 id="1-3、乘法">1.3、乘法</h3><p>乘法对应的汇编指令：<code>有符号 imul</code> 和 <code>无符号mul</code> 两种。由于乘法指令的执行周期较长，在编译过程中编译器会尝试将乘法变成加法，或使用移位等周期较短的指令。如果都不可转换时，才使用乘法指令。</p>
+<p>乘法测试代码如下：</p>
+<pre><code><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span>
+</span>{
+    <span class="keyword">int</span> nVar1 = argc;
+    <span class="keyword">int</span> nVar2 = argc;
+    <span class="comment">//变量乘常量（常量值为非2的幂）</span>
+    <span class="built_in">printf</span>(<span class="string">"nVar1 * 15 = %d"</span>,nVar1 * <span class="number">15</span>);
+    <span class="comment">//变量乘常量（常量值为2的幂）</span>
+    <span class="built_in">printf</span>(<span class="string">"nVar1 * 16 = %d"</span>,nVar1 * <span class="number">16</span>);
+    <span class="comment">//常量相乘</span>
+    <span class="built_in">printf</span>(<span class="string">"2 * 2 = %d"</span>, <span class="number">2</span>*<span class="number">2</span>);
+    <span class="comment">//混合运算</span>
+    <span class="built_in">printf</span>(<span class="string">"nVar2 * 4 + 5 = %d"</span>, nVar2 * <span class="number">4</span> + <span class="number">5</span>);
+    <span class="comment">//两变量相乘</span>
+    <span class="built_in">printf</span>(<span class="string">"nVar1 * nVar2 = %d"</span>, nVar1 * nVar2);
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><p>在Debug模式下的编译结果如下：</p>
+<pre><code><span class="number">9</span>:        <span class="keyword">int</span> nVar1 = argc<span class="comment">;</span>
+0040D718   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
+0040D71B   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">eax</span>
+<span class="number">10</span>:       <span class="keyword">int</span> nVar2 = argc<span class="comment">;</span>
+0040D71E   <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
+0040D721   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">8</span>],<span class="number">ecx</span>
+
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="comment">;变量乘常量（常量值为非2的幂）    使用imul命令</span>
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="number">12</span>:       printf(<span class="string">"nVar1 * 15 = %d"</span>,nVar1 * <span class="number">15</span>)<span class="comment">;</span>
+0040D724   <span class="keyword">mov</span>         <span class="number">edx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>]
+0040D727   <span class="keyword">imul</span>        <span class="number">edx</span>,<span class="number">edx</span>,<span class="number">0Fh</span>
+0040D72A   <span class="keyword">push</span>        <span class="number">edx</span>
+0040D72B   <span class="keyword">push</span>        offset string <span class="string">"nVar1 * 15 = %d"</span> (00422fe4)
+0040D730   <span class="keyword">call</span>        printf (<span class="number">00401070</span>)
+0040D735   <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">8</span>
+
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="comment">;变量乘常量（常量值为2的幂）    使用shl命令（Shift Logical Left ）</span>
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="number">14</span>:       printf(<span class="string">"nVar1 * 16 = %d"</span>,nVar1 * <span class="number">16</span>)<span class="comment">;</span>
+0040D738   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>]
+0040D73B   <span class="keyword">shl</span>         <span class="number">eax</span>,<span class="number">4</span>
+0040D73E   <span class="keyword">push</span>        <span class="number">eax</span>
+0040D73F   <span class="keyword">push</span>        offset string <span class="string">"nVar1 * 16 = %d"</span> (00422fe4)
+0040D744   <span class="keyword">call</span>        printf (<span class="number">00401070</span>)
+0040D749   <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">8</span>
+
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="comment">;常量相乘    会在编译期间计算出结果</span>
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="number">16</span>:       printf(<span class="string">"2 * 2 = %d"</span>, <span class="number">2</span>*<span class="number">2</span>)<span class="comment">;</span>
+0040D74C   <span class="keyword">push</span>        <span class="number">4</span>
+0040D74E   <span class="keyword">push</span>        offset string <span class="string">"2 * 2 = %d"</span> (00422fc0)
+0040D753   <span class="keyword">call</span>        printf (<span class="number">00401070</span>)
+0040D758   <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">8</span>
+
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="comment">;混合运算    使用lea计算</span>
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="number">18</span>:       printf(<span class="string">"nVar2 * 4 + 5 = %d"</span>, nVar2 * <span class="number">4</span> + <span class="number">5</span>)<span class="comment">;</span>
+0040D75B   <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">8</span>]
+0040D75E   <span class="keyword">lea</span>         <span class="number">edx</span>,[<span class="number">ecx</span>*<span class="number">4</span>+<span class="number">5</span>]
+0040D765   <span class="keyword">push</span>        <span class="number">edx</span>
+0040D766   <span class="keyword">push</span>        offset string <span class="string">"nVar2 * 4 + 5 = %d"</span> (00422fd0)
+0040D76B   <span class="keyword">call</span>        printf (<span class="number">00401070</span>)
+0040D770   <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">8</span>
+
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="comment">;两变量相乘    直接使用有符号数乘法指令 imul </span>
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="number">20</span>:       printf(<span class="string">"nVar1 * nVar2 = %d"</span>, nVar1 * nVar2)<span class="comment">;</span>
+0040D773   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>]
+0040D776   <span class="keyword">imul</span>        <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">8</span>]
+0040D77A   <span class="keyword">push</span>        <span class="number">eax</span>
+0040D77B   <span class="keyword">push</span>        offset string <span class="string">"nVar1 * nVar2 = %d"</span> (0042201c)
+0040D780   <span class="keyword">call</span>        printf (<span class="number">00401070</span>)
+0040D785   <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">8</span>
+</code></pre><p>在Release模式下编译出exe，使用IDA分析结果如下：</p>
+<pre><code>; int __cdecl main(int argc, const char **argv, const char **envp)
+_main <span class="keyword">proc</span><span class="symbol"> near</span>
+<span class="symbol">
+argc=</span> dword<span class="symbol"> ptr</span>  8<span class="symbol">
+argv=</span> dword<span class="symbol"> ptr</span>  0Ch<span class="symbol">
+envp=</span> dword<span class="symbol"> ptr</span>  10h
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; 非2的幂<span class="symbol">    nVar1</span> * 15 =<span class="symbol"> nVar1</span> * 16 -<span class="symbol"> nVar</span>
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;<span class="symbol">
+push</span> <span class="symbol">   ebp</span>
+mov<span class="symbol">     ebp,</span> esp
+//保存环境<span class="symbol">
+push</span> <span class="symbol">   esi</span>
+//取argc的值，赋值给<span class="symbol"> esi</span> 和<span class="symbol"> eax，这时</span> esi =<span class="symbol"> eax</span> =<span class="symbol"> argc</span> <span class="symbol">
+mov</span> <span class="symbol">    esi,</span> [ebp+argc]<span class="symbol">
+mov</span> <span class="symbol">    eax,</span> esi
+//eax左移4位，相当于<span class="symbol"> eax</span> =<span class="symbol"> argc</span> * 16<span class="symbol">
+shl</span> <span class="symbol">    eax,</span> 4
+//保存环境<span class="symbol">
+push</span> <span class="symbol">   edi</span>
+//将edi变量指向<span class="symbol"> printf</span> 函数所在的地址<span class="symbol">
+mov</span> <span class="symbol">    edi,</span> ds:__imp__printf
+//eax -<span class="symbol"> esi</span> 等于 (argc * 16) -<span class="symbol"> argc</span> 等于<span class="symbol"> argc</span> * 15<span class="symbol">
+sub</span> <span class="symbol">    eax,</span> esi<span class="symbol">
+push</span> <span class="symbol">   eax</span>
+push<span class="symbol">    offset</span> Format ; "nVar1 * 15 = %d"
+//调用<span class="symbol"> printf函数</span>
+call<span class="symbol">    edi</span> ;<span class="symbol"> __imp__printf</span>
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; 是2的幂<span class="symbol">    nVar1</span> * 16 即<span class="symbol"> nVar1</span> &lt;&lt; 4。 16 是 2的 4次方
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;<span class="symbol">
+mov</span> <span class="symbol">    ecx,</span> esi<span class="symbol">
+shl</span> <span class="symbol">    ecx,</span> 4<span class="symbol">
+push</span> <span class="symbol">   ecx</span>
+push<span class="symbol">    offset</span> aNvar116D ; "nVar1 * 16 = %d"<span class="symbol">
+call</span> <span class="symbol">   edi</span> ;<span class="symbol"> __imp__printf</span>
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; 常量，不解释
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;<span class="symbol">
+push</span>    4<span class="symbol">
+push</span> <span class="symbol">   offset</span> a22D     ; "2 * 2 = %d"<span class="symbol">
+call</span> <span class="symbol">   edi</span> ;<span class="symbol"> __imp__printf</span>
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; 混合运算     这句代码等同于<span class="symbol"> lea</span> <span class="symbol">    edx,</span> [esi * 4 + 5]
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;<span class="symbol">
+lea</span> <span class="symbol">    edx,</span> ds:5[esi*4]<span class="symbol">
+push</span> <span class="symbol">   edx</span>
+push<span class="symbol">    offset</span> aNvar245D ; "nVar2 * 4 + 5 = %d"<span class="symbol">
+call</span> <span class="symbol">   edi</span> ;<span class="symbol"> __imp__printf</span>
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; 此处变量相乘，都是未知数，无优化
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;<span class="symbol">
+imul</span> <span class="symbol">   esi,</span> esi<span class="symbol">
+push</span> <span class="symbol">   esi</span>
+push<span class="symbol">    offset</span> aNvar1Nvar2D ; "nVar1 *<span class="symbol"> nVar2</span> = %d"<span class="symbol">
+call</span> <span class="symbol">   edi</span> ;<span class="symbol"> __imp__printf</span>
+<span class="symbol">
+
+add</span> <span class="symbol">    esp,</span> 28h<span class="symbol">
+pop</span> <span class="symbol">    edi</span>
+xor<span class="symbol">     eax,</span> eax<span class="symbol">
+pop</span> <span class="symbol">    esi</span>
+pop<span class="symbol">     ebp</span>
+retn<span class="symbol">
+_main</span> endp
+</code></pre><h2 id="1-4、除法">1.4、除法</h2><p>在汇编中，idiv 和 div 分别为有符号数和无符号数的除法指令。C++中的除法不保留余数，有专门的求余数运算（% 取模）。 对于整数除法，C++中仅保留整数部分，小数部分完全舍弃。</p>
+<p>在计算机中有 <code>向下取整floor</code> 、 <code>向上取整ceil</code> 和 向零取整。大多数语言的规定是向零取整，即 “截断除法”。</p>
+<h2 id="1-5、溢出">1.5、溢出</h2><p>比如int类型的数据 0xFFFFFFFF加2得到的结果会超出 int类型的存储范围，超出的部分成为溢出。 溢出数据无法被保存，将会丢失。</p>
+<p><strong>进位</strong><br>无符号数超出存储范围叫做 <strong>进位</strong> 。 因为没有符号，不会破坏数据，而多处的1位数据会被进位到标志位CF中。 可以通过查看进位标志位CF，检查数据是否进位。</p>
+<p><strong>溢出</strong></p>
+<p>有符号数超出存储范围叫做 <strong>溢出</strong> 。由于数据进位，会破坏有符号数的最高位 — 符号位。 可查看溢出标识 OF ，检查数据是否溢出。</p>
+<h2 id="1-6、自增_和_自减">1.6、自增 和 自减</h2><p>测试代码如下：</p>
+<pre><code><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span>
+</span>{
+    <span class="keyword">int</span> nVar1 = argc;
+    <span class="keyword">int</span> nVar2 = argc;
+    nVar2 = <span class="number">5</span> + (nVar1 ++);
+    nVar2 = <span class="number">5</span> + (++ nVar1);
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><p>反汇编代码如下：</p>
+<pre><code><span class="number">9</span>:        <span class="keyword">int</span> nVar1 = argc<span class="comment">;</span>
+<span class="number">00401028</span>   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
+0040102B   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">eax</span>
+<span class="number">10</span>:       <span class="keyword">int</span> nVar2 = argc<span class="comment">;</span>
+0040102E   <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
+<span class="number">00401031</span>   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">8</span>],<span class="number">ecx</span>
+
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="comment">; 先执行了加法，然后进行的自增</span>
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="number">11</span>:       nVar2 = <span class="number">5</span> + (nVar1 ++)<span class="comment">;</span>
+<span class="number">00401034</span>   <span class="keyword">mov</span>         <span class="number">edx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>]
+<span class="number">00401037</span>   <span class="keyword">add</span>         <span class="number">edx</span>,<span class="number">5</span>
+0040103A   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">8</span>],<span class="number">edx</span>
+<span class="number">0040103D</span>   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>]
+<span class="number">00401040</span>   <span class="keyword">add</span>         <span class="number">eax</span>,<span class="number">1</span>
+<span class="number">00401043</span>   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">eax</span>
+
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="comment">; 先进行的自增，然后进行的加法</span>
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="number">12</span>:       nVar2 = <span class="number">5</span> + (++ nVar1)<span class="comment">;</span>
+<span class="number">00401046</span>   <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>]
+<span class="number">00401049</span>   <span class="keyword">add</span>         <span class="number">ecx</span>,<span class="number">1</span>
+0040104C   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">ecx</span>
+0040104F   <span class="keyword">mov</span>         <span class="number">edx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>]
+<span class="number">00401052</span>   <span class="keyword">add</span>         <span class="number">edx</span>,<span class="number">5</span>
+<span class="number">00401055</span>   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">8</span>],<span class="number">edx</span>
+</code></pre><p>自减操作同自增操作，这里不演示了。</p>
+
         
         
         <p class="article-more-link">
