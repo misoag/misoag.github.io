@@ -4,7 +4,7 @@
   <subtitle><![CDATA[不乱于心,不困于情。不念过往，不畏将来。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://0x520.com/"/>
-  <updated>2015-05-23T03:37:01.000Z</updated>
+  <updated>2015-05-24T11:33:31.000Z</updated>
   <id>http://0x520.com/</id>
   
   <author>
@@ -13,6 +13,314 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Rails 中使用bootstrap]]></title>
+    <link href="http://0x520.com/2015/05/24/rails/3/"/>
+    <id>http://0x520.com/2015/05/24/rails/3/</id>
+    <published>2015-05-24T07:02:00.000Z</published>
+    <updated>2015-05-24T11:33:31.000Z</updated>
+    <content type="html"><![CDATA[<p>如果需要自定义less的话，请参考 <a href="http://www.rubydoc.info/gems/twitter-bootstrap-rails/3.2.0" target="_blank" rel="external">http://www.rubydoc.info/gems/twitter-bootstrap-rails/3.2.0</a></p>
+<h2 id="Installing_the_CSS_stylesheets">Installing the CSS stylesheets</h2><p>If you don’t need to customize the stylesheets using Less, the only gem you need is the twitter-bootstrap-rails gem:</p>
+<pre><code><span class="title">gem</span> <span class="string">"twitter-bootstrap-rails"</span>
+</code></pre><p>After running bundle install, run the generator:</p>
+<pre><code>rails generate <span class="string">bootstrap:</span>install <span class="keyword">static</span>
+</code></pre><p>Use <code>bundle show [gemname]</code> to see where a bundled gem is installed.</p>
+<h2 id="Generating_layouts_and_views">Generating layouts and views</h2><p>You can run following generators to get started with Bootstrap quickly.</p>
+<p>Layout (generates Bootstrap compatible layout) - (Haml and Slim supported)</p>
+<p>Usage:</p>
+<pre><code>rails <span class="keyword">g</span> <span class="keyword">bootstrap</span>:layout [LAYOUT_NAME]
+</code></pre><p>Themed (generates Bootstrap compatible scaffold views.) - (Haml and Slim supported)</p>
+<p>Usage:</p>
+<pre><code>rails <span class="keyword">g</span> <span class="keyword">bootstrap</span>:themed [RESOURCE_NAME]
+</code></pre><p>Example:</p>
+<pre><code>rails <span class="keyword">g</span> scaffold <span class="keyword">Post</span> title:string description:text
+rake <span class="keyword">db</span>:migrate
+rails <span class="keyword">g</span> <span class="keyword">bootstrap</span>:themed Posts
+</code></pre><p>Notice the plural usage of the resource to generate bootstrap:themed.</p>
+<h2 id="解决：_couldn’t_find_file_‘twitter-bootstrap-static/bootstrap’_的问题">解决： couldn’t find file ‘twitter-bootstrap-static/bootstrap’ 的问题</h2><p>检查/Library/Ruby/Gems/2.0.0/gems/twitter-bootstrap-rails-3.2.0的用户权限</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>如果需要自定义less的话，请参考 <a href="http://www.rubydoc.info/gems/twitter-bootstrap-rails/3.2.0" target="_blank" rel="external">http://www.rubydoc.]]>
+    </summary>
+    
+      <category term="Rails学习" scheme="http://0x520.com/categories/Rails%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Rails中使用paperclip进行文件&图片上传]]></title>
+    <link href="http://0x520.com/2015/05/24/rails/5/"/>
+    <id>http://0x520.com/2015/05/24/rails/5/</id>
+    <published>2015-05-24T07:02:00.000Z</published>
+    <updated>2015-05-24T11:41:57.000Z</updated>
+    <content type="html"><![CDATA[<p>参考：<a href="https://github.com/thoughtbot/paperclip" target="_blank" rel="external">https://github.com/thoughtbot/paperclip</a></p>
+<h2 id="Requirements">Requirements</h2><p>必须安装ImageMatic才能对图片进行处理</p>
+<p>If you’re on Mac OS X, you’ll want to run the following with Homebrew:</p>
+<pre><code><span class="keyword">brew </span>install imagemagick
+</code></pre><p>检查是否安装成功：</p>
+<p>执行 <code>which convert</code> 理论上来说应该返回 <code>/usr/local/bin/convert</code> 说明ImageMatic安装成功了。</p>
+<p>编辑 config/environments/development.rb  配置command_path</p>
+<pre><code>Paperclip<span class="class">.options</span>[:command_path] = <span class="string">"/usr/local/bin/"</span>
+</code></pre><h2 id="安装">安装</h2><p>编辑gemfile</p>
+<pre><code><span class="title">gem</span> <span class="string">"paperclip"</span>, <span class="string">"~&gt; 4.2"</span>
+</code></pre><p>然后</p>
+<pre><code><span class="keyword">bundle </span>install
+</code></pre><h2 id="使用">使用</h2><h3 id="model">model</h3><pre><code><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Base</span></span></span>
+  has_attached_file <span class="symbol">:avatar</span>, <span class="symbol">:styles</span> =&gt; { <span class="symbol">:medium</span> =&gt; <span class="string">"300x300&gt;"</span>, <span class="symbol">:thumb</span> =&gt; <span class="string">"100x100&gt;"</span> }, <span class="symbol">:default_url</span> =&gt; <span class="string">"/images/:style/missing.png"</span>
+  validates_attachment_content_type <span class="symbol">:avatar</span>, <span class="symbol">:content_type</span> =&gt; <span class="regexp">/\Aimage\/.*\Z/</span>
+<span class="keyword">end</span>
+</code></pre><h3 id="migrateion">migrateion</h3><p>创建一个migration</p>
+<pre><code>rails g migration <span class="keyword">add_avatar_columns_t</span>o_users
+</code></pre><p>编辑 xxx_add_avatar_columns_to_users</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">AddAvatarColumnsToUsers</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Migration</span></span></span>
+  <span class="function"><span class="keyword">def</span> </span><span class="keyword">self</span>.up
+    add_attachment <span class="symbol">:users</span>, <span class="symbol">:avatar</span>
+  <span class="keyword">end</span>
+
+  <span class="function"><span class="keyword">def</span> </span><span class="keyword">self</span>.down
+    remove_attachment <span class="symbol">:users</span>, <span class="symbol">:avatar</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</code></pre><h3 id="new_view">new view</h3><pre><code><span class="xml"></span>&lt;%=<span class="ruby"> form_for <span class="variable">@user</span>, <span class="symbol">:url</span> =&gt; users_path, <span class="symbol">:html</span> =&gt; { <span class="symbol">:multipart</span> =&gt; <span class="keyword">true</span> } <span class="keyword">do</span> |form| </span>%&gt;<span class="xml">
+ </span>&lt;%=<span class="ruby"> form.file_field <span class="symbol">:avatar</span> </span>%&gt;<span class="xml">
+</span>&lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;<span class="xml"></span>
+</code></pre><h3 id="controller">controller</h3><pre><code>def <span class="operator"><span class="keyword">create</span>
+  @<span class="keyword">user</span> = <span class="keyword">User</span>.<span class="keyword">create</span>( user_params )
+<span class="keyword">end</span>
+
+private
+
+# <span class="keyword">Use</span> strong_parameters <span class="keyword">for</span> attribute whitelisting
+# Be sure <span class="keyword">to</span> <span class="keyword">update</span> your <span class="keyword">create</span>() <span class="keyword">and</span> <span class="keyword">update</span>() controller methods.
+
+def user_params
+  params.require(:<span class="keyword">user</span>).permit(:avatar)
+<span class="keyword">end</span></span>
+</code></pre><h3 id="show_view">show view</h3><pre><code>&lt;<span class="variable">%=</span> image_tag <span class="variable">@user</span>.avatar.url <span class="variable">%&gt;</span>
+&lt;<span class="variable">%=</span> image_tag <span class="variable">@user</span>.avatar.url(:medium) <span class="variable">%&gt;</span>
+&lt;<span class="variable">%=</span> image_tag <span class="variable">@user</span>.avatar.url(:thumb) <span class="variable">%&gt;</span>
+</code></pre><h3 id="删除">删除</h3><p>把属性设置为nil，然后保存即可</p>
+<pre><code><span class="variable">@user</span>.avatar = nil
+<span class="variable">@user</span>.save
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>参考：<a href="https://github.com/thoughtbot/paperclip" target="_blank" rel="external">https://github.com/thoughtbot/paperclip</a></p>
+<h2 i]]>
+    </summary>
+    
+      <category term="Rails学习" scheme="http://0x520.com/categories/Rails%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Rails中使用devise进行用户认证]]></title>
+    <link href="http://0x520.com/2015/05/24/rails/4/"/>
+    <id>http://0x520.com/2015/05/24/rails/4/</id>
+    <published>2015-05-24T07:02:00.000Z</published>
+    <updated>2015-05-24T11:39:57.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="用户认证">用户认证</h1><p>编辑Gemfile加上</p>
+<pre><code><span class="title">gem</span> <span class="string">'devise'</span>
+</code></pre><p>輸入bundle install安裝此套件<br>輸入rails g devise:install產生devise設定檔<br>編輯 config/environments/development.rb  加入</p>
+<pre><code>config.action_mailer.default_url_options  = { <span class="symbol">host:</span> <span class="string">'localhost'</span>, <span class="symbol">port:</span> <span class="number">3000</span> }
+config.action_mailer.delivery_method      = <span class="symbol">:smtp</span>
+config.action_mailer.smtp_settings        = {
+    <span class="symbol">:address</span>        =&gt; <span class="string">"smtp.exmail.qq.com"</span>,
+    <span class="symbol">:port</span>           =&gt; <span class="number">25</span>,
+    <span class="symbol">:domain</span>         =&gt; <span class="string">"morningtec.cn"</span>,
+    <span class="symbol">:authentication</span> =&gt; <span class="symbol">:login</span>,
+    <span class="symbol">:user_name</span>      =&gt; <span class="string">"huangsz@morningtec.cn"</span>,
+    <span class="symbol">:password</span>       =&gt; <span class="string">"thepassword"</span>
+}
+</code></pre><p>编辑devise.rb 修改：</p>
+<pre><code>config<span class="class">.mailer_sender</span> = <span class="string">'huangsz@morningtec.cn'</span>
+</code></pre><p>编辑app/views/layouts/application.html.erb，加入</p>
+<pre><code> <span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"notice"</span>&gt;</span><span class="tag">&lt;<span class="title">%=</span> <span class="attribute">notice</span> %&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"alert"</span>&gt;</span><span class="tag">&lt;<span class="title">%=</span> <span class="attribute">alert</span> %&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+</code></pre><p>輸入<code>rails g devise user</code>產生 User model 及 Migration  </p>
+<p>如果需要E-mail驗證功能，可以編輯app/models/user.rb和migration將confirmable功能打開</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Base</span></span></span>
+  <span class="comment"># Include default devise modules. Others available are:</span>
+  <span class="comment"># :confirmable, :lockable, :timeoutable and :omniauthable</span>
+  devise <span class="symbol">:database_authenticatable</span>, <span class="symbol">:registerable</span>,
+         <span class="symbol">:recoverable</span>, <span class="symbol">:rememberable</span>, <span class="symbol">:trackable</span>, <span class="symbol">:validatable</span>, 
+         <span class="symbol">:confirmable</span>,<span class="symbol">:lockable</span>
+<span class="keyword">end</span>
+</code></pre><p>輸入<code>rails generate devise:views</code>產生樣板，這會包括有註冊、登入、忘記密碼、Email等等頁面，放在app/views/devise目錄下。</p>
+<p>輸入<code>rake db:migrate</code>建立資料表</p>
+<h1 id="集成cancan和rolify权限管理">集成cancan和rolify权限管理</h1><p>cancan提供对资源的授权控制。例如，在视图中使用can?方法来决定是否显示某个页面元素。如果系统角色非常简单，那么cancan还在代码中直接指定常量就可以支持，具体操作可以参考官方文档。但要提供复杂的角色管理，最好的方案，还是在devise基础上再集成cancan+rolify。</p>
+<p>1.修改Gemfile，并再次运行bundle install</p>
+<pre><code><span class="title">gem</span> <span class="string">'cancan'</span>
+gem <span class="string">'rolify'</span>
+</code></pre><p>2.创建cancan的Ability和rolify的Role</p>
+<pre><code>rails <span class="keyword">generate</span> cancan:ability
+rails <span class="keyword">generate</span> rolify Role User
+rake <span class="keyword">db</span>:migrate
+</code></pre><p>3.定制devise用户注册事件，可以在注册时赋予用户rolify角色，例如，下面的代码为首个用户赋予admin角色：</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">ApplicationController</span> <span class="inheritance">&lt; <span class="parent">ActionController::Base</span></span></span>
+  <span class="function"><span class="keyword">def</span> </span>after_sign_in_path_for(resource)
+    <span class="keyword">if</span> resource.is_a?(<span class="constant">User</span>)
+      <span class="keyword">if</span> <span class="constant">User</span>.count == <span class="number">1</span>
+        resource.add_role <span class="string">'admin'</span>
+      <span class="keyword">end</span>
+      resource
+    <span class="keyword">end</span>
+    root_path
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</code></pre><p>4.使用cancan可以为rolify中建立的角色分配授权资源，例如我们为允许admin角色的用户分配针对所有控制类的”manage”资源，而其他用户分配”read”资源：</p>
+<pre><code><span class="function"><span class="keyword">def</span> </span>initialize(user)
+    <span class="keyword">if</span> user.has_role? <span class="symbol">:admin</span>
+      can <span class="symbol">:manage</span>, <span class="symbol">:all</span>
+    <span class="keyword">else</span>
+      can <span class="symbol">:read</span>, <span class="symbol">:all</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</code></pre><p>5.以上已经实现了“用户－角色－权限”的三层权限模型，在view中就可以使用了。例如，在Home#index页面中增加如下代码：</p>
+<pre><code><span class="xml"><span class="comment">&lt;!--权限管理--&gt;</span>
+</span>&lt;%<span class="ruby"> <span class="keyword">if</span> user_signed_in? </span>%&gt;<span class="xml">
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>The user is loged in.<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+    </span>&lt;%<span class="ruby"> <span class="keyword">if</span> can? <span class="symbol">:manage</span>, <span class="symbol">:Articles</span> </span>%&gt;<span class="xml">
+      </span>&lt;%=<span class="ruby"> link_to <span class="string">"Articles"</span>, articles_path </span>%&gt;<span class="xml">
+    </span>&lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;<span class="xml">
+</span>&lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;<span class="xml"></span>
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="用户认证">用户认证</h1><p>编辑Gemfile加上</p>
+<pre><code><span class="title">gem</span> <span class="string">'devise'</span>
+</code></pre><p>輸入b]]>
+    </summary>
+    
+      <category term="Rails学习" scheme="http://0x520.com/categories/Rails%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Ruby on Rails 开发起步走]]></title>
+    <link href="http://0x520.com/2015/05/23/rails/2/"/>
+    <id>http://0x520.com/2015/05/23/rails/2/</id>
+    <published>2015-05-23T08:02:00.000Z</published>
+    <updated>2015-05-24T11:32:36.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="基本命令">基本命令</h1><p>创建一个rials的demo程序</p>
+<pre><code>rails <span class="keyword">new</span> demo --<span class="keyword">skip</span>-test-<span class="keyword">unit</span>
+</code></pre><p>启动web服务器</p>
+<pre><code>rails <span class="keyword">server</span>  或 rails s
+</code></pre><p>创建控制器</p>
+<pre><code>rails <span class="keyword">generate</span> controller welcome
+或
+rails <span class="keyword">g</span> controller welcome
+</code></pre><p>创建页面上的链接：</p>
+<pre><code>&lt;<span class="variable">%=</span> link_to <span class="string">'Hello!'</span>, welcome_say_hello_path <span class="variable">%&gt;</span>
+&lt;<span class="variable">%=</span> link_to <span class="string">'Hello!'</span>, welcome_say_hello_path <span class="variable">%&gt;</span>
+</code></pre><p>创建数据库</p>
+<pre><code><span class="tag">rake</span> <span class="rule"><span class="attribute">db</span>:<span class="value">create</span></span>
+</code></pre><h2 id="创建一个简单的CRUD应用">创建一个简单的CRUD应用</h2><p>创建crud程序框架</p>
+<pre><code>rails g scaffold <span class="keyword">person</span> name:string bio:text birthday:date
+</code></pre><p>执行数据库迁移：</p>
+<pre><code><span class="tag">rake</span> <span class="rule"><span class="attribute">db</span>:<span class="value">migrate </span></span>
+</code></pre><p>访问：<a href="http://localhost:3000/people" target="_blank" rel="external">http://localhost:3000/people</a></p>
+<p>一个最简单的CRUD应用程序开发完毕！</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="基本命令">基本命令</h1><p>创建一个rials的demo程序</p>
+<pre><code>rails <span class="keyword">new</span> demo --<span class="keyword">skip</span>-te]]>
+    </summary>
+    
+      <category term="Rails学习" scheme="http://0x520.com/categories/Rails%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Ruby on Rails 基础知识整理]]></title>
+    <link href="http://0x520.com/2015/05/23/rails/1/"/>
+    <id>http://0x520.com/2015/05/23/rails/1/</id>
+    <published>2015-05-23T07:02:00.000Z</published>
+    <updated>2015-05-24T11:31:27.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="RubyGems簡介">RubyGems簡介</h2><p>RubyGems是Ruby的套件管理系統，讓你輕易安裝及管理Ruby函式庫。你可以在RubyGems上找到所有的Ruby開源套件。另外，讀者如果想找Ruby或Rails有哪些好用的套件，也可以瀏覽看看The Ruby Toolbox，這個站依照套件的熱門程度排序，非常方便。</p>
+<h3 id="常用指令">常用指令</h3><pre><code>gem -v 告訴你 RubyGems 的版本
+gem <span class="operator"><span class="keyword">update</span> <span class="comment">--system 升級RubyGems的版本</span>
+gem <span class="keyword">install</span> gem_name 安裝某個套件
+gem list 列出安裝的套件
+gem <span class="keyword">update</span> gem_name 更新最新版本
+gem <span class="keyword">update</span> 更新所有你安裝的Gems
+gem <span class="keyword">install</span> -v x.x.x gemname 安裝特定版本
+gem <span class="keyword">uninstall</span> gem_name 反安裝</span>
+</code></pre><p>執行gem install gem_name的時候，它會在安裝完之後，自動產生此套件的RDoc和ri文件。不過有鑑於目前網路發達，往往直接 Google或是在套件官網就可以查詢到文件，所以其實不太需要在本地端機器產生文件，況且安裝的時間耗時又佔硬碟空間。要省略這個步驟，有兩種方式：<br>每次安裝時，加上以下參數：</p>
+<pre><code>$ gem install gem_name --<span class="keyword">no</span>-<span class="keyword">ri</span> --<span class="keyword">no</span>-rdoc
+</code></pre><p>或是新增一個<code>~/.gemrc</code>檔案內容如下，預設就不產生文件：</p>
+<pre><code><span class="comment">gem:</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">no</span><span class="literal">-</span><span class="comment">ri</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">no</span><span class="literal">-</span><span class="comment">rdoc</span>
+</code></pre><h2 id="Bundle简介">Bundle简介</h2><p>Rails 3中引入Bundle来管理项目中所有gem依赖，该命令只能在一个含有Gemfile的目录下执行，如rails 3项目的根目录。</p>
+<p><strong>关于Gemfile和Gemfile.lock</strong></p>
+<p>所有Ruby项目的信赖包都在Gemfile中进行配置，不再像以往那样，通过require来查找。Rails 3中如果需要require某个gem包，必须通过修改Gemfile文件来管理。</p>
+<p>Gemfile.lock则用来记录本机目前所有依赖的Ruby Gems及其版本。所以强烈建议将该文件放入版本控制器，从而保证大家基于同一环境下工作。</p>
+<p>Bundle命令详解：</p>
+<pre><code><span class="comment"># 显示所有的依赖包</span>
+<span class="variable">$ </span>bundle show
+<span class="comment"># 显示指定gem包的安装位置</span>
+<span class="variable">$ </span>bundle show [gemname]
+<span class="comment"># 检查系统中缺少那些项目以来的gem包</span>
+<span class="comment"># 注：如果系统中存在所有项目以来的包，则会输出：The Gemfile's dependencies are satisfied</span>
+<span class="variable">$ </span>bundle check
+<span class="comment"># 安装项目依赖的所有gem包</span>
+<span class="comment"># 注：此命令会尝试更新系统中已存在的gem包</span>
+<span class="variable">$ </span>bundle install
+<span class="comment"># 安装指定的gem包</span>
+<span class="variable">$ </span>bundle install [gemname]
+<span class="comment"># 更新系统中存在的项目依赖包，并同时更新项目Gemfile.lock文件</span>
+<span class="variable">$ </span>bundle update
+<span class="comment"># 更新系统中指定的gem包信息，并同时更新项目Gemfile.lock中指定的包信息</span>
+<span class="variable">$ </span>bundle update [gemname]
+<span class="comment"># 向项目中添加新的gem包引用</span>
+<span class="variable">$ </span>gem [gemname], [ver]
+<span class="comment"># 你还可以指定包依赖关系</span>
+<span class="variable">$ </span>gem [gemname], <span class="symbol">:require</span> =&gt; [dependence_gemname]
+<span class="comment"># 你甚至还可以指定gem包的git源</span>
+<span class="variable">$ </span>gem [gemname], <span class="symbol">:git</span> =&gt; [git_source_url]
+<span class="comment"># 锁定当前环境</span>
+<span class="comment"># 可以使用bundle lock来锁定当前环境，这样便不能通过bundle update来更新依赖包的版本，保证了统一的环境</span>
+<span class="variable">$ </span>bundle lock
+<span class="comment"># 解除锁定</span>
+<span class="variable">$ </span>bundle unlock
+<span class="comment"># 打包当装环境</span>
+<span class="comment"># bundle package会把当前所有信赖的包都放到 ./vendor/cache/ 目录下，发布时可用来保证包版本的一致性。</span>
+<span class="variable">$ </span>bundle package
+</code></pre><h2 id="Rake简介">Rake简介</h2><p>Rake 是一套類似 Make 的 Builder 工具，讓我們可以撰寫一些腳本任務，並且很方便設定各個任務的相依性。在 Rails 之中就內建了許多 rake 指令，除了你已經使用過的 rake db:migrate 之外，還有例如：</p>
+<pre><code>rake <span class="keyword">db</span>:migrate
+rake <span class="keyword">db</span>:<span class="keyword">drop</span>
+rake tmp:<span class="keyword">clear</span>
+rake <span class="keyword">notes</span>
+</code></pre><p>你可以輸入 <code>rake -T</code> 看到所有的 rake 指令。而要在 Rails 環境中撰寫 Rake，請將附檔名為 .rake 的檔案放在 lib/tasks 目錄下即可，例如：</p>
+<pre><code>/lib/tasks/dev.rake
+
+namespace <span class="symbol">:dev</span> <span class="keyword">do</span>
+
+  desc <span class="string">"Rebuild system"</span>
+  task <span class="symbol">:build</span> =&gt; [<span class="string">"tmp:clear"</span>, <span class="string">"log:clear"</span>, <span class="string">"db:drop"</span>, <span class="string">"db:create"</span>, <span class="string">"db:migrate"</span>, <span class="symbol">:setup</span> ]
+
+  desc <span class="string">"Setup system data"</span>
+  task <span class="symbol">:setup</span> =&gt; <span class="symbol">:environment</span> <span class="keyword">do</span>
+      puts <span class="string">"Create system user"</span>
+      u = <span class="constant">User.</span>new( <span class="symbol">:login</span> =&gt; <span class="string">"root"</span>, <span class="symbol">:password</span> =&gt; <span class="string">"password"</span>, <span class="symbol">:email</span> =&gt; <span class="string">"root@example.com"</span>, <span class="symbol">:name</span> =&gt; <span class="string">"管理員"</span>)
+      u.is_admin = <span class="keyword">true</span>
+      u.save!
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</code></pre><p>透過執行 rake dev:build，就會自動清除 log 檔案，砍掉資料庫，執行 migrate，然後執行 rake dev:setup 建立一個使用者。</p>
+<p>其他常見的使用情境包括：</p>
+<ol>
+<li>修正上線的資料，這樣部署到Production後，可以用來執行 </li>
+<li>建立開發用的假資料 </li>
+<li>搭配排成工具使用，例如每天凌晨三點寄出通知信、每週一產生報表等等</li>
+</ol>
+<p>更多介紹可以參考 <a href="http://codequietly.com/2010/6/rake-tasks-101" target="_blank" rel="external">http://codequietly.com/2010/6/rake-tasks-101</a> 和 <a href="http://jasonseifer.com/2010/04/06/rake-tutorial" target="_blank" rel="external">http://jasonseifer.com/2010/04/06/rake-tutorial</a> 兩篇文章。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="RubyGems簡介">RubyGems簡介</h2><p>RubyGems是Ruby的套件管理系統，讓你輕易安裝及管理Ruby函式庫。你可以在RubyGems上找到所有的Ruby開源套件。另外，讀者如果想找Ruby或Rails有哪些好用的套件，也可以瀏覽看看Th]]>
+    </summary>
+    
+      <category term="Rails学习" scheme="http://0x520.com/categories/Rails%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Android WebView中加载本地资源的解决办法]]></title>
@@ -1497,291 +1805,6 @@ public:
 <li>_cedcl C/C++的默认调用方式，调用方平衡栈，不定长参数的函数可以使用。</li>
 <li>_stdcall 被调用方平衡栈，不定长参数的函数无法使用</li>
 <li>_fastcall 寄存器方]]>
-    </summary>
-    
-      <category term="反汇编" scheme="http://0x520.com/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/"/>
-    
-      <category term="逆向" scheme="http://0x520.com/tags/%E9%80%86%E5%90%91/"/>
-    
-      <category term="逆向基础" scheme="http://0x520.com/categories/%E9%80%86%E5%90%91%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[逆向基础第十四篇：认识栈帧（堆栈平衡）]]></title>
-    <link href="http://0x520.com/2014/05/14/reverse/14/"/>
-    <id>http://0x520.com/2014/05/14/reverse/14/</id>
-    <published>2014-05-13T16:00:00.000Z</published>
-    <updated>2015-05-23T03:27:47.000Z</updated>
-    <content type="html"><![CDATA[<p>当<code>栈顶指针esp</code>小于<code>栈底指针ebp</code>时，就形成了栈帧。在VC++中，栈帧用来存放<code>局部变量</code>、<code>函数返回值地址</code>、<code>函数参数</code>等。</p>
-<p>当A函数调用B函数时，就会针对B函数开辟出所需的栈空间，形成此B函数的栈帧。当这个B函数结束调用时，要清除开辟出的栈空间，这一过程，称作 <strong>“堆栈平衡”</strong>。</p>
-<p>下面是一个空函数：</p>
-<pre><code><span class="function"><span class="keyword">int</span> <span class="title">_tmain</span><span class="params">(<span class="keyword">int</span> argc, _TCHAR* argv[])</span>
-</span>{
-    <span class="keyword">return</span> <span class="number">0</span>;
-}
-</code></pre><p>反汇编代码如下：</p>
-<pre><code><span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-00F01350  <span class="keyword">push</span>        <span class="literal">ebp</span>                  <span class="comment">;保存寄存器ebp的值</span>
-00F01351  <span class="keyword">mov</span>         <span class="literal">ebp</span>,<span class="literal">esp</span>              <span class="comment">;调整当前栈底指针到栈顶（将ebp作为栈底指针）</span>
-00F01353  <span class="keyword">sub</span>         <span class="literal">esp</span>,<span class="number">0C0h</span>             <span class="comment">;分配192字节的空间</span>
-00F01359  <span class="keyword">push</span>        <span class="number">ebx</span>                  <span class="comment">;保存寄存器ebx的值</span>
-00F0135A  <span class="keyword">push</span>        <span class="literal">esi</span>                  <span class="comment">;保存寄存器esi的值</span>
-00F0135B  <span class="keyword">push</span>        <span class="literal">edi</span>                  <span class="comment">;保存寄存器edi的值</span>
-00F0135C  <span class="keyword">lea</span>         <span class="literal">edi</span>,[<span class="literal">ebp</span>-<span class="number">0C0h</span>]       <span class="comment">;取栈顶地址，保存在edi中</span>
-00F01362  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="number">30h</span>  
-00F01367  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="number">0CCCCCCCCh</span>  
-00F0136C  <span class="keyword">rep</span> stos    <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> <span class="literal">es</span>:[<span class="literal">edi</span>]  
-    return <span class="number">0</span><span class="comment">;</span>
-00F0136E  <span class="keyword">xor</span>         <span class="number">eax</span>,<span class="number">eax</span>              <span class="comment">;对返回值eax清零</span>
-}
-00F01370  <span class="keyword">pop</span>         <span class="literal">edi</span>                  <span class="comment">;还原寄存器edi的值</span>
-00F01371  <span class="keyword">pop</span>         <span class="literal">esi</span>                  <span class="comment">;还原寄存器esi的值</span>
-00F01372  <span class="keyword">pop</span>         <span class="number">ebx</span>                  <span class="comment">;还原寄存器ebx的值</span>
-00F01373  <span class="keyword">mov</span>         <span class="literal">esp</span>,<span class="literal">ebp</span>              <span class="comment">;还原寄存器esp的值</span>
-00F01375  <span class="keyword">pop</span>         <span class="literal">ebp</span>                  <span class="comment">;还原寄存器ebp的值</span>
-00F01376  <span class="keyword">ret</span>  
-</code></pre><ul>
-<li>rep指令的目的是重复其上面的指令。</li>
-<li>ecx的值是重复的次数。</li>
-<li>stos指令的作用是，将eax中的值拷贝到es:[edi]指向的地址。</li>
-</ul>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>当<code>栈顶指针esp</code>小于<code>栈底指针ebp</code>时，就形成了栈帧。在VC++中，栈帧用来存放<code>局部变量</code>、<code>函数返回值地址</code>、<code>函数参数</code>等。</p>
-<p>当A函数调用]]>
-    </summary>
-    
-      <category term="反汇编" scheme="http://0x520.com/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/"/>
-    
-      <category term="逆向" scheme="http://0x520.com/tags/%E9%80%86%E5%90%91/"/>
-    
-      <category term="逆向基础" scheme="http://0x520.com/categories/%E9%80%86%E5%90%91%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[逆向基础第十三篇：编译器对循环的优化]]></title>
-    <link href="http://0x520.com/2014/05/13/reverse/13/"/>
-    <id>http://0x520.com/2014/05/13/reverse/13/</id>
-    <published>2014-05-12T16:00:00.000Z</published>
-    <updated>2015-05-23T03:27:47.000Z</updated>
-    <content type="html"><![CDATA[<p>之前，我已经对do、while、和for循环做了详细的介绍。</p>
-<p>do循环：<a href="http://www.0x520.com/2014/07/04/247.html" target="_blank" rel="external">http://www.0x520.com/2014/07/04/247.html</a><br>while循环：<a href="http://www.0x520.com/2014/07/04/251.html" target="_blank" rel="external">http://www.0x520.com/2014/07/04/251.html</a><br>for循环：<a href="http://www.0x520.com/2014/07/05/264.html" target="_blank" rel="external">http://www.0x520.com/2014/07/05/264.html</a></p>
-<p>通过对比，我们已经知道，do循环的速度最快，while次之，for的速度是最慢的。 因为，do只用到一个跳转指令，while用到两个跳转指令，而for用到了三个跳转指令。</p>
-<h3 id="1、优化while循环">1、优化while循环</h3><p>在 <a href="http://while%E5%BE%AA%E7%8E%AF" target="_blank" rel="external">while循环</a> 中我们讲过，是可以将while转换为do循环的，可以将do循环结构嵌套在if中，来完成while结构的优化。<br>while循环代码：</p>
-<pre><code><span class="function"><span class="keyword">void</span> <span class="title">loop_while</span><span class="params">(<span class="keyword">int</span> loopTimes)</span>
-</span>{
-    <span class="keyword">while</span>(loopTimes&gt;=<span class="number">0</span>)
-    {
-        <span class="comment">//do something</span>
-        loopTimes --;
-    }
-}
-</code></pre><p>优化代码：</p>
-<pre><code><span class="function"><span class="keyword">void</span> <span class="title">loop_do</span><span class="params">(<span class="keyword">int</span> loopTimes)</span>
-</span>{
-    <span class="keyword">if</span>(loopTimes&gt;=<span class="number">0</span>)
-    {
-        <span class="keyword">do</span>{
-            <span class="comment">//do something</span>
-            loopTimes --;
-        }<span class="keyword">while</span>(loopTimes&gt;=<span class="number">0</span>);
-    }
-}
-</code></pre><p>如果编译器使用O2选项进行优化，那么，反汇编之后的代码将是上面这种形式。</p>
-<h3 id="2、优化for循环">2、优化for循环</h3><p>for循环，从结构上看，其结构特征和while循环类似。由于赋初值部分不属于循环体，可以忽略。只要将比较部分放入循环体，那么就是一个while循环。既然可以转换成while循环，那么必然也可以转换成do循环。</p>
-<p>for循环代码：</p>
-<pre><code><span class="keyword">int</span> nSum = <span class="number">0</span>;
-<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="keyword">loop_t</span>imes ; i++)
-{
-    nSum += i;
-}
-</code></pre><p>for转换成while循环：</p>
-<pre><code><span class="keyword">int</span> i = <span class="number">0</span>;
-<span class="keyword">while</span>(i&lt;<span class="keyword">loop_t</span>imes){
-    nSum += i;
-    i++;
-}
-</code></pre><p>while循环转换成do循环：</p>
-<pre><code><span class="keyword">int</span> nSum = <span class="number">0</span>;
-<span class="keyword">int</span> i = <span class="number">0</span>;
-<span class="keyword">if</span>(i&lt;<span class="keyword">loop_t</span>imes){
-    <span class="keyword">do</span> {
-        nSum += i;
-        i++;
-    } <span class="keyword">while</span> (i&lt;argc);
-}
-</code></pre><p>编译器真的会这样优化吗？我们打开O2选项（选择Release，默认就是O2）：</p>
-<p><img src="/uploads/2014/07/3121390140.png" alt="1.png"></p>
-<p>编译如下代码：</p>
-<pre><code><span class="function"><span class="keyword">int</span> <span class="title">loop_for</span><span class="params">(<span class="keyword">int</span> loop_times)</span>
-</span>{
-    <span class="keyword">int</span> nSum = <span class="number">0</span>;
-    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="keyword">loop_t</span>imes ; i++)
-    {
-        nSum += i;
-    }
-    <span class="keyword">return</span> nSum;
-}
-</code></pre><p>我们使用IDA分析：</p>
-<p><img src="/uploads/2014/07/344158898.png" alt="2.png"></p>
-<p>上图中for循环优化之后的结构一目了然，但是有些朋友表示还是看不懂，表示对下面这段代码不知所云：</p>
-<pre><code><span class="keyword">add</span>     <span class="number">edx</span>,<span class="number">eax</span>
-<span class="keyword">lea</span>     <span class="number">ecx</span>,[<span class="number">ecx</span>+<span class="number">eax</span>+<span class="number">1</span>]
-<span class="keyword">add</span>     <span class="number">eax</span>,<span class="number">2</span>
-<span class="keyword">cmp</span>     <span class="number">eax</span>,<span class="literal">esi</span>
-<span class="keyword">jle</span>     short loc_401020
-</code></pre><p>这里我来讲解一下，其实这已经不是编译器对for循环优化的范畴了，这里是编译器对当前算法的优化 <code>nSum += (i++);</code></p>
-<ul>
-<li>edx 等于变量 nSum 的偶数和</li>
-<li>ecx 等于变量 nSum 的奇数和</li>
-<li>eax 等于变量 i  </li>
-</ul>
-<p>最后，在地址00401034处，<code>lea eax,[ecx+edx]</code>，这里 eax = <code>奇数和</code>+<code>偶数和</code> 。</p>
-<p>————— 致谢 ————— </p>
-<p>这里要感谢 <code>sollyu</code> 和 <code>0XE9</code> 两位兄弟的无私帮助。<br>sollyu对上面的反汇编代码进行了逆向还原，这是还原后的代码：</p>
-<p><img src="/uploads/2014/07/493634735.jpg" alt="3.jpg"></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>之前，我已经对do、while、和for循环做了详细的介绍。</p>
-<p>do循环：<a href="http://www.0x520.com/2014/07/04/247.html" target="_blank" rel="external">http://www.0]]>
-    </summary>
-    
-      <category term="反汇编" scheme="http://0x520.com/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/"/>
-    
-      <category term="逆向" scheme="http://0x520.com/tags/%E9%80%86%E5%90%91/"/>
-    
-      <category term="逆向基础" scheme="http://0x520.com/categories/%E9%80%86%E5%90%91%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[逆向基础第十二篇：控制流程 之 for循环]]></title>
-    <link href="http://0x520.com/2014/05/12/reverse/12/"/>
-    <id>http://0x520.com/2014/05/12/reverse/12/</id>
-    <published>2014-05-11T16:00:00.000Z</published>
-    <updated>2015-05-23T03:27:47.000Z</updated>
-    <content type="html"><![CDATA[<p>for 循环是三种循环（do，while，for）中最复杂的一种。for循环由<code>赋初值</code>、<code>设置循环条件</code>、<code>设置循环步长</code> 这三条语句组成。在程序中for被使用的频率是最高的。</p>
-<p>for循环测试代码：</p>
-<pre><code><span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    <span class="keyword">int</span> nSum = <span class="number">0</span>;
-    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; argc ; i++)
-    {
-        nSum += i;
-    }
-    <span class="built_in">printf</span>(<span class="string">"%d \r\n"</span>,nSum);
-    <span class="keyword">return</span> <span class="number">0</span>;
-}
-</code></pre><p>反汇编代码如下：</p>
-<p><img src="/uploads/2014/07/2441701288.png" alt="1.png"></p>
-<p>通过上图，我们看出，赋初值只执行一次。然后不断自增、执行代码块，往上跳。通过循环流程，我们可以总结其特性。</p>
-<p><strong>总结：</strong></p>
-<pre><code>Step1：赋初值，跳转到循环判定部分，然后执行代码块
-
-Step2：代码块末尾，向上跳，跳转到自增（修改步长部分，这里是自增，视实际情况而定）
-Step3：循环判定部分，然后执行代码块，向上跳跳到Step2
-</code></pre>]]></content>
-    <summary type="html">
-    <![CDATA[<p>for 循环是三种循环（do，while，for）中最复杂的一种。for循环由<code>赋初值</code>、<code>设置循环条件</code>、<code>设置循环步长</code> 这三条语句组成。在程序中for被使用的频率是最高的。</p>
-<p>for循环测试]]>
-    </summary>
-    
-      <category term="反汇编" scheme="http://0x520.com/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/"/>
-    
-      <category term="逆向" scheme="http://0x520.com/tags/%E9%80%86%E5%90%91/"/>
-    
-      <category term="逆向基础" scheme="http://0x520.com/categories/%E9%80%86%E5%90%91%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[逆向基础第十一篇：控制流程 之 while循环]]></title>
-    <link href="http://0x520.com/2014/05/11/reverse/11/"/>
-    <id>http://0x520.com/2014/05/11/reverse/11/</id>
-    <published>2014-05-10T16:00:00.000Z</published>
-    <updated>2015-05-23T03:27:47.000Z</updated>
-    <content type="html"><![CDATA[<p>while循环与do循环正好相反，先执行判定条件，再执行代码块。 </p>
-<p>测试代码：</p>
-<pre><code><span class="function"><span class="keyword">int</span> <span class="title">_tmain</span><span class="params">(<span class="keyword">int</span> argc, _TCHAR* argv[])</span>
-</span>{
-    <span class="keyword">int</span> nSum    = <span class="number">0</span>;
-    <span class="keyword">int</span> nIndex    = <span class="number">0</span>;
-    <span class="keyword">while</span> (nIndex &lt;= argc)
-    {
-        nSum += nIndex;
-        nIndex ++;
-    } 
-    <span class="keyword">return</span> <span class="number">0</span>;
-}
-</code></pre><p>反汇编代码：</p>
-<p><img src="/uploads/2014/07/2800468358.png" alt="1.png"></p>
-<p>我们看到while循环使用了两次跳转指令完成循环，由于多使用了一次跳转指令，因此while循环要比do循环效率低一些。</p>
-<p><strong>总结：</strong></p>
-<pre><code>WHILE_BEGIN
-;影响标记位的指令
-jxx    WHILE_END
-<span class="attribute">...</span><span class="attribute">...</span>
-jmp    WHILE_BEGIN
-WHILE_END
-</code></pre><p>遇到以上代码块，即可判断为while循环结构。根据跳转指令的位置，可以还原while循环判断。</p>
-<p><strong>注意：while循环结构很可能被优化成do循环结构，被转换后的while结构由于需要检查是否可以被成功执行一次，通常会被潜逃在if单分支结构中，高级代码如下：</strong></p>
-<pre><code><span class="keyword">if</span><span class="comment">(<span class="doctag"><span class="keyword">xxx</span></span>)</span>
-{
-    <span class="keyword">do</span>
-    {
-        <span class="comment">//循环代码块</span>
-    } <span class="keyword">while</span> <span class="comment">(<span class="doctag"><span class="keyword">xxx</span></span>)</span>
-}
-</code></pre>]]></content>
-    <summary type="html">
-    <![CDATA[<p>while循环与do循环正好相反，先执行判定条件，再执行代码块。 </p>
-<p>测试代码：</p>
-<pre><code><span class="function"><span class="keyword">int</span> <span class="title"]]>
-    </summary>
-    
-      <category term="反汇编" scheme="http://0x520.com/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/"/>
-    
-      <category term="逆向" scheme="http://0x520.com/tags/%E9%80%86%E5%90%91/"/>
-    
-      <category term="逆向基础" scheme="http://0x520.com/categories/%E9%80%86%E5%90%91%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[逆向基础第十篇：控制流程 之 do循环]]></title>
-    <link href="http://0x520.com/2014/05/10/reverse/10/"/>
-    <id>http://0x520.com/2014/05/10/reverse/10/</id>
-    <published>2014-05-09T16:00:00.000Z</published>
-    <updated>2015-05-23T03:27:47.000Z</updated>
-    <content type="html"><![CDATA[<p>do循环工作流程清晰，识别相对简单。根据do循环的特性：先执行语句块，再进行比较判断。条件成立时，会继续执行语句块。C++中的goto也可以模拟do循环。</p>
-<p>测试代码：</p>
-<pre><code><span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    <span class="keyword">int</span> nSum    = <span class="number">0</span>;
-    <span class="keyword">int</span> nIndex    = <span class="number">0</span>;
-    <span class="keyword">do</span> 
-    {
-        nSum += nIndex;
-        nIndex ++;
-    } <span class="keyword">while</span> (nIndex &lt;= argc);
-}
-</code></pre><p>反汇编结果：</p>
-<p><img src="/uploads/2014/07/713037861.png" alt="1.png"></p>
-<p>这与if分支结构非常相似，但是自己分析之后发现他们并不相同，这跟if语句的比较是相反的，if的跳转地址大于当前地址，是一个向下跳的过程。而do的跳转地址小于当前代码地址，是向上跳的。 根据这个特性，我们可以很容易的区分 if 和 do 的反汇编代码。</p>
-<p><strong>总结：</strong></p>
-<pre><code>DO_BEGIN
-......            <span class="comment">;循环语句块</span>
-<span class="comment">;影响标记位的指令</span>
-jxx     DO_BEGIN
-</code></pre><p>如果遇到上面这种代码块，可以判定为是一个do循环。根据跳转到的地址，可以得知代码块的首地址，jxx指令的地址为循环的结束地址。根据这些特征，即可还原do循环结构的原型。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>do循环工作流程清晰，识别相对简单。根据do循环的特性：先执行语句块，再进行比较判断。条件成立时，会继续执行语句块。C++中的goto也可以模拟do循环。</p>
-<p>测试代码：</p>
-<pre><code><span class="keyword">int</span]]>
     </summary>
     
       <category term="反汇编" scheme="http://0x520.com/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/"/>

@@ -77,6 +77,505 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/05/24/rails/3/" title="Rails 中使用bootstrap" itemprop="url">Rails 中使用bootstrap</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-24T07:02:00.000Z" itemprop="datePublished"> 发表于 2015-05-24</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>如果需要自定义less的话，请参考 <a href="http://www.rubydoc.info/gems/twitter-bootstrap-rails/3.2.0" target="_blank" rel="external">http://www.rubydoc.info/gems/twitter-bootstrap-rails/3.2.0</a></p>
+<h2 id="Installing_the_CSS_stylesheets">Installing the CSS stylesheets</h2><p>If you don’t need to customize the stylesheets using Less, the only gem you need is the twitter-bootstrap-rails gem:</p>
+<pre><code><span class="title">gem</span> <span class="string">"twitter-bootstrap-rails"</span>
+</code></pre><p>After running bundle install, run the generator:</p>
+<pre><code>rails generate <span class="string">bootstrap:</span>install <span class="keyword">static</span>
+</code></pre><p>Use <code>bundle show [gemname]</code> to see where a bundled gem is installed.</p>
+<h2 id="Generating_layouts_and_views">Generating layouts and views</h2><p>You can run following generators to get started with Bootstrap quickly.</p>
+<p>Layout (generates Bootstrap compatible layout) - (Haml and Slim supported)</p>
+<p>Usage:</p>
+<pre><code>rails <span class="keyword">g</span> <span class="keyword">bootstrap</span>:layout [LAYOUT_NAME]
+</code></pre><p>Themed (generates Bootstrap compatible scaffold views.) - (Haml and Slim supported)</p>
+<p>Usage:</p>
+<pre><code>rails <span class="keyword">g</span> <span class="keyword">bootstrap</span>:themed [RESOURCE_NAME]
+</code></pre><p>Example:</p>
+<pre><code>rails <span class="keyword">g</span> scaffold <span class="keyword">Post</span> title:string description:text
+rake <span class="keyword">db</span>:migrate
+rails <span class="keyword">g</span> <span class="keyword">bootstrap</span>:themed Posts
+</code></pre><p>Notice the plural usage of the resource to generate bootstrap:themed.</p>
+<h2 id="解决：_couldn’t_find_file_‘twitter-bootstrap-static/bootstrap’_的问题">解决： couldn’t find file ‘twitter-bootstrap-static/bootstrap’ 的问题</h2><p>检查/Library/Ruby/Gems/2.0.0/gems/twitter-bootstrap-rails-3.2.0的用户权限</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Rails学习/">Rails学习</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/24/rails/5/" title="Rails中使用paperclip进行文件&amp;图片上传" itemprop="url">Rails中使用paperclip进行文件&amp;图片上传</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-24T07:02:00.000Z" itemprop="datePublished"> 发表于 2015-05-24</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>参考：<a href="https://github.com/thoughtbot/paperclip" target="_blank" rel="external">https://github.com/thoughtbot/paperclip</a></p>
+<h2 id="Requirements">Requirements</h2><p>必须安装ImageMatic才能对图片进行处理</p>
+<p>If you’re on Mac OS X, you’ll want to run the following with Homebrew:</p>
+<pre><code><span class="keyword">brew </span>install imagemagick
+</code></pre><p>检查是否安装成功：</p>
+<p>执行 <code>which convert</code> 理论上来说应该返回 <code>/usr/local/bin/convert</code> 说明ImageMatic安装成功了。</p>
+<p>编辑 config/environments/development.rb  配置command_path</p>
+<pre><code>Paperclip<span class="class">.options</span>[:command_path] = <span class="string">"/usr/local/bin/"</span>
+</code></pre><h2 id="安装">安装</h2><p>编辑gemfile</p>
+<pre><code><span class="title">gem</span> <span class="string">"paperclip"</span>, <span class="string">"~&gt; 4.2"</span>
+</code></pre><p>然后</p>
+<pre><code><span class="keyword">bundle </span>install
+</code></pre><h2 id="使用">使用</h2><h3 id="model">model</h3><pre><code><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Base</span></span></span>
+  has_attached_file <span class="symbol">:avatar</span>, <span class="symbol">:styles</span> =&gt; { <span class="symbol">:medium</span> =&gt; <span class="string">"300x300&gt;"</span>, <span class="symbol">:thumb</span> =&gt; <span class="string">"100x100&gt;"</span> }, <span class="symbol">:default_url</span> =&gt; <span class="string">"/images/:style/missing.png"</span>
+  validates_attachment_content_type <span class="symbol">:avatar</span>, <span class="symbol">:content_type</span> =&gt; <span class="regexp">/\Aimage\/.*\Z/</span>
+<span class="keyword">end</span>
+</code></pre><h3 id="migrateion">migrateion</h3><p>创建一个migration</p>
+<pre><code>rails g migration <span class="keyword">add_avatar_columns_t</span>o_users
+</code></pre><p>编辑 xxx_add_avatar_columns_to_users</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">AddAvatarColumnsToUsers</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Migration</span></span></span>
+  <span class="function"><span class="keyword">def</span> </span><span class="keyword">self</span>.up
+    add_attachment <span class="symbol">:users</span>, <span class="symbol">:avatar</span>
+  <span class="keyword">end</span>
+
+  <span class="function"><span class="keyword">def</span> </span><span class="keyword">self</span>.down
+    remove_attachment <span class="symbol">:users</span>, <span class="symbol">:avatar</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</code></pre><h3 id="new_view">new view</h3><pre><code><span class="xml"></span>&lt;%=<span class="ruby"> form_for <span class="variable">@user</span>, <span class="symbol">:url</span> =&gt; users_path, <span class="symbol">:html</span> =&gt; { <span class="symbol">:multipart</span> =&gt; <span class="keyword">true</span> } <span class="keyword">do</span> |form| </span>%&gt;<span class="xml">
+ </span>&lt;%=<span class="ruby"> form.file_field <span class="symbol">:avatar</span> </span>%&gt;<span class="xml">
+</span>&lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;<span class="xml"></span>
+</code></pre><h3 id="controller">controller</h3><pre><code>def <span class="operator"><span class="keyword">create</span>
+  @<span class="keyword">user</span> = <span class="keyword">User</span>.<span class="keyword">create</span>( user_params )
+<span class="keyword">end</span>
+
+private
+
+# <span class="keyword">Use</span> strong_parameters <span class="keyword">for</span> attribute whitelisting
+# Be sure <span class="keyword">to</span> <span class="keyword">update</span> your <span class="keyword">create</span>() <span class="keyword">and</span> <span class="keyword">update</span>() controller methods.
+
+def user_params
+  params.require(:<span class="keyword">user</span>).permit(:avatar)
+<span class="keyword">end</span></span>
+</code></pre><h3 id="show_view">show view</h3><pre><code>&lt;<span class="variable">%=</span> image_tag <span class="variable">@user</span>.avatar.url <span class="variable">%&gt;</span>
+&lt;<span class="variable">%=</span> image_tag <span class="variable">@user</span>.avatar.url(:medium) <span class="variable">%&gt;</span>
+&lt;<span class="variable">%=</span> image_tag <span class="variable">@user</span>.avatar.url(:thumb) <span class="variable">%&gt;</span>
+</code></pre><h3 id="删除">删除</h3><p>把属性设置为nil，然后保存即可</p>
+<pre><code><span class="variable">@user</span>.avatar = nil
+<span class="variable">@user</span>.save
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Rails学习/">Rails学习</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/24/rails/4/" title="Rails中使用devise进行用户认证" itemprop="url">Rails中使用devise进行用户认证</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-24T07:02:00.000Z" itemprop="datePublished"> 发表于 2015-05-24</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="用户认证">用户认证</h1><p>编辑Gemfile加上</p>
+<pre><code><span class="title">gem</span> <span class="string">'devise'</span>
+</code></pre><p>輸入bundle install安裝此套件<br>輸入rails g devise:install產生devise設定檔<br>編輯 config/environments/development.rb  加入</p>
+<pre><code>config.action_mailer.default_url_options  = { <span class="symbol">host:</span> <span class="string">'localhost'</span>, <span class="symbol">port:</span> <span class="number">3000</span> }
+config.action_mailer.delivery_method      = <span class="symbol">:smtp</span>
+config.action_mailer.smtp_settings        = {
+    <span class="symbol">:address</span>        =&gt; <span class="string">"smtp.exmail.qq.com"</span>,
+    <span class="symbol">:port</span>           =&gt; <span class="number">25</span>,
+    <span class="symbol">:domain</span>         =&gt; <span class="string">"morningtec.cn"</span>,
+    <span class="symbol">:authentication</span> =&gt; <span class="symbol">:login</span>,
+    <span class="symbol">:user_name</span>      =&gt; <span class="string">"huangsz@morningtec.cn"</span>,
+    <span class="symbol">:password</span>       =&gt; <span class="string">"thepassword"</span>
+}
+</code></pre><p>编辑devise.rb 修改：</p>
+<pre><code>config<span class="class">.mailer_sender</span> = <span class="string">'huangsz@morningtec.cn'</span>
+</code></pre><p>编辑app/views/layouts/application.html.erb，加入</p>
+<pre><code> <span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"notice"</span>&gt;</span><span class="tag">&lt;<span class="title">%=</span> <span class="attribute">notice</span> %&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"alert"</span>&gt;</span><span class="tag">&lt;<span class="title">%=</span> <span class="attribute">alert</span> %&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+</code></pre><p>輸入<code>rails g devise user</code>產生 User model 及 Migration  </p>
+<p>如果需要E-mail驗證功能，可以編輯app/models/user.rb和migration將confirmable功能打開</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Base</span></span></span>
+  <span class="comment"># Include default devise modules. Others available are:</span>
+  <span class="comment"># :confirmable, :lockable, :timeoutable and :omniauthable</span>
+  devise <span class="symbol">:database_authenticatable</span>, <span class="symbol">:registerable</span>,
+         <span class="symbol">:recoverable</span>, <span class="symbol">:rememberable</span>, <span class="symbol">:trackable</span>, <span class="symbol">:validatable</span>, 
+         <span class="symbol">:confirmable</span>,<span class="symbol">:lockable</span>
+<span class="keyword">end</span>
+</code></pre><p>輸入<code>rails generate devise:views</code>產生樣板，這會包括有註冊、登入、忘記密碼、Email等等頁面，放在app/views/devise目錄下。</p>
+<p>輸入<code>rake db:migrate</code>建立資料表</p>
+<h1 id="集成cancan和rolify权限管理">集成cancan和rolify权限管理</h1><p>cancan提供对资源的授权控制。例如，在视图中使用can?方法来决定是否显示某个页面元素。如果系统角色非常简单，那么cancan还在代码中直接指定常量就可以支持，具体操作可以参考官方文档。但要提供复杂的角色管理，最好的方案，还是在devise基础上再集成cancan+rolify。</p>
+<p>1.修改Gemfile，并再次运行bundle install</p>
+<pre><code><span class="title">gem</span> <span class="string">'cancan'</span>
+gem <span class="string">'rolify'</span>
+</code></pre><p>2.创建cancan的Ability和rolify的Role</p>
+<pre><code>rails <span class="keyword">generate</span> cancan:ability
+rails <span class="keyword">generate</span> rolify Role User
+rake <span class="keyword">db</span>:migrate
+</code></pre><p>3.定制devise用户注册事件，可以在注册时赋予用户rolify角色，例如，下面的代码为首个用户赋予admin角色：</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">ApplicationController</span> <span class="inheritance">&lt; <span class="parent">ActionController::Base</span></span></span>
+  <span class="function"><span class="keyword">def</span> </span>after_sign_in_path_for(resource)
+    <span class="keyword">if</span> resource.is_a?(<span class="constant">User</span>)
+      <span class="keyword">if</span> <span class="constant">User</span>.count == <span class="number">1</span>
+        resource.add_role <span class="string">'admin'</span>
+      <span class="keyword">end</span>
+      resource
+    <span class="keyword">end</span>
+    root_path
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</code></pre><p>4.使用cancan可以为rolify中建立的角色分配授权资源，例如我们为允许admin角色的用户分配针对所有控制类的”manage”资源，而其他用户分配”read”资源：</p>
+<pre><code><span class="function"><span class="keyword">def</span> </span>initialize(user)
+    <span class="keyword">if</span> user.has_role? <span class="symbol">:admin</span>
+      can <span class="symbol">:manage</span>, <span class="symbol">:all</span>
+    <span class="keyword">else</span>
+      can <span class="symbol">:read</span>, <span class="symbol">:all</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</code></pre><p>5.以上已经实现了“用户－角色－权限”的三层权限模型，在view中就可以使用了。例如，在Home#index页面中增加如下代码：</p>
+<pre><code><span class="xml"><span class="comment">&lt;!--权限管理--&gt;</span>
+</span>&lt;%<span class="ruby"> <span class="keyword">if</span> user_signed_in? </span>%&gt;<span class="xml">
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>The user is loged in.<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+    </span>&lt;%<span class="ruby"> <span class="keyword">if</span> can? <span class="symbol">:manage</span>, <span class="symbol">:Articles</span> </span>%&gt;<span class="xml">
+      </span>&lt;%=<span class="ruby"> link_to <span class="string">"Articles"</span>, articles_path </span>%&gt;<span class="xml">
+    </span>&lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;<span class="xml">
+</span>&lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;<span class="xml"></span>
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Rails学习/">Rails学习</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/23/rails/2/" title="Ruby on Rails 开发起步走" itemprop="url">Ruby on Rails 开发起步走</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-23T08:02:00.000Z" itemprop="datePublished"> 发表于 2015-05-23</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="基本命令">基本命令</h1><p>创建一个rials的demo程序</p>
+<pre><code>rails <span class="keyword">new</span> demo --<span class="keyword">skip</span>-test-<span class="keyword">unit</span>
+</code></pre><p>启动web服务器</p>
+<pre><code>rails <span class="keyword">server</span>  或 rails s
+</code></pre><p>创建控制器</p>
+<pre><code>rails <span class="keyword">generate</span> controller welcome
+或
+rails <span class="keyword">g</span> controller welcome
+</code></pre><p>创建页面上的链接：</p>
+<pre><code>&lt;<span class="variable">%=</span> link_to <span class="string">'Hello!'</span>, welcome_say_hello_path <span class="variable">%&gt;</span>
+&lt;<span class="variable">%=</span> link_to <span class="string">'Hello!'</span>, welcome_say_hello_path <span class="variable">%&gt;</span>
+</code></pre><p>创建数据库</p>
+<pre><code><span class="tag">rake</span> <span class="rule"><span class="attribute">db</span>:<span class="value">create</span></span>
+</code></pre><h2 id="创建一个简单的CRUD应用">创建一个简单的CRUD应用</h2><p>创建crud程序框架</p>
+<pre><code>rails g scaffold <span class="keyword">person</span> name:string bio:text birthday:date
+</code></pre><p>执行数据库迁移：</p>
+<pre><code><span class="tag">rake</span> <span class="rule"><span class="attribute">db</span>:<span class="value">migrate </span></span>
+</code></pre><p>访问：<a href="http://localhost:3000/people" target="_blank" rel="external">http://localhost:3000/people</a></p>
+<p>一个最简单的CRUD应用程序开发完毕！</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Rails学习/">Rails学习</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/23/rails/1/" title="Ruby on Rails 基础知识整理" itemprop="url">Ruby on Rails 基础知识整理</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-23T07:02:00.000Z" itemprop="datePublished"> 发表于 2015-05-23</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="RubyGems簡介">RubyGems簡介</h2><p>RubyGems是Ruby的套件管理系統，讓你輕易安裝及管理Ruby函式庫。你可以在RubyGems上找到所有的Ruby開源套件。另外，讀者如果想找Ruby或Rails有哪些好用的套件，也可以瀏覽看看The Ruby Toolbox，這個站依照套件的熱門程度排序，非常方便。</p>
+<h3 id="常用指令">常用指令</h3><pre><code>gem -v 告訴你 RubyGems 的版本
+gem <span class="operator"><span class="keyword">update</span> <span class="comment">--system 升級RubyGems的版本</span>
+gem <span class="keyword">install</span> gem_name 安裝某個套件
+gem list 列出安裝的套件
+gem <span class="keyword">update</span> gem_name 更新最新版本
+gem <span class="keyword">update</span> 更新所有你安裝的Gems
+gem <span class="keyword">install</span> -v x.x.x gemname 安裝特定版本
+gem <span class="keyword">uninstall</span> gem_name 反安裝</span>
+</code></pre><p>執行gem install gem_name的時候，它會在安裝完之後，自動產生此套件的RDoc和ri文件。不過有鑑於目前網路發達，往往直接 Google或是在套件官網就可以查詢到文件，所以其實不太需要在本地端機器產生文件，況且安裝的時間耗時又佔硬碟空間。要省略這個步驟，有兩種方式：<br>每次安裝時，加上以下參數：</p>
+<pre><code>$ gem install gem_name --<span class="keyword">no</span>-<span class="keyword">ri</span> --<span class="keyword">no</span>-rdoc
+</code></pre><p>或是新增一個<code>~/.gemrc</code>檔案內容如下，預設就不產生文件：</p>
+<pre><code><span class="comment">gem:</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">no</span><span class="literal">-</span><span class="comment">ri</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">no</span><span class="literal">-</span><span class="comment">rdoc</span>
+</code></pre><h2 id="Bundle简介">Bundle简介</h2><p>Rails 3中引入Bundle来管理项目中所有gem依赖，该命令只能在一个含有Gemfile的目录下执行，如rails 3项目的根目录。</p>
+<p><strong>关于Gemfile和Gemfile.lock</strong></p>
+<p>所有Ruby项目的信赖包都在Gemfile中进行配置，不再像以往那样，通过require来查找。Rails 3中如果需要require某个gem包，必须通过修改Gemfile文件来管理。</p>
+<p>Gemfile.lock则用来记录本机目前所有依赖的Ruby Gems及其版本。所以强烈建议将该文件放入版本控制器，从而保证大家基于同一环境下工作。</p>
+<p>Bundle命令详解：</p>
+<pre><code><span class="comment"># 显示所有的依赖包</span>
+<span class="variable">$ </span>bundle show
+<span class="comment"># 显示指定gem包的安装位置</span>
+<span class="variable">$ </span>bundle show [gemname]
+<span class="comment"># 检查系统中缺少那些项目以来的gem包</span>
+<span class="comment"># 注：如果系统中存在所有项目以来的包，则会输出：The Gemfile's dependencies are satisfied</span>
+<span class="variable">$ </span>bundle check
+<span class="comment"># 安装项目依赖的所有gem包</span>
+<span class="comment"># 注：此命令会尝试更新系统中已存在的gem包</span>
+<span class="variable">$ </span>bundle install
+<span class="comment"># 安装指定的gem包</span>
+<span class="variable">$ </span>bundle install [gemname]
+<span class="comment"># 更新系统中存在的项目依赖包，并同时更新项目Gemfile.lock文件</span>
+<span class="variable">$ </span>bundle update
+<span class="comment"># 更新系统中指定的gem包信息，并同时更新项目Gemfile.lock中指定的包信息</span>
+<span class="variable">$ </span>bundle update [gemname]
+<span class="comment"># 向项目中添加新的gem包引用</span>
+<span class="variable">$ </span>gem [gemname], [ver]
+<span class="comment"># 你还可以指定包依赖关系</span>
+<span class="variable">$ </span>gem [gemname], <span class="symbol">:require</span> =&gt; [dependence_gemname]
+<span class="comment"># 你甚至还可以指定gem包的git源</span>
+<span class="variable">$ </span>gem [gemname], <span class="symbol">:git</span> =&gt; [git_source_url]
+<span class="comment"># 锁定当前环境</span>
+<span class="comment"># 可以使用bundle lock来锁定当前环境，这样便不能通过bundle update来更新依赖包的版本，保证了统一的环境</span>
+<span class="variable">$ </span>bundle lock
+<span class="comment"># 解除锁定</span>
+<span class="variable">$ </span>bundle unlock
+<span class="comment"># 打包当装环境</span>
+<span class="comment"># bundle package会把当前所有信赖的包都放到 ./vendor/cache/ 目录下，发布时可用来保证包版本的一致性。</span>
+<span class="variable">$ </span>bundle package
+</code></pre><h2 id="Rake简介">Rake简介</h2><p>Rake 是一套類似 Make 的 Builder 工具，讓我們可以撰寫一些腳本任務，並且很方便設定各個任務的相依性。在 Rails 之中就內建了許多 rake 指令，除了你已經使用過的 rake db:migrate 之外，還有例如：</p>
+<pre><code>rake <span class="keyword">db</span>:migrate
+rake <span class="keyword">db</span>:<span class="keyword">drop</span>
+rake tmp:<span class="keyword">clear</span>
+rake <span class="keyword">notes</span>
+</code></pre><p>你可以輸入 <code>rake -T</code> 看到所有的 rake 指令。而要在 Rails 環境中撰寫 Rake，請將附檔名為 .rake 的檔案放在 lib/tasks 目錄下即可，例如：</p>
+<pre><code>/lib/tasks/dev.rake
+
+namespace <span class="symbol">:dev</span> <span class="keyword">do</span>
+
+  desc <span class="string">"Rebuild system"</span>
+  task <span class="symbol">:build</span> =&gt; [<span class="string">"tmp:clear"</span>, <span class="string">"log:clear"</span>, <span class="string">"db:drop"</span>, <span class="string">"db:create"</span>, <span class="string">"db:migrate"</span>, <span class="symbol">:setup</span> ]
+
+  desc <span class="string">"Setup system data"</span>
+  task <span class="symbol">:setup</span> =&gt; <span class="symbol">:environment</span> <span class="keyword">do</span>
+      puts <span class="string">"Create system user"</span>
+      u = <span class="constant">User.</span>new( <span class="symbol">:login</span> =&gt; <span class="string">"root"</span>, <span class="symbol">:password</span> =&gt; <span class="string">"password"</span>, <span class="symbol">:email</span> =&gt; <span class="string">"root@example.com"</span>, <span class="symbol">:name</span> =&gt; <span class="string">"管理員"</span>)
+      u.is_admin = <span class="keyword">true</span>
+      u.save!
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</code></pre><p>透過執行 rake dev:build，就會自動清除 log 檔案，砍掉資料庫，執行 migrate，然後執行 rake dev:setup 建立一個使用者。</p>
+<p>其他常見的使用情境包括：</p>
+<ol>
+<li>修正上線的資料，這樣部署到Production後，可以用來執行 </li>
+<li>建立開發用的假資料 </li>
+<li>搭配排成工具使用，例如每天凌晨三點寄出通知信、每週一產生報表等等</li>
+</ol>
+<p>更多介紹可以參考 <a href="http://codequietly.com/2010/6/rake-tasks-101" target="_blank" rel="external">http://codequietly.com/2010/6/rake-tasks-101</a> 和 <a href="http://jasonseifer.com/2010/04/06/rake-tutorial" target="_blank" rel="external">http://jasonseifer.com/2010/04/06/rake-tutorial</a> 兩篇文章。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Rails学习/">Rails学习</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/05/12/issue/2/" title="Android WebView中加载本地资源的解决办法" itemprop="url">Android WebView中加载本地资源的解决办法</a>
   </h1>
   <p class="article-author">By
@@ -552,591 +1051,6 @@ export JAV<span class="built_in">A_HOME</span>=<span class="escape">`/</span>usr
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/01/04/operation/4/" title="Ubuntu12.04下使用pptpd搭建vpn服务器" itemprop="url">Ubuntu12.04下使用pptpd搭建vpn服务器</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-01-03T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-01-04</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>购买了一台阿里云香港节点，准备搭建一台vpn服务器，步骤如下：</p>
-<h3 id="1-_系统升级">1. 系统升级</h3><pre><code>sudo apt-<span class="built_in">get</span> <span class="keyword">update</span>
-sudo apt-<span class="built_in">get</span> upgrade
-</code></pre><h3 id="2-_安装pptpd">2. 安装pptpd</h3><pre><code>sudo apt-<span class="keyword">get</span> install pptpd
-</code></pre><h3 id="3-_配置网络">3. 配置网络</h3><pre><code><span class="title">vim</span> /etc/pptpd.conf 
-
-改为：
-
-localip <span class="number">58.96.189.115</span>            <span class="comment">#网卡地址</span>
-remoteip <span class="number">192.168.0.100</span>-<span class="number">200</span>       <span class="comment">#分配的IP地址范围</span>
-</code></pre><h3 id="4-_添加用户">4. 添加用户</h3><pre><code>vim /etc/ppp/chap-secrets
-
-<span class="preprocessor">#以Tab键分割，添加用户</span>
-
-<span class="preprocessor"># client    server    secret            IP addresses</span>
-test    *    test    *
-
-<span class="preprocessor">#用户名：test，密码：test，* 代表允许任何来源</span>
-</code></pre><h3 id="5-_修改DNS">5. 修改DNS</h3><pre><code><span class="title">vim</span> /etc/ppp/pptpd-options 
-
-改为：
-
-ms-dns <span class="number">8.8.8.8</span>  
-ms-dns <span class="number">8.8.4.4</span>  
-</code></pre><h3 id="6-_IP转发">6. IP转发</h3><pre><code>vim /etc/sysctl<span class="class">.conf</span>  
-
-开启
-net<span class="class">.ipv4</span><span class="class">.ip_forward</span>=<span class="number">1</span>  
-
-执行命令，开启转发规则：
-sudo sysctl -<span class="tag">p</span>  
-sudo iptables -t nat -I POSTROUTING -j MASQUERADE  
-</code></pre><h3 id="7-_重启">7. 重启</h3><pre><code>sudo <span class="keyword">service</span> pptpd <span class="literal">restart</span>
-</code></pre>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>►<a class="article-category-link" href="/categories/Linux/运维/">运维</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/linux/">linux</a><a href="/tags/pptpd/">pptpd</a><a href="/tags/shell/">shell</a><a href="/tags/vpn/">vpn</a><a href="/tags/翻墙/">翻墙</a><a href="/tags/运维/">运维</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/01/03/operation/3/" title="Ubuntu 12.04 下搭建DHCP服务器" itemprop="url">Ubuntu 12.04 下搭建DHCP服务器</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-01-02T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-01-03</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>参考链接：<br><a href="https://help.ubuntu.com/community/isc-dhcp-server" target="_blank" rel="external">https://help.ubuntu.com/community/isc-dhcp-server</a></p>
-<p>当前路由器IP: 192.168.7.1，并关闭DHCP服务。<br>配置Linux服务器IP地址为固定IP地址，编辑 /etc/network/interfaces </p>
-<pre><code><span class="tag">auto</span> <span class="tag">lo</span>
-<span class="tag">iface</span> <span class="tag">lo</span> <span class="tag">inet</span> <span class="tag">loopback</span>
-
-<span class="tag">auto</span> <span class="tag">eth0</span>
-<span class="tag">iface</span> <span class="tag">eth0</span> <span class="tag">inet</span> <span class="tag">static</span>
-<span class="tag">address</span> 192<span class="class">.168</span><span class="class">.7</span><span class="class">.2</span>
-<span class="tag">gateway</span> 192<span class="class">.168</span><span class="class">.7</span><span class="class">.1</span>
-<span class="tag">netmask</span> 255<span class="class">.255</span><span class="class">.255</span><span class="class">.0</span> 
-</code></pre><p>重启网卡：</p>
-<pre><code>sudo <span class="regexp">/etc/i</span>nit.d<span class="regexp">/networking restart</span>
-</code></pre><p>首先安装DHCP服务器：</p>
-<pre><code>sudo apt-get <span class="operator"><span class="keyword">install</span> isc-dhcp-<span class="keyword">server</span></span>
-</code></pre><p>备份dhcp的当前配置文件：</p>
-<pre><code>sudo cp /etc/dhcp/dhcpd<span class="class">.conf</span> /etc/dhcp3/dhcpd<span class="class">.conf</span><span class="class">.bak</span>
-</code></pre><p>修改配置文件如下：</p>
-<pre><code>default-lease-time 600<span class="comment">;</span>
-max-lease-time 7200<span class="comment">;</span>
-option subnet-mask <span class="number">255.255.255.0</span><span class="comment">;</span>
-option broadcast-address <span class="number">192.168.7.255</span><span class="comment">;</span>
-option routers <span class="number">192.168.7.1</span><span class="comment">;</span>
-option domain-name-servers <span class="number">192.168.7.1</span>, <span class="number">192.168.7.2</span><span class="comment">;</span>
-option domain-name "mydomain.example"<span class="comment">;</span>
-subnet <span class="number">192.168.7.0</span> netmask <span class="number">255.255.255.0</span> {
-    range <span class="number">192.168.7.3</span> <span class="number">192.168.7.253</span><span class="comment">;</span>
-} 
-</code></pre><p>启动或关闭DHCP服务：</p>
-<pre><code>sudo <span class="keyword">service</span> isc-dhcp-server <span class="literal">restart</span>
-sudo <span class="keyword">service</span> isc-dhcp-server <span class="literal">start</span>
-sudo <span class="keyword">service</span> isc-dhcp-server <span class="literal">stop</span> 
-</code></pre>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>►<a class="article-category-link" href="/categories/Linux/运维/">运维</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/linux/">linux</a><a href="/tags/shell/">shell</a><a href="/tags/运维/">运维</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/01/02/operation/1/" title="Ubuntu12.04 下搭建 nginx + php + mysql 环境" itemprop="url">Ubuntu12.04 下搭建 nginx + php + mysql 环境</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-01-01T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-01-02</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>1、安装mysql</p>
-<pre><code>sudo apt-get install mysql-<span class="keyword">server</span> mysql-<span class="keyword">client</span>
-</code></pre><p>2、安装nginx</p>
-<pre><code>sudo apt-<span class="keyword">get</span> install nginx
-</code></pre><p>或者你可以安装最新版本到nginx：</p>
-<pre><code>sudo apt-get install python-software-properties
-sudo<span class="instruction"> add-apt-repository </span>ppa:nginx/stable
-sudo apt-get update
-sudo apt-get install nginx
-</code></pre><p>安装完毕，重启：</p>
-<pre><code>sudo <span class="keyword">service</span> nginx <span class="literal">start</span>
-</code></pre><p>你可以访问 <a href="http://27.0.0.1" target="_blank" rel="external">http://27.0.0.1</a> 来检查一下是否安装成功。</p>
-<p>3、安装php5-fpm</p>
-<pre><code>sudo apt-<span class="keyword">get</span> install php5-fpm
-</code></pre><p>4、配置nginx</p>
-<pre><code>sudo vi <span class="regexp">/etc/</span>nginx<span class="regexp">/sites-available/</span><span class="keyword">default</span>
-</code></pre><p>内容如下：</p>
-<pre><code><span class="title">server</span> {
-    <span class="title">listen</span> <span class="number">8081</span> default_server;
-    <span class="title">server_name</span>     localhost;
-
-    <span class="title">root</span>        /var/www;
-    <span class="title">index</span>         index.php index.html index.htm;
-
-    <span class="title">location</span> <span class="regexp">~ \.php$</span> {
-        <span class="title">fastcgi_pass</span> <span class="url">unix:/var/run/php5-fpm.sock</span>;
-        <span class="title">fastcgi_index</span> index.php;
-        <span class="title">fastcgi_param</span> SCRIPT_FILENAME <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;
-        <span class="title">include</span> fastcgi_params;
-    }
-}
-</code></pre><p>5、配置php-fpm</p>
-<pre><code>sudo vi <span class="regexp">/etc/</span>php5<span class="regexp">/fpm/</span>pool.d<span class="regexp">/www.conf</span>
-</code></pre><p>里面找到这样一段代码：</p>
-<pre><code><span class="title">listen</span> = <span class="number">127.0.0.1:9000</span> 
-</code></pre><p>在这上面代码的下面添加一行：</p>
-<pre><code>listen = /<span class="keyword">var</span>/<span class="keyword">run</span>/php5-fpm.sock
-</code></pre><p>6、检查nginx+php是否工作</p>
-<pre><code>sudo vi /<span class="keyword">var</span>/www/info.php
-</code></pre><p>添加以下内容：</p>
-<pre><code><span class="php"><span class="preprocessor">&lt;?php</span> phpinfo();<span class="preprocessor">?&gt;</span></span>
-</code></pre><p>重启服务：</p>
-<pre><code>sudo <span class="keyword">service</span> nginx <span class="literal">restart</span>
-sudo <span class="keyword">service</span> php5-fpm <span class="literal">restart</span>
-</code></pre><p>访问：<a href="http://localhost:8081/info.php" target="_blank" rel="external">http://localhost:8081/info.php</a></p>
-<p>==================================</p>
-<p>在安装过程中遇到两个问题，</p>
-<p>第一个问题：访问<a href="http://localhost:8081/info.php" target="_blank" rel="external">http://localhost:8081/info.php</a> 返回502错误，查看 /var/log/nginx/error.log 发现有以下错误：</p>
-<pre><code><span class="number">2014</span>/<span class="number">10</span>/<span class="number">22</span> <span class="number">11</span>:<span class="number">13</span>:<span class="number">26</span> [<span class="id">crit</span>] <span class="number">4936#0</span>: *<span class="number">3</span> <span class="id">connect</span>() <span class="id">to</span> <span class="id">unix</span>:/<span class="id">var</span>/<span class="id">run</span>/<span class="id">php5</span>-<span class="id">fpm</span>.<span class="id">sock</span> <span class="id">failed</span> (<span class="number">13</span>: <span class="variable">Permission</span> <span class="id">denied</span>) <span class="id">while</span> <span class="id">connecting</span> <span class="id">to</span> <span class="id">upstream</span>, <span class="id">client</span>: <span class="number">127.0</span>.<span class="number">0.1</span>, <span class="id">server</span>: <span class="id">localhost</span>, <span class="id">request</span>: <span class="string">"GET /index.php HTTP/1.1"</span>, <span class="id">upstream</span>: <span class="string">"fastcgi://unix:/var/run/php5-fpm.sock:"</span>, <span class="id">host</span>: <span class="string">"localhost:8081"</span>
-</code></pre><p>解决办法，修改/var/run/php5-fpm.sock权限：</p>
-<pre><code>chmod 777 /<span class="keyword">var</span>/<span class="keyword">run</span>/php5-fpm.sock
-</code></pre><p>第二个问题：访问<a href="http://localhost:8081/info.php" target="_blank" rel="external">http://localhost:8081/info.php</a> 没有任何输出，浏览器看到的是空白页面。查看/var/log/nginx/access.log访问日志，显示是200，是正确的结果。</p>
-<p>解决办法：<br>在nginx配置文件default中，增加：</p>
-<pre><code><span class="title">fastcgi_param</span> SCRIPT_FILENAME <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;
-</code></pre><p>上文中已经给出来正确的配置方式。</p>
-<p>参考链接：</p>
-<p><a href="http://ubuntuhandbook.org/index.php/2013/10/install-nginx-php5-mysql-lemp-ubuntu-1310/" target="_blank" rel="external">http://ubuntuhandbook.org/index.php/2013/10/install-nginx-php5-mysql-lemp-ubuntu-1310/</a></p>
-<p><a href="http://www.3lian.com/edu/2012/12-10/48565.html" target="_blank" rel="external">http://www.3lian.com/edu/2012/12-10/48565.html</a></p>
-<p><a href="http://blog.csdn.net/liangpz521/article/details/8869470" target="_blank" rel="external">http://blog.csdn.net/liangpz521/article/details/8869470</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>►<a class="article-category-link" href="/categories/Linux/运维/">运维</a>►<a class="article-category-link" href="/categories/Linux/运维/PHP/">PHP</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/linux/">linux</a><a href="/tags/nginx/">nginx</a><a href="/tags/php/">php</a><a href="/tags/shell/">shell</a><a href="/tags/运维/">运维</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/01/01/mongodb/1/" title="MongoDB 集群搭建（实验）" itemprop="url">MongoDB 集群搭建（实验）</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
-		
-  <p class="article-time">
-    <time datetime="2014-12-31T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-01-01</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="MongoDB_集群环境搭建（实验）">MongoDB 集群环境搭建（实验）</h1><h3 id="1、配置文件">1、配置文件</h3><p>mongodb-linux-x86_64-2.6.5<br>ubuntu-12.04.5-server-amd64</p>
-<p>首先在VirtualBox中创建三个虚拟机，我设置的IP地址分别为：</p>
-<pre><code>192<span class="class">.168</span><span class="class">.5</span><span class="class">.30</span>,<span class="tag">master</span>
-192<span class="class">.168</span><span class="class">.5</span><span class="class">.31</span>,<span class="tag">slaver</span>
-192<span class="class">.168</span><span class="class">.5</span><span class="class">.32</span>,<span class="tag">arbiter</span>
-</code></pre><p><img src="/uploads/2014/12/3561415352.png" alt="QQ20141211-2.png"></p>
-<p>在30、31、32的home目录分别创建mongo.conf文件内容如下：</p>
-<p>主节点</p>
-<pre><code>#master.conf    
-<span class="string">systemLog:</span>
-<span class="label">   destination:</span> file
-<span class="label">   path:</span> <span class="string">"/var/log/mongodb/mongodb.log"</span>
-<span class="label">   logAppend:</span> <span class="literal">true</span>
-<span class="string">storage:</span>
-<span class="label">   journal:</span>
-<span class="label">      enabled:</span> <span class="literal">true</span>
-<span class="string">processManagement:</span>
-<span class="label">   fork:</span> <span class="literal">true</span>
-<span class="string">net:</span>
-<span class="label">   bindIp:</span> <span class="number">192.168</span>.5.30
-<span class="label">   port:</span> <span class="number">27017</span>
-<span class="string">replication:</span>
-<span class="label">   replSetName:</span> <span class="string">"rs0"</span>
-</code></pre><p>备节点</p>
-<pre><code>#slaver.conf
-<span class="string">systemLog:</span>
-<span class="label">   destination:</span> file
-<span class="label">   path:</span> <span class="string">"/var/log/mongodb/mongodb.log"</span>
-<span class="label">   logAppend:</span> <span class="literal">true</span>
-<span class="string">storage:</span>
-<span class="label">   journal:</span>
-<span class="label">      enabled:</span> <span class="literal">true</span>
-<span class="string">processManagement:</span>
-<span class="label">   fork:</span> <span class="literal">true</span>
-<span class="string">net:</span>
-<span class="label">   bindIp:</span> <span class="number">192.168</span>.5.31
-<span class="label">   port:</span> <span class="number">27017</span>
-<span class="string">replication:</span>
-<span class="label">   replSetName:</span> <span class="string">"rs0"</span>
-</code></pre><p>仲裁节点   </p>
-<pre><code>#arbiter.conf
-<span class="string">systemLog:</span>
-<span class="label">   destination:</span> file
-<span class="label">   path:</span> <span class="string">"/var/log/mongodb/mongodb.log"</span>
-<span class="label">   logAppend:</span> <span class="literal">true</span>
-<span class="string">storage:</span>
-<span class="label">   journal:</span>
-<span class="label">      enabled:</span> <span class="literal">true</span>
-<span class="string">processManagement:</span>
-<span class="label">   fork:</span> <span class="literal">true</span>
-<span class="string">net:</span>
-<span class="label">   bindIp:</span> <span class="number">192.168</span>.5.32
-<span class="label">   port:</span> <span class="number">27017</span>
-<span class="string">replication:</span>
-<span class="label">   replSetName:</span> <span class="string">"rs0"</span>
-</code></pre><blockquote>
-<p>主意，如果/var/log/mongodb/mongodb.log没有写权限会报错</p>
-</blockquote>
-<h3 id="2、启用集群">2、启用集群</h3><p>1、分别登录到30、31、32服务器，启动mongod服务：</p>
-<pre><code>mongod --config ~/mongo<span class="class">.conf</span> 
-</code></pre><p>2、配置集群，连接到主节点</p>
-<pre><code><span class="tag">mongo</span> 192<span class="class">.168</span><span class="class">.5</span><span class="class">.30</span><span class="pseudo">:27017</span>
-</code></pre><p>3、初始化集群配置</p>
-<pre><code>rs.initiate({<span class="string">_id:</span><span class="string">"rs0"</span>, <span class="string">members:</span>[ {<span class="string">_id:</span><span class="number">0</span>,<span class="string">host:</span><span class="string">'192.168.5.30:27017'</span>,<span class="string">priority:</span><span class="number">2</span>}, {<span class="string">_id:</span><span class="number">1</span>,<span class="string">host:</span><span class="string">'192.168.5.31:27017'</span>,<span class="string">priority:</span><span class="number">1</span>},{<span class="string">_id:</span><span class="number">2</span>,<span class="string">host:</span><span class="string">'192.168.5.32:27017'</span>,<span class="string">arbiterOnly:</span><span class="literal">true</span>}]});
-</code></pre><p>输出以下内容则表示配置成功。</p>
-<pre><code>{
-     "<span class="attribute">info</span>" : <span class="value"><span class="string">"Config now saved locally.  Should come online in about a minute."</span></span>,
-    "<span class="attribute">ok</span>" : <span class="value"><span class="number">1</span>
-</span>} 
-</code></pre><p>4、查看集群状态：</p>
-<pre><code><span class="string">mini:</span>john$ mongo <span class="number">192.168</span>.5.30:<span class="number">27017</span>
-MongoDB shell <span class="string">version:</span> <span class="number">2.6</span>.5
-connecting <span class="string">to:</span> <span class="number">192.168</span>.5.30:<span class="number">27017</span>/test
-<span class="string">rs0:</span>PRIMARY&gt; rs.conf()
-{
-    <span class="string">"_id"</span> : <span class="string">"rs0"</span>,
-    <span class="string">"version"</span> : <span class="number">1</span>,
-    <span class="string">"members"</span> : [
-        {
-            <span class="string">"_id"</span> : <span class="number">0</span>,
-            <span class="string">"host"</span> : <span class="string">"192.168.5.30:27017"</span>,
-            <span class="string">"priority"</span> : <span class="number">2</span>
-        },
-        {
-            <span class="string">"_id"</span> : <span class="number">1</span>,
-            <span class="string">"host"</span> : <span class="string">"192.168.5.31:27017"</span>
-        },
-        {
-            <span class="string">"_id"</span> : <span class="number">2</span>,
-            <span class="string">"host"</span> : <span class="string">"192.168.5.32:27017"</span>,
-            <span class="string">"arbiterOnly"</span> : <span class="literal">true</span>
-        }
-    ]
-}
-</code></pre><p>主意：SECONDARY是不允许读写的，现在的从库只是用来备份主库的数据。如果在从库中执行读写操作，会产生以下错误。</p>
-<pre><code><span class="tag">SECONDARY</span>&gt; <span class="tag">db</span><span class="class">.user</span><span class="class">.find</span>()
-<span class="rule"><span class="attribute">error</span>:<span class="value"> { <span class="string">"$err"</span> : <span class="string">"not master and slaveok=false"</span>, <span class="string">"code"</span> : <span class="number">13435</span> }</span></span>
-</code></pre><p>如果要用SECONDARY来分担读压力，可参考这篇文章：<a href="http://blog.163.com/lgh_2002/blog/static/44017526201301123736391/" target="_blank" rel="external">http://blog.163.com/lgh_2002/blog/static/44017526201301123736391/</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/MongoDB/">MongoDB</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/mongodb/">mongodb</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/01/01/operation/2/" title="Ubuntu 12.04 下配置 uwsgi + nginx + web.py 环境" itemprop="url">Ubuntu 12.04 下配置 uwsgi + nginx + web.py 环境</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
-		
-  <p class="article-time">
-    <time datetime="2014-12-31T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-01-01</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>1、准备</p>
-<pre><code>apt-<span class="built_in">get</span> <span class="keyword">update</span>
-apt-<span class="built_in">get</span> upgrade
-</code></pre><p>2、安装nginx、uwsgi</p>
-<pre><code>apt-get <span class="operator"><span class="keyword">install</span> nginx-<span class="keyword">full</span> uwsgi uwsgi-<span class="keyword">plugin</span>-python</span>
-</code></pre><p>3、创建文件/etc/nginx/sites-available/example.com</p>
-<pre><code><span class="xml">server </span><span class="expression">{
-        <span class="variable">listen</span> 80;
-    <span class="variable">server</span>_<span class="variable">name</span>     <span class="variable">localhost</span>;
-
-    <span class="variable">access</span>_<span class="variable">log</span>    <span class="end-block">/var</span><span class="end-block">/www</span><span class="end-block">/example.com</span><span class="end-block">/logs</span><span class="end-block">/access.log</span>;
-    <span class="variable">error</span>_<span class="variable">log</span>    <span class="end-block">/var</span><span class="end-block">/www</span><span class="end-block">/example.com</span><span class="end-block">/logs</span><span class="end-block">/error.log</span>;
-
-        <span class="variable">location</span> <span class="end-block">/ </span>{
-        <span class="variable">include</span>     <span class="variable">uwsgi</span>_<span class="variable">params</span>;
-                <span class="variable">uwsgi</span>_<span class="variable">pass</span>      127<span class="variable">.</span>0<span class="variable">.</span>0<span class="variable">.</span>1:9001;
-        }</span><span class="xml">
-
-        location /static </span><span class="expression">{
-                <span class="variable">root</span> <span class="end-block">/var</span><span class="end-block">/www</span><span class="end-block">/example.com</span><span class="end-block">/public</span>_<span class="variable">html</span><span class="end-block">/static</span>/;
-                <span class="variable">index</span> <span class="variable">index.html</span>;
-        }</span><span class="xml">
-}</span>
-</code></pre><p>4、新建软链接</p>
-<pre><code>ln -s <span class="regexp">/etc/</span>nginx<span class="regexp">/sites-available/</span>example.com <span class="regexp">/etc/</span>nginx<span class="regexp">/sites-enabled/</span>example.com
-</code></pre><p>5、创建文件 /etc/uwsgi/apps-available/example.com.xml </p>
-<pre><code><span class="tag">&lt;<span class="title">uwsgi</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">plugins</span>&gt;</span>python<span class="tag">&lt;/<span class="title">plugins</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">socket</span>&gt;</span>127.0.0.1:9001<span class="tag">&lt;/<span class="title">socket</span>&gt;</span>  
-    <span class="tag">&lt;<span class="title">module</span>&gt;</span>myapp<span class="tag">&lt;/<span class="title">module</span>&gt;</span>  
-    <span class="comment">&lt;!-- &lt;master /&gt;  --&gt;</span>
-    <span class="tag">&lt;<span class="title">pythonpath</span>&gt;</span>/var/www/example.com/application<span class="tag">&lt;/<span class="title">pythonpath</span>&gt;</span>  
-    <span class="comment">&lt;!-- &lt;chdir&gt;/var/www/example.com/application&lt;/chdir&gt;   --&gt;</span>    
-    <span class="tag">&lt;<span class="title">processes</span>&gt;</span>2<span class="tag">&lt;/<span class="title">processes</span>&gt;</span>  
-    <span class="tag">&lt;<span class="title">workers</span>&gt;</span>4<span class="tag">&lt;/<span class="title">workers</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">max-requests</span>&gt;</span>10000<span class="tag">&lt;/<span class="title">max-requests</span>&gt;</span>  
-    <span class="comment">&lt;!--
-    &lt;memory-report/&gt;  
-    &lt;pidfile&gt;/tmp/uwsgi_myapp.pid&lt;/pidfile&gt;  
-    &lt;max-requests&gt;10000&lt;/max-requests&gt;  
-    &lt;daemonize&gt;/var/log/uwsgi_myapp.log&lt;/daemonize&gt;   
-    --&gt;</span>
-<span class="tag">&lt;/<span class="title">uwsgi</span>&gt;</span>  
-</code></pre><p>6、新建软链接</p>
-<pre><code>ln -s /etc/uwsgi/apps-available/example<span class="class">.com</span><span class="class">.xml</span> /etc/uwsgi/apps-enabled/example<span class="class">.com</span><span class="class">.xml</span>
-</code></pre><p>7、创建应用目录</p>
-<pre><code>mkdir -p <span class="regexp">/var/</span>www<span class="regexp">/example.com/</span>public_html/<span class="keyword">static</span>
-mkdir <span class="regexp">/var/</span>www<span class="regexp">/example.com/</span>application
-mkdir <span class="regexp">/var/</span>www<span class="regexp">/example.com/</span>logs
-</code></pre><p>8、在/var/www/example.com/application目录下新建 <code>myapp.py</code> 文件</p>
-<pre><code><span class="keyword">import</span> web
-
-urls = (<span class="string">'/'</span>,<span class="string">'hello'</span>)
-
-<span class="class"><span class="keyword">class</span> <span class="title">hello</span>:</span>
-    <span class="function"><span class="keyword">def</span> <span class="title">GET</span><span class="params">(self)</span>:</span>
-        <span class="keyword">return</span> <span class="string">"hello world"</span>
-
-app = web.application(urls,globals())
-
-application = app.wsgifunc()
-
-<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
-    app.run()
-</code></pre><p>注意：文件名与example.com.xml中的<module>节点的内容相同。</module></p>
-<p>9、重启</p>
-<pre><code><span class="keyword">service</span> nginx <span class="literal">restart</span>
-<span class="keyword">service</span> nwsgi <span class="literal">restart</span>
-</code></pre><p>10、访问 <a href="http://localhost/，进行验证" target="_blank" rel="external">http://localhost/，进行验证</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>►<a class="article-category-link" href="/categories/Linux/运维/">运维</a>►<a class="article-category-link" href="/categories/Linux/运维/Python/">Python</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/linux/">linux</a><a href="/tags/nginx/">nginx</a><a href="/tags/python/">python</a><a href="/tags/shell/">shell</a><a href="/tags/运维/">运维</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -1172,6 +1086,14 @@ application = app.wsgifunc()
 		
 		  
 			<li><a href="/categories/Linux/运维/Python/" title="Python">Python<sup>1</sup></a></li>
+		  
+		
+		  
+		
+		  
+			<li><a href="/categories/Rails学习/" title="Rails学习">Rails学习<sup>5</sup></a></li>
+		  
+		
 		  
 		
 		  

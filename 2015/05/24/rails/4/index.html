@@ -4,38 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>逆向基础第四篇：条件跳转与短路运算 | 鸡哥</title>
+    <title>Rails中使用devise进行用户认证 | 鸡哥</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="John·Huang">
     
 
     
-    <meta name="description" content="1、条件跳转指令表指令助记符        检查标记位                说明
-
-JZ               ZF == 1                 等于0则跳转
-JE               ZF == 1                 相等则跳转
-JNZ              ZF == 0                 不等于0则跳转
-JNE">
+    <meta name="description" content="用户认证编辑Gemfile加上
+gem &apos;devise&apos;
+輸入bundle install安裝此套件輸入rails g devise:install產生devise設定檔編輯 config/environments/development.rb  加入
+config.action_mailer.default_url_options  = { host: &apos;localhost&apos;, port: 30">
 <meta property="og:type" content="article">
-<meta property="og:title" content="逆向基础第四篇：条件跳转与短路运算">
-<meta property="og:url" content="http://0x520.com/2014/05/05/reverse/5/index.html">
+<meta property="og:title" content="Rails中使用devise进行用户认证">
+<meta property="og:url" content="http://0x520.com/2015/05/24/rails/4/index.html">
 <meta property="og:site_name" content="鸡哥">
-<meta property="og:description" content="1、条件跳转指令表指令助记符        检查标记位                说明
-
-JZ               ZF == 1                 等于0则跳转
-JE               ZF == 1                 相等则跳转
-JNZ              ZF == 0                 不等于0则跳转
-JNE">
-<meta property="og:updated_time" content="2015-05-23T03:27:47.000Z">
+<meta property="og:description" content="用户认证编辑Gemfile加上
+gem &apos;devise&apos;
+輸入bundle install安裝此套件輸入rails g devise:install產生devise設定檔編輯 config/environments/development.rb  加入
+config.action_mailer.default_url_options  = { host: &apos;localhost&apos;, port: 30">
+<meta property="og:updated_time" content="2015-05-24T11:39:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="逆向基础第四篇：条件跳转与短路运算">
-<meta name="twitter:description" content="1、条件跳转指令表指令助记符        检查标记位                说明
-
-JZ               ZF == 1                 等于0则跳转
-JE               ZF == 1                 相等则跳转
-JNZ              ZF == 0                 不等于0则跳转
-JNE">
+<meta name="twitter:title" content="Rails中使用devise进行用户认证">
+<meta name="twitter:description" content="用户认证编辑Gemfile加上
+gem &apos;devise&apos;
+輸入bundle install安裝此套件輸入rails g devise:install產生devise設定檔編輯 config/environments/development.rb  加入
+config.action_mailer.default_url_options  = { host: &apos;localhost&apos;, port: 30">
 
     
     <link rel="alternative" href="/atom.xml" title="鸡哥" type="application/atom+xml">
@@ -91,14 +85,14 @@ JNE">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/05/05/reverse/5/" title="逆向基础第四篇：条件跳转与短路运算" itemprop="url">逆向基础第四篇：条件跳转与短路运算</a>
+      <a href="/2015/05/24/rails/4/" title="Rails中使用devise进行用户认证" itemprop="url">Rails中使用devise进行用户认证</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
 		
   <p class="article-time">
-    <time datetime="2014-05-04T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-05-05</time>
+    <time datetime="2015-05-24T07:02:00.000Z" itemprop="datePublished"> 发表于 2015-05-24</time>
     
   </p>
 </header>
@@ -107,80 +101,75 @@ JNE">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、条件跳转指令表"><span class="toc-number">1.</span> <span class="toc-text">1、条件跳转指令表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、短路与（&&）_短路或_（||）"><span class="toc-number">2.</span> <span class="toc-text">2、短路与（&&） 短路或 （||）</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#用户认证"><span class="toc-number">1.</span> <span class="toc-text">用户认证</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#集成cancan和rolify权限管理"><span class="toc-number">2.</span> <span class="toc-text">集成cancan和rolify权限管理</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="1、条件跳转指令表">1、条件跳转指令表</h2><pre><code>指令助记符        检查标记位                说明
-
-JZ               <span class="variable">ZF =</span>= <span class="number">1</span>                 等于<span class="number">0</span>则跳转
-JE               <span class="variable">ZF =</span>= <span class="number">1</span>                 相等则跳转
-JNZ              <span class="variable">ZF =</span>= <span class="number">0</span>                 不等于<span class="number">0</span>则跳转
-JNE              <span class="variable">ZF =</span>= <span class="number">0</span>                 不相等则跳转
-
-JS               <span class="variable">SF =</span>= <span class="number">1</span>                 符号为负则跳转
-JNS              <span class="variable">SF =</span>= <span class="number">0</span>                 符号为正则跳转
-
-JP/JPE           <span class="variable">PF =</span>= <span class="number">1</span>                 <span class="string">"1"</span> 的个数为偶数则跳转
-JNP/JPO          <span class="variable">PF =</span>= <span class="number">0</span>                 <span class="string">"1"</span> 的个数为奇数则跳转
-
-JO               <span class="variable">OF =</span>= <span class="number">1</span>                 溢出则跳转
-JNO              <span class="variable">OF =</span>= <span class="number">0</span>                 无溢出则跳转
-
-JC               <span class="variable">CF =</span>= <span class="number">1</span>                 进位则跳转
-JB               <span class="variable">CF =</span>= <span class="number">1</span>                 小于则跳转
-JNAE             <span class="variable">CF =</span>= <span class="number">1</span>                 不大于等于则跳转
-JNC              <span class="variable">CF =</span>= <span class="number">0</span>                 无进位则跳转
-JNB              <span class="variable">CF =</span>= <span class="number">0</span>                 不小于则跳转
-JAE              <span class="variable">CF =</span>= <span class="number">0</span>                 大于则跳转
-JBE              <span class="variable">CF =</span>= <span class="number">1</span> 或 <span class="variable">ZF =</span>= <span class="number">1</span>      小于等于则跳转   
-JNA              <span class="variable">CF =</span>= <span class="number">1</span> 或 <span class="variable">ZF =</span>= <span class="number">1</span>      不大于则跳转
-JNBE             <span class="variable">CF =</span>= <span class="number">0</span> 或 <span class="variable">ZF =</span>= <span class="number">0</span>      不小于等于则跳转
-JA               <span class="variable">CF =</span>= <span class="number">0</span> 或 <span class="variable">ZF =</span>= <span class="number">0</span>      不大于则跳转
-
-JL               SF != OF                小于则跳转
-JNGE             SF != OF                不大于等于则跳转
-JNL              <span class="variable">SF =</span>= OF                不小于则跳转
-JGE              <span class="variable">SF =</span>= OF                不大于等于则跳转
-
-JLE              ZF != OF 或 <span class="variable">ZF =</span>= <span class="number">1</span>     小于等于则跳转
-JNG              ZF != OF 或 <span class="variable">ZF =</span>= <span class="number">1</span>     不大于则跳转
-JNLE             <span class="variable">SF =</span>= OF 且 <span class="variable">ZF =</span>= <span class="number">0</span>     不小于等于则跳转
-JG               <span class="variable">SF =</span>= OF 且 <span class="variable">ZF =</span>= <span class="number">0</span>     大于则跳转
-</code></pre><p>通常，这些条件跳转指令都与CMP 和 TEST 匹配出现，但是条件跳转是检查的<code>标志位</code> 。因此，在有修改标记位的代码处，可以根据需求使用跳转指令来修改程序。</p>
-<h2 id="2、短路与（&amp;&amp;）_短路或_（||）">2、短路与（&amp;&amp;） 短路或 （||）</h2><p>测试代码：</p>
-<pre><code><span class="function"><span class="keyword">int</span> <span class="title">Accumulation</span><span class="params">(<span class="keyword">int</span> nNumber)</span>
-</span>{
-    nNumber &amp;&amp; (nNumber += Accumulation(nNumber - <span class="number">1</span>));
-    <span class="keyword">return</span> nNumber;
+		<h1 id="用户认证">用户认证</h1><p>编辑Gemfile加上</p>
+<pre><code><span class="title">gem</span> <span class="string">'devise'</span>
+</code></pre><p>輸入bundle install安裝此套件<br>輸入rails g devise:install產生devise設定檔<br>編輯 config/environments/development.rb  加入</p>
+<pre><code>config.action_mailer.default_url_options  = { <span class="symbol">host:</span> <span class="string">'localhost'</span>, <span class="symbol">port:</span> <span class="number">3000</span> }
+config.action_mailer.delivery_method      = <span class="symbol">:smtp</span>
+config.action_mailer.smtp_settings        = {
+    <span class="symbol">:address</span>        =&gt; <span class="string">"smtp.exmail.qq.com"</span>,
+    <span class="symbol">:port</span>           =&gt; <span class="number">25</span>,
+    <span class="symbol">:domain</span>         =&gt; <span class="string">"morningtec.cn"</span>,
+    <span class="symbol">:authentication</span> =&gt; <span class="symbol">:login</span>,
+    <span class="symbol">:user_name</span>      =&gt; <span class="string">"huangsz@morningtec.cn"</span>,
+    <span class="symbol">:password</span>       =&gt; <span class="string">"thepassword"</span>
 }
-</code></pre><p>反编译汇编代码：</p>
-<pre><code><span class="keyword">int</span> Accumulation(<span class="keyword">int</span> nNumber)
-{
-    <span class="number">17</span>:       nNumber &amp;&amp; (nNumber += Accumulation(nNumber - <span class="number">1</span>))<span class="comment">;</span>
-    //短路模式汇编代码，比较nNumber是否等于<span class="number">0</span>
-    0040D448   <span class="keyword">cmp</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">0</span>
-    //通过<span class="keyword">JE</span>跳转，检查ZF标记位等于<span class="number">1</span>跳转
-    0040D44C   <span class="keyword">je</span>          Accumulation+<span class="number">35h</span> (0040d465)
-
-    //跳转失败，递归，准备参数
-    0040D44E   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-    0040D451   <span class="keyword">sub</span>         <span class="number">eax</span>,<span class="number">1</span>
-    0040D454   <span class="keyword">push</span>        <span class="number">eax</span>
-    //递归，调用自己
-    0040D455   <span class="keyword">call</span>        @ILT+<span class="number">5</span>(Accumulation) (0040100a)
-    //<span class="literal">esp</span>指针偏移？？我还没搞明白？？？
-    0040D45A   <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">4</span>
-    //找到nNumber变量
-    0040D45D   <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-    //<span class="number">eax</span>中存放了 Accumulation函数返回值。nNumber + <span class="number">eax</span>
-    0040D460   <span class="keyword">add</span>         <span class="number">ecx</span>,<span class="number">eax</span>
-    //将最终结果存回 <span class="literal">ebp</span>+<span class="number">8</span>地址处 ，即nNumber地址处。 
-    0040D462   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">ecx</span>
-
-    <span class="number">18</span>:       return nNumber<span class="comment">;</span>
-    0040D465   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-}
+</code></pre><p>编辑devise.rb 修改：</p>
+<pre><code>config<span class="class">.mailer_sender</span> = <span class="string">'huangsz@morningtec.cn'</span>
+</code></pre><p>编辑app/views/layouts/application.html.erb，加入</p>
+<pre><code> <span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"notice"</span>&gt;</span><span class="tag">&lt;<span class="title">%=</span> <span class="attribute">notice</span> %&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"alert"</span>&gt;</span><span class="tag">&lt;<span class="title">%=</span> <span class="attribute">alert</span> %&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+</code></pre><p>輸入<code>rails g devise user</code>產生 User model 及 Migration  </p>
+<p>如果需要E-mail驗證功能，可以編輯app/models/user.rb和migration將confirmable功能打開</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Base</span></span></span>
+  <span class="comment"># Include default devise modules. Others available are:</span>
+  <span class="comment"># :confirmable, :lockable, :timeoutable and :omniauthable</span>
+  devise <span class="symbol">:database_authenticatable</span>, <span class="symbol">:registerable</span>,
+         <span class="symbol">:recoverable</span>, <span class="symbol">:rememberable</span>, <span class="symbol">:trackable</span>, <span class="symbol">:validatable</span>, 
+         <span class="symbol">:confirmable</span>,<span class="symbol">:lockable</span>
+<span class="keyword">end</span>
+</code></pre><p>輸入<code>rails generate devise:views</code>產生樣板，這會包括有註冊、登入、忘記密碼、Email等等頁面，放在app/views/devise目錄下。</p>
+<p>輸入<code>rake db:migrate</code>建立資料表</p>
+<h1 id="集成cancan和rolify权限管理">集成cancan和rolify权限管理</h1><p>cancan提供对资源的授权控制。例如，在视图中使用can?方法来决定是否显示某个页面元素。如果系统角色非常简单，那么cancan还在代码中直接指定常量就可以支持，具体操作可以参考官方文档。但要提供复杂的角色管理，最好的方案，还是在devise基础上再集成cancan+rolify。</p>
+<p>1.修改Gemfile，并再次运行bundle install</p>
+<pre><code><span class="title">gem</span> <span class="string">'cancan'</span>
+gem <span class="string">'rolify'</span>
+</code></pre><p>2.创建cancan的Ability和rolify的Role</p>
+<pre><code>rails <span class="keyword">generate</span> cancan:ability
+rails <span class="keyword">generate</span> rolify Role User
+rake <span class="keyword">db</span>:migrate
+</code></pre><p>3.定制devise用户注册事件，可以在注册时赋予用户rolify角色，例如，下面的代码为首个用户赋予admin角色：</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">ApplicationController</span> <span class="inheritance">&lt; <span class="parent">ActionController::Base</span></span></span>
+  <span class="function"><span class="keyword">def</span> </span>after_sign_in_path_for(resource)
+    <span class="keyword">if</span> resource.is_a?(<span class="constant">User</span>)
+      <span class="keyword">if</span> <span class="constant">User</span>.count == <span class="number">1</span>
+        resource.add_role <span class="string">'admin'</span>
+      <span class="keyword">end</span>
+      resource
+    <span class="keyword">end</span>
+    root_path
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</code></pre><p>4.使用cancan可以为rolify中建立的角色分配授权资源，例如我们为允许admin角色的用户分配针对所有控制类的”manage”资源，而其他用户分配”read”资源：</p>
+<pre><code><span class="function"><span class="keyword">def</span> </span>initialize(user)
+    <span class="keyword">if</span> user.has_role? <span class="symbol">:admin</span>
+      can <span class="symbol">:manage</span>, <span class="symbol">:all</span>
+    <span class="keyword">else</span>
+      can <span class="symbol">:read</span>, <span class="symbol">:all</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</code></pre><p>5.以上已经实现了“用户－角色－权限”的三层权限模型，在view中就可以使用了。例如，在Home#index页面中增加如下代码：</p>
+<pre><code><span class="xml"><span class="comment">&lt;!--权限管理--&gt;</span>
+</span>&lt;%<span class="ruby"> <span class="keyword">if</span> user_signed_in? </span>%&gt;<span class="xml">
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>The user is loged in.<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+    </span>&lt;%<span class="ruby"> <span class="keyword">if</span> can? <span class="symbol">:manage</span>, <span class="symbol">:Articles</span> </span>%&gt;<span class="xml">
+      </span>&lt;%=<span class="ruby"> link_to <span class="string">"Articles"</span>, articles_path </span>%&gt;<span class="xml">
+    </span>&lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;<span class="xml">
+</span>&lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;<span class="xml"></span>
 </code></pre>  
 	</div>
 		<footer class="article-footer clearfix">
@@ -188,14 +177,9 @@ JG               <span class="variable">SF =</span>= OF 且 <span class="variabl
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/逆向基础/">逆向基础</a>
+  <a class="article-category-link" href="/categories/Rails学习/">Rails学习</a>
 </div>
 
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
-  </div>
 
 </div>
 
@@ -203,7 +187,7 @@ JG               <span class="variable">SF =</span>= OF 且 <span class="variabl
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://0x520.com/2014/05/05/reverse/5/" data-title="逆向基础第四篇：条件跳转与短路运算 | 鸡哥" data-tsina="null" class="share clearfix">
+	  <div data-url="http://0x520.com/2015/05/24/rails/4/" data-title="Rails中使用devise进行用户认证 | 鸡哥" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -217,18 +201,18 @@ JG               <span class="variable">SF =</span>= OF 且 <span class="variabl
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/05/05/reverse/6/" title="逆向基础第六篇：位运算">
+ <a href="/2015/05/24/rails/5/" title="Rails中使用paperclip进行文件&amp;图片上传">
   <strong>上一篇：</strong><br/>
   <span>
-  逆向基础第六篇：位运算</span>
+  Rails中使用paperclip进行文件&amp;图片上传</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2014/05/04/reverse/4/"  title="逆向基础第五篇：条件表达式">
+<a href="/2015/05/23/rails/2/"  title="Ruby on Rails 开发起步走">
  <strong>下一篇：</strong><br/> 
- <span>逆向基础第五篇：条件表达式
+ <span>Ruby on Rails 开发起步走
 </span>
 </a>
 </div>
@@ -243,7 +227,7 @@ JG               <span class="variable">SF =</span>= OF 且 <span class="variabl
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、条件跳转指令表"><span class="toc-number">1.</span> <span class="toc-text">1、条件跳转指令表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、短路与（&&）_短路或_（||）"><span class="toc-number">2.</span> <span class="toc-text">2、短路与（&&） 短路或 （||）</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#用户认证"><span class="toc-number">1.</span> <span class="toc-text">用户认证</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#集成cancan和rolify权限管理"><span class="toc-number">2.</span> <span class="toc-text">集成cancan和rolify权限管理</span></a></li></ol>
  
   </div>
 

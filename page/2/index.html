@@ -77,6 +77,591 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/01/04/operation/4/" title="Ubuntu12.04下使用pptpd搭建vpn服务器" itemprop="url">Ubuntu12.04下使用pptpd搭建vpn服务器</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-01-03T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-01-04</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>购买了一台阿里云香港节点，准备搭建一台vpn服务器，步骤如下：</p>
+<h3 id="1-_系统升级">1. 系统升级</h3><pre><code>sudo apt-<span class="built_in">get</span> <span class="keyword">update</span>
+sudo apt-<span class="built_in">get</span> upgrade
+</code></pre><h3 id="2-_安装pptpd">2. 安装pptpd</h3><pre><code>sudo apt-<span class="keyword">get</span> install pptpd
+</code></pre><h3 id="3-_配置网络">3. 配置网络</h3><pre><code><span class="title">vim</span> /etc/pptpd.conf 
+
+改为：
+
+localip <span class="number">58.96.189.115</span>            <span class="comment">#网卡地址</span>
+remoteip <span class="number">192.168.0.100</span>-<span class="number">200</span>       <span class="comment">#分配的IP地址范围</span>
+</code></pre><h3 id="4-_添加用户">4. 添加用户</h3><pre><code>vim /etc/ppp/chap-secrets
+
+<span class="preprocessor">#以Tab键分割，添加用户</span>
+
+<span class="preprocessor"># client    server    secret            IP addresses</span>
+test    *    test    *
+
+<span class="preprocessor">#用户名：test，密码：test，* 代表允许任何来源</span>
+</code></pre><h3 id="5-_修改DNS">5. 修改DNS</h3><pre><code><span class="title">vim</span> /etc/ppp/pptpd-options 
+
+改为：
+
+ms-dns <span class="number">8.8.8.8</span>  
+ms-dns <span class="number">8.8.4.4</span>  
+</code></pre><h3 id="6-_IP转发">6. IP转发</h3><pre><code>vim /etc/sysctl<span class="class">.conf</span>  
+
+开启
+net<span class="class">.ipv4</span><span class="class">.ip_forward</span>=<span class="number">1</span>  
+
+执行命令，开启转发规则：
+sudo sysctl -<span class="tag">p</span>  
+sudo iptables -t nat -I POSTROUTING -j MASQUERADE  
+</code></pre><h3 id="7-_重启">7. 重启</h3><pre><code>sudo <span class="keyword">service</span> pptpd <span class="literal">restart</span>
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>►<a class="article-category-link" href="/categories/Linux/运维/">运维</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/linux/">linux</a><a href="/tags/pptpd/">pptpd</a><a href="/tags/shell/">shell</a><a href="/tags/vpn/">vpn</a><a href="/tags/翻墙/">翻墙</a><a href="/tags/运维/">运维</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/01/03/operation/3/" title="Ubuntu 12.04 下搭建DHCP服务器" itemprop="url">Ubuntu 12.04 下搭建DHCP服务器</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-01-02T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-01-03</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>参考链接：<br><a href="https://help.ubuntu.com/community/isc-dhcp-server" target="_blank" rel="external">https://help.ubuntu.com/community/isc-dhcp-server</a></p>
+<p>当前路由器IP: 192.168.7.1，并关闭DHCP服务。<br>配置Linux服务器IP地址为固定IP地址，编辑 /etc/network/interfaces </p>
+<pre><code><span class="tag">auto</span> <span class="tag">lo</span>
+<span class="tag">iface</span> <span class="tag">lo</span> <span class="tag">inet</span> <span class="tag">loopback</span>
+
+<span class="tag">auto</span> <span class="tag">eth0</span>
+<span class="tag">iface</span> <span class="tag">eth0</span> <span class="tag">inet</span> <span class="tag">static</span>
+<span class="tag">address</span> 192<span class="class">.168</span><span class="class">.7</span><span class="class">.2</span>
+<span class="tag">gateway</span> 192<span class="class">.168</span><span class="class">.7</span><span class="class">.1</span>
+<span class="tag">netmask</span> 255<span class="class">.255</span><span class="class">.255</span><span class="class">.0</span> 
+</code></pre><p>重启网卡：</p>
+<pre><code>sudo <span class="regexp">/etc/i</span>nit.d<span class="regexp">/networking restart</span>
+</code></pre><p>首先安装DHCP服务器：</p>
+<pre><code>sudo apt-get <span class="operator"><span class="keyword">install</span> isc-dhcp-<span class="keyword">server</span></span>
+</code></pre><p>备份dhcp的当前配置文件：</p>
+<pre><code>sudo cp /etc/dhcp/dhcpd<span class="class">.conf</span> /etc/dhcp3/dhcpd<span class="class">.conf</span><span class="class">.bak</span>
+</code></pre><p>修改配置文件如下：</p>
+<pre><code>default-lease-time 600<span class="comment">;</span>
+max-lease-time 7200<span class="comment">;</span>
+option subnet-mask <span class="number">255.255.255.0</span><span class="comment">;</span>
+option broadcast-address <span class="number">192.168.7.255</span><span class="comment">;</span>
+option routers <span class="number">192.168.7.1</span><span class="comment">;</span>
+option domain-name-servers <span class="number">192.168.7.1</span>, <span class="number">192.168.7.2</span><span class="comment">;</span>
+option domain-name "mydomain.example"<span class="comment">;</span>
+subnet <span class="number">192.168.7.0</span> netmask <span class="number">255.255.255.0</span> {
+    range <span class="number">192.168.7.3</span> <span class="number">192.168.7.253</span><span class="comment">;</span>
+} 
+</code></pre><p>启动或关闭DHCP服务：</p>
+<pre><code>sudo <span class="keyword">service</span> isc-dhcp-server <span class="literal">restart</span>
+sudo <span class="keyword">service</span> isc-dhcp-server <span class="literal">start</span>
+sudo <span class="keyword">service</span> isc-dhcp-server <span class="literal">stop</span> 
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>►<a class="article-category-link" href="/categories/Linux/运维/">运维</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/linux/">linux</a><a href="/tags/shell/">shell</a><a href="/tags/运维/">运维</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/01/02/operation/1/" title="Ubuntu12.04 下搭建 nginx + php + mysql 环境" itemprop="url">Ubuntu12.04 下搭建 nginx + php + mysql 环境</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-01-01T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-01-02</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>1、安装mysql</p>
+<pre><code>sudo apt-get install mysql-<span class="keyword">server</span> mysql-<span class="keyword">client</span>
+</code></pre><p>2、安装nginx</p>
+<pre><code>sudo apt-<span class="keyword">get</span> install nginx
+</code></pre><p>或者你可以安装最新版本到nginx：</p>
+<pre><code>sudo apt-get install python-software-properties
+sudo<span class="instruction"> add-apt-repository </span>ppa:nginx/stable
+sudo apt-get update
+sudo apt-get install nginx
+</code></pre><p>安装完毕，重启：</p>
+<pre><code>sudo <span class="keyword">service</span> nginx <span class="literal">start</span>
+</code></pre><p>你可以访问 <a href="http://27.0.0.1" target="_blank" rel="external">http://27.0.0.1</a> 来检查一下是否安装成功。</p>
+<p>3、安装php5-fpm</p>
+<pre><code>sudo apt-<span class="keyword">get</span> install php5-fpm
+</code></pre><p>4、配置nginx</p>
+<pre><code>sudo vi <span class="regexp">/etc/</span>nginx<span class="regexp">/sites-available/</span><span class="keyword">default</span>
+</code></pre><p>内容如下：</p>
+<pre><code><span class="title">server</span> {
+    <span class="title">listen</span> <span class="number">8081</span> default_server;
+    <span class="title">server_name</span>     localhost;
+
+    <span class="title">root</span>        /var/www;
+    <span class="title">index</span>         index.php index.html index.htm;
+
+    <span class="title">location</span> <span class="regexp">~ \.php$</span> {
+        <span class="title">fastcgi_pass</span> <span class="url">unix:/var/run/php5-fpm.sock</span>;
+        <span class="title">fastcgi_index</span> index.php;
+        <span class="title">fastcgi_param</span> SCRIPT_FILENAME <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;
+        <span class="title">include</span> fastcgi_params;
+    }
+}
+</code></pre><p>5、配置php-fpm</p>
+<pre><code>sudo vi <span class="regexp">/etc/</span>php5<span class="regexp">/fpm/</span>pool.d<span class="regexp">/www.conf</span>
+</code></pre><p>里面找到这样一段代码：</p>
+<pre><code><span class="title">listen</span> = <span class="number">127.0.0.1:9000</span> 
+</code></pre><p>在这上面代码的下面添加一行：</p>
+<pre><code>listen = /<span class="keyword">var</span>/<span class="keyword">run</span>/php5-fpm.sock
+</code></pre><p>6、检查nginx+php是否工作</p>
+<pre><code>sudo vi /<span class="keyword">var</span>/www/info.php
+</code></pre><p>添加以下内容：</p>
+<pre><code><span class="php"><span class="preprocessor">&lt;?php</span> phpinfo();<span class="preprocessor">?&gt;</span></span>
+</code></pre><p>重启服务：</p>
+<pre><code>sudo <span class="keyword">service</span> nginx <span class="literal">restart</span>
+sudo <span class="keyword">service</span> php5-fpm <span class="literal">restart</span>
+</code></pre><p>访问：<a href="http://localhost:8081/info.php" target="_blank" rel="external">http://localhost:8081/info.php</a></p>
+<p>==================================</p>
+<p>在安装过程中遇到两个问题，</p>
+<p>第一个问题：访问<a href="http://localhost:8081/info.php" target="_blank" rel="external">http://localhost:8081/info.php</a> 返回502错误，查看 /var/log/nginx/error.log 发现有以下错误：</p>
+<pre><code><span class="number">2014</span>/<span class="number">10</span>/<span class="number">22</span> <span class="number">11</span>:<span class="number">13</span>:<span class="number">26</span> [<span class="id">crit</span>] <span class="number">4936#0</span>: *<span class="number">3</span> <span class="id">connect</span>() <span class="id">to</span> <span class="id">unix</span>:/<span class="id">var</span>/<span class="id">run</span>/<span class="id">php5</span>-<span class="id">fpm</span>.<span class="id">sock</span> <span class="id">failed</span> (<span class="number">13</span>: <span class="variable">Permission</span> <span class="id">denied</span>) <span class="id">while</span> <span class="id">connecting</span> <span class="id">to</span> <span class="id">upstream</span>, <span class="id">client</span>: <span class="number">127.0</span>.<span class="number">0.1</span>, <span class="id">server</span>: <span class="id">localhost</span>, <span class="id">request</span>: <span class="string">"GET /index.php HTTP/1.1"</span>, <span class="id">upstream</span>: <span class="string">"fastcgi://unix:/var/run/php5-fpm.sock:"</span>, <span class="id">host</span>: <span class="string">"localhost:8081"</span>
+</code></pre><p>解决办法，修改/var/run/php5-fpm.sock权限：</p>
+<pre><code>chmod 777 /<span class="keyword">var</span>/<span class="keyword">run</span>/php5-fpm.sock
+</code></pre><p>第二个问题：访问<a href="http://localhost:8081/info.php" target="_blank" rel="external">http://localhost:8081/info.php</a> 没有任何输出，浏览器看到的是空白页面。查看/var/log/nginx/access.log访问日志，显示是200，是正确的结果。</p>
+<p>解决办法：<br>在nginx配置文件default中，增加：</p>
+<pre><code><span class="title">fastcgi_param</span> SCRIPT_FILENAME <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;
+</code></pre><p>上文中已经给出来正确的配置方式。</p>
+<p>参考链接：</p>
+<p><a href="http://ubuntuhandbook.org/index.php/2013/10/install-nginx-php5-mysql-lemp-ubuntu-1310/" target="_blank" rel="external">http://ubuntuhandbook.org/index.php/2013/10/install-nginx-php5-mysql-lemp-ubuntu-1310/</a></p>
+<p><a href="http://www.3lian.com/edu/2012/12-10/48565.html" target="_blank" rel="external">http://www.3lian.com/edu/2012/12-10/48565.html</a></p>
+<p><a href="http://blog.csdn.net/liangpz521/article/details/8869470" target="_blank" rel="external">http://blog.csdn.net/liangpz521/article/details/8869470</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>►<a class="article-category-link" href="/categories/Linux/运维/">运维</a>►<a class="article-category-link" href="/categories/Linux/运维/PHP/">PHP</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/linux/">linux</a><a href="/tags/nginx/">nginx</a><a href="/tags/php/">php</a><a href="/tags/shell/">shell</a><a href="/tags/运维/">运维</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/01/01/mongodb/1/" title="MongoDB 集群搭建（实验）" itemprop="url">MongoDB 集群搭建（实验）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2014-12-31T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-01-01</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="MongoDB_集群环境搭建（实验）">MongoDB 集群环境搭建（实验）</h1><h3 id="1、配置文件">1、配置文件</h3><p>mongodb-linux-x86_64-2.6.5<br>ubuntu-12.04.5-server-amd64</p>
+<p>首先在VirtualBox中创建三个虚拟机，我设置的IP地址分别为：</p>
+<pre><code>192<span class="class">.168</span><span class="class">.5</span><span class="class">.30</span>,<span class="tag">master</span>
+192<span class="class">.168</span><span class="class">.5</span><span class="class">.31</span>,<span class="tag">slaver</span>
+192<span class="class">.168</span><span class="class">.5</span><span class="class">.32</span>,<span class="tag">arbiter</span>
+</code></pre><p><img src="/uploads/2014/12/3561415352.png" alt="QQ20141211-2.png"></p>
+<p>在30、31、32的home目录分别创建mongo.conf文件内容如下：</p>
+<p>主节点</p>
+<pre><code>#master.conf    
+<span class="string">systemLog:</span>
+<span class="label">   destination:</span> file
+<span class="label">   path:</span> <span class="string">"/var/log/mongodb/mongodb.log"</span>
+<span class="label">   logAppend:</span> <span class="literal">true</span>
+<span class="string">storage:</span>
+<span class="label">   journal:</span>
+<span class="label">      enabled:</span> <span class="literal">true</span>
+<span class="string">processManagement:</span>
+<span class="label">   fork:</span> <span class="literal">true</span>
+<span class="string">net:</span>
+<span class="label">   bindIp:</span> <span class="number">192.168</span>.5.30
+<span class="label">   port:</span> <span class="number">27017</span>
+<span class="string">replication:</span>
+<span class="label">   replSetName:</span> <span class="string">"rs0"</span>
+</code></pre><p>备节点</p>
+<pre><code>#slaver.conf
+<span class="string">systemLog:</span>
+<span class="label">   destination:</span> file
+<span class="label">   path:</span> <span class="string">"/var/log/mongodb/mongodb.log"</span>
+<span class="label">   logAppend:</span> <span class="literal">true</span>
+<span class="string">storage:</span>
+<span class="label">   journal:</span>
+<span class="label">      enabled:</span> <span class="literal">true</span>
+<span class="string">processManagement:</span>
+<span class="label">   fork:</span> <span class="literal">true</span>
+<span class="string">net:</span>
+<span class="label">   bindIp:</span> <span class="number">192.168</span>.5.31
+<span class="label">   port:</span> <span class="number">27017</span>
+<span class="string">replication:</span>
+<span class="label">   replSetName:</span> <span class="string">"rs0"</span>
+</code></pre><p>仲裁节点   </p>
+<pre><code>#arbiter.conf
+<span class="string">systemLog:</span>
+<span class="label">   destination:</span> file
+<span class="label">   path:</span> <span class="string">"/var/log/mongodb/mongodb.log"</span>
+<span class="label">   logAppend:</span> <span class="literal">true</span>
+<span class="string">storage:</span>
+<span class="label">   journal:</span>
+<span class="label">      enabled:</span> <span class="literal">true</span>
+<span class="string">processManagement:</span>
+<span class="label">   fork:</span> <span class="literal">true</span>
+<span class="string">net:</span>
+<span class="label">   bindIp:</span> <span class="number">192.168</span>.5.32
+<span class="label">   port:</span> <span class="number">27017</span>
+<span class="string">replication:</span>
+<span class="label">   replSetName:</span> <span class="string">"rs0"</span>
+</code></pre><blockquote>
+<p>主意，如果/var/log/mongodb/mongodb.log没有写权限会报错</p>
+</blockquote>
+<h3 id="2、启用集群">2、启用集群</h3><p>1、分别登录到30、31、32服务器，启动mongod服务：</p>
+<pre><code>mongod --config ~/mongo<span class="class">.conf</span> 
+</code></pre><p>2、配置集群，连接到主节点</p>
+<pre><code><span class="tag">mongo</span> 192<span class="class">.168</span><span class="class">.5</span><span class="class">.30</span><span class="pseudo">:27017</span>
+</code></pre><p>3、初始化集群配置</p>
+<pre><code>rs.initiate({<span class="string">_id:</span><span class="string">"rs0"</span>, <span class="string">members:</span>[ {<span class="string">_id:</span><span class="number">0</span>,<span class="string">host:</span><span class="string">'192.168.5.30:27017'</span>,<span class="string">priority:</span><span class="number">2</span>}, {<span class="string">_id:</span><span class="number">1</span>,<span class="string">host:</span><span class="string">'192.168.5.31:27017'</span>,<span class="string">priority:</span><span class="number">1</span>},{<span class="string">_id:</span><span class="number">2</span>,<span class="string">host:</span><span class="string">'192.168.5.32:27017'</span>,<span class="string">arbiterOnly:</span><span class="literal">true</span>}]});
+</code></pre><p>输出以下内容则表示配置成功。</p>
+<pre><code>{
+     "<span class="attribute">info</span>" : <span class="value"><span class="string">"Config now saved locally.  Should come online in about a minute."</span></span>,
+    "<span class="attribute">ok</span>" : <span class="value"><span class="number">1</span>
+</span>} 
+</code></pre><p>4、查看集群状态：</p>
+<pre><code><span class="string">mini:</span>john$ mongo <span class="number">192.168</span>.5.30:<span class="number">27017</span>
+MongoDB shell <span class="string">version:</span> <span class="number">2.6</span>.5
+connecting <span class="string">to:</span> <span class="number">192.168</span>.5.30:<span class="number">27017</span>/test
+<span class="string">rs0:</span>PRIMARY&gt; rs.conf()
+{
+    <span class="string">"_id"</span> : <span class="string">"rs0"</span>,
+    <span class="string">"version"</span> : <span class="number">1</span>,
+    <span class="string">"members"</span> : [
+        {
+            <span class="string">"_id"</span> : <span class="number">0</span>,
+            <span class="string">"host"</span> : <span class="string">"192.168.5.30:27017"</span>,
+            <span class="string">"priority"</span> : <span class="number">2</span>
+        },
+        {
+            <span class="string">"_id"</span> : <span class="number">1</span>,
+            <span class="string">"host"</span> : <span class="string">"192.168.5.31:27017"</span>
+        },
+        {
+            <span class="string">"_id"</span> : <span class="number">2</span>,
+            <span class="string">"host"</span> : <span class="string">"192.168.5.32:27017"</span>,
+            <span class="string">"arbiterOnly"</span> : <span class="literal">true</span>
+        }
+    ]
+}
+</code></pre><p>主意：SECONDARY是不允许读写的，现在的从库只是用来备份主库的数据。如果在从库中执行读写操作，会产生以下错误。</p>
+<pre><code><span class="tag">SECONDARY</span>&gt; <span class="tag">db</span><span class="class">.user</span><span class="class">.find</span>()
+<span class="rule"><span class="attribute">error</span>:<span class="value"> { <span class="string">"$err"</span> : <span class="string">"not master and slaveok=false"</span>, <span class="string">"code"</span> : <span class="number">13435</span> }</span></span>
+</code></pre><p>如果要用SECONDARY来分担读压力，可参考这篇文章：<a href="http://blog.163.com/lgh_2002/blog/static/44017526201301123736391/" target="_blank" rel="external">http://blog.163.com/lgh_2002/blog/static/44017526201301123736391/</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/MongoDB/">MongoDB</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/mongodb/">mongodb</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/01/01/operation/2/" title="Ubuntu 12.04 下配置 uwsgi + nginx + web.py 环境" itemprop="url">Ubuntu 12.04 下配置 uwsgi + nginx + web.py 环境</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2014-12-31T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-01-01</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>1、准备</p>
+<pre><code>apt-<span class="built_in">get</span> <span class="keyword">update</span>
+apt-<span class="built_in">get</span> upgrade
+</code></pre><p>2、安装nginx、uwsgi</p>
+<pre><code>apt-get <span class="operator"><span class="keyword">install</span> nginx-<span class="keyword">full</span> uwsgi uwsgi-<span class="keyword">plugin</span>-python</span>
+</code></pre><p>3、创建文件/etc/nginx/sites-available/example.com</p>
+<pre><code><span class="xml">server </span><span class="expression">{
+        <span class="variable">listen</span> 80;
+    <span class="variable">server</span>_<span class="variable">name</span>     <span class="variable">localhost</span>;
+
+    <span class="variable">access</span>_<span class="variable">log</span>    <span class="end-block">/var</span><span class="end-block">/www</span><span class="end-block">/example.com</span><span class="end-block">/logs</span><span class="end-block">/access.log</span>;
+    <span class="variable">error</span>_<span class="variable">log</span>    <span class="end-block">/var</span><span class="end-block">/www</span><span class="end-block">/example.com</span><span class="end-block">/logs</span><span class="end-block">/error.log</span>;
+
+        <span class="variable">location</span> <span class="end-block">/ </span>{
+        <span class="variable">include</span>     <span class="variable">uwsgi</span>_<span class="variable">params</span>;
+                <span class="variable">uwsgi</span>_<span class="variable">pass</span>      127<span class="variable">.</span>0<span class="variable">.</span>0<span class="variable">.</span>1:9001;
+        }</span><span class="xml">
+
+        location /static </span><span class="expression">{
+                <span class="variable">root</span> <span class="end-block">/var</span><span class="end-block">/www</span><span class="end-block">/example.com</span><span class="end-block">/public</span>_<span class="variable">html</span><span class="end-block">/static</span>/;
+                <span class="variable">index</span> <span class="variable">index.html</span>;
+        }</span><span class="xml">
+}</span>
+</code></pre><p>4、新建软链接</p>
+<pre><code>ln -s <span class="regexp">/etc/</span>nginx<span class="regexp">/sites-available/</span>example.com <span class="regexp">/etc/</span>nginx<span class="regexp">/sites-enabled/</span>example.com
+</code></pre><p>5、创建文件 /etc/uwsgi/apps-available/example.com.xml </p>
+<pre><code><span class="tag">&lt;<span class="title">uwsgi</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">plugins</span>&gt;</span>python<span class="tag">&lt;/<span class="title">plugins</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">socket</span>&gt;</span>127.0.0.1:9001<span class="tag">&lt;/<span class="title">socket</span>&gt;</span>  
+    <span class="tag">&lt;<span class="title">module</span>&gt;</span>myapp<span class="tag">&lt;/<span class="title">module</span>&gt;</span>  
+    <span class="comment">&lt;!-- &lt;master /&gt;  --&gt;</span>
+    <span class="tag">&lt;<span class="title">pythonpath</span>&gt;</span>/var/www/example.com/application<span class="tag">&lt;/<span class="title">pythonpath</span>&gt;</span>  
+    <span class="comment">&lt;!-- &lt;chdir&gt;/var/www/example.com/application&lt;/chdir&gt;   --&gt;</span>    
+    <span class="tag">&lt;<span class="title">processes</span>&gt;</span>2<span class="tag">&lt;/<span class="title">processes</span>&gt;</span>  
+    <span class="tag">&lt;<span class="title">workers</span>&gt;</span>4<span class="tag">&lt;/<span class="title">workers</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">max-requests</span>&gt;</span>10000<span class="tag">&lt;/<span class="title">max-requests</span>&gt;</span>  
+    <span class="comment">&lt;!--
+    &lt;memory-report/&gt;  
+    &lt;pidfile&gt;/tmp/uwsgi_myapp.pid&lt;/pidfile&gt;  
+    &lt;max-requests&gt;10000&lt;/max-requests&gt;  
+    &lt;daemonize&gt;/var/log/uwsgi_myapp.log&lt;/daemonize&gt;   
+    --&gt;</span>
+<span class="tag">&lt;/<span class="title">uwsgi</span>&gt;</span>  
+</code></pre><p>6、新建软链接</p>
+<pre><code>ln -s /etc/uwsgi/apps-available/example<span class="class">.com</span><span class="class">.xml</span> /etc/uwsgi/apps-enabled/example<span class="class">.com</span><span class="class">.xml</span>
+</code></pre><p>7、创建应用目录</p>
+<pre><code>mkdir -p <span class="regexp">/var/</span>www<span class="regexp">/example.com/</span>public_html/<span class="keyword">static</span>
+mkdir <span class="regexp">/var/</span>www<span class="regexp">/example.com/</span>application
+mkdir <span class="regexp">/var/</span>www<span class="regexp">/example.com/</span>logs
+</code></pre><p>8、在/var/www/example.com/application目录下新建 <code>myapp.py</code> 文件</p>
+<pre><code><span class="keyword">import</span> web
+
+urls = (<span class="string">'/'</span>,<span class="string">'hello'</span>)
+
+<span class="class"><span class="keyword">class</span> <span class="title">hello</span>:</span>
+    <span class="function"><span class="keyword">def</span> <span class="title">GET</span><span class="params">(self)</span>:</span>
+        <span class="keyword">return</span> <span class="string">"hello world"</span>
+
+app = web.application(urls,globals())
+
+application = app.wsgifunc()
+
+<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    app.run()
+</code></pre><p>注意：文件名与example.com.xml中的<module>节点的内容相同。</module></p>
+<p>9、重启</p>
+<pre><code><span class="keyword">service</span> nginx <span class="literal">restart</span>
+<span class="keyword">service</span> nwsgi <span class="literal">restart</span>
+</code></pre><p>10、访问 <a href="http://localhost/，进行验证" target="_blank" rel="external">http://localhost/，进行验证</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>►<a class="article-category-link" href="/categories/Linux/运维/">运维</a>►<a class="article-category-link" href="/categories/Linux/运维/Python/">Python</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/linux/">linux</a><a href="/tags/nginx/">nginx</a><a href="/tags/python/">python</a><a href="/tags/shell/">shell</a><a href="/tags/运维/">运维</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2014/05/22/reverse/22/" title="逆向基础第二十二篇：构造函数" itemprop="url">逆向基础第二十二篇：构造函数</a>
   </h1>
   <p class="article-author">By
@@ -787,484 +1372,6 @@ public:
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2014/05/14/reverse/14/" title="逆向基础第十四篇：认识栈帧（堆栈平衡）" itemprop="url">逆向基础第十四篇：认识栈帧（堆栈平衡）</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
-		
-  <p class="article-time">
-    <time datetime="2014-05-13T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-05-14</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>当<code>栈顶指针esp</code>小于<code>栈底指针ebp</code>时，就形成了栈帧。在VC++中，栈帧用来存放<code>局部变量</code>、<code>函数返回值地址</code>、<code>函数参数</code>等。</p>
-<p>当A函数调用B函数时，就会针对B函数开辟出所需的栈空间，形成此B函数的栈帧。当这个B函数结束调用时，要清除开辟出的栈空间，这一过程，称作 <strong>“堆栈平衡”</strong>。</p>
-<p>下面是一个空函数：</p>
-<pre><code><span class="function"><span class="keyword">int</span> <span class="title">_tmain</span><span class="params">(<span class="keyword">int</span> argc, _TCHAR* argv[])</span>
-</span>{
-    <span class="keyword">return</span> <span class="number">0</span>;
-}
-</code></pre><p>反汇编代码如下：</p>
-<pre><code><span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-00F01350  <span class="keyword">push</span>        <span class="literal">ebp</span>                  <span class="comment">;保存寄存器ebp的值</span>
-00F01351  <span class="keyword">mov</span>         <span class="literal">ebp</span>,<span class="literal">esp</span>              <span class="comment">;调整当前栈底指针到栈顶（将ebp作为栈底指针）</span>
-00F01353  <span class="keyword">sub</span>         <span class="literal">esp</span>,<span class="number">0C0h</span>             <span class="comment">;分配192字节的空间</span>
-00F01359  <span class="keyword">push</span>        <span class="number">ebx</span>                  <span class="comment">;保存寄存器ebx的值</span>
-00F0135A  <span class="keyword">push</span>        <span class="literal">esi</span>                  <span class="comment">;保存寄存器esi的值</span>
-00F0135B  <span class="keyword">push</span>        <span class="literal">edi</span>                  <span class="comment">;保存寄存器edi的值</span>
-00F0135C  <span class="keyword">lea</span>         <span class="literal">edi</span>,[<span class="literal">ebp</span>-<span class="number">0C0h</span>]       <span class="comment">;取栈顶地址，保存在edi中</span>
-00F01362  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="number">30h</span>  
-00F01367  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="number">0CCCCCCCCh</span>  
-00F0136C  <span class="keyword">rep</span> stos    <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> <span class="literal">es</span>:[<span class="literal">edi</span>]  
-    return <span class="number">0</span><span class="comment">;</span>
-00F0136E  <span class="keyword">xor</span>         <span class="number">eax</span>,<span class="number">eax</span>              <span class="comment">;对返回值eax清零</span>
-}
-00F01370  <span class="keyword">pop</span>         <span class="literal">edi</span>                  <span class="comment">;还原寄存器edi的值</span>
-00F01371  <span class="keyword">pop</span>         <span class="literal">esi</span>                  <span class="comment">;还原寄存器esi的值</span>
-00F01372  <span class="keyword">pop</span>         <span class="number">ebx</span>                  <span class="comment">;还原寄存器ebx的值</span>
-00F01373  <span class="keyword">mov</span>         <span class="literal">esp</span>,<span class="literal">ebp</span>              <span class="comment">;还原寄存器esp的值</span>
-00F01375  <span class="keyword">pop</span>         <span class="literal">ebp</span>                  <span class="comment">;还原寄存器ebp的值</span>
-00F01376  <span class="keyword">ret</span>  
-</code></pre><ul>
-<li>rep指令的目的是重复其上面的指令。</li>
-<li>ecx的值是重复的次数。</li>
-<li>stos指令的作用是，将eax中的值拷贝到es:[edi]指向的地址。</li>
-</ul>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/逆向基础/">逆向基础</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2014/05/13/reverse/13/" title="逆向基础第十三篇：编译器对循环的优化" itemprop="url">逆向基础第十三篇：编译器对循环的优化</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
-		
-  <p class="article-time">
-    <time datetime="2014-05-12T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-05-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>之前，我已经对do、while、和for循环做了详细的介绍。</p>
-<p>do循环：<a href="http://www.0x520.com/2014/07/04/247.html" target="_blank" rel="external">http://www.0x520.com/2014/07/04/247.html</a><br>while循环：<a href="http://www.0x520.com/2014/07/04/251.html" target="_blank" rel="external">http://www.0x520.com/2014/07/04/251.html</a><br>for循环：<a href="http://www.0x520.com/2014/07/05/264.html" target="_blank" rel="external">http://www.0x520.com/2014/07/05/264.html</a></p>
-<p>通过对比，我们已经知道，do循环的速度最快，while次之，for的速度是最慢的。 因为，do只用到一个跳转指令，while用到两个跳转指令，而for用到了三个跳转指令。</p>
-<h3 id="1、优化while循环">1、优化while循环</h3><p>在 <a href="http://while%E5%BE%AA%E7%8E%AF" target="_blank" rel="external">while循环</a> 中我们讲过，是可以将while转换为do循环的，可以将do循环结构嵌套在if中，来完成while结构的优化。<br>while循环代码：</p>
-<pre><code><span class="function"><span class="keyword">void</span> <span class="title">loop_while</span><span class="params">(<span class="keyword">int</span> loopTimes)</span>
-</span>{
-    <span class="keyword">while</span>(loopTimes&gt;=<span class="number">0</span>)
-    {
-        <span class="comment">//do something</span>
-        loopTimes --;
-    }
-}
-</code></pre><p>优化代码：</p>
-<pre><code><span class="function"><span class="keyword">void</span> <span class="title">loop_do</span><span class="params">(<span class="keyword">int</span> loopTimes)</span>
-</span>{
-    <span class="keyword">if</span>(loopTimes&gt;=<span class="number">0</span>)
-    {
-        <span class="keyword">do</span>{
-            <span class="comment">//do something</span>
-            loopTimes --;
-        }<span class="keyword">while</span>(loopTimes&gt;=<span class="number">0</span>);
-    }
-}
-</code></pre><p>如果编译器使用O2选项进行优化，那么，反汇编之后的代码将是上面这种形式。</p>
-<h3 id="2、优化for循环">2、优化for循环</h3><p>for循环，从结构上看，其结构特征和while循环类似。由于赋初值部分不属于循环体，可以忽略。只要将比较部分放入循环体，那么就是一个while循环。既然可以转换成while循环，那么必然也可以转换成do循环。</p>
-<p>for循环代码：</p>
-<pre><code><span class="keyword">int</span> nSum = <span class="number">0</span>;
-<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="keyword">loop_t</span>imes ; i++)
-{
-    nSum += i;
-}
-</code></pre><p>for转换成while循环：</p>
-<pre><code><span class="keyword">int</span> i = <span class="number">0</span>;
-<span class="keyword">while</span>(i&lt;<span class="keyword">loop_t</span>imes){
-    nSum += i;
-    i++;
-}
-</code></pre><p>while循环转换成do循环：</p>
-<pre><code><span class="keyword">int</span> nSum = <span class="number">0</span>;
-<span class="keyword">int</span> i = <span class="number">0</span>;
-<span class="keyword">if</span>(i&lt;<span class="keyword">loop_t</span>imes){
-    <span class="keyword">do</span> {
-        nSum += i;
-        i++;
-    } <span class="keyword">while</span> (i&lt;argc);
-}
-</code></pre><p>编译器真的会这样优化吗？我们打开O2选项（选择Release，默认就是O2）：</p>
-<p><img src="/uploads/2014/07/3121390140.png" alt="1.png"></p>
-<p>编译如下代码：</p>
-<pre><code><span class="function"><span class="keyword">int</span> <span class="title">loop_for</span><span class="params">(<span class="keyword">int</span> loop_times)</span>
-</span>{
-    <span class="keyword">int</span> nSum = <span class="number">0</span>;
-    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="keyword">loop_t</span>imes ; i++)
-    {
-        nSum += i;
-    }
-    <span class="keyword">return</span> nSum;
-}
-</code></pre><p>我们使用IDA分析：</p>
-<p><img src="/uploads/2014/07/344158898.png" alt="2.png"></p>
-<p>上图中for循环优化之后的结构一目了然，但是有些朋友表示还是看不懂，表示对下面这段代码不知所云：</p>
-<pre><code><span class="keyword">add</span>     <span class="number">edx</span>,<span class="number">eax</span>
-<span class="keyword">lea</span>     <span class="number">ecx</span>,[<span class="number">ecx</span>+<span class="number">eax</span>+<span class="number">1</span>]
-<span class="keyword">add</span>     <span class="number">eax</span>,<span class="number">2</span>
-<span class="keyword">cmp</span>     <span class="number">eax</span>,<span class="literal">esi</span>
-<span class="keyword">jle</span>     short loc_401020
-</code></pre><p>这里我来讲解一下，其实这已经不是编译器对for循环优化的范畴了，这里是编译器对当前算法的优化 <code>nSum += (i++);</code></p>
-<ul>
-<li>edx 等于变量 nSum 的偶数和</li>
-<li>ecx 等于变量 nSum 的奇数和</li>
-<li>eax 等于变量 i  </li>
-</ul>
-<p>最后，在地址00401034处，<code>lea eax,[ecx+edx]</code>，这里 eax = <code>奇数和</code>+<code>偶数和</code> 。</p>
-<p>————— 致谢 ————— </p>
-<p>这里要感谢 <code>sollyu</code> 和 <code>0XE9</code> 两位兄弟的无私帮助。<br>sollyu对上面的反汇编代码进行了逆向还原，这是还原后的代码：</p>
-<p><img src="/uploads/2014/07/493634735.jpg" alt="3.jpg"></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/逆向基础/">逆向基础</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2014/05/12/reverse/12/" title="逆向基础第十二篇：控制流程 之 for循环" itemprop="url">逆向基础第十二篇：控制流程 之 for循环</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
-		
-  <p class="article-time">
-    <time datetime="2014-05-11T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-05-12</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>for 循环是三种循环（do，while，for）中最复杂的一种。for循环由<code>赋初值</code>、<code>设置循环条件</code>、<code>设置循环步长</code> 这三条语句组成。在程序中for被使用的频率是最高的。</p>
-<p>for循环测试代码：</p>
-<pre><code><span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    <span class="keyword">int</span> nSum = <span class="number">0</span>;
-    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; argc ; i++)
-    {
-        nSum += i;
-    }
-    <span class="built_in">printf</span>(<span class="string">"%d \r\n"</span>,nSum);
-    <span class="keyword">return</span> <span class="number">0</span>;
-}
-</code></pre><p>反汇编代码如下：</p>
-<p><img src="/uploads/2014/07/2441701288.png" alt="1.png"></p>
-<p>通过上图，我们看出，赋初值只执行一次。然后不断自增、执行代码块，往上跳。通过循环流程，我们可以总结其特性。</p>
-<p><strong>总结：</strong></p>
-<pre><code>Step1：赋初值，跳转到循环判定部分，然后执行代码块
-
-Step2：代码块末尾，向上跳，跳转到自增（修改步长部分，这里是自增，视实际情况而定）
-Step3：循环判定部分，然后执行代码块，向上跳跳到Step2
-</code></pre>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/逆向基础/">逆向基础</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2014/05/11/reverse/11/" title="逆向基础第十一篇：控制流程 之 while循环" itemprop="url">逆向基础第十一篇：控制流程 之 while循环</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
-		
-  <p class="article-time">
-    <time datetime="2014-05-10T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-05-11</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>while循环与do循环正好相反，先执行判定条件，再执行代码块。 </p>
-<p>测试代码：</p>
-<pre><code><span class="function"><span class="keyword">int</span> <span class="title">_tmain</span><span class="params">(<span class="keyword">int</span> argc, _TCHAR* argv[])</span>
-</span>{
-    <span class="keyword">int</span> nSum    = <span class="number">0</span>;
-    <span class="keyword">int</span> nIndex    = <span class="number">0</span>;
-    <span class="keyword">while</span> (nIndex &lt;= argc)
-    {
-        nSum += nIndex;
-        nIndex ++;
-    } 
-    <span class="keyword">return</span> <span class="number">0</span>;
-}
-</code></pre><p>反汇编代码：</p>
-<p><img src="/uploads/2014/07/2800468358.png" alt="1.png"></p>
-<p>我们看到while循环使用了两次跳转指令完成循环，由于多使用了一次跳转指令，因此while循环要比do循环效率低一些。</p>
-<p><strong>总结：</strong></p>
-<pre><code>WHILE_BEGIN
-;影响标记位的指令
-jxx    WHILE_END
-<span class="attribute">...</span><span class="attribute">...</span>
-jmp    WHILE_BEGIN
-WHILE_END
-</code></pre><p>遇到以上代码块，即可判断为while循环结构。根据跳转指令的位置，可以还原while循环判断。</p>
-<p><strong>注意：while循环结构很可能被优化成do循环结构，被转换后的while结构由于需要检查是否可以被成功执行一次，通常会被潜逃在if单分支结构中，高级代码如下：</strong></p>
-<pre><code><span class="keyword">if</span><span class="comment">(<span class="doctag"><span class="keyword">xxx</span></span>)</span>
-{
-    <span class="keyword">do</span>
-    {
-        <span class="comment">//循环代码块</span>
-    } <span class="keyword">while</span> <span class="comment">(<span class="doctag"><span class="keyword">xxx</span></span>)</span>
-}
-</code></pre>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/逆向基础/">逆向基础</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2014/05/10/reverse/10/" title="逆向基础第十篇：控制流程 之 do循环" itemprop="url">逆向基础第十篇：控制流程 之 do循环</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
-		
-  <p class="article-time">
-    <time datetime="2014-05-09T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-05-10</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>do循环工作流程清晰，识别相对简单。根据do循环的特性：先执行语句块，再进行比较判断。条件成立时，会继续执行语句块。C++中的goto也可以模拟do循环。</p>
-<p>测试代码：</p>
-<pre><code><span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    <span class="keyword">int</span> nSum    = <span class="number">0</span>;
-    <span class="keyword">int</span> nIndex    = <span class="number">0</span>;
-    <span class="keyword">do</span> 
-    {
-        nSum += nIndex;
-        nIndex ++;
-    } <span class="keyword">while</span> (nIndex &lt;= argc);
-}
-</code></pre><p>反汇编结果：</p>
-<p><img src="/uploads/2014/07/713037861.png" alt="1.png"></p>
-<p>这与if分支结构非常相似，但是自己分析之后发现他们并不相同，这跟if语句的比较是相反的，if的跳转地址大于当前地址，是一个向下跳的过程。而do的跳转地址小于当前代码地址，是向上跳的。 根据这个特性，我们可以很容易的区分 if 和 do 的反汇编代码。</p>
-<p><strong>总结：</strong></p>
-<pre><code>DO_BEGIN
-......            <span class="comment">;循环语句块</span>
-<span class="comment">;影响标记位的指令</span>
-jxx     DO_BEGIN
-</code></pre><p>如果遇到上面这种代码块，可以判定为是一个do循环。根据跳转到的地址，可以得知代码块的首地址，jxx指令的地址为循环的结束地址。根据这些特征，即可还原do循环结构的原型。</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/逆向基础/">逆向基础</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next<span></span></a>
@@ -1300,6 +1407,14 @@ jxx     DO_BEGIN
 		
 		  
 			<li><a href="/categories/Linux/运维/Python/" title="Python">Python<sup>1</sup></a></li>
+		  
+		
+		  
+		
+		  
+			<li><a href="/categories/Rails学习/" title="Rails学习">Rails学习<sup>5</sup></a></li>
+		  
+		
 		  
 		
 		  

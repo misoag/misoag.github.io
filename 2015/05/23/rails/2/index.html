@@ -4,38 +4,50 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>逆向基础第四篇：条件跳转与短路运算 | 鸡哥</title>
+    <title>Ruby on Rails 开发起步走 | 鸡哥</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="John·Huang">
     
 
     
-    <meta name="description" content="1、条件跳转指令表指令助记符        检查标记位                说明
-
-JZ               ZF == 1                 等于0则跳转
-JE               ZF == 1                 相等则跳转
-JNZ              ZF == 0                 不等于0则跳转
-JNE">
+    <meta name="description" content="基本命令创建一个rials的demo程序
+rails new demo --skip-test-unit
+启动web服务器
+rails server  或 rails s
+创建控制器
+rails generate controller welcome
+或
+rails g controller welcome
+创建页面上的链接：
+&amp;lt;%= link_to &apos;Hello!&apos;, welcome_sa">
 <meta property="og:type" content="article">
-<meta property="og:title" content="逆向基础第四篇：条件跳转与短路运算">
-<meta property="og:url" content="http://0x520.com/2014/05/05/reverse/5/index.html">
+<meta property="og:title" content="Ruby on Rails 开发起步走">
+<meta property="og:url" content="http://0x520.com/2015/05/23/rails/2/index.html">
 <meta property="og:site_name" content="鸡哥">
-<meta property="og:description" content="1、条件跳转指令表指令助记符        检查标记位                说明
-
-JZ               ZF == 1                 等于0则跳转
-JE               ZF == 1                 相等则跳转
-JNZ              ZF == 0                 不等于0则跳转
-JNE">
-<meta property="og:updated_time" content="2015-05-23T03:27:47.000Z">
+<meta property="og:description" content="基本命令创建一个rials的demo程序
+rails new demo --skip-test-unit
+启动web服务器
+rails server  或 rails s
+创建控制器
+rails generate controller welcome
+或
+rails g controller welcome
+创建页面上的链接：
+&amp;lt;%= link_to &apos;Hello!&apos;, welcome_sa">
+<meta property="og:updated_time" content="2015-05-24T11:32:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="逆向基础第四篇：条件跳转与短路运算">
-<meta name="twitter:description" content="1、条件跳转指令表指令助记符        检查标记位                说明
-
-JZ               ZF == 1                 等于0则跳转
-JE               ZF == 1                 相等则跳转
-JNZ              ZF == 0                 不等于0则跳转
-JNE">
+<meta name="twitter:title" content="Ruby on Rails 开发起步走">
+<meta name="twitter:description" content="基本命令创建一个rials的demo程序
+rails new demo --skip-test-unit
+启动web服务器
+rails server  或 rails s
+创建控制器
+rails generate controller welcome
+或
+rails g controller welcome
+创建页面上的链接：
+&amp;lt;%= link_to &apos;Hello!&apos;, welcome_sa">
 
     
     <link rel="alternative" href="/atom.xml" title="鸡哥" type="application/atom+xml">
@@ -91,14 +103,14 @@ JNE">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/05/05/reverse/5/" title="逆向基础第四篇：条件跳转与短路运算" itemprop="url">逆向基础第四篇：条件跳转与短路运算</a>
+      <a href="/2015/05/23/rails/2/" title="Ruby on Rails 开发起步走" itemprop="url">Ruby on Rails 开发起步走</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
 		
   <p class="article-time">
-    <time datetime="2014-05-04T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-05-05</time>
+    <time datetime="2015-05-23T08:02:00.000Z" itemprop="datePublished"> 发表于 2015-05-23</time>
     
   </p>
 </header>
@@ -107,95 +119,39 @@ JNE">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、条件跳转指令表"><span class="toc-number">1.</span> <span class="toc-text">1、条件跳转指令表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、短路与（&&）_短路或_（||）"><span class="toc-number">2.</span> <span class="toc-text">2、短路与（&&） 短路或 （||）</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基本命令"><span class="toc-number">1.</span> <span class="toc-text">基本命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个简单的CRUD应用"><span class="toc-number">1.1.</span> <span class="toc-text">创建一个简单的CRUD应用</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h2 id="1、条件跳转指令表">1、条件跳转指令表</h2><pre><code>指令助记符        检查标记位                说明
-
-JZ               <span class="variable">ZF =</span>= <span class="number">1</span>                 等于<span class="number">0</span>则跳转
-JE               <span class="variable">ZF =</span>= <span class="number">1</span>                 相等则跳转
-JNZ              <span class="variable">ZF =</span>= <span class="number">0</span>                 不等于<span class="number">0</span>则跳转
-JNE              <span class="variable">ZF =</span>= <span class="number">0</span>                 不相等则跳转
-
-JS               <span class="variable">SF =</span>= <span class="number">1</span>                 符号为负则跳转
-JNS              <span class="variable">SF =</span>= <span class="number">0</span>                 符号为正则跳转
-
-JP/JPE           <span class="variable">PF =</span>= <span class="number">1</span>                 <span class="string">"1"</span> 的个数为偶数则跳转
-JNP/JPO          <span class="variable">PF =</span>= <span class="number">0</span>                 <span class="string">"1"</span> 的个数为奇数则跳转
-
-JO               <span class="variable">OF =</span>= <span class="number">1</span>                 溢出则跳转
-JNO              <span class="variable">OF =</span>= <span class="number">0</span>                 无溢出则跳转
-
-JC               <span class="variable">CF =</span>= <span class="number">1</span>                 进位则跳转
-JB               <span class="variable">CF =</span>= <span class="number">1</span>                 小于则跳转
-JNAE             <span class="variable">CF =</span>= <span class="number">1</span>                 不大于等于则跳转
-JNC              <span class="variable">CF =</span>= <span class="number">0</span>                 无进位则跳转
-JNB              <span class="variable">CF =</span>= <span class="number">0</span>                 不小于则跳转
-JAE              <span class="variable">CF =</span>= <span class="number">0</span>                 大于则跳转
-JBE              <span class="variable">CF =</span>= <span class="number">1</span> 或 <span class="variable">ZF =</span>= <span class="number">1</span>      小于等于则跳转   
-JNA              <span class="variable">CF =</span>= <span class="number">1</span> 或 <span class="variable">ZF =</span>= <span class="number">1</span>      不大于则跳转
-JNBE             <span class="variable">CF =</span>= <span class="number">0</span> 或 <span class="variable">ZF =</span>= <span class="number">0</span>      不小于等于则跳转
-JA               <span class="variable">CF =</span>= <span class="number">0</span> 或 <span class="variable">ZF =</span>= <span class="number">0</span>      不大于则跳转
-
-JL               SF != OF                小于则跳转
-JNGE             SF != OF                不大于等于则跳转
-JNL              <span class="variable">SF =</span>= OF                不小于则跳转
-JGE              <span class="variable">SF =</span>= OF                不大于等于则跳转
-
-JLE              ZF != OF 或 <span class="variable">ZF =</span>= <span class="number">1</span>     小于等于则跳转
-JNG              ZF != OF 或 <span class="variable">ZF =</span>= <span class="number">1</span>     不大于则跳转
-JNLE             <span class="variable">SF =</span>= OF 且 <span class="variable">ZF =</span>= <span class="number">0</span>     不小于等于则跳转
-JG               <span class="variable">SF =</span>= OF 且 <span class="variable">ZF =</span>= <span class="number">0</span>     大于则跳转
-</code></pre><p>通常，这些条件跳转指令都与CMP 和 TEST 匹配出现，但是条件跳转是检查的<code>标志位</code> 。因此，在有修改标记位的代码处，可以根据需求使用跳转指令来修改程序。</p>
-<h2 id="2、短路与（&amp;&amp;）_短路或_（||）">2、短路与（&amp;&amp;） 短路或 （||）</h2><p>测试代码：</p>
-<pre><code><span class="function"><span class="keyword">int</span> <span class="title">Accumulation</span><span class="params">(<span class="keyword">int</span> nNumber)</span>
-</span>{
-    nNumber &amp;&amp; (nNumber += Accumulation(nNumber - <span class="number">1</span>));
-    <span class="keyword">return</span> nNumber;
-}
-</code></pre><p>反编译汇编代码：</p>
-<pre><code><span class="keyword">int</span> Accumulation(<span class="keyword">int</span> nNumber)
-{
-    <span class="number">17</span>:       nNumber &amp;&amp; (nNumber += Accumulation(nNumber - <span class="number">1</span>))<span class="comment">;</span>
-    //短路模式汇编代码，比较nNumber是否等于<span class="number">0</span>
-    0040D448   <span class="keyword">cmp</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">0</span>
-    //通过<span class="keyword">JE</span>跳转，检查ZF标记位等于<span class="number">1</span>跳转
-    0040D44C   <span class="keyword">je</span>          Accumulation+<span class="number">35h</span> (0040d465)
-
-    //跳转失败，递归，准备参数
-    0040D44E   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-    0040D451   <span class="keyword">sub</span>         <span class="number">eax</span>,<span class="number">1</span>
-    0040D454   <span class="keyword">push</span>        <span class="number">eax</span>
-    //递归，调用自己
-    0040D455   <span class="keyword">call</span>        @ILT+<span class="number">5</span>(Accumulation) (0040100a)
-    //<span class="literal">esp</span>指针偏移？？我还没搞明白？？？
-    0040D45A   <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">4</span>
-    //找到nNumber变量
-    0040D45D   <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-    //<span class="number">eax</span>中存放了 Accumulation函数返回值。nNumber + <span class="number">eax</span>
-    0040D460   <span class="keyword">add</span>         <span class="number">ecx</span>,<span class="number">eax</span>
-    //将最终结果存回 <span class="literal">ebp</span>+<span class="number">8</span>地址处 ，即nNumber地址处。 
-    0040D462   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">ecx</span>
-
-    <span class="number">18</span>:       return nNumber<span class="comment">;</span>
-    0040D465   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-}
-</code></pre>  
+		<h1 id="基本命令">基本命令</h1><p>创建一个rials的demo程序</p>
+<pre><code>rails <span class="keyword">new</span> demo --<span class="keyword">skip</span>-test-<span class="keyword">unit</span>
+</code></pre><p>启动web服务器</p>
+<pre><code>rails <span class="keyword">server</span>  或 rails s
+</code></pre><p>创建控制器</p>
+<pre><code>rails <span class="keyword">generate</span> controller welcome
+或
+rails <span class="keyword">g</span> controller welcome
+</code></pre><p>创建页面上的链接：</p>
+<pre><code>&lt;<span class="variable">%=</span> link_to <span class="string">'Hello!'</span>, welcome_say_hello_path <span class="variable">%&gt;</span>
+&lt;<span class="variable">%=</span> link_to <span class="string">'Hello!'</span>, welcome_say_hello_path <span class="variable">%&gt;</span>
+</code></pre><p>创建数据库</p>
+<pre><code><span class="tag">rake</span> <span class="rule"><span class="attribute">db</span>:<span class="value">create</span></span>
+</code></pre><h2 id="创建一个简单的CRUD应用">创建一个简单的CRUD应用</h2><p>创建crud程序框架</p>
+<pre><code>rails g scaffold <span class="keyword">person</span> name:string bio:text birthday:date
+</code></pre><p>执行数据库迁移：</p>
+<pre><code><span class="tag">rake</span> <span class="rule"><span class="attribute">db</span>:<span class="value">migrate </span></span>
+</code></pre><p>访问：<a href="http://localhost:3000/people" target="_blank" rel="external">http://localhost:3000/people</a></p>
+<p>一个最简单的CRUD应用程序开发完毕！</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/逆向基础/">逆向基础</a>
+  <a class="article-category-link" href="/categories/Rails学习/">Rails学习</a>
 </div>
 
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
-  </div>
 
 </div>
 
@@ -203,7 +159,7 @@ JG               <span class="variable">SF =</span>= OF 且 <span class="variabl
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://0x520.com/2014/05/05/reverse/5/" data-title="逆向基础第四篇：条件跳转与短路运算 | 鸡哥" data-tsina="null" class="share clearfix">
+	  <div data-url="http://0x520.com/2015/05/23/rails/2/" data-title="Ruby on Rails 开发起步走 | 鸡哥" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -217,18 +173,18 @@ JG               <span class="variable">SF =</span>= OF 且 <span class="variabl
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/05/05/reverse/6/" title="逆向基础第六篇：位运算">
+ <a href="/2015/05/24/rails/4/" title="Rails中使用devise进行用户认证">
   <strong>上一篇：</strong><br/>
   <span>
-  逆向基础第六篇：位运算</span>
+  Rails中使用devise进行用户认证</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2014/05/04/reverse/4/"  title="逆向基础第五篇：条件表达式">
+<a href="/2015/05/23/rails/1/"  title="Ruby on Rails 基础知识整理">
  <strong>下一篇：</strong><br/> 
- <span>逆向基础第五篇：条件表达式
+ <span>Ruby on Rails 基础知识整理
 </span>
 </a>
 </div>
@@ -243,7 +199,7 @@ JG               <span class="variable">SF =</span>= OF 且 <span class="variabl
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、条件跳转指令表"><span class="toc-number">1.</span> <span class="toc-text">1、条件跳转指令表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、短路与（&&）_短路或_（||）"><span class="toc-number">2.</span> <span class="toc-text">2、短路与（&&） 短路或 （||）</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基本命令"><span class="toc-number">1.</span> <span class="toc-text">基本命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个简单的CRUD应用"><span class="toc-number">1.1.</span> <span class="toc-text">创建一个简单的CRUD应用</span></a></li></ol></li></ol>
  
   </div>
 

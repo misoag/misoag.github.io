@@ -4,38 +4,38 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>逆向基础第四篇：条件跳转与短路运算 | 鸡哥</title>
+    <title>Rails中使用paperclip进行文件&amp;图片上传 | 鸡哥</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="John·Huang">
     
 
     
-    <meta name="description" content="1、条件跳转指令表指令助记符        检查标记位                说明
-
-JZ               ZF == 1                 等于0则跳转
-JE               ZF == 1                 相等则跳转
-JNZ              ZF == 0                 不等于0则跳转
-JNE">
+    <meta name="description" content="参考：https://github.com/thoughtbot/paperclip
+Requirements必须安装ImageMatic才能对图片进行处理
+If you’re on Mac OS X, you’ll want to run the following with Homebrew:
+brew install imagemagick
+检查是否安装成功：
+执行 which conver">
 <meta property="og:type" content="article">
-<meta property="og:title" content="逆向基础第四篇：条件跳转与短路运算">
-<meta property="og:url" content="http://0x520.com/2014/05/05/reverse/5/index.html">
+<meta property="og:title" content="Rails中使用paperclip进行文件&图片上传">
+<meta property="og:url" content="http://0x520.com/2015/05/24/rails/5/index.html">
 <meta property="og:site_name" content="鸡哥">
-<meta property="og:description" content="1、条件跳转指令表指令助记符        检查标记位                说明
-
-JZ               ZF == 1                 等于0则跳转
-JE               ZF == 1                 相等则跳转
-JNZ              ZF == 0                 不等于0则跳转
-JNE">
-<meta property="og:updated_time" content="2015-05-23T03:27:47.000Z">
+<meta property="og:description" content="参考：https://github.com/thoughtbot/paperclip
+Requirements必须安装ImageMatic才能对图片进行处理
+If you’re on Mac OS X, you’ll want to run the following with Homebrew:
+brew install imagemagick
+检查是否安装成功：
+执行 which conver">
+<meta property="og:updated_time" content="2015-05-24T11:41:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="逆向基础第四篇：条件跳转与短路运算">
-<meta name="twitter:description" content="1、条件跳转指令表指令助记符        检查标记位                说明
-
-JZ               ZF == 1                 等于0则跳转
-JE               ZF == 1                 相等则跳转
-JNZ              ZF == 0                 不等于0则跳转
-JNE">
+<meta name="twitter:title" content="Rails中使用paperclip进行文件&图片上传">
+<meta name="twitter:description" content="参考：https://github.com/thoughtbot/paperclip
+Requirements必须安装ImageMatic才能对图片进行处理
+If you’re on Mac OS X, you’ll want to run the following with Homebrew:
+brew install imagemagick
+检查是否安装成功：
+执行 which conver">
 
     
     <link rel="alternative" href="/atom.xml" title="鸡哥" type="application/atom+xml">
@@ -91,14 +91,14 @@ JNE">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/05/05/reverse/5/" title="逆向基础第四篇：条件跳转与短路运算" itemprop="url">逆向基础第四篇：条件跳转与短路运算</a>
+      <a href="/2015/05/24/rails/5/" title="Rails中使用paperclip进行文件&amp;图片上传" itemprop="url">Rails中使用paperclip进行文件&amp;图片上传</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
 		
   <p class="article-time">
-    <time datetime="2014-05-04T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-05-05</time>
+    <time datetime="2015-05-24T07:02:00.000Z" itemprop="datePublished"> 发表于 2015-05-24</time>
     
   </p>
 </header>
@@ -107,80 +107,59 @@ JNE">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、条件跳转指令表"><span class="toc-number">1.</span> <span class="toc-text">1、条件跳转指令表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、短路与（&&）_短路或_（||）"><span class="toc-number">2.</span> <span class="toc-text">2、短路与（&&） 短路或 （||）</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Requirements"><span class="toc-number">1.</span> <span class="toc-text">Requirements</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-number">3.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#model"><span class="toc-number">3.1.</span> <span class="toc-text">model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#migrateion"><span class="toc-number">3.2.</span> <span class="toc-text">migrateion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#new_view"><span class="toc-number">3.3.</span> <span class="toc-text">new view</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#controller"><span class="toc-number">3.4.</span> <span class="toc-text">controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#show_view"><span class="toc-number">3.5.</span> <span class="toc-text">show view</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除"><span class="toc-number">3.6.</span> <span class="toc-text">删除</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h2 id="1、条件跳转指令表">1、条件跳转指令表</h2><pre><code>指令助记符        检查标记位                说明
+		<p>参考：<a href="https://github.com/thoughtbot/paperclip" target="_blank" rel="external">https://github.com/thoughtbot/paperclip</a></p>
+<h2 id="Requirements">Requirements</h2><p>必须安装ImageMatic才能对图片进行处理</p>
+<p>If you’re on Mac OS X, you’ll want to run the following with Homebrew:</p>
+<pre><code><span class="keyword">brew </span>install imagemagick
+</code></pre><p>检查是否安装成功：</p>
+<p>执行 <code>which convert</code> 理论上来说应该返回 <code>/usr/local/bin/convert</code> 说明ImageMatic安装成功了。</p>
+<p>编辑 config/environments/development.rb  配置command_path</p>
+<pre><code>Paperclip<span class="class">.options</span>[:command_path] = <span class="string">"/usr/local/bin/"</span>
+</code></pre><h2 id="安装">安装</h2><p>编辑gemfile</p>
+<pre><code><span class="title">gem</span> <span class="string">"paperclip"</span>, <span class="string">"~&gt; 4.2"</span>
+</code></pre><p>然后</p>
+<pre><code><span class="keyword">bundle </span>install
+</code></pre><h2 id="使用">使用</h2><h3 id="model">model</h3><pre><code><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Base</span></span></span>
+  has_attached_file <span class="symbol">:avatar</span>, <span class="symbol">:styles</span> =&gt; { <span class="symbol">:medium</span> =&gt; <span class="string">"300x300&gt;"</span>, <span class="symbol">:thumb</span> =&gt; <span class="string">"100x100&gt;"</span> }, <span class="symbol">:default_url</span> =&gt; <span class="string">"/images/:style/missing.png"</span>
+  validates_attachment_content_type <span class="symbol">:avatar</span>, <span class="symbol">:content_type</span> =&gt; <span class="regexp">/\Aimage\/.*\Z/</span>
+<span class="keyword">end</span>
+</code></pre><h3 id="migrateion">migrateion</h3><p>创建一个migration</p>
+<pre><code>rails g migration <span class="keyword">add_avatar_columns_t</span>o_users
+</code></pre><p>编辑 xxx_add_avatar_columns_to_users</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">AddAvatarColumnsToUsers</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Migration</span></span></span>
+  <span class="function"><span class="keyword">def</span> </span><span class="keyword">self</span>.up
+    add_attachment <span class="symbol">:users</span>, <span class="symbol">:avatar</span>
+  <span class="keyword">end</span>
 
-JZ               <span class="variable">ZF =</span>= <span class="number">1</span>                 等于<span class="number">0</span>则跳转
-JE               <span class="variable">ZF =</span>= <span class="number">1</span>                 相等则跳转
-JNZ              <span class="variable">ZF =</span>= <span class="number">0</span>                 不等于<span class="number">0</span>则跳转
-JNE              <span class="variable">ZF =</span>= <span class="number">0</span>                 不相等则跳转
+  <span class="function"><span class="keyword">def</span> </span><span class="keyword">self</span>.down
+    remove_attachment <span class="symbol">:users</span>, <span class="symbol">:avatar</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</code></pre><h3 id="new_view">new view</h3><pre><code><span class="xml"></span>&lt;%=<span class="ruby"> form_for <span class="variable">@user</span>, <span class="symbol">:url</span> =&gt; users_path, <span class="symbol">:html</span> =&gt; { <span class="symbol">:multipart</span> =&gt; <span class="keyword">true</span> } <span class="keyword">do</span> |form| </span>%&gt;<span class="xml">
+ </span>&lt;%=<span class="ruby"> form.file_field <span class="symbol">:avatar</span> </span>%&gt;<span class="xml">
+</span>&lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;<span class="xml"></span>
+</code></pre><h3 id="controller">controller</h3><pre><code>def <span class="operator"><span class="keyword">create</span>
+  @<span class="keyword">user</span> = <span class="keyword">User</span>.<span class="keyword">create</span>( user_params )
+<span class="keyword">end</span>
 
-JS               <span class="variable">SF =</span>= <span class="number">1</span>                 符号为负则跳转
-JNS              <span class="variable">SF =</span>= <span class="number">0</span>                 符号为正则跳转
+private
 
-JP/JPE           <span class="variable">PF =</span>= <span class="number">1</span>                 <span class="string">"1"</span> 的个数为偶数则跳转
-JNP/JPO          <span class="variable">PF =</span>= <span class="number">0</span>                 <span class="string">"1"</span> 的个数为奇数则跳转
+# <span class="keyword">Use</span> strong_parameters <span class="keyword">for</span> attribute whitelisting
+# Be sure <span class="keyword">to</span> <span class="keyword">update</span> your <span class="keyword">create</span>() <span class="keyword">and</span> <span class="keyword">update</span>() controller methods.
 
-JO               <span class="variable">OF =</span>= <span class="number">1</span>                 溢出则跳转
-JNO              <span class="variable">OF =</span>= <span class="number">0</span>                 无溢出则跳转
-
-JC               <span class="variable">CF =</span>= <span class="number">1</span>                 进位则跳转
-JB               <span class="variable">CF =</span>= <span class="number">1</span>                 小于则跳转
-JNAE             <span class="variable">CF =</span>= <span class="number">1</span>                 不大于等于则跳转
-JNC              <span class="variable">CF =</span>= <span class="number">0</span>                 无进位则跳转
-JNB              <span class="variable">CF =</span>= <span class="number">0</span>                 不小于则跳转
-JAE              <span class="variable">CF =</span>= <span class="number">0</span>                 大于则跳转
-JBE              <span class="variable">CF =</span>= <span class="number">1</span> 或 <span class="variable">ZF =</span>= <span class="number">1</span>      小于等于则跳转   
-JNA              <span class="variable">CF =</span>= <span class="number">1</span> 或 <span class="variable">ZF =</span>= <span class="number">1</span>      不大于则跳转
-JNBE             <span class="variable">CF =</span>= <span class="number">0</span> 或 <span class="variable">ZF =</span>= <span class="number">0</span>      不小于等于则跳转
-JA               <span class="variable">CF =</span>= <span class="number">0</span> 或 <span class="variable">ZF =</span>= <span class="number">0</span>      不大于则跳转
-
-JL               SF != OF                小于则跳转
-JNGE             SF != OF                不大于等于则跳转
-JNL              <span class="variable">SF =</span>= OF                不小于则跳转
-JGE              <span class="variable">SF =</span>= OF                不大于等于则跳转
-
-JLE              ZF != OF 或 <span class="variable">ZF =</span>= <span class="number">1</span>     小于等于则跳转
-JNG              ZF != OF 或 <span class="variable">ZF =</span>= <span class="number">1</span>     不大于则跳转
-JNLE             <span class="variable">SF =</span>= OF 且 <span class="variable">ZF =</span>= <span class="number">0</span>     不小于等于则跳转
-JG               <span class="variable">SF =</span>= OF 且 <span class="variable">ZF =</span>= <span class="number">0</span>     大于则跳转
-</code></pre><p>通常，这些条件跳转指令都与CMP 和 TEST 匹配出现，但是条件跳转是检查的<code>标志位</code> 。因此，在有修改标记位的代码处，可以根据需求使用跳转指令来修改程序。</p>
-<h2 id="2、短路与（&amp;&amp;）_短路或_（||）">2、短路与（&amp;&amp;） 短路或 （||）</h2><p>测试代码：</p>
-<pre><code><span class="function"><span class="keyword">int</span> <span class="title">Accumulation</span><span class="params">(<span class="keyword">int</span> nNumber)</span>
-</span>{
-    nNumber &amp;&amp; (nNumber += Accumulation(nNumber - <span class="number">1</span>));
-    <span class="keyword">return</span> nNumber;
-}
-</code></pre><p>反编译汇编代码：</p>
-<pre><code><span class="keyword">int</span> Accumulation(<span class="keyword">int</span> nNumber)
-{
-    <span class="number">17</span>:       nNumber &amp;&amp; (nNumber += Accumulation(nNumber - <span class="number">1</span>))<span class="comment">;</span>
-    //短路模式汇编代码，比较nNumber是否等于<span class="number">0</span>
-    0040D448   <span class="keyword">cmp</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">0</span>
-    //通过<span class="keyword">JE</span>跳转，检查ZF标记位等于<span class="number">1</span>跳转
-    0040D44C   <span class="keyword">je</span>          Accumulation+<span class="number">35h</span> (0040d465)
-
-    //跳转失败，递归，准备参数
-    0040D44E   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-    0040D451   <span class="keyword">sub</span>         <span class="number">eax</span>,<span class="number">1</span>
-    0040D454   <span class="keyword">push</span>        <span class="number">eax</span>
-    //递归，调用自己
-    0040D455   <span class="keyword">call</span>        @ILT+<span class="number">5</span>(Accumulation) (0040100a)
-    //<span class="literal">esp</span>指针偏移？？我还没搞明白？？？
-    0040D45A   <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">4</span>
-    //找到nNumber变量
-    0040D45D   <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-    //<span class="number">eax</span>中存放了 Accumulation函数返回值。nNumber + <span class="number">eax</span>
-    0040D460   <span class="keyword">add</span>         <span class="number">ecx</span>,<span class="number">eax</span>
-    //将最终结果存回 <span class="literal">ebp</span>+<span class="number">8</span>地址处 ，即nNumber地址处。 
-    0040D462   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">ecx</span>
-
-    <span class="number">18</span>:       return nNumber<span class="comment">;</span>
-    0040D465   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-}
+def user_params
+  params.require(:<span class="keyword">user</span>).permit(:avatar)
+<span class="keyword">end</span></span>
+</code></pre><h3 id="show_view">show view</h3><pre><code>&lt;<span class="variable">%=</span> image_tag <span class="variable">@user</span>.avatar.url <span class="variable">%&gt;</span>
+&lt;<span class="variable">%=</span> image_tag <span class="variable">@user</span>.avatar.url(:medium) <span class="variable">%&gt;</span>
+&lt;<span class="variable">%=</span> image_tag <span class="variable">@user</span>.avatar.url(:thumb) <span class="variable">%&gt;</span>
+</code></pre><h3 id="删除">删除</h3><p>把属性设置为nil，然后保存即可</p>
+<pre><code><span class="variable">@user</span>.avatar = nil
+<span class="variable">@user</span>.save
 </code></pre>  
 	</div>
 		<footer class="article-footer clearfix">
@@ -188,14 +167,9 @@ JG               <span class="variable">SF =</span>= OF 且 <span class="variabl
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/逆向基础/">逆向基础</a>
+  <a class="article-category-link" href="/categories/Rails学习/">Rails学习</a>
 </div>
 
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
-  </div>
 
 </div>
 
@@ -203,7 +177,7 @@ JG               <span class="variable">SF =</span>= OF 且 <span class="variabl
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://0x520.com/2014/05/05/reverse/5/" data-title="逆向基础第四篇：条件跳转与短路运算 | 鸡哥" data-tsina="null" class="share clearfix">
+	  <div data-url="http://0x520.com/2015/05/24/rails/5/" data-title="Rails中使用paperclip进行文件&amp;图片上传 | 鸡哥" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -217,18 +191,18 @@ JG               <span class="variable">SF =</span>= OF 且 <span class="variabl
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/05/05/reverse/6/" title="逆向基础第六篇：位运算">
+ <a href="/2015/05/24/rails/3/" title="Rails 中使用bootstrap">
   <strong>上一篇：</strong><br/>
   <span>
-  逆向基础第六篇：位运算</span>
+  Rails 中使用bootstrap</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2014/05/04/reverse/4/"  title="逆向基础第五篇：条件表达式">
+<a href="/2015/05/24/rails/4/"  title="Rails中使用devise进行用户认证">
  <strong>下一篇：</strong><br/> 
- <span>逆向基础第五篇：条件表达式
+ <span>Rails中使用devise进行用户认证
 </span>
 </a>
 </div>
@@ -243,7 +217,7 @@ JG               <span class="variable">SF =</span>= OF 且 <span class="variabl
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、条件跳转指令表"><span class="toc-number">1.</span> <span class="toc-text">1、条件跳转指令表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、短路与（&&）_短路或_（||）"><span class="toc-number">2.</span> <span class="toc-text">2、短路与（&&） 短路或 （||）</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Requirements"><span class="toc-number">1.</span> <span class="toc-text">Requirements</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-number">3.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#model"><span class="toc-number">3.1.</span> <span class="toc-text">model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#migrateion"><span class="toc-number">3.2.</span> <span class="toc-text">migrateion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#new_view"><span class="toc-number">3.3.</span> <span class="toc-text">new view</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#controller"><span class="toc-number">3.4.</span> <span class="toc-text">controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#show_view"><span class="toc-number">3.5.</span> <span class="toc-text">show view</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除"><span class="toc-number">3.6.</span> <span class="toc-text">删除</span></a></li></ol></li></ol>
  
   </div>
 
