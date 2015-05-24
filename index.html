@@ -77,79 +77,6 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/05/24/rails/3/" title="Rails 中使用bootstrap" itemprop="url">Rails 中使用bootstrap</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-05-24T07:02:00.000Z" itemprop="datePublished"> 发表于 2015-05-24</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>如果需要自定义less的话，请参考 <a href="http://www.rubydoc.info/gems/twitter-bootstrap-rails/3.2.0" target="_blank" rel="external">http://www.rubydoc.info/gems/twitter-bootstrap-rails/3.2.0</a></p>
-<h2 id="Installing_the_CSS_stylesheets">Installing the CSS stylesheets</h2><p>If you don’t need to customize the stylesheets using Less, the only gem you need is the twitter-bootstrap-rails gem:</p>
-<pre><code><span class="title">gem</span> <span class="string">"twitter-bootstrap-rails"</span>
-</code></pre><p>After running bundle install, run the generator:</p>
-<pre><code>rails generate <span class="string">bootstrap:</span>install <span class="keyword">static</span>
-</code></pre><p>Use <code>bundle show [gemname]</code> to see where a bundled gem is installed.</p>
-<h2 id="Generating_layouts_and_views">Generating layouts and views</h2><p>You can run following generators to get started with Bootstrap quickly.</p>
-<p>Layout (generates Bootstrap compatible layout) - (Haml and Slim supported)</p>
-<p>Usage:</p>
-<pre><code>rails <span class="keyword">g</span> <span class="keyword">bootstrap</span>:layout [LAYOUT_NAME]
-</code></pre><p>Themed (generates Bootstrap compatible scaffold views.) - (Haml and Slim supported)</p>
-<p>Usage:</p>
-<pre><code>rails <span class="keyword">g</span> <span class="keyword">bootstrap</span>:themed [RESOURCE_NAME]
-</code></pre><p>Example:</p>
-<pre><code>rails <span class="keyword">g</span> scaffold <span class="keyword">Post</span> title:string description:text
-rake <span class="keyword">db</span>:migrate
-rails <span class="keyword">g</span> <span class="keyword">bootstrap</span>:themed Posts
-</code></pre><p>Notice the plural usage of the resource to generate bootstrap:themed.</p>
-<h2 id="解决：_couldn’t_find_file_‘twitter-bootstrap-static/bootstrap’_的问题">解决： couldn’t find file ‘twitter-bootstrap-static/bootstrap’ 的问题</h2><p>检查/Library/Ruby/Gems/2.0.0/gems/twitter-bootstrap-rails-3.2.0的用户权限</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Rails学习/">Rails学习</a>
-</div>
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
       <a href="/2015/05/24/rails/5/" title="Rails中使用paperclip进行文件&amp;图片上传" itemprop="url">Rails中使用paperclip进行文件&amp;图片上传</a>
   </h1>
   <p class="article-author">By
@@ -157,7 +84,7 @@ rails <span class="keyword">g</span> <span class="keyword">bootstrap</span>:them
 		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
 		
   <p class="article-time">
-    <time datetime="2015-05-24T07:02:00.000Z" itemprop="datePublished"> 发表于 2015-05-24</time>
+    <time datetime="2015-05-24T09:02:00.000Z" itemprop="datePublished"> 发表于 2015-05-24</time>
     
   </p>
 </header>
@@ -224,7 +151,7 @@ def user_params
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Rails学习/">Rails学习</a>
+  <a class="article-category-link" href="/categories/Ruby-On-Rails/">Ruby On Rails</a>
 </div>
 
 
@@ -260,7 +187,7 @@ def user_params
 		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
 		
   <p class="article-time">
-    <time datetime="2015-05-24T07:02:00.000Z" itemprop="datePublished"> 发表于 2015-05-24</time>
+    <time datetime="2015-05-24T08:02:00.000Z" itemprop="datePublished"> 发表于 2015-05-24</time>
     
   </p>
 </header>
@@ -343,7 +270,80 @@ rake <span class="keyword">db</span>:migrate
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Rails学习/">Rails学习</a>
+  <a class="article-category-link" href="/categories/Ruby-On-Rails/">Ruby On Rails</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/24/rails/3/" title="Rails 中使用bootstrap" itemprop="url">Rails 中使用bootstrap</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-24T07:02:00.000Z" itemprop="datePublished"> 发表于 2015-05-24</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>如果需要自定义less的话，请参考 <a href="http://www.rubydoc.info/gems/twitter-bootstrap-rails/3.2.0" target="_blank" rel="external">http://www.rubydoc.info/gems/twitter-bootstrap-rails/3.2.0</a></p>
+<h2 id="Installing_the_CSS_stylesheets">Installing the CSS stylesheets</h2><p>If you don’t need to customize the stylesheets using Less, the only gem you need is the twitter-bootstrap-rails gem:</p>
+<pre><code><span class="title">gem</span> <span class="string">"twitter-bootstrap-rails"</span>
+</code></pre><p>After running bundle install, run the generator:</p>
+<pre><code>rails generate <span class="string">bootstrap:</span>install <span class="keyword">static</span>
+</code></pre><p>Use <code>bundle show [gemname]</code> to see where a bundled gem is installed.</p>
+<h2 id="Generating_layouts_and_views">Generating layouts and views</h2><p>You can run following generators to get started with Bootstrap quickly.</p>
+<p>Layout (generates Bootstrap compatible layout) - (Haml and Slim supported)</p>
+<p>Usage:</p>
+<pre><code>rails <span class="keyword">g</span> <span class="keyword">bootstrap</span>:layout [LAYOUT_NAME]
+</code></pre><p>Themed (generates Bootstrap compatible scaffold views.) - (Haml and Slim supported)</p>
+<p>Usage:</p>
+<pre><code>rails <span class="keyword">g</span> <span class="keyword">bootstrap</span>:themed [RESOURCE_NAME]
+</code></pre><p>Example:</p>
+<pre><code>rails <span class="keyword">g</span> scaffold <span class="keyword">Post</span> title:string description:text
+rake <span class="keyword">db</span>:migrate
+rails <span class="keyword">g</span> <span class="keyword">bootstrap</span>:themed Posts
+</code></pre><p>Notice the plural usage of the resource to generate bootstrap:themed.</p>
+<h2 id="解决：_couldn’t_find_file_‘twitter-bootstrap-static/bootstrap’_的问题">解决： couldn’t find file ‘twitter-bootstrap-static/bootstrap’ 的问题</h2><p>检查/Library/Ruby/Gems/2.0.0/gems/twitter-bootstrap-rails-3.2.0的用户权限</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Ruby-On-Rails/">Ruby On Rails</a>
 </div>
 
 
@@ -416,7 +416,7 @@ rails <span class="keyword">g</span> controller welcome
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Rails学习/">Rails学习</a>
+  <a class="article-category-link" href="/categories/Ruby-On-Rails/">Ruby On Rails</a>
 </div>
 
 
@@ -547,7 +547,7 @@ namespace <span class="symbol">:dev</span> <span class="keyword">do</span>
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Rails学习/">Rails学习</a>
+  <a class="article-category-link" href="/categories/Ruby-On-Rails/">Ruby On Rails</a>
 </div>
 
 
@@ -1091,9 +1091,7 @@ export JAV<span class="built_in">A_HOME</span>=<span class="escape">`/</span>usr
 		  
 		
 		  
-			<li><a href="/categories/Rails学习/" title="Rails学习">Rails学习<sup>5</sup></a></li>
-		  
-		
+			<li><a href="/categories/Ruby-On-Rails/" title="Ruby On Rails">Ruby On Rails<sup>5</sup></a></li>
 		  
 		
 		  
