@@ -4,7 +4,7 @@
   <subtitle><![CDATA[不乱于心,不困于情。不念过往，不畏将来。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://0x520.com/"/>
-  <updated>2015-05-24T11:43:56.000Z</updated>
+  <updated>2015-05-24T11:45:57.000Z</updated>
   <id>http://0x520.com/</id>
   
   <author>
@@ -15,11 +15,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[Rails中使用paperclip进行文件&图片上传]]></title>
+    <title><![CDATA[Rails中使用paperclip进行图片上传]]></title>
     <link href="http://0x520.com/2015/05/24/rails/5/"/>
     <id>http://0x520.com/2015/05/24/rails/5/</id>
     <published>2015-05-24T09:02:00.000Z</published>
-    <updated>2015-05-24T11:43:56.000Z</updated>
+    <updated>2015-05-24T11:45:57.000Z</updated>
     <content type="html"><![CDATA[<p>参考：<a href="https://github.com/thoughtbot/paperclip" target="_blank" rel="external">https://github.com/thoughtbot/paperclip</a></p>
 <h2 id="Requirements">Requirements</h2><p>必须安装ImageMatic才能对图片进行处理</p>
 <p>If you’re on Mac OS X, you’ll want to run the following with Homebrew:</p>
