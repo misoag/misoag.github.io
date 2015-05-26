@@ -4,51 +4,36 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>逆向基础第十一篇：控制流程 之 while循环 | 鸡哥</title>
+    <title>用mac笔记本演示iPhone应用 | 鸡哥</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="John·Huang">
     
 
     
-    <meta name="description" content="while循环与do循环正好相反，先执行判定条件，再执行代码块。 
-测试代码：
-int _tmain(int argc, _TCHAR* argv[])
-{
-    int nSum    = 0;
-    int nIndex    = 0;
-    while (nIndex &amp;lt;= argc)
-    {
-        nSum += nIndex;
-        nIndex ++">
+    <meta name="description" content="找到QuickTime
+新建影片录制
+选择从iPhone录制
+开始演示吧">
 <meta property="og:type" content="article">
-<meta property="og:title" content="逆向基础第十一篇：控制流程 之 while循环">
-<meta property="og:url" content="http://0x520.com/2014/05/11/reverse/11/index.html">
+<meta property="og:title" content="用mac笔记本演示iPhone应用">
+<meta property="og:url" content="http://0x520.com/2015/05/23/others/1/index.html">
 <meta property="og:site_name" content="鸡哥">
-<meta property="og:description" content="while循环与do循环正好相反，先执行判定条件，再执行代码块。 
-测试代码：
-int _tmain(int argc, _TCHAR* argv[])
-{
-    int nSum    = 0;
-    int nIndex    = 0;
-    while (nIndex &amp;lt;= argc)
-    {
-        nSum += nIndex;
-        nIndex ++">
-<meta property="og:image" content="http://0x520.com/uploads/2014/07/2800468358.png">
-<meta property="og:updated_time" content="2015-05-23T03:27:47.000Z">
+<meta property="og:description" content="找到QuickTime
+新建影片录制
+选择从iPhone录制
+开始演示吧">
+<meta property="og:image" content="http://0x520.com/uploads/QQ20150526-1.jpg">
+<meta property="og:image" content="http://0x520.com/uploads/QQ20150526-2.jpg">
+<meta property="og:image" content="http://0x520.com/uploads/QQ20150526-3.jpg">
+<meta property="og:image" content="http://0x520.com/uploads/QQ20150526-4.jpg">
+<meta property="og:updated_time" content="2015-05-26T08:54:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="逆向基础第十一篇：控制流程 之 while循环">
-<meta name="twitter:description" content="while循环与do循环正好相反，先执行判定条件，再执行代码块。 
-测试代码：
-int _tmain(int argc, _TCHAR* argv[])
-{
-    int nSum    = 0;
-    int nIndex    = 0;
-    while (nIndex &amp;lt;= argc)
-    {
-        nSum += nIndex;
-        nIndex ++">
+<meta name="twitter:title" content="用mac笔记本演示iPhone应用">
+<meta name="twitter:description" content="找到QuickTime
+新建影片录制
+选择从iPhone录制
+开始演示吧">
 
     
     <link rel="alternative" href="/atom.xml" title="鸡哥" type="application/atom+xml">
@@ -104,14 +89,14 @@ int _tmain(int argc, _TCHAR* argv[])
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/05/11/reverse/11/" title="逆向基础第十一篇：控制流程 之 while循环" itemprop="url">逆向基础第十一篇：控制流程 之 while循环</a>
+      <a href="/2015/05/23/others/1/" title="用mac笔记本演示iPhone应用" itemprop="url">用mac笔记本演示iPhone应用</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
 		
   <p class="article-time">
-    <time datetime="2014-05-10T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-05-11</time>
+    <time datetime="2015-05-23T07:02:00.000Z" itemprop="datePublished"> 发表于 2015-05-23</time>
     
   </p>
 </header>
@@ -120,57 +105,24 @@ int _tmain(int argc, _TCHAR* argv[])
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#找到QuickTime"><span class="toc-number">1.</span> <span class="toc-text">找到QuickTime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建影片录制"><span class="toc-number">2.</span> <span class="toc-text">新建影片录制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择从iPhone录制"><span class="toc-number">3.</span> <span class="toc-text">选择从iPhone录制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始演示吧"><span class="toc-number">4.</span> <span class="toc-text">开始演示吧</span></a></li></ol>
 		
 		</div>
 		
-		<p>while循环与do循环正好相反，先执行判定条件，再执行代码块。 </p>
-<p>测试代码：</p>
-<pre><code><span class="function"><span class="keyword">int</span> <span class="title">_tmain</span><span class="params">(<span class="keyword">int</span> argc, _TCHAR* argv[])</span>
-</span>{
-    <span class="keyword">int</span> nSum    = <span class="number">0</span>;
-    <span class="keyword">int</span> nIndex    = <span class="number">0</span>;
-    <span class="keyword">while</span> (nIndex &lt;= argc)
-    {
-        nSum += nIndex;
-        nIndex ++;
-    } 
-    <span class="keyword">return</span> <span class="number">0</span>;
-}
-</code></pre><p>反汇编代码：</p>
-<p><img src="/uploads/2014/07/2800468358.png" alt="1.png"></p>
-<p>我们看到while循环使用了两次跳转指令完成循环，由于多使用了一次跳转指令，因此while循环要比do循环效率低一些。</p>
-<p><strong>总结：</strong></p>
-<pre><code>WHILE_BEGIN
-;影响标记位的指令
-jxx    WHILE_END
-<span class="attribute">...</span><span class="attribute">...</span>
-jmp    WHILE_BEGIN
-WHILE_END
-</code></pre><p>遇到以上代码块，即可判断为while循环结构。根据跳转指令的位置，可以还原while循环判断。</p>
-<p><strong>注意：while循环结构很可能被优化成do循环结构，被转换后的while结构由于需要检查是否可以被成功执行一次，通常会被潜逃在if单分支结构中，高级代码如下：</strong></p>
-<pre><code><span class="keyword">if</span><span class="comment">(<span class="doctag"><span class="keyword">xxx</span></span>)</span>
-{
-    <span class="keyword">do</span>
-    {
-        <span class="comment">//循环代码块</span>
-    } <span class="keyword">while</span> <span class="comment">(<span class="doctag"><span class="keyword">xxx</span></span>)</span>
-}
-</code></pre>  
+		<h2 id="找到QuickTime">找到QuickTime</h2><p><img src="/uploads/QQ20150526-1.jpg" alt="找到QuickTime"></p>
+<h2 id="新建影片录制">新建影片录制</h2><p><img src="/uploads/QQ20150526-2.jpg" alt="找到QuickTime"></p>
+<h2 id="选择从iPhone录制">选择从iPhone录制</h2><p><img src="/uploads/QQ20150526-3.jpg" alt="找到QuickTime"></p>
+<h2 id="开始演示吧">开始演示吧</h2><p><img src="/uploads/QQ20150526-4.jpg" alt="找到QuickTime"></p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/逆向基础/">逆向基础</a>
+  <a class="article-category-link" href="/categories/其他/">其他</a>
 </div>
 
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
-  </div>
 
 </div>
 
@@ -178,7 +130,7 @@ WHILE_END
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://0x520.com/2014/05/11/reverse/11/" data-title="逆向基础第十一篇：控制流程 之 while循环 | 鸡哥" data-tsina="null" class="share clearfix">
+	  <div data-url="http://0x520.com/2015/05/23/others/1/" data-title="用mac笔记本演示iPhone应用 | 鸡哥" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -192,18 +144,18 @@ WHILE_END
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/05/12/reverse/12/" title="逆向基础第十二篇：控制流程 之 for循环">
+ <a href="/2015/05/23/rails/1/" title="Ruby on Rails 基础知识整理">
   <strong>上一篇：</strong><br/>
   <span>
-  逆向基础第十二篇：控制流程 之 for循环</span>
+  Ruby on Rails 基础知识整理</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2014/05/10/reverse/10/"  title="逆向基础第十篇：控制流程 之 do循环">
+<a href="/2015/05/12/issue/2/"  title="Android WebView中加载本地资源的解决办法">
  <strong>下一篇：</strong><br/> 
- <span>逆向基础第十篇：控制流程 之 do循环
+ <span>Android WebView中加载本地资源的解决办法
 </span>
 </a>
 </div>
@@ -218,7 +170,7 @@ WHILE_END
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#找到QuickTime"><span class="toc-number">1.</span> <span class="toc-text">找到QuickTime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建影片录制"><span class="toc-number">2.</span> <span class="toc-text">新建影片录制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择从iPhone录制"><span class="toc-number">3.</span> <span class="toc-text">选择从iPhone录制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始演示吧"><span class="toc-number">4.</span> <span class="toc-text">开始演示吧</span></a></li></ol>
  
   </div>
 

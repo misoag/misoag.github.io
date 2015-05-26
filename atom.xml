@@ -323,6 +323,26 @@ namespace <span class="symbol">:dev</span> <span class="keyword">do</span>
   </entry>
   
   <entry>
+    <title><![CDATA[用mac笔记本演示iPhone应用]]></title>
+    <link href="http://0x520.com/2015/05/23/others/1/"/>
+    <id>http://0x520.com/2015/05/23/others/1/</id>
+    <published>2015-05-23T07:02:00.000Z</published>
+    <updated>2015-05-26T08:54:52.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="找到QuickTime">找到QuickTime</h2><p><img src="/uploads/QQ20150526-1.jpg" alt="找到QuickTime"></p>
+<h2 id="新建影片录制">新建影片录制</h2><p><img src="/uploads/QQ20150526-2.jpg" alt="找到QuickTime"></p>
+<h2 id="选择从iPhone录制">选择从iPhone录制</h2><p><img src="/uploads/QQ20150526-3.jpg" alt="找到QuickTime"></p>
+<h2 id="开始演示吧">开始演示吧</h2><p><img src="/uploads/QQ20150526-4.jpg" alt="找到QuickTime"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="找到QuickTime">找到QuickTime</h2><p><img src="/uploads/QQ20150526-1.jpg" alt="找到QuickTime"></p>
+<h2 id="新建影片录制">新建影片录制</h2><p><img src="]]>
+    </summary>
+    
+      <category term="其他" scheme="http://0x520.com/categories/%E5%85%B6%E4%BB%96/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Android WebView中加载本地资源的解决办法]]></title>
     <link href="http://0x520.com/2015/05/12/issue/2/"/>
     <id>http://0x520.com/2015/05/12/issue/2/</id>
@@ -1075,106 +1095,6 @@ sudo <span class="keyword">service</span> php5-fpm <span class="literal">restart
   </entry>
   
   <entry>
-    <title><![CDATA[Ubuntu 12.04 下配置 uwsgi + nginx + web.py 环境]]></title>
-    <link href="http://0x520.com/2015/01/01/operation/2/"/>
-    <id>http://0x520.com/2015/01/01/operation/2/</id>
-    <published>2014-12-31T16:00:00.000Z</published>
-    <updated>2015-05-23T03:27:47.000Z</updated>
-    <content type="html"><![CDATA[<p>1、准备</p>
-<pre><code>apt-<span class="built_in">get</span> <span class="keyword">update</span>
-apt-<span class="built_in">get</span> upgrade
-</code></pre><p>2、安装nginx、uwsgi</p>
-<pre><code>apt-get <span class="operator"><span class="keyword">install</span> nginx-<span class="keyword">full</span> uwsgi uwsgi-<span class="keyword">plugin</span>-python</span>
-</code></pre><p>3、创建文件/etc/nginx/sites-available/example.com</p>
-<pre><code><span class="xml">server </span><span class="expression">{
-        <span class="variable">listen</span> 80;
-    <span class="variable">server</span>_<span class="variable">name</span>     <span class="variable">localhost</span>;
-
-    <span class="variable">access</span>_<span class="variable">log</span>    <span class="end-block">/var</span><span class="end-block">/www</span><span class="end-block">/example.com</span><span class="end-block">/logs</span><span class="end-block">/access.log</span>;
-    <span class="variable">error</span>_<span class="variable">log</span>    <span class="end-block">/var</span><span class="end-block">/www</span><span class="end-block">/example.com</span><span class="end-block">/logs</span><span class="end-block">/error.log</span>;
-
-        <span class="variable">location</span> <span class="end-block">/ </span>{
-        <span class="variable">include</span>     <span class="variable">uwsgi</span>_<span class="variable">params</span>;
-                <span class="variable">uwsgi</span>_<span class="variable">pass</span>      127<span class="variable">.</span>0<span class="variable">.</span>0<span class="variable">.</span>1:9001;
-        }</span><span class="xml">
-
-        location /static </span><span class="expression">{
-                <span class="variable">root</span> <span class="end-block">/var</span><span class="end-block">/www</span><span class="end-block">/example.com</span><span class="end-block">/public</span>_<span class="variable">html</span><span class="end-block">/static</span>/;
-                <span class="variable">index</span> <span class="variable">index.html</span>;
-        }</span><span class="xml">
-}</span>
-</code></pre><p>4、新建软链接</p>
-<pre><code>ln -s <span class="regexp">/etc/</span>nginx<span class="regexp">/sites-available/</span>example.com <span class="regexp">/etc/</span>nginx<span class="regexp">/sites-enabled/</span>example.com
-</code></pre><p>5、创建文件 /etc/uwsgi/apps-available/example.com.xml </p>
-<pre><code><span class="tag">&lt;<span class="title">uwsgi</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">plugins</span>&gt;</span>python<span class="tag">&lt;/<span class="title">plugins</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">socket</span>&gt;</span>127.0.0.1:9001<span class="tag">&lt;/<span class="title">socket</span>&gt;</span>  
-    <span class="tag">&lt;<span class="title">module</span>&gt;</span>myapp<span class="tag">&lt;/<span class="title">module</span>&gt;</span>  
-    <span class="comment">&lt;!-- &lt;master /&gt;  --&gt;</span>
-    <span class="tag">&lt;<span class="title">pythonpath</span>&gt;</span>/var/www/example.com/application<span class="tag">&lt;/<span class="title">pythonpath</span>&gt;</span>  
-    <span class="comment">&lt;!-- &lt;chdir&gt;/var/www/example.com/application&lt;/chdir&gt;   --&gt;</span>    
-    <span class="tag">&lt;<span class="title">processes</span>&gt;</span>2<span class="tag">&lt;/<span class="title">processes</span>&gt;</span>  
-    <span class="tag">&lt;<span class="title">workers</span>&gt;</span>4<span class="tag">&lt;/<span class="title">workers</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">max-requests</span>&gt;</span>10000<span class="tag">&lt;/<span class="title">max-requests</span>&gt;</span>  
-    <span class="comment">&lt;!--
-    &lt;memory-report/&gt;  
-    &lt;pidfile&gt;/tmp/uwsgi_myapp.pid&lt;/pidfile&gt;  
-    &lt;max-requests&gt;10000&lt;/max-requests&gt;  
-    &lt;daemonize&gt;/var/log/uwsgi_myapp.log&lt;/daemonize&gt;   
-    --&gt;</span>
-<span class="tag">&lt;/<span class="title">uwsgi</span>&gt;</span>  
-</code></pre><p>6、新建软链接</p>
-<pre><code>ln -s /etc/uwsgi/apps-available/example<span class="class">.com</span><span class="class">.xml</span> /etc/uwsgi/apps-enabled/example<span class="class">.com</span><span class="class">.xml</span>
-</code></pre><p>7、创建应用目录</p>
-<pre><code>mkdir -p <span class="regexp">/var/</span>www<span class="regexp">/example.com/</span>public_html/<span class="keyword">static</span>
-mkdir <span class="regexp">/var/</span>www<span class="regexp">/example.com/</span>application
-mkdir <span class="regexp">/var/</span>www<span class="regexp">/example.com/</span>logs
-</code></pre><p>8、在/var/www/example.com/application目录下新建 <code>myapp.py</code> 文件</p>
-<pre><code><span class="keyword">import</span> web
-
-urls = (<span class="string">'/'</span>,<span class="string">'hello'</span>)
-
-<span class="class"><span class="keyword">class</span> <span class="title">hello</span>:</span>
-    <span class="function"><span class="keyword">def</span> <span class="title">GET</span><span class="params">(self)</span>:</span>
-        <span class="keyword">return</span> <span class="string">"hello world"</span>
-
-app = web.application(urls,globals())
-
-application = app.wsgifunc()
-
-<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
-    app.run()
-</code></pre><p>注意：文件名与example.com.xml中的<module>节点的内容相同。</module></p>
-<p>9、重启</p>
-<pre><code><span class="keyword">service</span> nginx <span class="literal">restart</span>
-<span class="keyword">service</span> nwsgi <span class="literal">restart</span>
-</code></pre><p>10、访问 <a href="http://localhost/，进行验证" target="_blank" rel="external">http://localhost/，进行验证</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>1、准备</p>
-<pre><code>apt-<span class="built_in">get</span> <span class="keyword">update</span>
-apt-<span class="built_in">get</span> upgra]]>
-    </summary>
-    
-      <category term="linux" scheme="http://0x520.com/tags/linux/"/>
-    
-      <category term="nginx" scheme="http://0x520.com/tags/nginx/"/>
-    
-      <category term="python" scheme="http://0x520.com/tags/python/"/>
-    
-      <category term="shell" scheme="http://0x520.com/tags/shell/"/>
-    
-      <category term="运维" scheme="http://0x520.com/tags/%E8%BF%90%E7%BB%B4/"/>
-    
-      <category term="Linux" scheme="http://0x520.com/categories/Linux/"/>
-    
-      <category term="运维" scheme="http://0x520.com/categories/Linux/%E8%BF%90%E7%BB%B4/"/>
-    
-      <category term="Python" scheme="http://0x520.com/categories/Linux/%E8%BF%90%E7%BB%B4/Python/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[MongoDB 集群搭建（实验）]]></title>
     <link href="http://0x520.com/2015/01/01/mongodb/1/"/>
     <id>http://0x520.com/2015/01/01/mongodb/1/</id>
@@ -1286,6 +1206,106 @@ connecting <span class="string">to:</span> <span class="number">192.168</span>.5
       <category term="mongodb" scheme="http://0x520.com/tags/mongodb/"/>
     
       <category term="MongoDB" scheme="http://0x520.com/categories/MongoDB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Ubuntu 12.04 下配置 uwsgi + nginx + web.py 环境]]></title>
+    <link href="http://0x520.com/2015/01/01/operation/2/"/>
+    <id>http://0x520.com/2015/01/01/operation/2/</id>
+    <published>2014-12-31T16:00:00.000Z</published>
+    <updated>2015-05-23T03:27:47.000Z</updated>
+    <content type="html"><![CDATA[<p>1、准备</p>
+<pre><code>apt-<span class="built_in">get</span> <span class="keyword">update</span>
+apt-<span class="built_in">get</span> upgrade
+</code></pre><p>2、安装nginx、uwsgi</p>
+<pre><code>apt-get <span class="operator"><span class="keyword">install</span> nginx-<span class="keyword">full</span> uwsgi uwsgi-<span class="keyword">plugin</span>-python</span>
+</code></pre><p>3、创建文件/etc/nginx/sites-available/example.com</p>
+<pre><code><span class="xml">server </span><span class="expression">{
+        <span class="variable">listen</span> 80;
+    <span class="variable">server</span>_<span class="variable">name</span>     <span class="variable">localhost</span>;
+
+    <span class="variable">access</span>_<span class="variable">log</span>    <span class="end-block">/var</span><span class="end-block">/www</span><span class="end-block">/example.com</span><span class="end-block">/logs</span><span class="end-block">/access.log</span>;
+    <span class="variable">error</span>_<span class="variable">log</span>    <span class="end-block">/var</span><span class="end-block">/www</span><span class="end-block">/example.com</span><span class="end-block">/logs</span><span class="end-block">/error.log</span>;
+
+        <span class="variable">location</span> <span class="end-block">/ </span>{
+        <span class="variable">include</span>     <span class="variable">uwsgi</span>_<span class="variable">params</span>;
+                <span class="variable">uwsgi</span>_<span class="variable">pass</span>      127<span class="variable">.</span>0<span class="variable">.</span>0<span class="variable">.</span>1:9001;
+        }</span><span class="xml">
+
+        location /static </span><span class="expression">{
+                <span class="variable">root</span> <span class="end-block">/var</span><span class="end-block">/www</span><span class="end-block">/example.com</span><span class="end-block">/public</span>_<span class="variable">html</span><span class="end-block">/static</span>/;
+                <span class="variable">index</span> <span class="variable">index.html</span>;
+        }</span><span class="xml">
+}</span>
+</code></pre><p>4、新建软链接</p>
+<pre><code>ln -s <span class="regexp">/etc/</span>nginx<span class="regexp">/sites-available/</span>example.com <span class="regexp">/etc/</span>nginx<span class="regexp">/sites-enabled/</span>example.com
+</code></pre><p>5、创建文件 /etc/uwsgi/apps-available/example.com.xml </p>
+<pre><code><span class="tag">&lt;<span class="title">uwsgi</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">plugins</span>&gt;</span>python<span class="tag">&lt;/<span class="title">plugins</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">socket</span>&gt;</span>127.0.0.1:9001<span class="tag">&lt;/<span class="title">socket</span>&gt;</span>  
+    <span class="tag">&lt;<span class="title">module</span>&gt;</span>myapp<span class="tag">&lt;/<span class="title">module</span>&gt;</span>  
+    <span class="comment">&lt;!-- &lt;master /&gt;  --&gt;</span>
+    <span class="tag">&lt;<span class="title">pythonpath</span>&gt;</span>/var/www/example.com/application<span class="tag">&lt;/<span class="title">pythonpath</span>&gt;</span>  
+    <span class="comment">&lt;!-- &lt;chdir&gt;/var/www/example.com/application&lt;/chdir&gt;   --&gt;</span>    
+    <span class="tag">&lt;<span class="title">processes</span>&gt;</span>2<span class="tag">&lt;/<span class="title">processes</span>&gt;</span>  
+    <span class="tag">&lt;<span class="title">workers</span>&gt;</span>4<span class="tag">&lt;/<span class="title">workers</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">max-requests</span>&gt;</span>10000<span class="tag">&lt;/<span class="title">max-requests</span>&gt;</span>  
+    <span class="comment">&lt;!--
+    &lt;memory-report/&gt;  
+    &lt;pidfile&gt;/tmp/uwsgi_myapp.pid&lt;/pidfile&gt;  
+    &lt;max-requests&gt;10000&lt;/max-requests&gt;  
+    &lt;daemonize&gt;/var/log/uwsgi_myapp.log&lt;/daemonize&gt;   
+    --&gt;</span>
+<span class="tag">&lt;/<span class="title">uwsgi</span>&gt;</span>  
+</code></pre><p>6、新建软链接</p>
+<pre><code>ln -s /etc/uwsgi/apps-available/example<span class="class">.com</span><span class="class">.xml</span> /etc/uwsgi/apps-enabled/example<span class="class">.com</span><span class="class">.xml</span>
+</code></pre><p>7、创建应用目录</p>
+<pre><code>mkdir -p <span class="regexp">/var/</span>www<span class="regexp">/example.com/</span>public_html/<span class="keyword">static</span>
+mkdir <span class="regexp">/var/</span>www<span class="regexp">/example.com/</span>application
+mkdir <span class="regexp">/var/</span>www<span class="regexp">/example.com/</span>logs
+</code></pre><p>8、在/var/www/example.com/application目录下新建 <code>myapp.py</code> 文件</p>
+<pre><code><span class="keyword">import</span> web
+
+urls = (<span class="string">'/'</span>,<span class="string">'hello'</span>)
+
+<span class="class"><span class="keyword">class</span> <span class="title">hello</span>:</span>
+    <span class="function"><span class="keyword">def</span> <span class="title">GET</span><span class="params">(self)</span>:</span>
+        <span class="keyword">return</span> <span class="string">"hello world"</span>
+
+app = web.application(urls,globals())
+
+application = app.wsgifunc()
+
+<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    app.run()
+</code></pre><p>注意：文件名与example.com.xml中的<module>节点的内容相同。</module></p>
+<p>9、重启</p>
+<pre><code><span class="keyword">service</span> nginx <span class="literal">restart</span>
+<span class="keyword">service</span> nwsgi <span class="literal">restart</span>
+</code></pre><p>10、访问 <a href="http://localhost/，进行验证" target="_blank" rel="external">http://localhost/，进行验证</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>1、准备</p>
+<pre><code>apt-<span class="built_in">get</span> <span class="keyword">update</span>
+apt-<span class="built_in">get</span> upgra]]>
+    </summary>
+    
+      <category term="linux" scheme="http://0x520.com/tags/linux/"/>
+    
+      <category term="nginx" scheme="http://0x520.com/tags/nginx/"/>
+    
+      <category term="python" scheme="http://0x520.com/tags/python/"/>
+    
+      <category term="shell" scheme="http://0x520.com/tags/shell/"/>
+    
+      <category term="运维" scheme="http://0x520.com/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="Linux" scheme="http://0x520.com/categories/Linux/"/>
+    
+      <category term="运维" scheme="http://0x520.com/categories/Linux/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="Python" scheme="http://0x520.com/categories/Linux/%E8%BF%90%E7%BB%B4/Python/"/>
     
   </entry>
   
@@ -1731,80 +1751,6 @@ public:
     <summary type="html">
     <![CDATA[<p>在C/C++中，使用malloc 与 new 实现堆空间的申请，返回的数据是堆空间的首地址。 对应地，使用free和delete完成堆空间的释放。但是需要堆空间的首地址。如果首地址丢失将无法释放堆空间，会导致内存泄露。</p>
 <p>确定变量空间是否属于堆空间只要找到两个关]]>
-    </summary>
-    
-      <category term="反汇编" scheme="http://0x520.com/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/"/>
-    
-      <category term="逆向" scheme="http://0x520.com/tags/%E9%80%86%E5%90%91/"/>
-    
-      <category term="逆向基础" scheme="http://0x520.com/categories/%E9%80%86%E5%90%91%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[逆向基础第十五篇：函数调用的三种约定方式（堆栈平衡）]]></title>
-    <link href="http://0x520.com/2014/05/15/reverse/15/"/>
-    <id>http://0x520.com/2014/05/15/reverse/15/</id>
-    <published>2014-05-14T16:00:00.000Z</published>
-    <updated>2015-05-23T03:27:47.000Z</updated>
-    <content type="html"><![CDATA[<p>VC++ 环境下的的函数调用约定有三种：</p>
-<ul>
-<li>_cedcl C/C++的默认调用方式，调用方平衡栈，不定长参数的函数可以使用。</li>
-<li>_stdcall 被调用方平衡栈，不定长参数的函数无法使用</li>
-<li>_fastcall 寄存器方式传参，被调用方平衡栈，不定长参数的函数无法使用。</li>
-</ul>
-<h2 id="1、_cdecl_与__stdcall的对比">1、_cdecl 与 _stdcall的对比</h2><pre><code><span class="keyword">void</span> _<span class="function">stdcall <span class="title">ShowStd</span><span class="params">(<span class="keyword">int</span> nNumber)</span>
-</span>{
-    <span class="built_in">printf</span>(<span class="string">"%d"</span>,nNumber);
-}
-
-<span class="keyword">void</span> _<span class="function">cdecl <span class="title">ShowCde</span><span class="params">(<span class="keyword">int</span> nNumber)</span>
-</span>{
-    <span class="built_in">printf</span>(<span class="string">"%d"</span>,nNumber);
-}
-
-<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    ShowStd(<span class="number">5</span>);<span class="comment">//被调用方平衡栈</span>
-    ShowCde(<span class="number">5</span>);<span class="comment">//调用方平衡栈</span>
-}
-</code></pre><p>main 函数反汇编代码如下：</p>
-<pre><code>    ShowStd(<span class="number">5</span>)<span class="comment">;</span>
-00CC1A6E  <span class="keyword">push</span>        <span class="number">5</span>  
-00CC1A70  <span class="keyword">call</span>        ShowStd (<span class="number">0CC11C7h</span>)  
-    ShowCde(<span class="number">5</span>)<span class="comment">;</span>
-00CC1A75  <span class="keyword">push</span>        <span class="number">5</span>  
-00CC1A77  <span class="keyword">call</span>        ShowCde (<span class="number">0CC101Eh</span>)  
-00CC1A7C  <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">4</span>  //这里对栈进行了平衡
-</code></pre><p>_cdecl 与 _stdcall 函数的反汇编代码对比：</p>
-<p><img src="/uploads/2014/07/464391168.png" alt="1.png"></p>
-<p>经过对比，我们发现只有最后一行有区别。</p>
-<p><strong>_stdcall 反汇编最后ret 4 等价于：esp += 4 对栈顶加4，用于平衡栈顶。<br>_cdecl被调用后，在main函数中对esp进行了加4操作，用于平衡栈顶。</strong></p>
-<h2 id="2、_fastcall_调用方式">2、_fastcall 调用方式</h2><p>测试代码：</p>
-<pre><code>void __fastcall ShowFast(<span class="keyword">int</span> nOne,<span class="keyword">int</span> nTwo,<span class="keyword">int</span> nThree,<span class="keyword">int</span> nFour)
-{
-    <span class="keyword">printf</span>(<span class="string">"<span class="variable">%d</span>,<span class="variable">%d</span>,<span class="variable">%d</span>,<span class="variable">%d</span>"</span>,nOne,nTwo,nThree,nFour);
-}
-
-<span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    ShowFast(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>);
-}
-</code></pre><p>反汇编代码：</p>
-<pre><code>    ShowFast(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)<span class="comment">;</span>
-00AB140E  <span class="keyword">push</span>        <span class="number">4</span>          <span class="comment">;使用栈方式传参数</span>
-00AB1410  <span class="keyword">push</span>        <span class="number">3</span>          <span class="comment">;使用栈方式传参数</span>
-00AB1412  <span class="keyword">mov</span>         <span class="number">edx</span>,<span class="number">2</span>      <span class="comment">;使用寄存器传参</span>
-00AB1417  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="number">1</span>      <span class="comment">;使用寄存器传参</span>
-00AB141C  <span class="keyword">call</span>        ShowFast (<span class="number">0AB11CCh</span>)  
-</code></pre><p>由于寄存器的数量有限，而参数的数量有可能很多，因此fastcall仅使用了 edx和ecx，分别传递了第一个和第二个参数，其余的使用了栈传递参数。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>VC++ 环境下的的函数调用约定有三种：</p>
-<ul>
-<li>_cedcl C/C++的默认调用方式，调用方平衡栈，不定长参数的函数可以使用。</li>
-<li>_stdcall 被调用方平衡栈，不定长参数的函数无法使用</li>
-<li>_fastcall 寄存器方]]>
     </summary>
     
       <category term="反汇编" scheme="http://0x520.com/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/"/>
