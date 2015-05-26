@@ -4,7 +4,7 @@
   <subtitle><![CDATA[不乱于心,不困于情。不念过往，不畏将来。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://0x520.com/"/>
-  <updated>2015-05-24T11:45:57.000Z</updated>
+  <updated>2015-05-26T08:55:41.000Z</updated>
   <id>http://0x520.com/</id>
   
   <author>
@@ -13,6 +13,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[用mac笔记本演示iPhone应用]]></title>
+    <link href="http://0x520.com/2015/05/26/others/1/"/>
+    <id>http://0x520.com/2015/05/26/others/1/</id>
+    <published>2015-05-26T08:55:00.000Z</published>
+    <updated>2015-05-26T08:55:41.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="找到QuickTime">找到QuickTime</h2><p><img src="/uploads/QQ20150526-1.jpg" alt="找到QuickTime"></p>
+<h2 id="新建影片录制">新建影片录制</h2><p><img src="/uploads/QQ20150526-2.jpg" alt="找到QuickTime"></p>
+<h2 id="选择从iPhone录制">选择从iPhone录制</h2><p><img src="/uploads/QQ20150526-3.jpg" alt="找到QuickTime"></p>
+<h2 id="开始演示吧">开始演示吧</h2><p><img src="/uploads/QQ20150526-4.jpg" alt="找到QuickTime"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="找到QuickTime">找到QuickTime</h2><p><img src="/uploads/QQ20150526-1.jpg" alt="找到QuickTime"></p>
+<h2 id="新建影片录制">新建影片录制</h2><p><img src="]]>
+    </summary>
+    
+      <category term="其他" scheme="http://0x520.com/categories/%E5%85%B6%E4%BB%96/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Rails中使用paperclip进行图片上传]]></title>
@@ -319,26 +339,6 @@ namespace <span class="symbol">:dev</span> <span class="keyword">do</span>
     </summary>
     
       <category term="Ruby On Rails" scheme="http://0x520.com/categories/Ruby-On-Rails/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[用mac笔记本演示iPhone应用]]></title>
-    <link href="http://0x520.com/2015/05/23/others/1/"/>
-    <id>http://0x520.com/2015/05/23/others/1/</id>
-    <published>2015-05-23T07:02:00.000Z</published>
-    <updated>2015-05-26T08:54:52.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="找到QuickTime">找到QuickTime</h2><p><img src="/uploads/QQ20150526-1.jpg" alt="找到QuickTime"></p>
-<h2 id="新建影片录制">新建影片录制</h2><p><img src="/uploads/QQ20150526-2.jpg" alt="找到QuickTime"></p>
-<h2 id="选择从iPhone录制">选择从iPhone录制</h2><p><img src="/uploads/QQ20150526-3.jpg" alt="找到QuickTime"></p>
-<h2 id="开始演示吧">开始演示吧</h2><p><img src="/uploads/QQ20150526-4.jpg" alt="找到QuickTime"></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="找到QuickTime">找到QuickTime</h2><p><img src="/uploads/QQ20150526-1.jpg" alt="找到QuickTime"></p>
-<h2 id="新建影片录制">新建影片录制</h2><p><img src="]]>
-    </summary>
-    
-      <category term="其他" scheme="http://0x520.com/categories/%E5%85%B6%E4%BB%96/"/>
     
   </entry>
   
