@@ -77,7 +77,7 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/05/05/reverse/6/" title="逆向基础第六篇：位运算" itemprop="url">逆向基础第六篇：位运算</a>
+      <a href="/2014/05/05/reverse/5/" title="逆向基础第四篇：条件跳转与短路运算" itemprop="url">逆向基础第四篇：条件跳转与短路运算</a>
   </h1>
   <p class="article-author">By
        
@@ -90,83 +90,77 @@
 </header>
     <div class="article-content">
         
-        <p>位操作符有以下几种：</p>
-<ol>
-<li><code>&lt;&lt;</code> 左移运算，最高位左移到CF中，最低位补零</li>
-<li><code>&gt;&gt;</code> 右移运算，最高位不变，最低位右移到CF中</li>
-<li><code>|</code> 或运算，相同位，有一个为1，则为1</li>
-<li><code>&amp;</code> 与运算，相同位，两个都为1，则为1</li>
-<li><code>^</code> 异或运算，相同位，<code>为异为真</code> 即 如果不同则为1</li>
-<li><code>~</code>  取反运算，将操作数的每一位取反，1变0,0变1</li>
-</ol>
-<p>位运算一般在算法中大量使用，例如MD5算法，就是通过大量的位运算完成的。 如何使一个数不可逆呢？利用位运算就可以达到目的。 如： x  &amp; 0 = 0 根据结果，x的值是不可以逆推的。（取反 ~ 和 异或 ^ 可以反推）</p>
-<p>下面这段代码用来演示位操作：</p>
-<pre><code><span class="title">int</span> main(int argc, int n)
-{
-    <span class="title">argc</span> = argc &lt;&lt; <span class="number">3</span>;
-    <span class="title">argc</span> = argc &gt;&gt; <span class="number">5</span>;
-    <span class="title">argc</span> = argc | 0xFFFF0000;
-    <span class="title">argc</span> = argc &amp; 0x0000FFFF;
-    <span class="title">argc</span> = argc<span class="regexp"> ^</span> 0xFFFF0000;
-    <span class="title">argc</span> = ~argc;
-    <span class="title">return</span> argc;
+        <h2 id="1、条件跳转指令表">1、条件跳转指令表</h2><pre><code>指令助记符        检查标记位                说明
+
+JZ               <span class="variable">ZF =</span>= <span class="number">1</span>                 等于<span class="number">0</span>则跳转
+JE               <span class="variable">ZF =</span>= <span class="number">1</span>                 相等则跳转
+JNZ              <span class="variable">ZF =</span>= <span class="number">0</span>                 不等于<span class="number">0</span>则跳转
+JNE              <span class="variable">ZF =</span>= <span class="number">0</span>                 不相等则跳转
+
+JS               <span class="variable">SF =</span>= <span class="number">1</span>                 符号为负则跳转
+JNS              <span class="variable">SF =</span>= <span class="number">0</span>                 符号为正则跳转
+
+JP/JPE           <span class="variable">PF =</span>= <span class="number">1</span>                 <span class="string">"1"</span> 的个数为偶数则跳转
+JNP/JPO          <span class="variable">PF =</span>= <span class="number">0</span>                 <span class="string">"1"</span> 的个数为奇数则跳转
+
+JO               <span class="variable">OF =</span>= <span class="number">1</span>                 溢出则跳转
+JNO              <span class="variable">OF =</span>= <span class="number">0</span>                 无溢出则跳转
+
+JC               <span class="variable">CF =</span>= <span class="number">1</span>                 进位则跳转
+JB               <span class="variable">CF =</span>= <span class="number">1</span>                 小于则跳转
+JNAE             <span class="variable">CF =</span>= <span class="number">1</span>                 不大于等于则跳转
+JNC              <span class="variable">CF =</span>= <span class="number">0</span>                 无进位则跳转
+JNB              <span class="variable">CF =</span>= <span class="number">0</span>                 不小于则跳转
+JAE              <span class="variable">CF =</span>= <span class="number">0</span>                 大于则跳转
+JBE              <span class="variable">CF =</span>= <span class="number">1</span> 或 <span class="variable">ZF =</span>= <span class="number">1</span>      小于等于则跳转   
+JNA              <span class="variable">CF =</span>= <span class="number">1</span> 或 <span class="variable">ZF =</span>= <span class="number">1</span>      不大于则跳转
+JNBE             <span class="variable">CF =</span>= <span class="number">0</span> 或 <span class="variable">ZF =</span>= <span class="number">0</span>      不小于等于则跳转
+JA               <span class="variable">CF =</span>= <span class="number">0</span> 或 <span class="variable">ZF =</span>= <span class="number">0</span>      不大于则跳转
+
+JL               SF != OF                小于则跳转
+JNGE             SF != OF                不大于等于则跳转
+JNL              <span class="variable">SF =</span>= OF                不小于则跳转
+JGE              <span class="variable">SF =</span>= OF                不大于等于则跳转
+
+JLE              ZF != OF 或 <span class="variable">ZF =</span>= <span class="number">1</span>     小于等于则跳转
+JNG              ZF != OF 或 <span class="variable">ZF =</span>= <span class="number">1</span>     不大于则跳转
+JNLE             <span class="variable">SF =</span>= OF 且 <span class="variable">ZF =</span>= <span class="number">0</span>     不小于等于则跳转
+JG               <span class="variable">SF =</span>= OF 且 <span class="variable">ZF =</span>= <span class="number">0</span>     大于则跳转
+</code></pre><p>通常，这些条件跳转指令都与CMP 和 TEST 匹配出现，但是条件跳转是检查的<code>标志位</code> 。因此，在有修改标记位的代码处，可以根据需求使用跳转指令来修改程序。</p>
+<h2 id="2、短路与（&amp;&amp;）_短路或_（||）">2、短路与（&amp;&amp;） 短路或 （||）</h2><p>测试代码：</p>
+<pre><code><span class="function"><span class="keyword">int</span> <span class="title">Accumulation</span><span class="params">(<span class="keyword">int</span> nNumber)</span>
+</span>{
+    nNumber &amp;&amp; (nNumber += Accumulation(nNumber - <span class="number">1</span>));
+    <span class="keyword">return</span> nNumber;
 }
-</code></pre><p>反汇编代码如下：</p>
-<pre><code><span class="number">7</span>:    <span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">int</span> n)
-<span class="number">8</span>:    {
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="comment">;左移</span>
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="number">9</span>:        argc = argc &lt;&lt; <span class="number">3</span><span class="comment">;</span>
-0040D418   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-0040D41B   <span class="keyword">shl</span>         <span class="number">eax</span>,<span class="number">3</span>
-0040D41E   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">eax</span>
+</code></pre><p>反编译汇编代码：</p>
+<pre><code><span class="keyword">int</span> Accumulation(<span class="keyword">int</span> nNumber)
+{
+    <span class="number">17</span>:       nNumber &amp;&amp; (nNumber += Accumulation(nNumber - <span class="number">1</span>))<span class="comment">;</span>
+    //短路模式汇编代码，比较nNumber是否等于<span class="number">0</span>
+    0040D448   <span class="keyword">cmp</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">0</span>
+    //通过<span class="keyword">JE</span>跳转，检查ZF标记位等于<span class="number">1</span>跳转
+    0040D44C   <span class="keyword">je</span>          Accumulation+<span class="number">35h</span> (0040d465)
 
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="comment">;右移</span>
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="number">10</span>:       argc = argc &gt;&gt; <span class="number">5</span><span class="comment">;</span>
-0040D421   <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-0040D424   <span class="keyword">sar</span>         <span class="number">ecx</span>,<span class="number">5</span>
-0040D427   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">ecx</span>
+    //跳转失败，递归，准备参数
+    0040D44E   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
+    0040D451   <span class="keyword">sub</span>         <span class="number">eax</span>,<span class="number">1</span>
+    0040D454   <span class="keyword">push</span>        <span class="number">eax</span>
+    //递归，调用自己
+    0040D455   <span class="keyword">call</span>        @ILT+<span class="number">5</span>(Accumulation) (0040100a)
+    //<span class="literal">esp</span>指针偏移？？我还没搞明白？？？
+    0040D45A   <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">4</span>
+    //找到nNumber变量
+    0040D45D   <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
+    //<span class="number">eax</span>中存放了 Accumulation函数返回值。nNumber + <span class="number">eax</span>
+    0040D460   <span class="keyword">add</span>         <span class="number">ecx</span>,<span class="number">eax</span>
+    //将最终结果存回 <span class="literal">ebp</span>+<span class="number">8</span>地址处 ，即nNumber地址处。 
+    0040D462   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">ecx</span>
 
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="comment">;或运算</span>
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="number">11</span>:       argc = argc | <span class="number">0xFFFF0000</span><span class="comment">;</span>
-0040D42A   <span class="keyword">mov</span>         <span class="number">edx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-0040D42D   <span class="keyword">or</span>          <span class="number">edx</span>,<span class="number">0FFFF0000h</span>
-0040D433   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">edx</span>
-
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="comment">;与运算</span>
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="number">12</span>:       argc = argc &amp; <span class="number">0x0000FFFF</span><span class="comment">;</span>
-0040D436   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-0040D439   <span class="keyword">and</span>         <span class="number">eax</span>,<span class="number">0FFFFh</span>
-0040D43E   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">eax</span>
-
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="comment">;异或运算</span>
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="number">13</span>:       argc = argc ^ <span class="number">0xFFFF0000</span><span class="comment">;</span>
-0040D441   <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-0040D444   <span class="keyword">xor</span>         <span class="number">ecx</span>,<span class="number">0FFFF0000h</span>
-0040D44A   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">ecx</span>
-
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="comment">;取反运算</span>
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="number">14</span>:       argc = ~argc<span class="comment">;</span>
-0040D44D   <span class="keyword">mov</span>         <span class="number">edx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-0040D450   <span class="keyword">not</span>         <span class="number">edx</span>
-0040D452   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">edx</span>
-
-<span class="number">15</span>:       return argc<span class="comment">;</span>
-0040D455   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-<span class="number">16</span>:   }
-</code></pre><p>对于左移运算，无符号数和有符号数的操作是一样的，都不需要考虑符号位。但右移运算则有变化，有符号数使用sar可以保留符号位。 无符号数不需要符号位，直接使用shr 将最高位补0</p>
-
+    <span class="number">18</span>:       return nNumber<span class="comment">;</span>
+    0040D465   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
+}
+</code></pre>
         
         
         <p class="article-more-link">

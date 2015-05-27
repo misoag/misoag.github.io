@@ -4,50 +4,47 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>逆向基础第六篇：位运算 | 鸡哥</title>
+    <title>逆向基础第十九篇：内存对齐 | 鸡哥</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="John·Huang">
     
 
     
-    <meta name="description" content="位操作符有以下几种：
-
-&amp;lt;&amp;lt; 左移运算，最高位左移到CF中，最低位补零
-&amp;gt;&amp;gt; 右移运算，最高位不变，最低位右移到CF中
-| 或运算，相同位，有一个为1，则为1
-&amp;amp; 与运算，相同位，两个都为1，则为1
-^ 异或运算，相同位，为异为真 即 如果不同则为1
-~  取反运算，将操作数的每一位取反，1变0,0变1
-
-位运算一般在算法中大量使用，例如MD5算法，就是通过大量的位">
+    <meta name="description" content="结构体和类在为数据成员分配内存时，结构体中当前数据类型长度为M，制定的对齐值为N，那么实际对齐值 Q = min(M,N) 其成员的地址安排在Q的倍数上。
+测试代码：
+struct tagTest{
+    short nShort;
+    int nInt;
+} test;
+int _tmain(int argc, _TCHAR* argv[])
+{
+    test.nShort = 1;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="逆向基础第六篇：位运算">
-<meta property="og:url" content="http://0x520.com/2014/05/05/reverse/6/index.html">
+<meta property="og:title" content="逆向基础第十九篇：内存对齐">
+<meta property="og:url" content="http://0x520.com/2014/05/19/reverse/19/index.html">
 <meta property="og:site_name" content="鸡哥">
-<meta property="og:description" content="位操作符有以下几种：
-
-&amp;lt;&amp;lt; 左移运算，最高位左移到CF中，最低位补零
-&amp;gt;&amp;gt; 右移运算，最高位不变，最低位右移到CF中
-| 或运算，相同位，有一个为1，则为1
-&amp;amp; 与运算，相同位，两个都为1，则为1
-^ 异或运算，相同位，为异为真 即 如果不同则为1
-~  取反运算，将操作数的每一位取反，1变0,0变1
-
-位运算一般在算法中大量使用，例如MD5算法，就是通过大量的位">
-<meta property="og:updated_time" content="2015-05-23T03:27:47.000Z">
+<meta property="og:description" content="结构体和类在为数据成员分配内存时，结构体中当前数据类型长度为M，制定的对齐值为N，那么实际对齐值 Q = min(M,N) 其成员的地址安排在Q的倍数上。
+测试代码：
+struct tagTest{
+    short nShort;
+    int nInt;
+} test;
+int _tmain(int argc, _TCHAR* argv[])
+{
+    test.nShort = 1;">
+<meta property="og:updated_time" content="2015-05-27T05:51:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="逆向基础第六篇：位运算">
-<meta name="twitter:description" content="位操作符有以下几种：
-
-&amp;lt;&amp;lt; 左移运算，最高位左移到CF中，最低位补零
-&amp;gt;&amp;gt; 右移运算，最高位不变，最低位右移到CF中
-| 或运算，相同位，有一个为1，则为1
-&amp;amp; 与运算，相同位，两个都为1，则为1
-^ 异或运算，相同位，为异为真 即 如果不同则为1
-~  取反运算，将操作数的每一位取反，1变0,0变1
-
-位运算一般在算法中大量使用，例如MD5算法，就是通过大量的位">
+<meta name="twitter:title" content="逆向基础第十九篇：内存对齐">
+<meta name="twitter:description" content="结构体和类在为数据成员分配内存时，结构体中当前数据类型长度为M，制定的对齐值为N，那么实际对齐值 Q = min(M,N) 其成员的地址安排在Q的倍数上。
+测试代码：
+struct tagTest{
+    short nShort;
+    int nInt;
+} test;
+int _tmain(int argc, _TCHAR* argv[])
+{
+    test.nShort = 1;">
 
     
     <link rel="alternative" href="/atom.xml" title="鸡哥" type="application/atom+xml">
@@ -103,14 +100,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/05/05/reverse/6/" title="逆向基础第六篇：位运算" itemprop="url">逆向基础第六篇：位运算</a>
+      <a href="/2014/05/19/reverse/19/" title="逆向基础第十九篇：内存对齐" itemprop="url">逆向基础第十九篇：内存对齐</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
 		
   <p class="article-time">
-    <time datetime="2014-05-04T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-05-05</time>
+    <time datetime="2014-05-18T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-05-19</time>
     
   </p>
 </header>
@@ -123,83 +120,57 @@
 		
 		</div>
 		
-		<p>位操作符有以下几种：</p>
-<ol>
-<li><code>&lt;&lt;</code> 左移运算，最高位左移到CF中，最低位补零</li>
-<li><code>&gt;&gt;</code> 右移运算，最高位不变，最低位右移到CF中</li>
-<li><code>|</code> 或运算，相同位，有一个为1，则为1</li>
-<li><code>&amp;</code> 与运算，相同位，两个都为1，则为1</li>
-<li><code>^</code> 异或运算，相同位，<code>为异为真</code> 即 如果不同则为1</li>
-<li><code>~</code>  取反运算，将操作数的每一位取反，1变0,0变1</li>
-</ol>
-<p>位运算一般在算法中大量使用，例如MD5算法，就是通过大量的位运算完成的。 如何使一个数不可逆呢？利用位运算就可以达到目的。 如： x  &amp; 0 = 0 根据结果，x的值是不可以逆推的。（取反 ~ 和 异或 ^ 可以反推）</p>
-<p>下面这段代码用来演示位操作：</p>
-<pre><code><span class="title">int</span> main(int argc, int n)
+		<p>结构体和类在为数据成员分配内存时，结构体中当前数据类型长度为M，制定的对齐值为N，那么实际对齐值 Q = min(M,N) 其成员的地址安排在Q的倍数上。</p>
+<p>测试代码：</p>
+<pre><code><span class="keyword">struct</span> tagTest{
+    <span class="keyword">short</span> nShort;
+    <span class="keyword">int</span> nInt;
+} test;
+<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
 {
-    <span class="title">argc</span> = argc &lt;&lt; <span class="number">3</span>;
-    <span class="title">argc</span> = argc &gt;&gt; <span class="number">5</span>;
-    <span class="title">argc</span> = argc | 0xFFFF0000;
-    <span class="title">argc</span> = argc &amp; 0x0000FFFF;
-    <span class="title">argc</span> = argc<span class="regexp"> ^</span> 0xFFFF0000;
-    <span class="title">argc</span> = ~argc;
-    <span class="title">return</span> argc;
+    test.nShort = <span class="number">1</span>;
+    test.nInt    = <span class="number">2</span>;
+    <span class="keyword">int</span> nSize = <span class="keyword">sizeof</span>(test);
+    <span class="built_in">printf</span>(<span class="string">"%d"</span>,nSize);
+    getchar();
 }
-</code></pre><p>反汇编代码如下：</p>
-<pre><code><span class="number">7</span>:    <span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">int</span> n)
-<span class="number">8</span>:    {
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="comment">;左移</span>
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="number">9</span>:        argc = argc &lt;&lt; <span class="number">3</span><span class="comment">;</span>
-0040D418   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-0040D41B   <span class="keyword">shl</span>         <span class="number">eax</span>,<span class="number">3</span>
-0040D41E   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">eax</span>
-
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="comment">;右移</span>
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="number">10</span>:       argc = argc &gt;&gt; <span class="number">5</span><span class="comment">;</span>
-0040D421   <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-0040D424   <span class="keyword">sar</span>         <span class="number">ecx</span>,<span class="number">5</span>
-0040D427   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">ecx</span>
-
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="comment">;或运算</span>
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="number">11</span>:       argc = argc | <span class="number">0xFFFF0000</span><span class="comment">;</span>
-0040D42A   <span class="keyword">mov</span>         <span class="number">edx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-0040D42D   <span class="keyword">or</span>          <span class="number">edx</span>,<span class="number">0FFFF0000h</span>
-0040D433   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">edx</span>
-
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="comment">;与运算</span>
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="number">12</span>:       argc = argc &amp; <span class="number">0x0000FFFF</span><span class="comment">;</span>
-0040D436   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-0040D439   <span class="keyword">and</span>         <span class="number">eax</span>,<span class="number">0FFFFh</span>
-0040D43E   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">eax</span>
-
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="comment">;异或运算</span>
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="number">13</span>:       argc = argc ^ <span class="number">0xFFFF0000</span><span class="comment">;</span>
-0040D441   <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-0040D444   <span class="keyword">xor</span>         <span class="number">ecx</span>,<span class="number">0FFFF0000h</span>
-0040D44A   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">ecx</span>
-
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="comment">;取反运算</span>
-<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="number">14</span>:       argc = ~argc<span class="comment">;</span>
-0040D44D   <span class="keyword">mov</span>         <span class="number">edx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-0040D450   <span class="keyword">not</span>         <span class="number">edx</span>
-0040D452   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">edx</span>
-
-<span class="number">15</span>:       return argc<span class="comment">;</span>
-0040D455   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
-<span class="number">16</span>:   }
-</code></pre><p>对于左移运算，无符号数和有符号数的操作是一样的，都不需要考虑符号位。但右移运算则有变化，有符号数使用sar可以保留符号位。 无符号数不需要符号位，直接使用shr 将最高位补0</p>
-  
+</code></pre><p>部分反汇编结果：</p>
+<pre><code>    <span class="keyword">test</span>.nShort = <span class="number">1</span><span class="comment">;</span>
+00C32D1E  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="number">1</span>  
+00C32D23  <span class="keyword">mov</span>         <span class="preprocessor">word</span> <span class="preprocessor">ptr</span> [<span class="keyword">test</span> (<span class="number">0C37138h</span>)],<span class="number">ax</span>      <span class="comment">;这里是short类型的赋值</span>
+    <span class="keyword">test</span>.nInt    = <span class="number">2</span><span class="comment">;</span>
+00C32D29  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="keyword">test</span>+<span class="number">4</span> (<span class="number">0C3713Ch</span>)],<span class="number">2</span>    <span class="comment">;这里test+4进行了对齐</span>
+    <span class="keyword">int</span> nSize = sizeof(<span class="keyword">test</span>)<span class="comment">;</span>
+00C32D33  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [nSize],<span class="number">8</span>                <span class="comment">;sizeof 的结果为8</span>
+</code></pre><p>对nShort赋值之后，应在地址00C3713A（0C37138h+2）处分配nInt的空间。 但是int类型占4个字节，与指定的对齐（VC6中默认的对齐是8字节）比较后，但是00C3713A不是4的倍数，需要插入两个字节补充，因此nInt被定义在了0C3713Ch处。</p>
+<p>内存对齐实战：</p>
+<p>第一：</p>
+<pre><code><span class="keyword">struct</span>{
+    <span class="keyword">double</span> nDouble;     <span class="comment">//占8字节</span>
+    <span class="keyword">int</span> nInt;           <span class="comment">//占4字节</span>
+    <span class="keyword">short</span> nShort;       <span class="comment">//占2字节</span>
+}
+按默认的对齐值要求，结构体的整体大小要能被<span class="number">8</span>整除（<span class="number">8</span>=结构的第一个元素长度），所以要 <span class="number">8</span>+<span class="number">4</span>+<span class="number">4</span>+<span class="number">2</span>+<span class="number">2</span>=<span class="number">16</span>
+</code></pre><p>第二：</p>
+<pre><code><span class="keyword">struct</span>{
+    <span class="keyword">char</span> nChar;        <span class="comment">//占4字节，与nInt对齐</span>
+    <span class="keyword">int</span> nInt;          <span class="comment">//占4字节</span>
+    <span class="keyword">short</span> nShort;       <span class="comment">//占2字节</span>
+}
+</code></pre><p>第三：</p>
+<pre><code><span class="preprocessor">#<span class="keyword">pragma</span> pack(1)        <span class="comment">//声明1字节对齐</span></span>
+<span class="keyword">struct</span>{
+    <span class="keyword">char</span> nChar;        <span class="comment">//占1字节</span>
+    <span class="keyword">int</span> nInt;          <span class="comment">//占4字节</span>
+    <span class="keyword">short</span> nShort;       <span class="comment">//占2字节</span>
+}
+</code></pre><p>第四：</p>
+<pre><code><span class="keyword">struct</span>{
+    <span class="keyword">char</span> nChar;        <span class="comment">//占1字节</span>
+    <span class="keyword">char</span> cArray[<span class="number">4</span>];    <span class="comment">//占5字节，对齐nShort</span>
+    <span class="keyword">short</span> nShort;       <span class="comment">//占2字节</span>
+}
+</code></pre>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -221,7 +192,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://0x520.com/2014/05/05/reverse/6/" data-title="逆向基础第六篇：位运算 | 鸡哥" data-tsina="null" class="share clearfix">
+	  <div data-url="http://0x520.com/2014/05/19/reverse/19/" data-title="逆向基础第十九篇：内存对齐 | 鸡哥" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -235,18 +206,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/05/05/reverse/5/" title="逆向基础第四篇：条件跳转与短路运算">
+ <a href="/2014/05/20/reverse/20/" title="逆向基础第二十篇：类和对象 之 “this指针”">
   <strong>上一篇：</strong><br/>
   <span>
-  逆向基础第四篇：条件跳转与短路运算</span>
+  逆向基础第二十篇：类和对象 之 “this指针”</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2014/05/04/reverse/4/"  title="逆向基础第五篇：条件表达式">
+<a href="/2014/05/18/reverse/18/"  title="逆向基础第十八篇：对象的内存分布">
  <strong>下一篇：</strong><br/> 
- <span>逆向基础第五篇：条件表达式
+ <span>逆向基础第十八篇：对象的内存分布
 </span>
 </a>
 </div>

@@ -77,7 +77,7 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/05/26/others/1/" title="用mac笔记本演示iPhone应用" itemprop="url">用mac笔记本演示iPhone应用</a>
+      <a href="/2015/05/26/others/1/" title="Mac上录制iPhone屏幕 | 投影仪演示iPhone应用" itemprop="url">Mac上录制iPhone屏幕 | 投影仪演示iPhone应用</a>
   </h1>
   <p class="article-author">By
        
@@ -90,10 +90,22 @@
 </header>
     <div class="article-content">
         
-        <h2 id="找到QuickTime">找到QuickTime</h2><p><img src="/uploads/QQ20150526-1.jpg" alt="找到QuickTime"></p>
-<h2 id="新建影片录制">新建影片录制</h2><p><img src="/uploads/QQ20150526-2.jpg" alt="新建影片录制"></p>
-<h2 id="选择从iPhone录制">选择从iPhone录制</h2><p><img src="/uploads/QQ20150526-3.jpg" alt="选择从iPhone录制"></p>
-<h2 id="开始演示吧">开始演示吧</h2><p><img src="/uploads/QQ20150526-4.jpg" alt="开始演示吧"></p>
+        <p>有些同学需要在投影仪上演示iPhone应用，或者需要发布一段app的预览视频，升级Mac操作系统到Yosemite你就可以体验这个强大的功能啦。</p>
+<p>Requirements：</p>
+<ul>
+<li>iPhone</li>
+<li>Mac</li>
+<li>QuickTime Player</li>
+</ul>
+<p>首先，用你的Lightning数据线连接上你的iPhone，然后就可以开始按步骤操作了。</p>
+<h4 id="第一步：打开你的QuickTime_Player">第一步：打开你的QuickTime Player</h4><p>QuickTime Player 是OSX系统上的默认安装软件，所以请不要告诉我你找不到它！</p>
+<p><img src="/uploads/QQ20150526-1.jpg" alt="QuickTime Player"></p>
+<h4 id="第二步：新建影片录制">第二步：新建影片录制</h4><p><code>菜单 -&gt; 文件 -&gt; 新建影片录制</code> 此时就可以开始视频了。 也许你在屏幕上看到另一张可怕脸，不过别担心，请看第三步。</p>
+<p><img src="/uploads/QQ20150526-2.jpg" alt="新建影片录制"></p>
+<h4 id="第三步：选择从iPhone录制">第三步：选择从iPhone录制</h4><p>QuickTime Player 默认是从摄像头录制，你可以切换到录制iPhone。如下图：</p>
+<p><img src="/uploads/QQ20150526-3.jpg" alt="选择从iPhone录制"></p>
+<h4 id="第四步：开始演示吧">第四步：开始演示吧</h4><p>此时，你可以接上投影仪开始演示你得App了，或者你也可以点击QuickTime Player中央的红色按钮，录制一段视频~</p>
+<p><img src="/uploads/QQ20150526-4.jpg" alt="开始演示吧"></p>
 
         
         
@@ -717,45 +729,34 @@ namespace <span class="symbol">:dev</span> <span class="keyword">do</span>
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/21/reverse/21/" title="逆向基础第二十一篇：对象作为函数参数或返回值" itemprop="url">逆向基础第二十一篇：对象作为函数参数或返回值</a>
+      <a href="/2015/04/01/issue/1/" title="Mac OS 10.10 -Android studio was unable to find a valid JVM解决办法" itemprop="url">Mac OS 10.10 -Android studio was unable to find a valid JVM解决办法</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
 		
   <p class="article-time">
-    <time datetime="2015-04-20T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-04-21</time>
+    <time datetime="2015-03-31T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-04-01</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h2 id="1、对象作为函数参数">1、对象作为函数参数</h2><p>下面是一段<code>对象作为参数</code>的代码片段：</p>
-<pre><code>class CTest{
-<span class="label">public:</span>
-    <span class="keyword">int</span> m_nOne<span class="comment">;</span>
-    <span class="keyword">int</span> m_nTwo<span class="comment">;</span>
-}<span class="comment">;</span>
+        <p>Mac OS Yosemite 10.10 下安装 Android Studio 报错：Android studio was unable to find a valid JVM</p>
+<p>OsX 10.10 默认安装的是java8，但是Android Studio默认使用的是java6，解决方案如下：</p>
+<h2 id="方法1：修改android_Studio_配置文件">方法1：修改android Studio 配置文件</h2><p>编辑 <code>/Applications/Android Studio.app/Contents/Info.plist</code> 文件，修改：</p>
+<pre><code><span class="variable">&lt;key&gt;</span>JVMVersion<span class="variable">&lt;/key&gt;</span>
+<span class="variable">&lt;string&gt;</span>1.8<span class="keyword">*</span><span class="variable">&lt;/string&gt;</span>
+</code></pre><p>默认值为1.6，改为1.8即可</p>
+<h2 id="方法2：修改java版本">方法2：修改java版本</h2><p>编辑 ~/.bash_profile 文件，指定java版本：</p>
+<pre><code>export JAV<span class="built_in">A_HOME</span>=<span class="escape">`/</span>usr/libexec/jav<span class="built_in">a_home</span> -v <span class="number">1.7</span><span class="escape">`
+</span>或者
+export JAV<span class="built_in">A_HOME</span>=<span class="escape">`/</span>usr/libexec/jav<span class="built_in">a_home</span> -v <span class="number">1.8</span>`
+</code></pre><h2 id="解决Android_Studio初次加载慢的问题：">解决Android Studio初次加载慢的问题：</h2><p>编辑：/Applications/Android Studio.app/Contents/bin/idea.properties<br>在文件最后增加：<code>disable.android.first.run=true</code></p>
 
-void ShowFunTest(CTest <span class="keyword">Test</span>)
-{
-    printf(<span class="string">"%d,%d \r\n"</span>,<span class="keyword">Test</span>.m_nOne,<span class="keyword">Test</span>.m_nTwo)<span class="comment">;</span>
-}
-
-<span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    CTest <span class="keyword">Test</span><span class="comment">;</span>
-    <span class="keyword">Test</span>.m_nOne = <span class="number">1</span><span class="comment">;</span>
-    <span class="keyword">Test</span>.m_nTwo = <span class="number">2</span><span class="comment">;</span>
-    ShowFunTest(<span class="keyword">Test</span>)<span class="comment">;</span>
-    getchar()<span class="comment">;</span>
-}
-</code></pre>
         
         
         <p class="article-more-link">
-          
-            <a href="/2015/04/21/reverse/21/#more">Read More</a>
           
        </p>
     </div>
@@ -764,13 +765,100 @@ void ShowFunTest(CTest <span class="keyword">Test</span>)
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/逆向基础/">逆向基础</a>
+  <a class="article-category-link" href="/categories/Android/">Android</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/01/04/operation/4/" title="Ubuntu12.04下使用pptpd搭建vpn服务器" itemprop="url">Ubuntu12.04下使用pptpd搭建vpn服务器</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2015-01-03T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-01-04</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>购买了一台阿里云香港节点，准备搭建一台vpn服务器，步骤如下：</p>
+<h3 id="1-_系统升级">1. 系统升级</h3><pre><code>sudo apt-<span class="built_in">get</span> <span class="keyword">update</span>
+sudo apt-<span class="built_in">get</span> upgrade
+</code></pre><h3 id="2-_安装pptpd">2. 安装pptpd</h3><pre><code>sudo apt-<span class="keyword">get</span> install pptpd
+</code></pre><h3 id="3-_配置网络">3. 配置网络</h3><pre><code><span class="title">vim</span> /etc/pptpd.conf 
+
+改为：
+
+localip <span class="number">58.96.189.115</span>            <span class="comment">#网卡地址</span>
+remoteip <span class="number">192.168.0.100</span>-<span class="number">200</span>       <span class="comment">#分配的IP地址范围</span>
+</code></pre><h3 id="4-_添加用户">4. 添加用户</h3><pre><code>vim /etc/ppp/chap-secrets
+
+<span class="preprocessor">#以Tab键分割，添加用户</span>
+
+<span class="preprocessor"># client    server    secret            IP addresses</span>
+test    *    test    *
+
+<span class="preprocessor">#用户名：test，密码：test，* 代表允许任何来源</span>
+</code></pre><h3 id="5-_修改DNS">5. 修改DNS</h3><pre><code><span class="title">vim</span> /etc/ppp/pptpd-options 
+
+改为：
+
+ms-dns <span class="number">8.8.8.8</span>  
+ms-dns <span class="number">8.8.4.4</span>  
+</code></pre><h3 id="6-_IP转发">6. IP转发</h3><pre><code>vim /etc/sysctl<span class="class">.conf</span>  
+
+开启
+net<span class="class">.ipv4</span><span class="class">.ip_forward</span>=<span class="number">1</span>  
+
+执行命令，开启转发规则：
+sudo sysctl -<span class="tag">p</span>  
+sudo iptables -t nat -I POSTROUTING -j MASQUERADE  
+</code></pre><h3 id="7-_重启">7. 重启</h3><pre><code>sudo <span class="keyword">service</span> pptpd <span class="literal">restart</span>
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>►<a class="article-category-link" href="/categories/Linux/运维/">运维</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
+  <span></span> <a href="/tags/linux/">linux</a><a href="/tags/pptpd/">pptpd</a><a href="/tags/shell/">shell</a><a href="/tags/vpn/">vpn</a><a href="/tags/翻墙/">翻墙</a><a href="/tags/运维/">运维</a>
   </div>
 
 </div>
@@ -798,212 +886,50 @@ void ShowFunTest(CTest <span class="keyword">Test</span>)
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/20/reverse/20/" title="逆向基础第二十篇：类和对象 之 “this指针”" itemprop="url">逆向基础第二十篇：类和对象 之 “this指针”</a>
+      <a href="/2015/01/03/operation/3/" title="Ubuntu 12.04 下搭建DHCP服务器" itemprop="url">Ubuntu 12.04 下搭建DHCP服务器</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
 		
   <p class="article-time">
-    <time datetime="2015-04-19T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-04-20</time>
+    <time datetime="2015-01-02T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-01-03</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <p>写C++应该会经常用到this指针，但是我们在类中并没有找到this的定义，许多程序员只知道使用this指针，但是不知道this从何而来。今天，我们来解开this指针的神秘的面纱！</p>
-<p>首先，this是一个指针，在32位环境下占4字节大小，保存的数据应为内存地址。</p>
-<h2 id="1、结构体指针">1、结构体指针</h2><p>我们先分析一段结构体：</p>
-<pre><code><span class="keyword">struct</span> A 
-{
-    <span class="keyword">int</span>        m_int;
-    <span class="keyword">short</span>    m_short;
-};
-<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    <span class="keyword">struct</span> A a    = {<span class="number">1</span>,<span class="number">2</span>};
-    <span class="keyword">struct</span> A *p = &amp;a;
-    <span class="built_in">printf</span>(<span class="string">"%p"</span>,&amp;p-&gt;m_int);
-    <span class="built_in">printf</span>(<span class="string">"%p"</span>,&amp;p-&gt;m_short);
-    getchar();
-}
-</code></pre><p>下面是对结构体的反汇编的分析：</p>
-<p><img src="/uploads/2014/07/823362416.png" alt="1.png"></p>
-<p>通过上图可以看到，结构体指针的地址就是此<code>结构的首地址</code>。</p>
-<p>那么类对象呢？我们在下一小节继续分析。</p>
-<h2 id="2、this指针">2、this指针</h2><p>我们编写一个测试类：</p>
-<pre><code><span class="keyword">class</span> CTest{
-<span class="keyword">public</span>:
-    <span class="keyword">int</span> m_int;
-<span class="keyword">public</span>:
-    <span class="function"><span class="keyword">void</span> <span class="title">SetNumber</span><span class="params">(<span class="keyword">int</span> n)</span>
-    </span>{
-        m_int = n;
-    }
-};
+        <p>参考链接：<br><a href="https://help.ubuntu.com/community/isc-dhcp-server" target="_blank" rel="external">https://help.ubuntu.com/community/isc-dhcp-server</a></p>
+<p>当前路由器IP: 192.168.7.1，并关闭DHCP服务。<br>配置Linux服务器IP地址为固定IP地址，编辑 /etc/network/interfaces </p>
+<pre><code><span class="tag">auto</span> <span class="tag">lo</span>
+<span class="tag">iface</span> <span class="tag">lo</span> <span class="tag">inet</span> <span class="tag">loopback</span>
 
-<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    CTest Test;
-    Test.SetNumber(<span class="number">10</span>);
-    <span class="built_in">printf</span>(<span class="string">"%p \r\n"</span>, &amp;Test);
-    <span class="built_in">printf</span>(<span class="string">"%p \r\n"</span>, &amp;Test.m_int);
-    getchar();
-}
-</code></pre><p>输出结果与我们预期的相同，对象地址与第一个元素的地址相同（0033FAE8），如下图：</p>
-<p><img src="/uploads/2014/07/1934018967.png" alt="2.png"></p>
-<p>下面我们分析反汇编代码：</p>
-<p><img src="/uploads/2014/07/2638181270.png" alt="3.png"></p>
-<p>通过上图的分析，可以得知：</p>
-<ul>
-<li>this指针的地址 = 对象的首地址 = 第一个成员变量的地址。</li>
-<li>调用成员函数时，一般采用 <code>ecx保存this指针</code>，在成员函数内部会可以使用这个值。</li>
-</ul>
-<h2 id="3、stdcall调用方式的成员函数">3、stdcall调用方式的成员函数</h2><p>C++中调用成员函数默认使用的是thiscall，thiscall中默认使用ecx传递this指针变量。但是，在stdcall中，this的传递方式是不同的。</p>
-<p>测试代码：</p>
-<pre><code><span class="keyword">class</span> CTest{
-<span class="keyword">public</span>:
-    <span class="keyword">int</span> m_int;
-<span class="keyword">public</span>:
-    <span class="comment">//调用方式为stdcall</span>
-    <span class="keyword">void</span> _<span class="function">stdcall <span class="title">SetNumber</span><span class="params">(<span class="keyword">int</span> n)</span>
-    </span>{
-        m_int = n;
-    }
-};
-<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    CTest Test;
-    Test.SetNumber(<span class="number">10</span>);
-    <span class="built_in">printf</span>(<span class="string">"%p \r\n"</span>, &amp;Test);
-    <span class="built_in">printf</span>(<span class="string">"%p \r\n"</span>, &amp;Test.m_int);
-    getchar();
-}
-</code></pre><p>反汇编代码：</p>
-<p><img src="/uploads/2014/07/446336290.png" alt="4.png"></p>
-<p>当使用stdcall时，编译器会隐含的传递一个this指针作为第一个参数，相当于：</p>
-<pre><code><span class="function"><span class="keyword">void</span> <span class="title">Function</span><span class="params">(<span class="keyword">this</span>, parameter...)</span>
-</span>{
-    <span class="comment">//..do something..</span>
-}
-</code></pre><p>实际上，大多数面向对象的编程语言，都是这么传递this指针的。</p>
-<p>如果有过python编程经验的人，应该注意到在调用成员函数时候，是显示的传递this指针：</p>
-<pre><code><span class="class"><span class="keyword">class</span> <span class="title">people</span>:</span>
-    <span class="comment">#定义了一个属性</span>
-    name = <span class="string">'jack'</span>       
-    <span class="comment">#定义了一个方法，这里显示的传递self（this）指针</span>
-    <span class="function"><span class="keyword">def</span> <span class="title">printName</span><span class="params">(self)</span>:</span> 
-        <span class="keyword">print</span> self.name
-</code></pre><p>这里不讲python，仅供参考，对比学习。</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/逆向基础/">逆向基础</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/04/19/reverse/19/" title="逆向基础第十九篇：内存对齐" itemprop="url">逆向基础第十九篇：内存对齐</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="John·Huang" target="_blank" itemprop="author">John·Huang</a>
-		
-  <p class="article-time">
-    <time datetime="2015-04-18T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-04-19</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>结构体和类在为数据成员分配内存时，结构体中当前数据类型长度为M，制定的对齐值为N，那么实际对齐值 Q = min(M,N) 其成员的地址安排在Q的倍数上。</p>
-<p>测试代码：</p>
-<pre><code><span class="keyword">struct</span> tagTest{
-    <span class="keyword">short</span> nShort;
-    <span class="keyword">int</span> nInt;
-} test;
-<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    test.nShort = <span class="number">1</span>;
-    test.nInt    = <span class="number">2</span>;
-    <span class="keyword">int</span> nSize = <span class="keyword">sizeof</span>(test);
-    <span class="built_in">printf</span>(<span class="string">"%d"</span>,nSize);
-    getchar();
-}
-</code></pre><p>部分反汇编结果：</p>
-<pre><code>    <span class="keyword">test</span>.nShort = <span class="number">1</span><span class="comment">;</span>
-00C32D1E  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="number">1</span>  
-00C32D23  <span class="keyword">mov</span>         <span class="preprocessor">word</span> <span class="preprocessor">ptr</span> [<span class="keyword">test</span> (<span class="number">0C37138h</span>)],<span class="number">ax</span>      <span class="comment">;这里是short类型的赋值</span>
-    <span class="keyword">test</span>.nInt    = <span class="number">2</span><span class="comment">;</span>
-00C32D29  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="keyword">test</span>+<span class="number">4</span> (<span class="number">0C3713Ch</span>)],<span class="number">2</span>    <span class="comment">;这里test+4进行了对齐</span>
-    <span class="keyword">int</span> nSize = sizeof(<span class="keyword">test</span>)<span class="comment">;</span>
-00C32D33  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [nSize],<span class="number">8</span>                <span class="comment">;sizeof 的结果为8</span>
-</code></pre><p>对nShort赋值之后，应在地址00C3713A（0C37138h+2）处分配nInt的空间。 但是int类型占4个字节，与指定的对齐（VC6中默认的对齐是8字节）比较后，但是00C3713A不是4的倍数，需要插入两个字节补充，因此nInt被定义在了0C3713Ch处。</p>
-<p>内存对齐实战：</p>
-<p>第一：</p>
-<pre><code><span class="keyword">struct</span>{
-    <span class="keyword">double</span> nDouble;     <span class="comment">//占8字节</span>
-    <span class="keyword">int</span> nInt;           <span class="comment">//占4字节</span>
-    <span class="keyword">short</span> nShort;       <span class="comment">//占2字节</span>
-}
-按默认的对齐值要求，结构体的整体大小要能被<span class="number">8</span>整除（<span class="number">8</span>=结构的第一个元素长度），所以要 <span class="number">8</span>+<span class="number">4</span>+<span class="number">4</span>+<span class="number">2</span>+<span class="number">2</span>=<span class="number">16</span>
-</code></pre><p>第二：</p>
-<pre><code><span class="keyword">struct</span>{
-    <span class="keyword">char</span> nChar;        <span class="comment">//占4字节，与nInt对齐</span>
-    <span class="keyword">int</span> nInt;          <span class="comment">//占4字节</span>
-    <span class="keyword">short</span> nShort;       <span class="comment">//占2字节</span>
-}
-</code></pre><p>第三：</p>
-<pre><code><span class="preprocessor">#<span class="keyword">pragma</span> pack(1)        <span class="comment">//声明1字节对齐</span></span>
-<span class="keyword">struct</span>{
-    <span class="keyword">char</span> nChar;        <span class="comment">//占1字节</span>
-    <span class="keyword">int</span> nInt;          <span class="comment">//占4字节</span>
-    <span class="keyword">short</span> nShort;       <span class="comment">//占2字节</span>
-}
-</code></pre><p>第四：</p>
-<pre><code><span class="keyword">struct</span>{
-    <span class="keyword">char</span> nChar;        <span class="comment">//占1字节</span>
-    <span class="keyword">char</span> cArray[<span class="number">4</span>];    <span class="comment">//占5字节，对齐nShort</span>
-    <span class="keyword">short</span> nShort;       <span class="comment">//占2字节</span>
-}
+<span class="tag">auto</span> <span class="tag">eth0</span>
+<span class="tag">iface</span> <span class="tag">eth0</span> <span class="tag">inet</span> <span class="tag">static</span>
+<span class="tag">address</span> 192<span class="class">.168</span><span class="class">.7</span><span class="class">.2</span>
+<span class="tag">gateway</span> 192<span class="class">.168</span><span class="class">.7</span><span class="class">.1</span>
+<span class="tag">netmask</span> 255<span class="class">.255</span><span class="class">.255</span><span class="class">.0</span> 
+</code></pre><p>重启网卡：</p>
+<pre><code>sudo <span class="regexp">/etc/i</span>nit.d<span class="regexp">/networking restart</span>
+</code></pre><p>首先安装DHCP服务器：</p>
+<pre><code>sudo apt-get <span class="operator"><span class="keyword">install</span> isc-dhcp-<span class="keyword">server</span></span>
+</code></pre><p>备份dhcp的当前配置文件：</p>
+<pre><code>sudo cp /etc/dhcp/dhcpd<span class="class">.conf</span> /etc/dhcp3/dhcpd<span class="class">.conf</span><span class="class">.bak</span>
+</code></pre><p>修改配置文件如下：</p>
+<pre><code>default-lease-time 600<span class="comment">;</span>
+max-lease-time 7200<span class="comment">;</span>
+option subnet-mask <span class="number">255.255.255.0</span><span class="comment">;</span>
+option broadcast-address <span class="number">192.168.7.255</span><span class="comment">;</span>
+option routers <span class="number">192.168.7.1</span><span class="comment">;</span>
+option domain-name-servers <span class="number">192.168.7.1</span>, <span class="number">192.168.7.2</span><span class="comment">;</span>
+option domain-name "mydomain.example"<span class="comment">;</span>
+subnet <span class="number">192.168.7.0</span> netmask <span class="number">255.255.255.0</span> {
+    range <span class="number">192.168.7.3</span> <span class="number">192.168.7.253</span><span class="comment">;</span>
+} 
+</code></pre><p>启动或关闭DHCP服务：</p>
+<pre><code>sudo <span class="keyword">service</span> isc-dhcp-server <span class="literal">restart</span>
+sudo <span class="keyword">service</span> isc-dhcp-server <span class="literal">start</span>
+sudo <span class="keyword">service</span> isc-dhcp-server <span class="literal">stop</span> 
 </code></pre>
         
         
@@ -1016,13 +942,13 @@ void ShowFunTest(CTest <span class="keyword">Test</span>)
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/逆向基础/">逆向基础</a>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>►<a class="article-category-link" href="/categories/Linux/运维/">运维</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
+  <span></span> <a href="/tags/linux/">linux</a><a href="/tags/shell/">shell</a><a href="/tags/运维/">运维</a>
   </div>
 
 </div>

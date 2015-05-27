@@ -4,7 +4,7 @@
   <subtitle><![CDATA[不乱于心,不困于情。不念过往，不畏将来。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://0x520.com/"/>
-  <updated>2015-05-26T08:56:42.000Z</updated>
+  <updated>2015-05-27T05:49:52.000Z</updated>
   <id>http://0x520.com/</id>
   
   <author>
@@ -15,19 +15,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[用mac笔记本演示iPhone应用]]></title>
+    <title><![CDATA[Mac上录制iPhone屏幕 | 投影仪演示iPhone应用]]></title>
     <link href="http://0x520.com/2015/05/26/others/1/"/>
     <id>http://0x520.com/2015/05/26/others/1/</id>
     <published>2015-05-26T08:55:00.000Z</published>
-    <updated>2015-05-26T08:56:42.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="找到QuickTime">找到QuickTime</h2><p><img src="/uploads/QQ20150526-1.jpg" alt="找到QuickTime"></p>
-<h2 id="新建影片录制">新建影片录制</h2><p><img src="/uploads/QQ20150526-2.jpg" alt="新建影片录制"></p>
-<h2 id="选择从iPhone录制">选择从iPhone录制</h2><p><img src="/uploads/QQ20150526-3.jpg" alt="选择从iPhone录制"></p>
-<h2 id="开始演示吧">开始演示吧</h2><p><img src="/uploads/QQ20150526-4.jpg" alt="开始演示吧"></p>
+    <updated>2015-05-27T05:49:52.000Z</updated>
+    <content type="html"><![CDATA[<p>有些同学需要在投影仪上演示iPhone应用，或者需要发布一段app的预览视频，升级Mac操作系统到Yosemite你就可以体验这个强大的功能啦。</p>
+<p>Requirements：</p>
+<ul>
+<li>iPhone</li>
+<li>Mac</li>
+<li>QuickTime Player</li>
+</ul>
+<p>首先，用你的Lightning数据线连接上你的iPhone，然后就可以开始按步骤操作了。</p>
+<h4 id="第一步：打开你的QuickTime_Player">第一步：打开你的QuickTime Player</h4><p>QuickTime Player 是OSX系统上的默认安装软件，所以请不要告诉我你找不到它！</p>
+<p><img src="/uploads/QQ20150526-1.jpg" alt="QuickTime Player"></p>
+<h4 id="第二步：新建影片录制">第二步：新建影片录制</h4><p><code>菜单 -&gt; 文件 -&gt; 新建影片录制</code> 此时就可以开始视频了。 也许你在屏幕上看到另一张可怕脸，不过别担心，请看第三步。</p>
+<p><img src="/uploads/QQ20150526-2.jpg" alt="新建影片录制"></p>
+<h4 id="第三步：选择从iPhone录制">第三步：选择从iPhone录制</h4><p>QuickTime Player 默认是从摄像头录制，你可以切换到录制iPhone。如下图：</p>
+<p><img src="/uploads/QQ20150526-3.jpg" alt="选择从iPhone录制"></p>
+<h4 id="第四步：开始演示吧">第四步：开始演示吧</h4><p>此时，你可以接上投影仪开始演示你得App了，或者你也可以点击QuickTime Player中央的红色按钮，录制一段视频~</p>
+<p><img src="/uploads/QQ20150526-4.jpg" alt="开始演示吧"></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h2 id="找到QuickTime">找到QuickTime</h2><p><img src="/uploads/QQ20150526-1.jpg" alt="找到QuickTime"></p>
-<h2 id="新建影片录制">新建影片录制</h2><p><img src="]]>
+    <![CDATA[<p>有些同学需要在投影仪上演示iPhone应用，或者需要发布一段app的预览视频，升级Mac操作系统到Yosemite你就可以体验这个强大的功能啦。</p>
+<p>Requirements：</p>
+<ul>
+<li>iPhone</li>
+<li>Mac</li>
+<li>Q]]>
     </summary>
     
       <category term="其他" scheme="http://0x520.com/categories/%E5%85%B6%E4%BB%96/"/>
@@ -384,479 +400,6 @@ namespace <span class="symbol">:dev</span> <span class="keyword">do</span>
     </summary>
     
       <category term="Android" scheme="http://0x520.com/categories/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[逆向基础第二十一篇：对象作为函数参数或返回值]]></title>
-    <link href="http://0x520.com/2015/04/21/reverse/21/"/>
-    <id>http://0x520.com/2015/04/21/reverse/21/</id>
-    <published>2015-04-20T16:00:00.000Z</published>
-    <updated>2015-05-23T03:41:17.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="1、对象作为函数参数">1、对象作为函数参数</h2><p>下面是一段<code>对象作为参数</code>的代码片段：</p>
-<pre><code>class CTest{
-<span class="label">public:</span>
-    <span class="keyword">int</span> m_nOne<span class="comment">;</span>
-    <span class="keyword">int</span> m_nTwo<span class="comment">;</span>
-}<span class="comment">;</span>
-
-void ShowFunTest(CTest <span class="keyword">Test</span>)
-{
-    printf(<span class="string">"%d,%d \r\n"</span>,<span class="keyword">Test</span>.m_nOne,<span class="keyword">Test</span>.m_nTwo)<span class="comment">;</span>
-}
-
-<span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    CTest <span class="keyword">Test</span><span class="comment">;</span>
-    <span class="keyword">Test</span>.m_nOne = <span class="number">1</span><span class="comment">;</span>
-    <span class="keyword">Test</span>.m_nTwo = <span class="number">2</span><span class="comment">;</span>
-    ShowFunTest(<span class="keyword">Test</span>)<span class="comment">;</span>
-    getchar()<span class="comment">;</span>
-}
-</code></pre><a id="more"></a>
-<p>_tmain反汇编代码片段如下:</p>
-<pre><code>    CTest <span class="keyword">Test</span><span class="comment">;</span>
-    <span class="keyword">Test</span>.m_nOne = <span class="number">1</span><span class="comment">;                            </span>
-00DD1A5E  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="keyword">Test</span>],<span class="number">1</span>        <span class="comment">;给第一个成员变量赋值</span>
-    <span class="keyword">Test</span>.m_nTwo = <span class="number">2</span><span class="comment">;</span>
-00DD1A65  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">8</span>],<span class="number">2</span>       <span class="comment">;给第二个成员变量赋值</span>
-    ShowFunTest(<span class="keyword">Test</span>)<span class="comment">;</span>
-00DD1A6C  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">8</span>]     <span class="comment">;第二个成员变量作为参数</span>
-00DD1A6F  <span class="keyword">push</span>        <span class="number">eax</span>  
-00DD1A70  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="keyword">Test</span>]      <span class="comment">;第一个成员变量作为参数</span>
-00DD1A73  <span class="keyword">push</span>        <span class="number">ecx</span>  
-00DD1A74  <span class="keyword">call</span>        ShowFunTest (<span class="number">0DD11E5h</span>)    <span class="comment">;调用ShowFunTest函数</span>
-00DD1A79  <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">8</span>  
-    getchar()<span class="comment">;</span>
-</code></pre><p>通过反汇编可以看出，对象作为参数时，是将对象的成员变量逐个复制，然后压栈，作为参数传递到函数中，并非将对象的首地址作为参数。</p>
-<h3 id="1-1、含有数组成员变量的对象作为参数">1.1、含有数组成员变量的对象作为参数</h3><p>但是，当类的体积过大时，或者有数组类型的成员变量时，会将数组的首地址压栈吗？</p>
-<pre><code><span class="keyword">class</span> CTest{
-<span class="keyword">public</span>:
-    <span class="keyword">int</span> m_nOne;
-    <span class="keyword">int</span> m_nTwo;
-    <span class="keyword">char</span> m_szName[<span class="number">20</span>]; <span class="comment">//定义数组类型的成员变量</span>
-};
-<span class="function"><span class="keyword">void</span> <span class="title">ShowFunTest</span><span class="params">(CTest Test)</span>
-</span>{
-    <span class="built_in">printf</span>(<span class="string">"%d,%d,%s \r\n"</span>,Test.m_nOne,Test.m_nTwo,Test.m_szName);
-}
-<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    CTest Test;
-    Test.m_nOne = <span class="number">1</span>;
-    Test.m_nTwo = <span class="number">2</span>;
-    <span class="built_in">strcpy</span>(Test.m_szName,<span class="string">"This is an Array"</span>);
-    ShowFunTest(Test);
-    getchar();
-}
-</code></pre><p>反汇编代码如下：</p>
-<p><img src="/uploads/2014/07/3312030032.png" alt="1.png"></p>
-<p>通过上图，可以看出，对数组内容也进行拷贝。</p>
-<h3 id="1-2、对象拷贝引起的错误">1.2、对象拷贝引起的错误</h3><p>对象作为函数的参数，但是当函数退出时，复制的对象作为函数内的局部变量，将会被销毁。 当析构函数存在时，则会调用析构函数，这里有可能会引起错误。</p>
-<pre><code><span class="keyword">class</span> CMyString{
-<span class="keyword">public</span>:
-    CMyString()
-    {
-        m_pString = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">10</span>];
-        <span class="keyword">if</span>(m_pString == NULL){
-            <span class="keyword">return</span>;
-        }
-        <span class="built_in">strcpy</span>(m_pString,<span class="string">"Hello"</span>);
-    }
-    ~CMyString()
-    {
-        <span class="keyword">if</span> (m_pString!=NULL)
-        {
-            <span class="keyword">delete</span> m_pString;
-            m_pString = NULL;
-        }
-    }
-    <span class="keyword">char</span>* GetString()
-    {
-        <span class="keyword">return</span> m_pString;
-    }
-<span class="keyword">private</span>:
-    <span class="keyword">char</span> * m_pString;
-};
-
-<span class="function"><span class="keyword">void</span> <span class="title">ShowMyString</span><span class="params">(CMyString MyString)</span>
-</span>{
-    <span class="built_in">printf</span>(<span class="string">"%s \r\n"</span>,MyString.GetString());
-}
-
-<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    CMyString MyString;
-    ShowMyString(MyString);
-}
-</code></pre><p>_tmain函数反汇编：</p>
-<pre><code>    CMyString MyString<span class="comment">;</span>
-<span class="number">0118159D</span>  <span class="keyword">lea</span>         <span class="number">ecx</span>,[<span class="literal">ebp</span>-<span class="number">14h</span>]                    <span class="comment">;获得对象首地址</span>
-011815A0  <span class="keyword">call</span>        CMyString::CMyString (<span class="number">11810C8h</span>)  <span class="comment">;调用构造函数</span>
-011815A5  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">0</span>              <span class="comment">;记录同一作用域内该类的对象个</span>
-    ShowMyString(MyString)<span class="comment">;</span>
-011815AC  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">14h</span>]          <span class="comment">;MyString对象的首地址(m_pString地址)</span>
-011815AF  <span class="keyword">push</span>        <span class="number">eax</span>                              <span class="comment">;首地址入栈</span>
-011815B0  <span class="keyword">call</span>        ShowMyString (<span class="number">118115Eh</span>)  
-011815B5  <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">4</span>  
-}
-011815B8  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">0FFFFFFFFh</span>     <span class="comment">;对象被释放，修改对象个数</span>
-011815BF  <span class="keyword">lea</span>         <span class="number">ecx</span>,[<span class="literal">ebp</span>-<span class="number">14h</span>]                    <span class="comment">;取对象首地址</span>
-011815C2  <span class="keyword">call</span>        CMyString::~CMyString (<span class="number">118116Dh</span>) <span class="comment">;调用析构函数</span>
-011815C7  <span class="keyword">xor</span>         <span class="number">eax</span>,<span class="number">eax</span>  
-011815C9  <span class="keyword">push</span>        <span class="number">edx</span>  
-011815CA  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="literal">ebp</span>  
-011815CC  <span class="keyword">push</span>        <span class="number">eax</span>  
-...略...
-</code></pre><p>ShowMyString函数部分反汇编代码：</p>
-<pre><code>void ShowMyString(CMyString MyString)
-{
-...略... 
-    printf(<span class="string">"%s \r\n"</span>,MyString.GetString())<span class="comment">;</span>
-<span class="number">01181424</span>  <span class="keyword">lea</span>         <span class="number">ecx</span>,[<span class="literal">ebp</span>+<span class="number">8</span>]                           <span class="comment">;对象首地址</span>
-<span class="number">01181427</span>  <span class="keyword">call</span>        CMyString::GetString (<span class="number">118101Eh</span>)       <span class="comment">;调用GetString函数</span>
-0118142C  <span class="keyword">mov</span>         <span class="literal">esi</span>,<span class="literal">esp</span>  
-0118142E  <span class="keyword">push</span>        <span class="number">eax</span>                                   <span class="comment">;m_pString地址，入栈</span>
-0118142F  <span class="keyword">push</span>        offset string <span class="string">"%s \r\n"</span> (<span class="number">1186830h</span>)    <span class="comment">;printf</span>
-<span class="number">01181434</span>  <span class="keyword">call</span>        <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [__imp__printf (<span class="number">11892DCh</span>)]  
-0118143A  <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">8</span>  
-<span class="number">0118143D</span>  <span class="keyword">cmp</span>         <span class="literal">esi</span>,<span class="literal">esp</span>  
-0118143F  <span class="keyword">call</span>        @ILT+<span class="number">330</span>(__RTC_CheckEsp) (<span class="number">118114Fh</span>)  
-}
-<span class="number">01181444</span>  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">0FFFFFFFFh</span>          <span class="comment">;修改作用域对象的个数</span>
-0118144B  <span class="keyword">lea</span>         <span class="number">ecx</span>,[<span class="literal">ebp</span>+<span class="number">8</span>]                           <span class="comment">;取得对象的首地址</span>
-0118144E  <span class="keyword">call</span>        CMyString::~CMyString (<span class="number">118116Dh</span>)      <span class="comment">;调用析构函数</span>
-<span class="number">01181453</span>  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">0Ch</span>]  
-<span class="number">01181456</span>  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> <span class="literal">fs</span>:[<span class="number">0</span>],<span class="number">ecx</span>  
-<span class="number">0118145D</span>  <span class="keyword">pop</span>         <span class="number">ecx</span>  
-0118145E  <span class="keyword">pop</span>         <span class="literal">edi</span>  
-0118145F  <span class="keyword">pop</span>         <span class="literal">esi</span>  
-<span class="number">01181460</span>  <span class="keyword">pop</span>         <span class="number">ebx</span>  
-<span class="number">01181461</span>  <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">0CCh</span>  
-<span class="number">01181467</span>  <span class="keyword">cmp</span>         <span class="literal">ebp</span>,<span class="literal">esp</span>  
-<span class="number">01181469</span>  <span class="keyword">call</span>        @ILT+<span class="number">330</span>(__RTC_CheckEsp) (<span class="number">118114Fh</span>)  
-0118146E  <span class="keyword">mov</span>         <span class="literal">esp</span>,<span class="literal">ebp</span>  
-<span class="number">01181470</span>  <span class="keyword">pop</span>         <span class="literal">ebp</span>  
-<span class="number">01181471</span>  <span class="keyword">ret</span>  
-</code></pre><p>通过上面反汇编代码看出，在ShowMyString中调用了一次析构函数。如果在_tmain函数这么写：</p>
-<pre><code>int _<span class="function">tmain</span>(int argc, _TCHAR* argv<span class="attr_selector">[]</span>)
-{
-    CMyString MyString;
-    <span class="function">ShowMyString</span>(MyString);
-    <span class="function">ShowMyString</span>(MyString);
-}
-</code></pre><p>这里将会调用两次析构函数，在debug模式下，有错误检查，会有错误提示。 </p>
-<p>如果是在release模式下，不会对堆中的数据进行检查。如果没有再次申请堆空间，此地址中的数据仍然存在，将会引起程序错误。</p>
-<h2 id="2、对象作为函数返回值">2、对象作为函数返回值</h2><p>基本数据类型作为返回值时，可以使用eax来保存返回的结果。但是对象属于自定义类型，寄存器eax无法保存所有的返回数据，那么对象作为返回值应该如何处理呢？</p>
-<p>实际上，对象作为返回值与对象作为参数非常类似，对象作为参数时，进入函数前预先将对象使用的栈空间保留出来，并将实参对象中的数据复制到栈空间中，将此栈空间作为函数参数，在函数内部使用。</p>
-<p>同理，对象作为返回值时，进入函数后将申请返回对象使用的栈空间，在退出函数时，将返回对象中的数据复制到临时栈空间中，将这个临时栈空间的首地址返回。</p>
-<p>测试代码：</p>
-<pre><code><span class="keyword">class</span> CReturn{
-<span class="keyword">public</span>:
-    <span class="keyword">int</span> m_nNumber;
-    <span class="keyword">int</span> m_nArray[<span class="number">10</span>];
-};
-
-<span class="function">CReturn <span class="title">GetCReturn</span><span class="params">()</span></span>{
-    CReturn RetObj;
-    RetObj.m_nNumber = <span class="number">0</span>;
-    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)
-    {
-        RetObj.m_nArray[i] = i+<span class="number">1</span>;
-    }
-    <span class="keyword">return</span> RetObj;
-}
-
-<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    CReturn obj;
-    obj = GetCReturn();
-    <span class="built_in">printf</span>(<span class="string">"%d,%d,%d"</span>,obj.m_nNumber,obj.m_nArray[<span class="number">0</span>],obj.m_nArray[<span class="number">9</span>]);
-}
-</code></pre><p>_tmain 反汇编分析：</p>
-<pre><code><span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-013D1460  <span class="keyword">push</span>        <span class="literal">ebp</span>  
-013D1461  <span class="keyword">mov</span>         <span class="literal">ebp</span>,<span class="literal">esp</span>  
-013D1463  <span class="keyword">sub</span>         <span class="literal">esp</span>,<span class="number">160h</span>                     <span class="comment">;预留栈空间 </span>
-013D1469  <span class="keyword">push</span>        <span class="number">ebx</span>  
-013D146A  <span class="keyword">push</span>        <span class="literal">esi</span>  
-013D146B  <span class="keyword">push</span>        <span class="literal">edi</span>  
-013D146C  <span class="keyword">lea</span>         <span class="literal">edi</span>,[<span class="literal">ebp</span>-<span class="number">160h</span>]               <span class="comment">;edi=esp=栈顶</span>
-013D1472  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="number">58h</span>                      <span class="comment">;初始化预留的占空间</span>
-013D1477  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="number">0CCCCCCCCh</span>               <span class="comment">;初始化预留的占空间</span>
-013D147C  <span class="keyword">rep</span> stos    <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> <span class="literal">es</span>:[<span class="literal">edi</span>]           <span class="comment">;初始化预留的占空间</span>
-013D147E  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [___security_cookie (<span class="number">13D7000h</span>)]  
-013D1483  <span class="keyword">xor</span>         <span class="number">eax</span>,<span class="literal">ebp</span>  
-013D1485  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">eax</span>  
-    CReturn obj<span class="comment">;</span>
-    obj = GetCReturn()<span class="comment">;</span>
-013D1488  <span class="keyword">lea</span>         <span class="number">eax</span>,[<span class="literal">ebp</span>-<span class="number">128h</span>]               <span class="comment">;返回对象的首地址</span>
-013D148E  <span class="keyword">push</span>        <span class="number">eax</span>                          <span class="comment">;返回对象的首地址入栈，保存返回对象的数据</span>
-013D148F  <span class="keyword">call</span>        GetCReturn (<span class="number">13D1190h</span>)  
-013D1494  <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">4</span>  
-013D1497  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="number">0Bh</span>                      <span class="comment">;0B=11=循环次数</span>
-013D149C  <span class="keyword">mov</span>         <span class="literal">esi</span>,<span class="number">eax</span>                      <span class="comment">;esi=eax=返回对象的首地址</span>
-013D149E  <span class="keyword">lea</span>         <span class="literal">edi</span>,[<span class="literal">ebp</span>-<span class="number">15Ch</span>]               <span class="comment">;临时对象的首地址</span>
-013D14A4  <span class="keyword">rep</span> movs    <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> <span class="literal">es</span>:[<span class="literal">edi</span>],<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">esi</span>]<span class="comment">;复制4*11个字节（返回对象赋值给临时对象）</span>
-013D14A6  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="number">0Bh</span>                      <span class="comment">;0B=11=循环次数</span>
-013D14AB  <span class="keyword">lea</span>         <span class="literal">esi</span>,[<span class="literal">ebp</span>-<span class="number">15Ch</span>]               <span class="comment">;临时对象首地址(ebp-15Ch)</span>
-013D14B1  <span class="keyword">lea</span>         <span class="literal">edi</span>,[<span class="literal">ebp</span>-<span class="number">34h</span>]                <span class="comment">;obj对象首地址(ebp-34h)</span>
-013D14B4  <span class="keyword">rep</span> movs    <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> <span class="literal">es</span>:[<span class="literal">edi</span>],<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">esi</span>]<span class="comment">;临时对象赋值给obj</span>
-    printf(<span class="string">"%d,%d,%d"</span>,obj.m_nNumber,obj.m_nArray[<span class="number">0</span>],obj.m_nArray[<span class="number">9</span>])<span class="comment">;</span>
-013D14B6  <span class="keyword">mov</span>         <span class="literal">esi</span>,<span class="literal">esp</span>  
-013D14B8  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">0Ch</span>]  
-013D14BB  <span class="keyword">push</span>        <span class="number">eax</span>  
-013D14BC  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">30h</span>]  
-013D14BF  <span class="keyword">push</span>        <span class="number">ecx</span>  
-013D14C0  <span class="keyword">mov</span>         <span class="number">edx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">34h</span>]  
-013D14C3  <span class="keyword">push</span>        <span class="number">edx</span>  
-013D14C4  <span class="keyword">push</span>        offset string <span class="string">"%d,%d,%d"</span> (<span class="number">13D5830h</span>)  
-013D14C9  <span class="keyword">call</span>        <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [__imp__printf (<span class="number">13D82B0h</span>)]  
-013D14CF  <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">10h</span>  
-013D14D2  <span class="keyword">cmp</span>         <span class="literal">esi</span>,<span class="literal">esp</span>  
-013D14D4  <span class="keyword">call</span>        @ILT+<span class="number">305</span>(__RTC_CheckEsp) (<span class="number">13D1136h</span>)  
-}
-</code></pre><p>GetCReturn 反汇编：</p>
-<pre><code>CReturn GetCReturn(){
-013D1390  <span class="keyword">push</span>        <span class="literal">ebp</span>  
-013D1391  <span class="keyword">mov</span>         <span class="literal">ebp</span>,<span class="literal">esp</span>  
-013D1393  <span class="keyword">sub</span>         <span class="literal">esp</span>,<span class="number">104h</span>  <span class="comment">;调整栈空间，预留临时返回对象和局部对象内存空间</span>
-013D1399  <span class="keyword">push</span>        <span class="number">ebx</span>  
-013D139A  <span class="keyword">push</span>        <span class="literal">esi</span>  
-013D139B  <span class="keyword">push</span>        <span class="literal">edi</span>  
-013D139C  <span class="keyword">lea</span>         <span class="literal">edi</span>,[<span class="literal">ebp</span>-<span class="number">104h</span>]   <span class="comment">;edi=esp=栈顶</span>
-013D13A2  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="number">41h</span>          <span class="comment">;设置循环次数</span>
-013D13A7  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="number">0CCCCCCCCh</span>  
-013D13AC  <span class="keyword">rep</span> stos    <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> <span class="literal">es</span>:[<span class="literal">edi</span>]  
-013D13AE  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [___security_cookie (<span class="number">13D7000h</span>)]  
-013D13B3  <span class="keyword">xor</span>         <span class="number">eax</span>,<span class="literal">ebp</span>  
-013D13B5  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">eax</span>  
-    CReturn RetObj<span class="comment">;</span>
-    RetObj.m_nNumber = <span class="number">0</span><span class="comment">;</span>
-013D13B8  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">34h</span>],<span class="number">0</span>    <span class="comment">;m_nNumber赋值为0,这里是RetObj对象的首地址</span>
-    for (<span class="keyword">int</span> i=<span class="number">0</span><span class="comment">;i&lt;10;i++)</span>
-    {
-        RetObj.m_nArray[i] = i+<span class="number">1</span><span class="comment">;</span>
-    }
-    ..<span class="string">.for</span>循环略...
-    return RetObj<span class="comment">;</span>
-013D13E6  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="number">0Bh</span>                  <span class="comment">;设置循环次数=11次</span>
-013D13EB  <span class="keyword">lea</span>         <span class="literal">esi</span>,[<span class="literal">ebp</span>-<span class="number">34h</span>]            <span class="comment">;局部对象的首地址</span>
-013D13EE  <span class="keyword">mov</span>         <span class="literal">edi</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]    <span class="comment">;返回对象的首地址</span>
-013D13F1  <span class="keyword">rep</span> movs    <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> <span class="literal">es</span>:[<span class="literal">edi</span>],<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">esi</span>]  
-013D13F3  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]    <span class="comment">;返回对象的首地址</span>
-}
-...略...
-</code></pre><p>1、调用GetCReturn之前，编译器将在main函数中申请的返回对象的首地址作为参数入栈。<br>2、函数GetCReturn结束之后，将GetCReturn中定义的局部对象RetObj的数据复制到这个返回对象的空间中。<br>3、将返回对象赋值给obj对象。</p>
-<p>这里涉及到<code>返回对象</code>，<code>临时对象</code>，<code>obj对象</code> 这里的临时对象看起来有点多余，直接将返回对象赋值给obj对象不好吗？其实，这是有必要的，因为，C++程序员可能采用这种写法：<code>GetCReturn().m_nNumber</code>，这里是针对返回对象的操作，此时GetCReturn函数已经退出，栈桢也已经关闭，此时操作局部函数的对象已经不合适了。因此，只能由函数调用方准备临时空间，将局部对象赋值给临时对象，到临时空间，</p>
-<p>-待发布-</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="1、对象作为函数参数">1、对象作为函数参数</h2><p>下面是一段<code>对象作为参数</code>的代码片段：</p>
-<pre><code>class CTest{
-<span class="label">public:</span>
-    <span class="keyword">int</span> m_nOne<span class="comment">;</span>
-    <span class="keyword">int</span> m_nTwo<span class="comment">;</span>
-}<span class="comment">;</span>
-
-void ShowFunTest(CTest <span class="keyword">Test</span>)
-{
-    printf(<span class="string">"%d,%d \r\n"</span>,<span class="keyword">Test</span>.m_nOne,<span class="keyword">Test</span>.m_nTwo)<span class="comment">;</span>
-}
-
-<span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    CTest <span class="keyword">Test</span><span class="comment">;</span>
-    <span class="keyword">Test</span>.m_nOne = <span class="number">1</span><span class="comment">;</span>
-    <span class="keyword">Test</span>.m_nTwo = <span class="number">2</span><span class="comment">;</span>
-    ShowFunTest(<span class="keyword">Test</span>)<span class="comment">;</span>
-    getchar()<span class="comment">;</span>
-}
-</code></pre>]]>
-    
-    </summary>
-    
-      <category term="反汇编" scheme="http://0x520.com/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/"/>
-    
-      <category term="逆向" scheme="http://0x520.com/tags/%E9%80%86%E5%90%91/"/>
-    
-      <category term="逆向基础" scheme="http://0x520.com/categories/%E9%80%86%E5%90%91%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[逆向基础第二十篇：类和对象 之 “this指针”]]></title>
-    <link href="http://0x520.com/2015/04/20/reverse/20/"/>
-    <id>http://0x520.com/2015/04/20/reverse/20/</id>
-    <published>2015-04-19T16:00:00.000Z</published>
-    <updated>2015-05-23T03:41:17.000Z</updated>
-    <content type="html"><![CDATA[<p>写C++应该会经常用到this指针，但是我们在类中并没有找到this的定义，许多程序员只知道使用this指针，但是不知道this从何而来。今天，我们来解开this指针的神秘的面纱！</p>
-<p>首先，this是一个指针，在32位环境下占4字节大小，保存的数据应为内存地址。</p>
-<h2 id="1、结构体指针">1、结构体指针</h2><p>我们先分析一段结构体：</p>
-<pre><code><span class="keyword">struct</span> A 
-{
-    <span class="keyword">int</span>        m_int;
-    <span class="keyword">short</span>    m_short;
-};
-<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    <span class="keyword">struct</span> A a    = {<span class="number">1</span>,<span class="number">2</span>};
-    <span class="keyword">struct</span> A *p = &amp;a;
-    <span class="built_in">printf</span>(<span class="string">"%p"</span>,&amp;p-&gt;m_int);
-    <span class="built_in">printf</span>(<span class="string">"%p"</span>,&amp;p-&gt;m_short);
-    getchar();
-}
-</code></pre><p>下面是对结构体的反汇编的分析：</p>
-<p><img src="/uploads/2014/07/823362416.png" alt="1.png"></p>
-<p>通过上图可以看到，结构体指针的地址就是此<code>结构的首地址</code>。</p>
-<p>那么类对象呢？我们在下一小节继续分析。</p>
-<h2 id="2、this指针">2、this指针</h2><p>我们编写一个测试类：</p>
-<pre><code><span class="keyword">class</span> CTest{
-<span class="keyword">public</span>:
-    <span class="keyword">int</span> m_int;
-<span class="keyword">public</span>:
-    <span class="function"><span class="keyword">void</span> <span class="title">SetNumber</span><span class="params">(<span class="keyword">int</span> n)</span>
-    </span>{
-        m_int = n;
-    }
-};
-
-<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    CTest Test;
-    Test.SetNumber(<span class="number">10</span>);
-    <span class="built_in">printf</span>(<span class="string">"%p \r\n"</span>, &amp;Test);
-    <span class="built_in">printf</span>(<span class="string">"%p \r\n"</span>, &amp;Test.m_int);
-    getchar();
-}
-</code></pre><p>输出结果与我们预期的相同，对象地址与第一个元素的地址相同（0033FAE8），如下图：</p>
-<p><img src="/uploads/2014/07/1934018967.png" alt="2.png"></p>
-<p>下面我们分析反汇编代码：</p>
-<p><img src="/uploads/2014/07/2638181270.png" alt="3.png"></p>
-<p>通过上图的分析，可以得知：</p>
-<ul>
-<li>this指针的地址 = 对象的首地址 = 第一个成员变量的地址。</li>
-<li>调用成员函数时，一般采用 <code>ecx保存this指针</code>，在成员函数内部会可以使用这个值。</li>
-</ul>
-<h2 id="3、stdcall调用方式的成员函数">3、stdcall调用方式的成员函数</h2><p>C++中调用成员函数默认使用的是thiscall，thiscall中默认使用ecx传递this指针变量。但是，在stdcall中，this的传递方式是不同的。</p>
-<p>测试代码：</p>
-<pre><code><span class="keyword">class</span> CTest{
-<span class="keyword">public</span>:
-    <span class="keyword">int</span> m_int;
-<span class="keyword">public</span>:
-    <span class="comment">//调用方式为stdcall</span>
-    <span class="keyword">void</span> _<span class="function">stdcall <span class="title">SetNumber</span><span class="params">(<span class="keyword">int</span> n)</span>
-    </span>{
-        m_int = n;
-    }
-};
-<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    CTest Test;
-    Test.SetNumber(<span class="number">10</span>);
-    <span class="built_in">printf</span>(<span class="string">"%p \r\n"</span>, &amp;Test);
-    <span class="built_in">printf</span>(<span class="string">"%p \r\n"</span>, &amp;Test.m_int);
-    getchar();
-}
-</code></pre><p>反汇编代码：</p>
-<p><img src="/uploads/2014/07/446336290.png" alt="4.png"></p>
-<p>当使用stdcall时，编译器会隐含的传递一个this指针作为第一个参数，相当于：</p>
-<pre><code><span class="function"><span class="keyword">void</span> <span class="title">Function</span><span class="params">(<span class="keyword">this</span>, parameter...)</span>
-</span>{
-    <span class="comment">//..do something..</span>
-}
-</code></pre><p>实际上，大多数面向对象的编程语言，都是这么传递this指针的。</p>
-<p>如果有过python编程经验的人，应该注意到在调用成员函数时候，是显示的传递this指针：</p>
-<pre><code><span class="class"><span class="keyword">class</span> <span class="title">people</span>:</span>
-    <span class="comment">#定义了一个属性</span>
-    name = <span class="string">'jack'</span>       
-    <span class="comment">#定义了一个方法，这里显示的传递self（this）指针</span>
-    <span class="function"><span class="keyword">def</span> <span class="title">printName</span><span class="params">(self)</span>:</span> 
-        <span class="keyword">print</span> self.name
-</code></pre><p>这里不讲python，仅供参考，对比学习。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>写C++应该会经常用到this指针，但是我们在类中并没有找到this的定义，许多程序员只知道使用this指针，但是不知道this从何而来。今天，我们来解开this指针的神秘的面纱！</p>
-<p>首先，this是一个指针，在32位环境下占4字节大小，保存的数据应为内存地址。]]>
-    </summary>
-    
-      <category term="反汇编" scheme="http://0x520.com/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/"/>
-    
-      <category term="逆向" scheme="http://0x520.com/tags/%E9%80%86%E5%90%91/"/>
-    
-      <category term="逆向基础" scheme="http://0x520.com/categories/%E9%80%86%E5%90%91%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[逆向基础第十九篇：内存对齐]]></title>
-    <link href="http://0x520.com/2015/04/19/reverse/19/"/>
-    <id>http://0x520.com/2015/04/19/reverse/19/</id>
-    <published>2015-04-18T16:00:00.000Z</published>
-    <updated>2015-05-23T03:41:17.000Z</updated>
-    <content type="html"><![CDATA[<p>结构体和类在为数据成员分配内存时，结构体中当前数据类型长度为M，制定的对齐值为N，那么实际对齐值 Q = min(M,N) 其成员的地址安排在Q的倍数上。</p>
-<p>测试代码：</p>
-<pre><code><span class="keyword">struct</span> tagTest{
-    <span class="keyword">short</span> nShort;
-    <span class="keyword">int</span> nInt;
-} test;
-<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    test.nShort = <span class="number">1</span>;
-    test.nInt    = <span class="number">2</span>;
-    <span class="keyword">int</span> nSize = <span class="keyword">sizeof</span>(test);
-    <span class="built_in">printf</span>(<span class="string">"%d"</span>,nSize);
-    getchar();
-}
-</code></pre><p>部分反汇编结果：</p>
-<pre><code>    <span class="keyword">test</span>.nShort = <span class="number">1</span><span class="comment">;</span>
-00C32D1E  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="number">1</span>  
-00C32D23  <span class="keyword">mov</span>         <span class="preprocessor">word</span> <span class="preprocessor">ptr</span> [<span class="keyword">test</span> (<span class="number">0C37138h</span>)],<span class="number">ax</span>      <span class="comment">;这里是short类型的赋值</span>
-    <span class="keyword">test</span>.nInt    = <span class="number">2</span><span class="comment">;</span>
-00C32D29  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="keyword">test</span>+<span class="number">4</span> (<span class="number">0C3713Ch</span>)],<span class="number">2</span>    <span class="comment">;这里test+4进行了对齐</span>
-    <span class="keyword">int</span> nSize = sizeof(<span class="keyword">test</span>)<span class="comment">;</span>
-00C32D33  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [nSize],<span class="number">8</span>                <span class="comment">;sizeof 的结果为8</span>
-</code></pre><p>对nShort赋值之后，应在地址00C3713A（0C37138h+2）处分配nInt的空间。 但是int类型占4个字节，与指定的对齐（VC6中默认的对齐是8字节）比较后，但是00C3713A不是4的倍数，需要插入两个字节补充，因此nInt被定义在了0C3713Ch处。</p>
-<p>内存对齐实战：</p>
-<p>第一：</p>
-<pre><code><span class="keyword">struct</span>{
-    <span class="keyword">double</span> nDouble;     <span class="comment">//占8字节</span>
-    <span class="keyword">int</span> nInt;           <span class="comment">//占4字节</span>
-    <span class="keyword">short</span> nShort;       <span class="comment">//占2字节</span>
-}
-按默认的对齐值要求，结构体的整体大小要能被<span class="number">8</span>整除（<span class="number">8</span>=结构的第一个元素长度），所以要 <span class="number">8</span>+<span class="number">4</span>+<span class="number">4</span>+<span class="number">2</span>+<span class="number">2</span>=<span class="number">16</span>
-</code></pre><p>第二：</p>
-<pre><code><span class="keyword">struct</span>{
-    <span class="keyword">char</span> nChar;        <span class="comment">//占4字节，与nInt对齐</span>
-    <span class="keyword">int</span> nInt;          <span class="comment">//占4字节</span>
-    <span class="keyword">short</span> nShort;       <span class="comment">//占2字节</span>
-}
-</code></pre><p>第三：</p>
-<pre><code><span class="preprocessor">#<span class="keyword">pragma</span> pack(1)        <span class="comment">//声明1字节对齐</span></span>
-<span class="keyword">struct</span>{
-    <span class="keyword">char</span> nChar;        <span class="comment">//占1字节</span>
-    <span class="keyword">int</span> nInt;          <span class="comment">//占4字节</span>
-    <span class="keyword">short</span> nShort;       <span class="comment">//占2字节</span>
-}
-</code></pre><p>第四：</p>
-<pre><code><span class="keyword">struct</span>{
-    <span class="keyword">char</span> nChar;        <span class="comment">//占1字节</span>
-    <span class="keyword">char</span> cArray[<span class="number">4</span>];    <span class="comment">//占5字节，对齐nShort</span>
-    <span class="keyword">short</span> nShort;       <span class="comment">//占2字节</span>
-}
-</code></pre>]]></content>
-    <summary type="html">
-    <![CDATA[<p>结构体和类在为数据成员分配内存时，结构体中当前数据类型长度为M，制定的对齐值为N，那么实际对齐值 Q = min(M,N) 其成员的地址安排在Q的倍数上。</p>
-<p>测试代码：</p>
-<pre><code><span class="keyword">struct</s]]>
-    </summary>
-    
-      <category term="反汇编" scheme="http://0x520.com/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/"/>
-    
-      <category term="逆向" scheme="http://0x520.com/tags/%E9%80%86%E5%90%91/"/>
-    
-      <category term="逆向基础" scheme="http://0x520.com/categories/%E9%80%86%E5%90%91%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
@@ -1535,6 +1078,479 @@ public:
     <![CDATA[<p>对象生成时会自动调用构造函数，然而不同作用域的对象生命周期不同，局部对象、全局对象、静态对象等，当对象的生命周期不同时，构造函数的调用时机就会不同。</p>
 <h3 id="1-1、局部对象">1.1、局部对象</h3><pre><code>class CTest{
 <sp]]>
+    </summary>
+    
+      <category term="反汇编" scheme="http://0x520.com/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/"/>
+    
+      <category term="逆向" scheme="http://0x520.com/tags/%E9%80%86%E5%90%91/"/>
+    
+      <category term="逆向基础" scheme="http://0x520.com/categories/%E9%80%86%E5%90%91%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[逆向基础第二十一篇：对象作为函数参数或返回值]]></title>
+    <link href="http://0x520.com/2014/05/21/reverse/21/"/>
+    <id>http://0x520.com/2014/05/21/reverse/21/</id>
+    <published>2014-05-20T16:00:00.000Z</published>
+    <updated>2015-05-27T05:51:41.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="1、对象作为函数参数">1、对象作为函数参数</h2><p>下面是一段<code>对象作为参数</code>的代码片段：</p>
+<pre><code>class CTest{
+<span class="label">public:</span>
+    <span class="keyword">int</span> m_nOne<span class="comment">;</span>
+    <span class="keyword">int</span> m_nTwo<span class="comment">;</span>
+}<span class="comment">;</span>
+
+void ShowFunTest(CTest <span class="keyword">Test</span>)
+{
+    printf(<span class="string">"%d,%d \r\n"</span>,<span class="keyword">Test</span>.m_nOne,<span class="keyword">Test</span>.m_nTwo)<span class="comment">;</span>
+}
+
+<span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])
+{
+    CTest <span class="keyword">Test</span><span class="comment">;</span>
+    <span class="keyword">Test</span>.m_nOne = <span class="number">1</span><span class="comment">;</span>
+    <span class="keyword">Test</span>.m_nTwo = <span class="number">2</span><span class="comment">;</span>
+    ShowFunTest(<span class="keyword">Test</span>)<span class="comment">;</span>
+    getchar()<span class="comment">;</span>
+}
+</code></pre><a id="more"></a>
+<p>_tmain反汇编代码片段如下:</p>
+<pre><code>    CTest <span class="keyword">Test</span><span class="comment">;</span>
+    <span class="keyword">Test</span>.m_nOne = <span class="number">1</span><span class="comment">;                            </span>
+00DD1A5E  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="keyword">Test</span>],<span class="number">1</span>        <span class="comment">;给第一个成员变量赋值</span>
+    <span class="keyword">Test</span>.m_nTwo = <span class="number">2</span><span class="comment">;</span>
+00DD1A65  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">8</span>],<span class="number">2</span>       <span class="comment">;给第二个成员变量赋值</span>
+    ShowFunTest(<span class="keyword">Test</span>)<span class="comment">;</span>
+00DD1A6C  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">8</span>]     <span class="comment">;第二个成员变量作为参数</span>
+00DD1A6F  <span class="keyword">push</span>        <span class="number">eax</span>  
+00DD1A70  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="keyword">Test</span>]      <span class="comment">;第一个成员变量作为参数</span>
+00DD1A73  <span class="keyword">push</span>        <span class="number">ecx</span>  
+00DD1A74  <span class="keyword">call</span>        ShowFunTest (<span class="number">0DD11E5h</span>)    <span class="comment">;调用ShowFunTest函数</span>
+00DD1A79  <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">8</span>  
+    getchar()<span class="comment">;</span>
+</code></pre><p>通过反汇编可以看出，对象作为参数时，是将对象的成员变量逐个复制，然后压栈，作为参数传递到函数中，并非将对象的首地址作为参数。</p>
+<h3 id="1-1、含有数组成员变量的对象作为参数">1.1、含有数组成员变量的对象作为参数</h3><p>但是，当类的体积过大时，或者有数组类型的成员变量时，会将数组的首地址压栈吗？</p>
+<pre><code><span class="keyword">class</span> CTest{
+<span class="keyword">public</span>:
+    <span class="keyword">int</span> m_nOne;
+    <span class="keyword">int</span> m_nTwo;
+    <span class="keyword">char</span> m_szName[<span class="number">20</span>]; <span class="comment">//定义数组类型的成员变量</span>
+};
+<span class="function"><span class="keyword">void</span> <span class="title">ShowFunTest</span><span class="params">(CTest Test)</span>
+</span>{
+    <span class="built_in">printf</span>(<span class="string">"%d,%d,%s \r\n"</span>,Test.m_nOne,Test.m_nTwo,Test.m_szName);
+}
+<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
+{
+    CTest Test;
+    Test.m_nOne = <span class="number">1</span>;
+    Test.m_nTwo = <span class="number">2</span>;
+    <span class="built_in">strcpy</span>(Test.m_szName,<span class="string">"This is an Array"</span>);
+    ShowFunTest(Test);
+    getchar();
+}
+</code></pre><p>反汇编代码如下：</p>
+<p><img src="/uploads/2014/07/3312030032.png" alt="1.png"></p>
+<p>通过上图，可以看出，对数组内容也进行拷贝。</p>
+<h3 id="1-2、对象拷贝引起的错误">1.2、对象拷贝引起的错误</h3><p>对象作为函数的参数，但是当函数退出时，复制的对象作为函数内的局部变量，将会被销毁。 当析构函数存在时，则会调用析构函数，这里有可能会引起错误。</p>
+<pre><code><span class="keyword">class</span> CMyString{
+<span class="keyword">public</span>:
+    CMyString()
+    {
+        m_pString = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">10</span>];
+        <span class="keyword">if</span>(m_pString == NULL){
+            <span class="keyword">return</span>;
+        }
+        <span class="built_in">strcpy</span>(m_pString,<span class="string">"Hello"</span>);
+    }
+    ~CMyString()
+    {
+        <span class="keyword">if</span> (m_pString!=NULL)
+        {
+            <span class="keyword">delete</span> m_pString;
+            m_pString = NULL;
+        }
+    }
+    <span class="keyword">char</span>* GetString()
+    {
+        <span class="keyword">return</span> m_pString;
+    }
+<span class="keyword">private</span>:
+    <span class="keyword">char</span> * m_pString;
+};
+
+<span class="function"><span class="keyword">void</span> <span class="title">ShowMyString</span><span class="params">(CMyString MyString)</span>
+</span>{
+    <span class="built_in">printf</span>(<span class="string">"%s \r\n"</span>,MyString.GetString());
+}
+
+<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
+{
+    CMyString MyString;
+    ShowMyString(MyString);
+}
+</code></pre><p>_tmain函数反汇编：</p>
+<pre><code>    CMyString MyString<span class="comment">;</span>
+<span class="number">0118159D</span>  <span class="keyword">lea</span>         <span class="number">ecx</span>,[<span class="literal">ebp</span>-<span class="number">14h</span>]                    <span class="comment">;获得对象首地址</span>
+011815A0  <span class="keyword">call</span>        CMyString::CMyString (<span class="number">11810C8h</span>)  <span class="comment">;调用构造函数</span>
+011815A5  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">0</span>              <span class="comment">;记录同一作用域内该类的对象个</span>
+    ShowMyString(MyString)<span class="comment">;</span>
+011815AC  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">14h</span>]          <span class="comment">;MyString对象的首地址(m_pString地址)</span>
+011815AF  <span class="keyword">push</span>        <span class="number">eax</span>                              <span class="comment">;首地址入栈</span>
+011815B0  <span class="keyword">call</span>        ShowMyString (<span class="number">118115Eh</span>)  
+011815B5  <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">4</span>  
+}
+011815B8  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">0FFFFFFFFh</span>     <span class="comment">;对象被释放，修改对象个数</span>
+011815BF  <span class="keyword">lea</span>         <span class="number">ecx</span>,[<span class="literal">ebp</span>-<span class="number">14h</span>]                    <span class="comment">;取对象首地址</span>
+011815C2  <span class="keyword">call</span>        CMyString::~CMyString (<span class="number">118116Dh</span>) <span class="comment">;调用析构函数</span>
+011815C7  <span class="keyword">xor</span>         <span class="number">eax</span>,<span class="number">eax</span>  
+011815C9  <span class="keyword">push</span>        <span class="number">edx</span>  
+011815CA  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="literal">ebp</span>  
+011815CC  <span class="keyword">push</span>        <span class="number">eax</span>  
+...略...
+</code></pre><p>ShowMyString函数部分反汇编代码：</p>
+<pre><code>void ShowMyString(CMyString MyString)
+{
+...略... 
+    printf(<span class="string">"%s \r\n"</span>,MyString.GetString())<span class="comment">;</span>
+<span class="number">01181424</span>  <span class="keyword">lea</span>         <span class="number">ecx</span>,[<span class="literal">ebp</span>+<span class="number">8</span>]                           <span class="comment">;对象首地址</span>
+<span class="number">01181427</span>  <span class="keyword">call</span>        CMyString::GetString (<span class="number">118101Eh</span>)       <span class="comment">;调用GetString函数</span>
+0118142C  <span class="keyword">mov</span>         <span class="literal">esi</span>,<span class="literal">esp</span>  
+0118142E  <span class="keyword">push</span>        <span class="number">eax</span>                                   <span class="comment">;m_pString地址，入栈</span>
+0118142F  <span class="keyword">push</span>        offset string <span class="string">"%s \r\n"</span> (<span class="number">1186830h</span>)    <span class="comment">;printf</span>
+<span class="number">01181434</span>  <span class="keyword">call</span>        <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [__imp__printf (<span class="number">11892DCh</span>)]  
+0118143A  <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">8</span>  
+<span class="number">0118143D</span>  <span class="keyword">cmp</span>         <span class="literal">esi</span>,<span class="literal">esp</span>  
+0118143F  <span class="keyword">call</span>        @ILT+<span class="number">330</span>(__RTC_CheckEsp) (<span class="number">118114Fh</span>)  
+}
+<span class="number">01181444</span>  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">0FFFFFFFFh</span>          <span class="comment">;修改作用域对象的个数</span>
+0118144B  <span class="keyword">lea</span>         <span class="number">ecx</span>,[<span class="literal">ebp</span>+<span class="number">8</span>]                           <span class="comment">;取得对象的首地址</span>
+0118144E  <span class="keyword">call</span>        CMyString::~CMyString (<span class="number">118116Dh</span>)      <span class="comment">;调用析构函数</span>
+<span class="number">01181453</span>  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">0Ch</span>]  
+<span class="number">01181456</span>  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> <span class="literal">fs</span>:[<span class="number">0</span>],<span class="number">ecx</span>  
+<span class="number">0118145D</span>  <span class="keyword">pop</span>         <span class="number">ecx</span>  
+0118145E  <span class="keyword">pop</span>         <span class="literal">edi</span>  
+0118145F  <span class="keyword">pop</span>         <span class="literal">esi</span>  
+<span class="number">01181460</span>  <span class="keyword">pop</span>         <span class="number">ebx</span>  
+<span class="number">01181461</span>  <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">0CCh</span>  
+<span class="number">01181467</span>  <span class="keyword">cmp</span>         <span class="literal">ebp</span>,<span class="literal">esp</span>  
+<span class="number">01181469</span>  <span class="keyword">call</span>        @ILT+<span class="number">330</span>(__RTC_CheckEsp) (<span class="number">118114Fh</span>)  
+0118146E  <span class="keyword">mov</span>         <span class="literal">esp</span>,<span class="literal">ebp</span>  
+<span class="number">01181470</span>  <span class="keyword">pop</span>         <span class="literal">ebp</span>  
+<span class="number">01181471</span>  <span class="keyword">ret</span>  
+</code></pre><p>通过上面反汇编代码看出，在ShowMyString中调用了一次析构函数。如果在_tmain函数这么写：</p>
+<pre><code>int _<span class="function">tmain</span>(int argc, _TCHAR* argv<span class="attr_selector">[]</span>)
+{
+    CMyString MyString;
+    <span class="function">ShowMyString</span>(MyString);
+    <span class="function">ShowMyString</span>(MyString);
+}
+</code></pre><p>这里将会调用两次析构函数，在debug模式下，有错误检查，会有错误提示。 </p>
+<p>如果是在release模式下，不会对堆中的数据进行检查。如果没有再次申请堆空间，此地址中的数据仍然存在，将会引起程序错误。</p>
+<h2 id="2、对象作为函数返回值">2、对象作为函数返回值</h2><p>基本数据类型作为返回值时，可以使用eax来保存返回的结果。但是对象属于自定义类型，寄存器eax无法保存所有的返回数据，那么对象作为返回值应该如何处理呢？</p>
+<p>实际上，对象作为返回值与对象作为参数非常类似，对象作为参数时，进入函数前预先将对象使用的栈空间保留出来，并将实参对象中的数据复制到栈空间中，将此栈空间作为函数参数，在函数内部使用。</p>
+<p>同理，对象作为返回值时，进入函数后将申请返回对象使用的栈空间，在退出函数时，将返回对象中的数据复制到临时栈空间中，将这个临时栈空间的首地址返回。</p>
+<p>测试代码：</p>
+<pre><code><span class="keyword">class</span> CReturn{
+<span class="keyword">public</span>:
+    <span class="keyword">int</span> m_nNumber;
+    <span class="keyword">int</span> m_nArray[<span class="number">10</span>];
+};
+
+<span class="function">CReturn <span class="title">GetCReturn</span><span class="params">()</span></span>{
+    CReturn RetObj;
+    RetObj.m_nNumber = <span class="number">0</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)
+    {
+        RetObj.m_nArray[i] = i+<span class="number">1</span>;
+    }
+    <span class="keyword">return</span> RetObj;
+}
+
+<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
+{
+    CReturn obj;
+    obj = GetCReturn();
+    <span class="built_in">printf</span>(<span class="string">"%d,%d,%d"</span>,obj.m_nNumber,obj.m_nArray[<span class="number">0</span>],obj.m_nArray[<span class="number">9</span>]);
+}
+</code></pre><p>_tmain 反汇编分析：</p>
+<pre><code><span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])
+{
+013D1460  <span class="keyword">push</span>        <span class="literal">ebp</span>  
+013D1461  <span class="keyword">mov</span>         <span class="literal">ebp</span>,<span class="literal">esp</span>  
+013D1463  <span class="keyword">sub</span>         <span class="literal">esp</span>,<span class="number">160h</span>                     <span class="comment">;预留栈空间 </span>
+013D1469  <span class="keyword">push</span>        <span class="number">ebx</span>  
+013D146A  <span class="keyword">push</span>        <span class="literal">esi</span>  
+013D146B  <span class="keyword">push</span>        <span class="literal">edi</span>  
+013D146C  <span class="keyword">lea</span>         <span class="literal">edi</span>,[<span class="literal">ebp</span>-<span class="number">160h</span>]               <span class="comment">;edi=esp=栈顶</span>
+013D1472  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="number">58h</span>                      <span class="comment">;初始化预留的占空间</span>
+013D1477  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="number">0CCCCCCCCh</span>               <span class="comment">;初始化预留的占空间</span>
+013D147C  <span class="keyword">rep</span> stos    <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> <span class="literal">es</span>:[<span class="literal">edi</span>]           <span class="comment">;初始化预留的占空间</span>
+013D147E  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [___security_cookie (<span class="number">13D7000h</span>)]  
+013D1483  <span class="keyword">xor</span>         <span class="number">eax</span>,<span class="literal">ebp</span>  
+013D1485  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">eax</span>  
+    CReturn obj<span class="comment">;</span>
+    obj = GetCReturn()<span class="comment">;</span>
+013D1488  <span class="keyword">lea</span>         <span class="number">eax</span>,[<span class="literal">ebp</span>-<span class="number">128h</span>]               <span class="comment">;返回对象的首地址</span>
+013D148E  <span class="keyword">push</span>        <span class="number">eax</span>                          <span class="comment">;返回对象的首地址入栈，保存返回对象的数据</span>
+013D148F  <span class="keyword">call</span>        GetCReturn (<span class="number">13D1190h</span>)  
+013D1494  <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">4</span>  
+013D1497  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="number">0Bh</span>                      <span class="comment">;0B=11=循环次数</span>
+013D149C  <span class="keyword">mov</span>         <span class="literal">esi</span>,<span class="number">eax</span>                      <span class="comment">;esi=eax=返回对象的首地址</span>
+013D149E  <span class="keyword">lea</span>         <span class="literal">edi</span>,[<span class="literal">ebp</span>-<span class="number">15Ch</span>]               <span class="comment">;临时对象的首地址</span>
+013D14A4  <span class="keyword">rep</span> movs    <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> <span class="literal">es</span>:[<span class="literal">edi</span>],<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">esi</span>]<span class="comment">;复制4*11个字节（返回对象赋值给临时对象）</span>
+013D14A6  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="number">0Bh</span>                      <span class="comment">;0B=11=循环次数</span>
+013D14AB  <span class="keyword">lea</span>         <span class="literal">esi</span>,[<span class="literal">ebp</span>-<span class="number">15Ch</span>]               <span class="comment">;临时对象首地址(ebp-15Ch)</span>
+013D14B1  <span class="keyword">lea</span>         <span class="literal">edi</span>,[<span class="literal">ebp</span>-<span class="number">34h</span>]                <span class="comment">;obj对象首地址(ebp-34h)</span>
+013D14B4  <span class="keyword">rep</span> movs    <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> <span class="literal">es</span>:[<span class="literal">edi</span>],<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">esi</span>]<span class="comment">;临时对象赋值给obj</span>
+    printf(<span class="string">"%d,%d,%d"</span>,obj.m_nNumber,obj.m_nArray[<span class="number">0</span>],obj.m_nArray[<span class="number">9</span>])<span class="comment">;</span>
+013D14B6  <span class="keyword">mov</span>         <span class="literal">esi</span>,<span class="literal">esp</span>  
+013D14B8  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">0Ch</span>]  
+013D14BB  <span class="keyword">push</span>        <span class="number">eax</span>  
+013D14BC  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">30h</span>]  
+013D14BF  <span class="keyword">push</span>        <span class="number">ecx</span>  
+013D14C0  <span class="keyword">mov</span>         <span class="number">edx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">34h</span>]  
+013D14C3  <span class="keyword">push</span>        <span class="number">edx</span>  
+013D14C4  <span class="keyword">push</span>        offset string <span class="string">"%d,%d,%d"</span> (<span class="number">13D5830h</span>)  
+013D14C9  <span class="keyword">call</span>        <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [__imp__printf (<span class="number">13D82B0h</span>)]  
+013D14CF  <span class="keyword">add</span>         <span class="literal">esp</span>,<span class="number">10h</span>  
+013D14D2  <span class="keyword">cmp</span>         <span class="literal">esi</span>,<span class="literal">esp</span>  
+013D14D4  <span class="keyword">call</span>        @ILT+<span class="number">305</span>(__RTC_CheckEsp) (<span class="number">13D1136h</span>)  
+}
+</code></pre><p>GetCReturn 反汇编：</p>
+<pre><code>CReturn GetCReturn(){
+013D1390  <span class="keyword">push</span>        <span class="literal">ebp</span>  
+013D1391  <span class="keyword">mov</span>         <span class="literal">ebp</span>,<span class="literal">esp</span>  
+013D1393  <span class="keyword">sub</span>         <span class="literal">esp</span>,<span class="number">104h</span>  <span class="comment">;调整栈空间，预留临时返回对象和局部对象内存空间</span>
+013D1399  <span class="keyword">push</span>        <span class="number">ebx</span>  
+013D139A  <span class="keyword">push</span>        <span class="literal">esi</span>  
+013D139B  <span class="keyword">push</span>        <span class="literal">edi</span>  
+013D139C  <span class="keyword">lea</span>         <span class="literal">edi</span>,[<span class="literal">ebp</span>-<span class="number">104h</span>]   <span class="comment">;edi=esp=栈顶</span>
+013D13A2  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="number">41h</span>          <span class="comment">;设置循环次数</span>
+013D13A7  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="number">0CCCCCCCCh</span>  
+013D13AC  <span class="keyword">rep</span> stos    <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> <span class="literal">es</span>:[<span class="literal">edi</span>]  
+013D13AE  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [___security_cookie (<span class="number">13D7000h</span>)]  
+013D13B3  <span class="keyword">xor</span>         <span class="number">eax</span>,<span class="literal">ebp</span>  
+013D13B5  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">4</span>],<span class="number">eax</span>  
+    CReturn RetObj<span class="comment">;</span>
+    RetObj.m_nNumber = <span class="number">0</span><span class="comment">;</span>
+013D13B8  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>-<span class="number">34h</span>],<span class="number">0</span>    <span class="comment">;m_nNumber赋值为0,这里是RetObj对象的首地址</span>
+    for (<span class="keyword">int</span> i=<span class="number">0</span><span class="comment">;i&lt;10;i++)</span>
+    {
+        RetObj.m_nArray[i] = i+<span class="number">1</span><span class="comment">;</span>
+    }
+    ..<span class="string">.for</span>循环略...
+    return RetObj<span class="comment">;</span>
+013D13E6  <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="number">0Bh</span>                  <span class="comment">;设置循环次数=11次</span>
+013D13EB  <span class="keyword">lea</span>         <span class="literal">esi</span>,[<span class="literal">ebp</span>-<span class="number">34h</span>]            <span class="comment">;局部对象的首地址</span>
+013D13EE  <span class="keyword">mov</span>         <span class="literal">edi</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]    <span class="comment">;返回对象的首地址</span>
+013D13F1  <span class="keyword">rep</span> movs    <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> <span class="literal">es</span>:[<span class="literal">edi</span>],<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">esi</span>]  
+013D13F3  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]    <span class="comment">;返回对象的首地址</span>
+}
+...略...
+</code></pre><p>1、调用GetCReturn之前，编译器将在main函数中申请的返回对象的首地址作为参数入栈。<br>2、函数GetCReturn结束之后，将GetCReturn中定义的局部对象RetObj的数据复制到这个返回对象的空间中。<br>3、将返回对象赋值给obj对象。</p>
+<p>这里涉及到<code>返回对象</code>，<code>临时对象</code>，<code>obj对象</code> 这里的临时对象看起来有点多余，直接将返回对象赋值给obj对象不好吗？其实，这是有必要的，因为，C++程序员可能采用这种写法：<code>GetCReturn().m_nNumber</code>，这里是针对返回对象的操作，此时GetCReturn函数已经退出，栈桢也已经关闭，此时操作局部函数的对象已经不合适了。因此，只能由函数调用方准备临时空间，将局部对象赋值给临时对象，到临时空间，</p>
+<p>-待发布-</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="1、对象作为函数参数">1、对象作为函数参数</h2><p>下面是一段<code>对象作为参数</code>的代码片段：</p>
+<pre><code>class CTest{
+<span class="label">public:</span>
+    <span class="keyword">int</span> m_nOne<span class="comment">;</span>
+    <span class="keyword">int</span> m_nTwo<span class="comment">;</span>
+}<span class="comment">;</span>
+
+void ShowFunTest(CTest <span class="keyword">Test</span>)
+{
+    printf(<span class="string">"%d,%d \r\n"</span>,<span class="keyword">Test</span>.m_nOne,<span class="keyword">Test</span>.m_nTwo)<span class="comment">;</span>
+}
+
+<span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])
+{
+    CTest <span class="keyword">Test</span><span class="comment">;</span>
+    <span class="keyword">Test</span>.m_nOne = <span class="number">1</span><span class="comment">;</span>
+    <span class="keyword">Test</span>.m_nTwo = <span class="number">2</span><span class="comment">;</span>
+    ShowFunTest(<span class="keyword">Test</span>)<span class="comment">;</span>
+    getchar()<span class="comment">;</span>
+}
+</code></pre>]]>
+    
+    </summary>
+    
+      <category term="反汇编" scheme="http://0x520.com/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/"/>
+    
+      <category term="逆向" scheme="http://0x520.com/tags/%E9%80%86%E5%90%91/"/>
+    
+      <category term="逆向基础" scheme="http://0x520.com/categories/%E9%80%86%E5%90%91%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[逆向基础第二十篇：类和对象 之 “this指针”]]></title>
+    <link href="http://0x520.com/2014/05/20/reverse/20/"/>
+    <id>http://0x520.com/2014/05/20/reverse/20/</id>
+    <published>2014-05-19T16:00:00.000Z</published>
+    <updated>2015-05-27T05:51:37.000Z</updated>
+    <content type="html"><![CDATA[<p>写C++应该会经常用到this指针，但是我们在类中并没有找到this的定义，许多程序员只知道使用this指针，但是不知道this从何而来。今天，我们来解开this指针的神秘的面纱！</p>
+<p>首先，this是一个指针，在32位环境下占4字节大小，保存的数据应为内存地址。</p>
+<h2 id="1、结构体指针">1、结构体指针</h2><p>我们先分析一段结构体：</p>
+<pre><code><span class="keyword">struct</span> A 
+{
+    <span class="keyword">int</span>        m_int;
+    <span class="keyword">short</span>    m_short;
+};
+<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
+{
+    <span class="keyword">struct</span> A a    = {<span class="number">1</span>,<span class="number">2</span>};
+    <span class="keyword">struct</span> A *p = &amp;a;
+    <span class="built_in">printf</span>(<span class="string">"%p"</span>,&amp;p-&gt;m_int);
+    <span class="built_in">printf</span>(<span class="string">"%p"</span>,&amp;p-&gt;m_short);
+    getchar();
+}
+</code></pre><p>下面是对结构体的反汇编的分析：</p>
+<p><img src="/uploads/2014/07/823362416.png" alt="1.png"></p>
+<p>通过上图可以看到，结构体指针的地址就是此<code>结构的首地址</code>。</p>
+<p>那么类对象呢？我们在下一小节继续分析。</p>
+<h2 id="2、this指针">2、this指针</h2><p>我们编写一个测试类：</p>
+<pre><code><span class="keyword">class</span> CTest{
+<span class="keyword">public</span>:
+    <span class="keyword">int</span> m_int;
+<span class="keyword">public</span>:
+    <span class="function"><span class="keyword">void</span> <span class="title">SetNumber</span><span class="params">(<span class="keyword">int</span> n)</span>
+    </span>{
+        m_int = n;
+    }
+};
+
+<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
+{
+    CTest Test;
+    Test.SetNumber(<span class="number">10</span>);
+    <span class="built_in">printf</span>(<span class="string">"%p \r\n"</span>, &amp;Test);
+    <span class="built_in">printf</span>(<span class="string">"%p \r\n"</span>, &amp;Test.m_int);
+    getchar();
+}
+</code></pre><p>输出结果与我们预期的相同，对象地址与第一个元素的地址相同（0033FAE8），如下图：</p>
+<p><img src="/uploads/2014/07/1934018967.png" alt="2.png"></p>
+<p>下面我们分析反汇编代码：</p>
+<p><img src="/uploads/2014/07/2638181270.png" alt="3.png"></p>
+<p>通过上图的分析，可以得知：</p>
+<ul>
+<li>this指针的地址 = 对象的首地址 = 第一个成员变量的地址。</li>
+<li>调用成员函数时，一般采用 <code>ecx保存this指针</code>，在成员函数内部会可以使用这个值。</li>
+</ul>
+<h2 id="3、stdcall调用方式的成员函数">3、stdcall调用方式的成员函数</h2><p>C++中调用成员函数默认使用的是thiscall，thiscall中默认使用ecx传递this指针变量。但是，在stdcall中，this的传递方式是不同的。</p>
+<p>测试代码：</p>
+<pre><code><span class="keyword">class</span> CTest{
+<span class="keyword">public</span>:
+    <span class="keyword">int</span> m_int;
+<span class="keyword">public</span>:
+    <span class="comment">//调用方式为stdcall</span>
+    <span class="keyword">void</span> _<span class="function">stdcall <span class="title">SetNumber</span><span class="params">(<span class="keyword">int</span> n)</span>
+    </span>{
+        m_int = n;
+    }
+};
+<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
+{
+    CTest Test;
+    Test.SetNumber(<span class="number">10</span>);
+    <span class="built_in">printf</span>(<span class="string">"%p \r\n"</span>, &amp;Test);
+    <span class="built_in">printf</span>(<span class="string">"%p \r\n"</span>, &amp;Test.m_int);
+    getchar();
+}
+</code></pre><p>反汇编代码：</p>
+<p><img src="/uploads/2014/07/446336290.png" alt="4.png"></p>
+<p>当使用stdcall时，编译器会隐含的传递一个this指针作为第一个参数，相当于：</p>
+<pre><code><span class="function"><span class="keyword">void</span> <span class="title">Function</span><span class="params">(<span class="keyword">this</span>, parameter...)</span>
+</span>{
+    <span class="comment">//..do something..</span>
+}
+</code></pre><p>实际上，大多数面向对象的编程语言，都是这么传递this指针的。</p>
+<p>如果有过python编程经验的人，应该注意到在调用成员函数时候，是显示的传递this指针：</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">people</span>:</span>
+    <span class="comment">#定义了一个属性</span>
+    name = <span class="string">'jack'</span>       
+    <span class="comment">#定义了一个方法，这里显示的传递self（this）指针</span>
+    <span class="function"><span class="keyword">def</span> <span class="title">printName</span><span class="params">(self)</span>:</span> 
+        <span class="keyword">print</span> self.name
+</code></pre><p>这里不讲python，仅供参考，对比学习。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>写C++应该会经常用到this指针，但是我们在类中并没有找到this的定义，许多程序员只知道使用this指针，但是不知道this从何而来。今天，我们来解开this指针的神秘的面纱！</p>
+<p>首先，this是一个指针，在32位环境下占4字节大小，保存的数据应为内存地址。]]>
+    </summary>
+    
+      <category term="反汇编" scheme="http://0x520.com/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/"/>
+    
+      <category term="逆向" scheme="http://0x520.com/tags/%E9%80%86%E5%90%91/"/>
+    
+      <category term="逆向基础" scheme="http://0x520.com/categories/%E9%80%86%E5%90%91%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[逆向基础第十九篇：内存对齐]]></title>
+    <link href="http://0x520.com/2014/05/19/reverse/19/"/>
+    <id>http://0x520.com/2014/05/19/reverse/19/</id>
+    <published>2014-05-18T16:00:00.000Z</published>
+    <updated>2015-05-27T05:51:32.000Z</updated>
+    <content type="html"><![CDATA[<p>结构体和类在为数据成员分配内存时，结构体中当前数据类型长度为M，制定的对齐值为N，那么实际对齐值 Q = min(M,N) 其成员的地址安排在Q的倍数上。</p>
+<p>测试代码：</p>
+<pre><code><span class="keyword">struct</span> tagTest{
+    <span class="keyword">short</span> nShort;
+    <span class="keyword">int</span> nInt;
+} test;
+<span class="keyword">int</span> <span class="keyword">_t</span>main(<span class="keyword">int</span> argc, _TCHAR* argv[])
+{
+    test.nShort = <span class="number">1</span>;
+    test.nInt    = <span class="number">2</span>;
+    <span class="keyword">int</span> nSize = <span class="keyword">sizeof</span>(test);
+    <span class="built_in">printf</span>(<span class="string">"%d"</span>,nSize);
+    getchar();
+}
+</code></pre><p>部分反汇编结果：</p>
+<pre><code>    <span class="keyword">test</span>.nShort = <span class="number">1</span><span class="comment">;</span>
+00C32D1E  <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="number">1</span>  
+00C32D23  <span class="keyword">mov</span>         <span class="preprocessor">word</span> <span class="preprocessor">ptr</span> [<span class="keyword">test</span> (<span class="number">0C37138h</span>)],<span class="number">ax</span>      <span class="comment">;这里是short类型的赋值</span>
+    <span class="keyword">test</span>.nInt    = <span class="number">2</span><span class="comment">;</span>
+00C32D29  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="keyword">test</span>+<span class="number">4</span> (<span class="number">0C3713Ch</span>)],<span class="number">2</span>    <span class="comment">;这里test+4进行了对齐</span>
+    <span class="keyword">int</span> nSize = sizeof(<span class="keyword">test</span>)<span class="comment">;</span>
+00C32D33  <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [nSize],<span class="number">8</span>                <span class="comment">;sizeof 的结果为8</span>
+</code></pre><p>对nShort赋值之后，应在地址00C3713A（0C37138h+2）处分配nInt的空间。 但是int类型占4个字节，与指定的对齐（VC6中默认的对齐是8字节）比较后，但是00C3713A不是4的倍数，需要插入两个字节补充，因此nInt被定义在了0C3713Ch处。</p>
+<p>内存对齐实战：</p>
+<p>第一：</p>
+<pre><code><span class="keyword">struct</span>{
+    <span class="keyword">double</span> nDouble;     <span class="comment">//占8字节</span>
+    <span class="keyword">int</span> nInt;           <span class="comment">//占4字节</span>
+    <span class="keyword">short</span> nShort;       <span class="comment">//占2字节</span>
+}
+按默认的对齐值要求，结构体的整体大小要能被<span class="number">8</span>整除（<span class="number">8</span>=结构的第一个元素长度），所以要 <span class="number">8</span>+<span class="number">4</span>+<span class="number">4</span>+<span class="number">2</span>+<span class="number">2</span>=<span class="number">16</span>
+</code></pre><p>第二：</p>
+<pre><code><span class="keyword">struct</span>{
+    <span class="keyword">char</span> nChar;        <span class="comment">//占4字节，与nInt对齐</span>
+    <span class="keyword">int</span> nInt;          <span class="comment">//占4字节</span>
+    <span class="keyword">short</span> nShort;       <span class="comment">//占2字节</span>
+}
+</code></pre><p>第三：</p>
+<pre><code><span class="preprocessor">#<span class="keyword">pragma</span> pack(1)        <span class="comment">//声明1字节对齐</span></span>
+<span class="keyword">struct</span>{
+    <span class="keyword">char</span> nChar;        <span class="comment">//占1字节</span>
+    <span class="keyword">int</span> nInt;          <span class="comment">//占4字节</span>
+    <span class="keyword">short</span> nShort;       <span class="comment">//占2字节</span>
+}
+</code></pre><p>第四：</p>
+<pre><code><span class="keyword">struct</span>{
+    <span class="keyword">char</span> nChar;        <span class="comment">//占1字节</span>
+    <span class="keyword">char</span> cArray[<span class="number">4</span>];    <span class="comment">//占5字节，对齐nShort</span>
+    <span class="keyword">short</span> nShort;       <span class="comment">//占2字节</span>
+}
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>结构体和类在为数据成员分配内存时，结构体中当前数据类型长度为M，制定的对齐值为N，那么实际对齐值 Q = min(M,N) 其成员的地址安排在Q的倍数上。</p>
+<p>测试代码：</p>
+<pre><code><span class="keyword">struct</s]]>
     </summary>
     
       <category term="反汇编" scheme="http://0x520.com/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/"/>
