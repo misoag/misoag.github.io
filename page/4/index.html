@@ -77,6 +77,141 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2014/05/06/reverse/6/" title="逆向基础第六篇：位运算" itemprop="url">逆向基础第六篇：位运算</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="鸡哥" target="_blank" itemprop="author">鸡哥</a>
+		
+  <p class="article-time">
+    <time datetime="2014-05-05T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-05-06</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>位操作符有以下几种：</p>
+<ol>
+<li><code>&lt;&lt;</code> 左移运算，最高位左移到CF中，最低位补零</li>
+<li><code>&gt;&gt;</code> 右移运算，最高位不变，最低位右移到CF中</li>
+<li><code>|</code> 或运算，相同位，有一个为1，则为1</li>
+<li><code>&amp;</code> 与运算，相同位，两个都为1，则为1</li>
+<li><code>^</code> 异或运算，相同位，<code>为异为真</code> 即 如果不同则为1</li>
+<li><code>~</code>  取反运算，将操作数的每一位取反，1变0,0变1</li>
+</ol>
+<p>位运算一般在算法中大量使用，例如MD5算法，就是通过大量的位运算完成的。 如何使一个数不可逆呢？利用位运算就可以达到目的。 如： x  &amp; 0 = 0 根据结果，x的值是不可以逆推的。（取反 ~ 和 异或 ^ 可以反推）</p>
+<p>下面这段代码用来演示位操作：</p>
+<pre><code><span class="title">int</span> main(int argc, int n)
+{
+    <span class="title">argc</span> = argc &lt;&lt; <span class="number">3</span>;
+    <span class="title">argc</span> = argc &gt;&gt; <span class="number">5</span>;
+    <span class="title">argc</span> = argc | 0xFFFF0000;
+    <span class="title">argc</span> = argc &amp; 0x0000FFFF;
+    <span class="title">argc</span> = argc<span class="regexp"> ^</span> 0xFFFF0000;
+    <span class="title">argc</span> = ~argc;
+    <span class="title">return</span> argc;
+}
+</code></pre><p>反汇编代码如下：</p>
+<pre><code><span class="number">7</span>:    <span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">int</span> n)
+<span class="number">8</span>:    {
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="comment">;左移</span>
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="number">9</span>:        argc = argc &lt;&lt; <span class="number">3</span><span class="comment">;</span>
+0040D418   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
+0040D41B   <span class="keyword">shl</span>         <span class="number">eax</span>,<span class="number">3</span>
+0040D41E   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">eax</span>
+
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="comment">;右移</span>
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="number">10</span>:       argc = argc &gt;&gt; <span class="number">5</span><span class="comment">;</span>
+0040D421   <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
+0040D424   <span class="keyword">sar</span>         <span class="number">ecx</span>,<span class="number">5</span>
+0040D427   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">ecx</span>
+
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="comment">;或运算</span>
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="number">11</span>:       argc = argc | <span class="number">0xFFFF0000</span><span class="comment">;</span>
+0040D42A   <span class="keyword">mov</span>         <span class="number">edx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
+0040D42D   <span class="keyword">or</span>          <span class="number">edx</span>,<span class="number">0FFFF0000h</span>
+0040D433   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">edx</span>
+
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="comment">;与运算</span>
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="number">12</span>:       argc = argc &amp; <span class="number">0x0000FFFF</span><span class="comment">;</span>
+0040D436   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
+0040D439   <span class="keyword">and</span>         <span class="number">eax</span>,<span class="number">0FFFFh</span>
+0040D43E   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">eax</span>
+
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="comment">;异或运算</span>
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="number">13</span>:       argc = argc ^ <span class="number">0xFFFF0000</span><span class="comment">;</span>
+0040D441   <span class="keyword">mov</span>         <span class="number">ecx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
+0040D444   <span class="keyword">xor</span>         <span class="number">ecx</span>,<span class="number">0FFFF0000h</span>
+0040D44A   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">ecx</span>
+
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="comment">;取反运算</span>
+<span class="comment">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="number">14</span>:       argc = ~argc<span class="comment">;</span>
+0040D44D   <span class="keyword">mov</span>         <span class="number">edx</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
+0040D450   <span class="keyword">not</span>         <span class="number">edx</span>
+0040D452   <span class="keyword">mov</span>         <span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>],<span class="number">edx</span>
+
+<span class="number">15</span>:       return argc<span class="comment">;</span>
+0040D455   <span class="keyword">mov</span>         <span class="number">eax</span>,<span class="preprocessor">dword</span> <span class="preprocessor">ptr</span> [<span class="literal">ebp</span>+<span class="number">8</span>]
+<span class="number">16</span>:   }
+</code></pre><p>对于左移运算，无符号数和有符号数的操作是一样的，都不需要考虑符号位。但右移运算则有变化，有符号数使用sar可以保留符号位。 无符号数不需要符号位，直接使用shr 将最高位补0</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/逆向基础/">逆向基础</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2014/05/05/reverse/5/" title="逆向基础第四篇：条件跳转与短路运算" itemprop="url">逆向基础第四篇：条件跳转与短路运算</a>
   </h1>
   <p class="article-author">By
@@ -1433,6 +1568,10 @@ foo
 		
 		  
 			<li><a href="/categories/MongoDB/" title="MongoDB">MongoDB<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/NWJS/" title="NWJS">NWJS<sup>1</sup></a></li>
 		  
 		
 		  

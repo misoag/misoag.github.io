@@ -77,6 +77,93 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/06/05/nwjs/1/" title="使用nwjs创建跨平台的本地html5应用" itemprop="url">使用nwjs创建跨平台的本地html5应用</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="鸡哥" target="_blank" itemprop="author">鸡哥</a>
+		
+  <p class="article-time">
+    <time datetime="2015-06-05T04:02:00.000Z" itemprop="datePublished"> 发表于 2015-06-05</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="nwjs简介">nwjs简介</h2><p>nwjs你可能不熟悉，但是提到node-webkit应该很多人会听说过，其实他们是一个东西。具体的我就不多介绍了，可以到官网了解详情。</p>
+<p>官网:<a href="nwjs.io">nwjs.io</a>  </p>
+<p>github: <a href="https://github.com/nwjs/nw.js" target="_blank" rel="external">https://github.com/nwjs/nw.js</a></p>
+<p>环境：MacOSx</p>
+<h2 id="第一个nwjs应用">第一个nwjs应用</h2><p>我下载的是64位的Mac版：<a href="http://dl.nwjs.io/v0.12.2/nwjs-v0.12.2-osx-x64.zip" target="_blank" rel="external">http://dl.nwjs.io/v0.12.2/nwjs-v0.12.2-osx-x64.zip</a> ，解压之后将nwjs.app拖到 <code>/Applications</code> 目录下。</p>
+<p>编辑 <code>.bash_profile</code> ,添加一个别名</p>
+<pre><code><span class="preprocessor"># alias to nw</span>
+<span class="keyword">alias</span> <span class="title">nw</span>=<span class="string">"/Applications/nwjs.app/Contents/MacOS/nwjs"</span>
+</code></pre><p>刷新一下bash的环境变量</p>
+<pre><code><span class="built_in">source</span> ~/.bash_profile
+</code></pre><p>到这里nwjs算是配置完成了。</p>
+<p>现在我们可以创建自己的应用了，首先创建一个文件夹，名字为myapp。</p>
+<p>在myapp文件夹下创建<code>index.html</code> </p>
+<pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">title</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+    We are using node.js <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="livecodeserver">document.<span class="built_in">write</span>(<span class="built_in">process</span>.<span class="built_in">version</span>)</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>.
+  <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+</code></pre><p>在myapp文件夹下创建<code>package.json</code></p>
+<pre><code>{
+  "<span class="attribute">name</span>": <span class="value"><span class="string">"nw-demo"</span></span>,
+  "<span class="attribute">version</span>": <span class="value"><span class="string">"0.0.1"</span></span>,
+  "<span class="attribute">main</span>": <span class="value"><span class="string">"index.html"</span>
+</span>}
+</code></pre><p>OK，现在准备工作已经完毕，进入myapp目录，在终端中运行：</p>
+<pre><code>nw .
+</code></pre><p>如下图：</p>
+<p><img src="/uploads/QQ20150605-1.jpg" alt="NWJS应用"></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/NWJS/">NWJS</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/05/26/others/1/" title="Mac上录制iPhone屏幕 &amp; 投影仪演示iPhone应用" itemprop="url">Mac上录制iPhone屏幕 &amp; 投影仪演示iPhone应用</a>
   </h1>
   <p class="article-author">By
@@ -880,96 +967,6 @@ sudo iptables -t nat -I POSTROUTING -j MASQUERADE
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/01/03/operation/3/" title="Ubuntu 12.04 下搭建DHCP服务器" itemprop="url">Ubuntu 12.04 下搭建DHCP服务器</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="鸡哥" target="_blank" itemprop="author">鸡哥</a>
-		
-  <p class="article-time">
-    <time datetime="2015-01-02T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-01-03</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>参考链接：<br><a href="https://help.ubuntu.com/community/isc-dhcp-server" target="_blank" rel="external">https://help.ubuntu.com/community/isc-dhcp-server</a></p>
-<p>当前路由器IP: 192.168.7.1，并关闭DHCP服务。<br>配置Linux服务器IP地址为固定IP地址，编辑 /etc/network/interfaces </p>
-<pre><code><span class="tag">auto</span> <span class="tag">lo</span>
-<span class="tag">iface</span> <span class="tag">lo</span> <span class="tag">inet</span> <span class="tag">loopback</span>
-
-<span class="tag">auto</span> <span class="tag">eth0</span>
-<span class="tag">iface</span> <span class="tag">eth0</span> <span class="tag">inet</span> <span class="tag">static</span>
-<span class="tag">address</span> 192<span class="class">.168</span><span class="class">.7</span><span class="class">.2</span>
-<span class="tag">gateway</span> 192<span class="class">.168</span><span class="class">.7</span><span class="class">.1</span>
-<span class="tag">netmask</span> 255<span class="class">.255</span><span class="class">.255</span><span class="class">.0</span> 
-</code></pre><p>重启网卡：</p>
-<pre><code>sudo <span class="regexp">/etc/i</span>nit.d<span class="regexp">/networking restart</span>
-</code></pre><p>首先安装DHCP服务器：</p>
-<pre><code>sudo apt-get <span class="operator"><span class="keyword">install</span> isc-dhcp-<span class="keyword">server</span></span>
-</code></pre><p>备份dhcp的当前配置文件：</p>
-<pre><code>sudo cp /etc/dhcp/dhcpd<span class="class">.conf</span> /etc/dhcp3/dhcpd<span class="class">.conf</span><span class="class">.bak</span>
-</code></pre><p>修改配置文件如下：</p>
-<pre><code>default-lease-time 600<span class="comment">;</span>
-max-lease-time 7200<span class="comment">;</span>
-option subnet-mask <span class="number">255.255.255.0</span><span class="comment">;</span>
-option broadcast-address <span class="number">192.168.7.255</span><span class="comment">;</span>
-option routers <span class="number">192.168.7.1</span><span class="comment">;</span>
-option domain-name-servers <span class="number">192.168.7.1</span>, <span class="number">192.168.7.2</span><span class="comment">;</span>
-option domain-name "mydomain.example"<span class="comment">;</span>
-subnet <span class="number">192.168.7.0</span> netmask <span class="number">255.255.255.0</span> {
-    range <span class="number">192.168.7.3</span> <span class="number">192.168.7.253</span><span class="comment">;</span>
-} 
-</code></pre><p>启动或关闭DHCP服务：</p>
-<pre><code>sudo <span class="keyword">service</span> isc-dhcp-server <span class="literal">restart</span>
-sudo <span class="keyword">service</span> isc-dhcp-server <span class="literal">start</span>
-sudo <span class="keyword">service</span> isc-dhcp-server <span class="literal">stop</span> 
-</code></pre>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>►<a class="article-category-link" href="/categories/Linux/运维/">运维</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/linux/">linux</a><a href="/tags/shell/">shell</a><a href="/tags/运维/">运维</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -997,6 +994,10 @@ sudo <span class="keyword">service</span> isc-dhcp-server <span class="literal">
 		
 		  
 			<li><a href="/categories/MongoDB/" title="MongoDB">MongoDB<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/NWJS/" title="NWJS">NWJS<sup>1</sup></a></li>
 		  
 		
 		  

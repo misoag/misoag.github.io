@@ -4,7 +4,7 @@
   <subtitle><![CDATA[不乱于心,不困于情。不念过往，不畏将来。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://0x520.com/"/>
-  <updated>2015-05-27T05:56:48.000Z</updated>
+  <updated>2015-06-05T04:20:25.000Z</updated>
   <id>http://0x520.com/</id>
   
   <author>
@@ -13,6 +13,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[使用nwjs创建跨平台的本地html5应用]]></title>
+    <link href="http://0x520.com/2015/06/05/nwjs/1/"/>
+    <id>http://0x520.com/2015/06/05/nwjs/1/</id>
+    <published>2015-06-05T04:02:00.000Z</published>
+    <updated>2015-06-05T04:20:25.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="nwjs简介">nwjs简介</h2><p>nwjs你可能不熟悉，但是提到node-webkit应该很多人会听说过，其实他们是一个东西。具体的我就不多介绍了，可以到官网了解详情。</p>
+<p>官网:<a href="nwjs.io">nwjs.io</a>  </p>
+<p>github: <a href="https://github.com/nwjs/nw.js" target="_blank" rel="external">https://github.com/nwjs/nw.js</a></p>
+<p>环境：MacOSx</p>
+<h2 id="第一个nwjs应用">第一个nwjs应用</h2><p>我下载的是64位的Mac版：<a href="http://dl.nwjs.io/v0.12.2/nwjs-v0.12.2-osx-x64.zip" target="_blank" rel="external">http://dl.nwjs.io/v0.12.2/nwjs-v0.12.2-osx-x64.zip</a> ，解压之后将nwjs.app拖到 <code>/Applications</code> 目录下。</p>
+<p>编辑 <code>.bash_profile</code> ,添加一个别名</p>
+<pre><code><span class="preprocessor"># alias to nw</span>
+<span class="keyword">alias</span> <span class="title">nw</span>=<span class="string">"/Applications/nwjs.app/Contents/MacOS/nwjs"</span>
+</code></pre><p>刷新一下bash的环境变量</p>
+<pre><code><span class="built_in">source</span> ~/.bash_profile
+</code></pre><p>到这里nwjs算是配置完成了。</p>
+<p>现在我们可以创建自己的应用了，首先创建一个文件夹，名字为myapp。</p>
+<p>在myapp文件夹下创建<code>index.html</code> </p>
+<pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">title</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+    We are using node.js <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="livecodeserver">document.<span class="built_in">write</span>(<span class="built_in">process</span>.<span class="built_in">version</span>)</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>.
+  <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+</code></pre><p>在myapp文件夹下创建<code>package.json</code></p>
+<pre><code>{
+  "<span class="attribute">name</span>": <span class="value"><span class="string">"nw-demo"</span></span>,
+  "<span class="attribute">version</span>": <span class="value"><span class="string">"0.0.1"</span></span>,
+  "<span class="attribute">main</span>": <span class="value"><span class="string">"index.html"</span>
+</span>}
+</code></pre><p>OK，现在准备工作已经完毕，进入myapp目录，在终端中运行：</p>
+<pre><code>nw .
+</code></pre><p>如下图：</p>
+<p><img src="/uploads/QQ20150605-1.jpg" alt="NWJS应用"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="nwjs简介">nwjs简介</h2><p>nwjs你可能不熟悉，但是提到node-webkit应该很多人会听说过，其实他们是一个东西。具体的我就不多介绍了，可以到官网了解详情。</p>
+<p>官网:<a href="nwjs.io">nwjs.io</a>  <]]>
+    </summary>
+    
+      <category term="NWJS" scheme="http://0x520.com/categories/NWJS/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Mac上录制iPhone屏幕 & 投影仪演示iPhone应用]]></title>
@@ -1723,50 +1772,6 @@ void ShowFunTest(CTest <span class="keyword">Test</span>)
     <summary type="html">
     <![CDATA[<p>数组和指针都是针对地址进行操作，但是他们有很多不同之处。数组是相同类型的数据集合，是以线性的方式存储在内存中；而指针是保存4个字节的地址变量。</p>
 <p>数组名是一个地址常量，保存数组第一个元素的地址（不可以更改），只能作为基址访问内存数据；<br>指针是一个变量，只要]]>
-    </summary>
-    
-      <category term="反汇编" scheme="http://0x520.com/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/"/>
-    
-      <category term="逆向" scheme="http://0x520.com/tags/%E9%80%86%E5%90%91/"/>
-    
-      <category term="逆向基础" scheme="http://0x520.com/categories/%E9%80%86%E5%90%91%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[逆向基础第十六篇：堆空间的申请与释放]]></title>
-    <link href="http://0x520.com/2014/05/16/reverse/16/"/>
-    <id>http://0x520.com/2014/05/16/reverse/16/</id>
-    <published>2014-05-15T16:00:00.000Z</published>
-    <updated>2015-05-23T03:27:47.000Z</updated>
-    <content type="html"><![CDATA[<p>在C/C++中，使用malloc 与 new 实现堆空间的申请，返回的数据是堆空间的首地址。 对应地，使用free和delete完成堆空间的释放。但是需要堆空间的首地址。如果首地址丢失将无法释放堆空间，会导致内存泄露。</p>
-<p>确定变量空间是否属于堆空间只要找到两个关键点即可：</p>
-<ul>
-<li>空间申请：malloc 与 new 等</li>
-<li>空间释放：free 与 delete 等</li>
-</ul>
-<p><strong>malloc,free 与 new,delete 对比：</strong></p>
-<pre><code><span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-    <span class="keyword">char</span> * pCharMalloc = (<span class="keyword">char</span> *) malloc(<span class="number">10</span>);
-    <span class="keyword">char</span> * pCharNew =  <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">10</span>];
-    <span class="keyword">if</span>(pCharNew != <span class="keyword">NULL</span>)
-    {
-        <span class="keyword">delete</span> [] pCharNew;
-        pCharNew = <span class="keyword">NULL</span>;
-    }
-    <span class="keyword">if</span>(pCharMalloc != <span class="keyword">NULL</span>)
-    {
-        free(pCharMalloc);
-        pCharMalloc = <span class="keyword">NULL</span>;
-    }
-}
-</code></pre><p>反汇编代码及解释：</p>
-<p><img src="/uploads/2014/07/1580463780.png" alt="1.png"></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>在C/C++中，使用malloc 与 new 实现堆空间的申请，返回的数据是堆空间的首地址。 对应地，使用free和delete完成堆空间的释放。但是需要堆空间的首地址。如果首地址丢失将无法释放堆空间，会导致内存泄露。</p>
-<p>确定变量空间是否属于堆空间只要找到两个关]]>
     </summary>
     
       <category term="反汇编" scheme="http://0x520.com/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/"/>

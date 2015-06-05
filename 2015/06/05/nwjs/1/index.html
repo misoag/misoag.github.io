@@ -4,30 +4,36 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>逆向基础第九篇：流程控制 之 switch 判定树 | 鸡哥的程序人生</title>
+    <title>使用nwjs创建跨平台的本地html5应用 | 鸡哥的程序人生</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="鸡哥">
     
 
     
-    <meta name="description" content="上一篇我们探究了switch的非线性索引表的优化，讲述了 case最大值 和 case最小值的差值在255以内的情况。 
-但是，当差值大于255时，这种优化方案会造成空间浪费。此时编译器采用另外一种优化方案——判定树。 
-判定树： 每个case作为一个节点，从这些节点中找出一个中间值作为根节点，以此形成一个平衡二叉树，以每个节点为判定值，大于和小于关系分别对应左子树和右子树，这样可以提高检索效率。">
+    <meta name="description" content="nwjs简介nwjs你可能不熟悉，但是提到node-webkit应该很多人会听说过，其实他们是一个东西。具体的我就不多介绍了，可以到官网了解详情。
+官网:nwjs.io  
+github: https://github.com/nwjs/nw.js
+环境：MacOSx
+第一个nwjs应用我下载的是64位的Mac版：http://dl.nwjs.io/v0.12.2/nwjs-v0.12.2-osx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="逆向基础第九篇：流程控制 之 switch 判定树">
-<meta property="og:url" content="http://0x520.com/2014/05/09/reverse/9/index.html">
+<meta property="og:title" content="使用nwjs创建跨平台的本地html5应用">
+<meta property="og:url" content="http://0x520.com/2015/06/05/nwjs/1/index.html">
 <meta property="og:site_name" content="鸡哥的程序人生">
-<meta property="og:description" content="上一篇我们探究了switch的非线性索引表的优化，讲述了 case最大值 和 case最小值的差值在255以内的情况。 
-但是，当差值大于255时，这种优化方案会造成空间浪费。此时编译器采用另外一种优化方案——判定树。 
-判定树： 每个case作为一个节点，从这些节点中找出一个中间值作为根节点，以此形成一个平衡二叉树，以每个节点为判定值，大于和小于关系分别对应左子树和右子树，这样可以提高检索效率。">
-<meta property="og:image" content="http://0x520.com/uploads/2014/07/3279144732.png">
-<meta property="og:updated_time" content="2015-05-23T03:27:47.000Z">
+<meta property="og:description" content="nwjs简介nwjs你可能不熟悉，但是提到node-webkit应该很多人会听说过，其实他们是一个东西。具体的我就不多介绍了，可以到官网了解详情。
+官网:nwjs.io  
+github: https://github.com/nwjs/nw.js
+环境：MacOSx
+第一个nwjs应用我下载的是64位的Mac版：http://dl.nwjs.io/v0.12.2/nwjs-v0.12.2-osx">
+<meta property="og:image" content="http://0x520.com/uploads/QQ20150605-1.jpg">
+<meta property="og:updated_time" content="2015-06-05T04:20:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="逆向基础第九篇：流程控制 之 switch 判定树">
-<meta name="twitter:description" content="上一篇我们探究了switch的非线性索引表的优化，讲述了 case最大值 和 case最小值的差值在255以内的情况。 
-但是，当差值大于255时，这种优化方案会造成空间浪费。此时编译器采用另外一种优化方案——判定树。 
-判定树： 每个case作为一个节点，从这些节点中找出一个中间值作为根节点，以此形成一个平衡二叉树，以每个节点为判定值，大于和小于关系分别对应左子树和右子树，这样可以提高检索效率。">
+<meta name="twitter:title" content="使用nwjs创建跨平台的本地html5应用">
+<meta name="twitter:description" content="nwjs简介nwjs你可能不熟悉，但是提到node-webkit应该很多人会听说过，其实他们是一个东西。具体的我就不多介绍了，可以到官网了解详情。
+官网:nwjs.io  
+github: https://github.com/nwjs/nw.js
+环境：MacOSx
+第一个nwjs应用我下载的是64位的Mac版：http://dl.nwjs.io/v0.12.2/nwjs-v0.12.2-osx">
 
     
     <link rel="alternative" href="/atom.xml" title="鸡哥的程序人生" type="application/atom+xml">
@@ -83,14 +89,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/05/09/reverse/9/" title="逆向基础第九篇：流程控制 之 switch 判定树" itemprop="url">逆向基础第九篇：流程控制 之 switch 判定树</a>
+      <a href="/2015/06/05/nwjs/1/" title="使用nwjs创建跨平台的本地html5应用" itemprop="url">使用nwjs创建跨平台的本地html5应用</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="鸡哥" target="_blank" itemprop="author">鸡哥</a>
 		
   <p class="article-time">
-    <time datetime="2014-05-08T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-05-09</time>
+    <time datetime="2015-06-05T04:02:00.000Z" itemprop="datePublished"> 发表于 2015-06-05</time>
     
   </p>
 </header>
@@ -99,28 +105,43 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#nwjs简介"><span class="toc-number">1.</span> <span class="toc-text">nwjs简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一个nwjs应用"><span class="toc-number">2.</span> <span class="toc-text">第一个nwjs应用</span></a></li></ol>
 		
 		</div>
 		
-		<p>上一篇我们探究了switch的非线性索引表的优化，讲述了 case最大值 和 case最小值的差值在255以内的情况。 </p>
-<p>但是，当差值大于255时，这种优化方案会造成空间浪费。此时编译器采用另外一种优化方案——<code>判定树</code>。 </p>
-<p><strong>判定树：</strong> 每个case作为一个节点，从这些节点中找出一个中间值作为<code>根节点</code>，以此形成一个<code>平衡二叉树</code>，以每个节点为判定值，大于和小于关系分别对应<code>左子树</code>和<code>右子树</code>，这样可以提高检索效率。</p>
-<p>我们构造了这段代码：</p>
-<pre><code><span class="keyword">switch</span>(argc)
-{
-<span class="keyword">case</span> <span class="number">2</span>: printf(<span class="string">"The Number 1"</span>); <span class="keyword">break</span>;
-<span class="keyword">case</span> <span class="number">3</span>: printf(<span class="string">"The Number 2"</span>); <span class="keyword">break</span>;
-<span class="keyword">case</span> <span class="number">8</span>: printf(<span class="string">"The Number 3"</span>); <span class="keyword">break</span>;
-<span class="keyword">case</span> <span class="number">10</span>: printf(<span class="string">"The Number 5"</span>); <span class="keyword">break</span>;
-<span class="keyword">case</span> <span class="number">35</span>: printf(<span class="string">"The Number 6"</span>); <span class="keyword">break</span>;
-<span class="keyword">case</span> <span class="number">37</span>: printf(<span class="string">"The Number 6"</span>); <span class="keyword">break</span>;
-<span class="keyword">case</span> <span class="number">666</span>: printf(<span class="string">"The Number 255"</span>); <span class="keyword">break</span>;
-}
-</code></pre><p>反汇编之后的结果：</p>
-<p><img src="/uploads/2014/07/3279144732.png" alt="1.png"></p>
-<p>上图可是花费了我巨大的心血啊，这估计是我画图的最高水平了！ 看图一目了然，不用我解释了吧， O(∩_∩)O哈哈 ~ </p>
-<p>为了降低树的高度，在树的优化过程中，检测树的<code>左子树</code>或<code>右子树</code>能否满足<code>ifelse优化</code>、<code>有序线性优化</code>、<code>非线性索引优化</code>, 利用这三种优化降低树的高度。</p>
+		<h2 id="nwjs简介">nwjs简介</h2><p>nwjs你可能不熟悉，但是提到node-webkit应该很多人会听说过，其实他们是一个东西。具体的我就不多介绍了，可以到官网了解详情。</p>
+<p>官网:<a href="nwjs.io">nwjs.io</a>  </p>
+<p>github: <a href="https://github.com/nwjs/nw.js" target="_blank" rel="external">https://github.com/nwjs/nw.js</a></p>
+<p>环境：MacOSx</p>
+<h2 id="第一个nwjs应用">第一个nwjs应用</h2><p>我下载的是64位的Mac版：<a href="http://dl.nwjs.io/v0.12.2/nwjs-v0.12.2-osx-x64.zip" target="_blank" rel="external">http://dl.nwjs.io/v0.12.2/nwjs-v0.12.2-osx-x64.zip</a> ，解压之后将nwjs.app拖到 <code>/Applications</code> 目录下。</p>
+<p>编辑 <code>.bash_profile</code> ,添加一个别名</p>
+<pre><code><span class="preprocessor"># alias to nw</span>
+<span class="keyword">alias</span> <span class="title">nw</span>=<span class="string">"/Applications/nwjs.app/Contents/MacOS/nwjs"</span>
+</code></pre><p>刷新一下bash的环境变量</p>
+<pre><code><span class="built_in">source</span> ~/.bash_profile
+</code></pre><p>到这里nwjs算是配置完成了。</p>
+<p>现在我们可以创建自己的应用了，首先创建一个文件夹，名字为myapp。</p>
+<p>在myapp文件夹下创建<code>index.html</code> </p>
+<pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">title</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">body</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+    We are using node.js <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="livecodeserver">document.<span class="built_in">write</span>(<span class="built_in">process</span>.<span class="built_in">version</span>)</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>.
+  <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+</code></pre><p>在myapp文件夹下创建<code>package.json</code></p>
+<pre><code>{
+  "<span class="attribute">name</span>": <span class="value"><span class="string">"nw-demo"</span></span>,
+  "<span class="attribute">version</span>": <span class="value"><span class="string">"0.0.1"</span></span>,
+  "<span class="attribute">main</span>": <span class="value"><span class="string">"index.html"</span>
+</span>}
+</code></pre><p>OK，现在准备工作已经完毕，进入myapp目录，在终端中运行：</p>
+<pre><code>nw .
+</code></pre><p>如下图：</p>
+<p><img src="/uploads/QQ20150605-1.jpg" alt="NWJS应用"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -128,14 +149,9 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/逆向基础/">逆向基础</a>
+  <a class="article-category-link" href="/categories/NWJS/">NWJS</a>
 </div>
 
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/反汇编/">反汇编</a><a href="/tags/逆向/">逆向</a>
-  </div>
 
 </div>
 
@@ -143,7 +159,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://0x520.com/2014/05/09/reverse/9/" data-title="逆向基础第九篇：流程控制 之 switch 判定树 | 鸡哥的程序人生" data-tsina="null" class="share clearfix">
+	  <div data-url="http://0x520.com/2015/06/05/nwjs/1/" data-title="使用nwjs创建跨平台的本地html5应用 | 鸡哥的程序人生" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -156,19 +172,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/05/10/reverse/10/" title="逆向基础第十篇：控制流程 之 do循环">
-  <strong>上一篇：</strong><br/>
-  <span>
-  逆向基础第十篇：控制流程 之 do循环</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/05/08/reverse/8/"  title="逆向基础第八篇：流程控制 之 switch 探秘">
+<a href="/2015/05/26/others/1/"  title="Mac上录制iPhone屏幕 &amp; 投影仪演示iPhone应用">
  <strong>下一篇：</strong><br/> 
- <span>逆向基础第八篇：流程控制 之 switch 探秘
+ <span>Mac上录制iPhone屏幕 &amp; 投影仪演示iPhone应用
 </span>
 </a>
 </div>
@@ -183,7 +191,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#nwjs简介"><span class="toc-number">1.</span> <span class="toc-text">nwjs简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一个nwjs应用"><span class="toc-number">2.</span> <span class="toc-text">第一个nwjs应用</span></a></li></ol>
  
   </div>
 
