@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <div id="toc">
+  <strong>目录</strong>
+  <span>[hide]</span> 
+  <ul id="toc_l"> 
+   <li><a href="#Object_types">对象类型</a></li> 
+   <li><a href="#Object_properties">对象属性</a></li> 
+   <li><a href="#Object_visibility">对象可视性 </a></li> 
+  </ul> 
+ </div> 
+ <p>为了简化程序编写，使程序文本编辑使用起来更加简便，在MQL4中预定义了标准常量。</p> 
+ <p>标准常量类似于宏代换，并且是<a href="368.html#Integer_constants">int(整数类型)</a>。</p> 
+ <p>这些常量按用途进行分组。</p> 
+ <h2><a name="Object_types"></a>对象类型</h2> 
+ <p>对象类型常量在<a href="402.html#ObjectCreate">ObjectCreate()</a>, <a href="403.html#ObjectsDeleteAll">ObjectsDeleteAll()</a> 和<a href="403.html#ObjectType"> ObjectType()</a> 函数中使用。 可以使用以下任意值:</p> 
+ <p>对象可能有1-3 个相关类型的坐标。</p> 
+ <table class="custom-table"> 
+  <tbody> 
+   <tr> 
+    <th width="15%">常数</th> 
+    <th width="10%">值</th> 
+    <th width="75%">描述</th> 
+   </tr> 
+   <tr> 
+    <td>OBJ_VLINE</td> 
+    <td>0</td> 
+    <td>垂直线。使用第一坐标的时间部分。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_HLINE</td> 
+    <td>1</td> 
+    <td>水平线。使用第一坐标的价格部分。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_TREND</td> 
+    <td>2</td> 
+    <td>趋势线。 使用2个坐标。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_TRENDBYANGLE</td> 
+    <td>3</td> 
+    <td>趋势角度。使用1 个坐标。应用<a href="402.html#ObjectSet">ObjectSet()函数</a>设置线的角度。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_REGRESSION</td> 
+    <td>4</td> 
+    <td>回归。使用头两个坐标的时间部分。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_CHANNEL</td> 
+    <td>5</td> 
+    <td>通道。使用3个坐标。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_STDDEVCHANNEL</td> 
+    <td>6</td> 
+    <td>标准差通道。使用头两个坐标的时间部分。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_GANNLINE</td> 
+    <td>7</td> 
+    <td>甘氏线。使用2个坐标，但忽略第二个坐标的价格部分。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_GANNFAN</td> 
+    <td>8</td> 
+    <td>甘氏扇形线。使用2个坐标，但忽略第二个坐标的价格部分。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_GANNGRID</td> 
+    <td>9</td> 
+    <td>甘氏网格线。使用2个坐标，但忽略第二个坐标的价格部分</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_FIBO</td> 
+    <td>10</td> 
+    <td>斐波纳契回撤。使用2个坐标。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_FIBOTIMES</td> 
+    <td>11</td> 
+    <td>斐波纳契时间周期线。使用2个坐标。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_FIBOFAN</td> 
+    <td>12</td> 
+    <td>斐波纳契扇形线。使用2个坐标。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_FIBOARC</td> 
+    <td>13</td> 
+    <td>斐波纳契弧线。使用2个坐标。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_EXPANSION</td> 
+    <td>14</td> 
+    <td>斐波纳契扩展。使用3个坐标。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_FIBOCHANNEL</td> 
+    <td>15</td> 
+    <td>斐波纳契通道。使用3个坐标。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_RECTANGLE</td> 
+    <td>16</td> 
+    <td>矩形。使用2个坐标。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_TRIANGLE</td> 
+    <td>17</td> 
+    <td>三角形。使用3个坐标。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_ELLIPSE</td> 
+    <td>18</td> 
+    <td>椭圆形。使用2个坐标。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_PITCHFORK</td> 
+    <td>19</td> 
+    <td>安德鲁分叉线。使用3个坐标。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_CYCLES</td> 
+    <td>20</td> 
+    <td>周期线。使用2个坐标。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_TEXT</td> 
+    <td>21</td> 
+    <td>文本。使用1 坐标。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_ARROW</td> 
+    <td>22</td> 
+    <td>箭头。使用1个坐标。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_LABEL</td> 
+    <td>23</td> 
+    <td>文本标签。按像素使用1个坐标。</td> 
+   </tr> 
+  </tbody> 
+ </table> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Object_properties"></a>对象属性</h2> 
+ <p>对象<strong>值索引</strong>在<a href="402.html#ObjectGet">ObjectGet()</a> 和<a href="402.html#ObjectSet"> ObjectSet()</a> 函数中使用。它可能是以下的任意值:</p> 
+ <table class="custom-table"> 
+  <tbody> 
+   <tr> 
+    <th width="15%">常数</th> 
+    <th width="7%">值</th> 
+    <th width="8%">类型</th> 
+    <th width="70%">描述</th> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_TIME1</td> 
+    <td>0</td> 
+    <td>datetime</td> 
+    <td>设置/获取第一个坐标时间部分的数值。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_PRICE1</td> 
+    <td>1</td> 
+    <td>double</td> 
+    <td>设置/获取第一个坐标价格部分的数值。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_TIME2</td> 
+    <td>2</td> 
+    <td>datetime</td> 
+    <td>设置/获取第二个坐标时间部分的数值。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_PRICE2</td> 
+    <td>3</td> 
+    <td>double</td> 
+    <td>设置/获取第二个坐标价格部分的数值。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_TIME3</td> 
+    <td>4</td> 
+    <td>datetime</td> 
+    <td>设置/获取第三个坐标时间部分的数值。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_PRICE3</td> 
+    <td>5</td> 
+    <td>double</td> 
+    <td>设置/获取第三个坐标价格部分的数值。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_COLOR</td> 
+    <td>6</td> 
+    <td>color</td> 
+    <td>设置/获取对象颜色的数值。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_STYLE</td> 
+    <td>7</td> 
+    <td>int</td> 
+    <td>设置/获取对象的线型样式。值为STYLE_SOLID, STYLE_DASH, STYLE_DOT, STYLE_DASHDOT, STYLE_DASHDOTDOT常量之一。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_WIDTH</td> 
+    <td>8</td> 
+    <td>int</td> 
+    <td>设置/获取对象的线宽的数值。可以是1到5。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_BACK</td> 
+    <td>9</td> 
+    <td>bool</td> 
+    <td>设置/获取对象背景线标志的布尔值。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_RAY</td> 
+    <td>10</td> 
+    <td>bool</td> 
+    <td>设置/获取对象射线标志的布尔值。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_ELLIPSE</td> 
+    <td>11</td> 
+    <td>bool</td> 
+    <td>设置/获取斐波纳契弧线椭圆标志的布尔值。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_SCALE</td> 
+    <td>12</td> 
+    <td>double</td> 
+    <td>设置/获取缩放对象属性的数值。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_ANGLE</td> 
+    <td>13</td> 
+    <td>double</td> 
+    <td>设置/获取角对象属性的数值。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_ARROWCODE</td> 
+    <td>14</td> 
+    <td>int</td> 
+    <td>设置/获取箭头代码对象属性的数值。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_TIMEFRAMES</td> 
+    <td>15</td> 
+    <td>int</td> 
+    <td>设置/获取图表时段对象属性，其值为一个或多个时段对象显示常数的组合值。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_DEVIATION</td> 
+    <td>16</td> 
+    <td>double</td> 
+    <td>设置/获取标准差对象离差属性的双精度值。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_FONTSIZE</td> 
+    <td>100</td> 
+    <td>int</td> 
+    <td>设置/获取文本对象字体大小的整数值。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_CORNER</td> 
+    <td>101</td> 
+    <td>int</td> 
+    <td>设置/获取标签对象固定角的整数值。必须是从0到3</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_XDISTANCE</td> 
+    <td>102</td> 
+    <td>int</td> 
+    <td>设置/获取固定X间隔对象属性的整数值。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_YDISTANCE</td> 
+    <td>103</td> 
+    <td>int</td> 
+    <td>设置/获取固定Y间隔对象属性的整数值。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_FIBOLEVELS</td> 
+    <td>200</td> 
+    <td>int</td> 
+    <td>设置/获取斐波纳契对象水平线个数的整数值。可以从0到32。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_LEVELCOLOR</td> 
+    <td>201</td> 
+    <td>color</td> 
+    <td>设置/获取对象水平线颜色的颜色值。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_LEVELSTYLE</td> 
+    <td>202</td> 
+    <td>int</td> 
+    <td>设置/获取对象水平线样式的值。其值为STYLE_SOLID, STYLE_DASH, STYLE_DOT, STYLE_DASHDOT, STYLE_DASHDOTDOT之一。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_LEVELWIDTH</td> 
+    <td>203</td> 
+    <td>int</td> 
+    <td>设置/获取对象水平线宽度的整数值。可以从1到5。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJPROP_FIRSTLEVEL+<em>n</em></td> 
+    <td>210+n</td> 
+    <td>int</td> 
+    <td>斐波纳契对象水平线编号，此处n为设置/获取第n条水平线编号。可以是从0到31。</td> 
+   </tr> 
+  </tbody> 
+ </table> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Object_visibility"></a>对象可视性</h2> 
+ <p>对象显示的图表时段。在<a href="402.html#ObjectSet">ObjectSet()函数</a>中设置OBJPROP_TIMEFRAMES属性。</p> 
+ <table class="custom-table"> 
+  <tbody> 
+   <tr> 
+    <th width="15%">常数</th> 
+    <th width="10%">值</th> 
+    <th width="75%">描述。</th> 
+   </tr> 
+   <tr> 
+    <td>OBJ_PERIOD_M1</td> 
+    <td>0×0001</td> 
+    <td>对象只在1分钟图表中显示。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_PERIOD_M5</td> 
+    <td>0×0002</td> 
+    <td>对象只在5分钟图表中显示。。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_PERIOD_M15</td> 
+    <td>0×0004</td> 
+    <td>对象只在15分钟图表中显示。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_PERIOD_M30</td> 
+    <td>0×0008</td> 
+    <td>对象只在30分钟图表中显示。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_PERIOD_H1</td> 
+    <td>0×0010</td> 
+    <td>对象只在1小时图表中显示。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_PERIOD_H4</td> 
+    <td>0×0020</td> 
+    <td>对象只在4小时图表中显示。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_PERIOD_D1</td> 
+    <td>0×0040</td> 
+    <td>对象只在日图表中显示。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_PERIOD_W1</td> 
+    <td>0×0080</td> 
+    <td>对象只在周图表中显示。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_PERIOD_MN1</td> 
+    <td>0×0100</td> 
+    <td>对象只在月图表中显示。</td> 
+   </tr> 
+   <tr> 
+    <td>OBJ_ALL_PERIODS</td> 
+    <td>0x01FF</td> 
+    <td>对象在所有时间周期图表中显示。</td> 
+   </tr> 
+   <tr> 
+    <td>NULL</td> 
+    <td>0</td> 
+    <td>对象在所有时间周期图表中显示。</td> 
+   </tr> 
+   <tr> 
+    <td>EMPTY</td> 
+    <td>-1</td> 
+    <td>在所有时间周期图表中不显示。</td> 
+   </tr> 
+  </tbody> 
+ </table> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="376.html" rel="bookmark"><b>376.html</b></a> 
+</div>
+</body>
+</html>

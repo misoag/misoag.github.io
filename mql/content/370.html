@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <div id="toc">
+  <strong>目录</strong>
+  <span>[hide]</span> 
+  <ul id="toc_l"> 
+   <li><a href="#Compound_operator">语句块</a> </li> 
+   <li><a href="#Expression_operator">表达式操作符 </a></li> 
+   <li><a href="#Break_operator">break 语句 </a></li> 
+   <li>c<a href="#Continue_operator">ontinue 语句 </a></li> 
+   <li><a href="#Return_operator">return 语句 </a></li> 
+   <li><a href="#if_else_operator">if-else 语句 </a></li> 
+   <li><a href="#Switch_operator">switch 语句 </a></li> 
+   <li><a href="#while_operator">while 循环语句 </a></li> 
+   <li><a href="#for_operator">for 循环语句 </a></li> 
+  </ul>
+ </div> 
+ <p>语句描述了完成一项任务的算法操作规则。程序本身就足这样的语句序列。一条条语句之间以<strong>分号</strong> ; 分隔。</p> 
+ <p>一条语句能占一行或多行。二个或更多语句也能书写于同一行上。控制执行顺序的语句(if, if-else,&nbsp; switch, while和for)可以相互嵌套。</p> 
+ <p>示例:</p> 
+ <pre>if(Month() == 12)
+  if(Day() == 31) Print("新年快乐!");</pre> 
+ <h2><a name="Compound_operator"></a>语句块</h2> 
+ <p>一个复合语句(一个语句块)可以由一条语句组成，也可以由大括弧{}括起来的一条或多条任意类型的语句组成。大括弧{}后而<strong>不必</strong>跟着分号(;)。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">if(x==0)
+  {
+   Print("无效位置 x=",x);
+   return;
+  }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Expression_operator"></a>表达式操作符</h2> 
+ <p>任何以分号(;)结束的表达式都被视为是一个操作符。这里罗列了一些表达式操作符的范例:</p> 
+ <p><b>赋值运算符</b>: </p> 
+ <p><i>Identifier=expression;</i></p> 
+ <pre class="brush: mql4; toolbar: false;">x=3;
+y=x=3; // 错误</pre> 
+ <p>赋值运算符在表达式操作符中只限一次使用。</p> 
+ <p><b>函数调用运算符</b>: </p> 
+ <p><i>Function_name(argument1,…, argumentN);</i></p> 
+ <pre class="brush: mql4; toolbar: false;">
+  FileClose(file);</pre> 
+ <p><b>空运算符</b> </p> 
+ <p>仅仅只有一个分号(;)组成，用来表示控制语句中无任何语句。</p> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Break_operator"></a>break 语句</h2> 
+ <p>break语句可以终止最邻近的<a href="#Switch_operator">switch</a>, <a href="#while_operator">while</a>或<a href="#for_operator">for</a>语句的执行。Break语句由最近的终止条件语句控制。本语句目的之一就是当满足一定条件时完成循环的执行。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">// 搜索第一个零元素
+for(i=0;i&lt;array_size;i++)
+  if((array[i]==0)
+    break;</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Continue_operator"></a>continue 语句</h2> 
+ <p>continue语句控制最邻近的循环语句while或for返回循环开始，接着执行下一次循环。continue 语句与break 语句作用相反。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">//  统计数组中非零元素个数
+int func(int array[])
+  {
+   int array_size=ArraySize(array);
+   int sum=0;
+   for(int i=0;i&lt;array_size; i++)
+     {
+      if(a[i]==0) continue;
+      sum+=a[i];
+     }
+   return(sum);
+  }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Return_operator"></a>return 语句</h2> 
+ <p>return语句结束当前函数的执行，返回到调用程序。语句return(expression)；结束当前函数的执行并带回函数的结果，其中的表达式必须放在圆括号内，不能使用赋值号。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">int CalcSum(int x, int y)
+  {
+   return(x+y);
+  }</pre> 
+ <p>在函数值的类型定义为void类型时，<em>return </em>语句后面不能使用表达式:</p> 
+ <pre class="brush: mql4; toolbar: false;">void SomeFunction()
+  {
+   Print("Hello!");
+   return;    // 这个语句能删除
+  }</pre> 
+ <p>本函数右大括弧 } 表明这个不带表达式的return语句将明确执行。</p> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="if_else_operator"></a>if-else 语句</h2> 
+ <p>如果条件表达式为true，语句序列 operator1 执行，语句序列 operator2 将不执行。如果表达式为false，语句序列 operator2 执行，而语句序列 operator1 不执行。</p> 
+ <pre class="brush: mql4; toolbar: false;">if (expression)
+     operator1
+else
+     operator2</pre> 
+ <p>if 语句的 else 部分可能被省略，因此，如果本语句省略了else 部分，if语句在嵌套时可能会出现歧义。在这种情况下，else 会匹配前而最近的不带 else 部分的 if 语句。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">//   else 部分匹配第二个if操作符:
+  if(x&gt;1)
+  if(y==2) z=5;
+  else     z=6;
+
+//   else 部分匹配第一个if操作符:
+if(x&gt;l)
+  {
+   if(y==2) z=5;
+  }
+else        z=6;
+
+//  if 语句嵌套
+if(x=='a')
+  {
+   y=1;
+  }
+else if(x=='b')
+  {
+   y=2;
+   z=3;
+  }
+else if(x=='c')
+  {
+   y = 4;
+  }
+else Print("ERROR");</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Switch_operator"></a>switch 语句</h2> 
+ <p>switch 语句比较 expression表达式值 和 case中的constant常量值，如果相等，就执行相应的语句块。每个case中constant值必须是一个整数、字符串常量或常量表达式。常量表达式中不能包含变量和函数调用。Switch后而的表达式(expression)必须是整型。 </p> 
+ <pre class="brush: mql4; toolbar: false;">switch(expression)
+  {
+   case constant: operators
+   case constant: operators
+     ...
+   default: operators
+  }</pre> 
+ <p>如果没有一个case表达式值等于expression表达式值，将执行default后面的语句块。此处default语句并不是必需的。如果没有一个case常量和expression值一致，而default语句也不没有，那么不会执行任何动作。关键字case及其常量就像标签，即使switch语句带有数个case语句，程序都会按序执行后而所有的语句块，直至遇到break语句为止。</p> 
+ <p>在编译期间，编译程序将计算常量表达式的值，不允许在一个switch语句内同时存在两个相同的常量值。 </p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">switch(x)
+  {
+   case 'A':
+      Print("CASE A");
+      break;
+   case 'B':
+   case 'C':
+      Print("CASE B or C");
+      break;
+   default:
+      Print("NOT A, B or C");
+      break;
+  }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="while_operator"></a>while 循环语句</h2> 
+ <p>如果条件表达式expression值为true，while语句一直执行直至条件表达式变成false。如果条件表达式为false，将跳到下一条语句。</p> 
+ <pre class="brush: mql4; toolbar: false;">while(expression)
+  operator;</pre> 
+ <p>while语句执行前，表达式expression必须事先定义过。因此，如果表达式值一开始就为false，while语句根本不会执行。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">while(k&lt;n)
+  {
+   y=y*x;
+   k++;
+  }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="for_operator"></a>for 循环语句</h2> 
+ <p>表达式1 (Expression1)定义循环的初始变量，表达式2(Expression2)是循环终止条件。当表达式2 (Expression2)为真(true)的时候，循环体重复执行直至Expression2变为假(false)。如果Expression2变为false，循环将会被中断，并继续执行循环语句的下一条语句。每次循环结束后都会计算表达式3(Expression3)，用于改变循环条件。</p> 
+ <pre class="brush: mql4; toolbar: false;">for (Expression1; Expression2; Expression3)
+   operator;</pre> 
+ <p><em>for</em> 语句与下面while语句等价：</p> 
+ <pre class="brush: mql4; toolbar: false;">Expression1;
+while(Expression2)
+  {
+   operator;
+   Expression3;
+  }</pre> 
+ <p>for 语句中我们可以省略三个表达式中任一部分或全部，但足，其中分号 ; 却不能省略。如果省略了表达式2(expression2)，则被视作真值。for(; ;)语句是一个死循环，它相当于while(1)语句。表达式1和表达式3都可以内嵌多个逗号(,)分隔的表达式。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">for(x=1;x&lt;=7;x++) Print(MathPower(x,2));
+for(;;)
+  {
+   Print(MathPower(x,2));
+   x++;
+   if(x&gt;10) break;
+  }
+for(i=0,j=n-l;i&lt;n;i++,j--) a[i]=a[j];</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="370.html" rel="bookmark"><b>370.html</b></a> 
+</div>
+</body>
+</html>

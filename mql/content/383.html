@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <p>用于数组处理的一组函数。</p> 
+ <p>数组的最大维数为四维。每一维索引编号为0至（数组大小 减 1）。例如，在50个元素的一维数组中，调用第一个元素用array[0]，最后一个元素用array[49]。</p> 
+ <ul> 
+  <li><strong><a href="#ArrayBsearch">ArrayBsearch()</a></strong> – 数组搜索 </li> 
+  <li><strong><a href="#ArrayCopy">ArrayCopy()</a></strong> – 数组复制 </li> 
+  <li><strong><a href="#ArrayCopyRates">ArrayCopyRates()</a></strong> – 复制柱体(K线)数据到二维数组 </li> 
+  <li><strong><a href="#ArrayCopySeries">ArrayCopySeries()</a></strong> – 复制柱体(K线)数据到一维数组 </li> 
+  <li><strong><a href="384.html#ArrayDimension">ArrayDimension()</a></strong> – 返回数组维数 </li> 
+  <li><strong><a href="384.html#ArrayGetAsSeries">ArrayGetAsSeries()</a></strong> – 判断序列数组 </li> 
+  <li><strong><a href="384.html#ArrayInitialize">ArrayInitialize()</a></strong> – 数组初始化 </li> 
+  <li><strong><a href="384.html#ArrayIsSeries">ArrayIsSeries()</a></strong> – 判断数组是否序列化 </li> 
+  <li><strong><a href="384.html#ArrayMaximum">ArrayMaximum()</a></strong> – 返回数组中最大值的位置 </li> 
+  <li><strong><a href="384.html#ArrayMinimum">ArrayMinimum()</a></strong> – 返回数组中最小值的位置 </li> 
+  <li><strong><a href="385.html#ArrayRange">ArrayRange()</a></strong> – 获取数组元素个数 </li> 
+  <li><strong><a href="385.html#ArrayResize">ArrayResize()</a></strong> – 重设数组大小 </li> 
+  <li><strong><a href="385.html#ArraySetAsSeries">ArraySetAsSeries()</a></strong> – 设置为序列化数组 </li> 
+  <li><strong><a href="385.html#ArraySize">ArraySize()</a></strong> – 获取数组大小 </li> 
+  <li><strong><a href="385.html#ArraySort">ArraySort()</a></strong> – 数组排序 </li> 
+ </ul> 
+ <p>&nbsp;</p> 
+ <h2><a name="ArrayBsearch"></a>ArrayBsearch() – 数组搜索</h2> 
+ <pre class="brush: mql4; toolbar: false;">int ArrayBsearch(double array[], double value, void count, void start,
+                 void direction)</pre> 
+ <p>如果在数组中找到，返回第一次找到的元素下标。如果未找到，则返回最接近搜索值的元素下标。</p> 
+ <p>此函数不能用于字符串型数组或序列数组(不包括柱子开盘时问的序列数组)。</p> 
+ <p>注：二进制查找只能在已排序的数组中进行。使用 <a href="385.html#ArraySort">ArraySort()</a> 函数可以排序数值数组。 </p> 
+ <p>参数:</p> 
+ <pre>array[] - 需要搜索的数值数组。
+value - 要搜索的值。
+count - 要搜索的元素数量，默认搜索所有的数组。
+start - 搜索的开始位置，默认从第一个元素开始。
+direction - 搜索的方向，可以使用下面的值：
+              MODE_ASCEND 顺序搜索，
+              MODE_DESCEND 倒序搜索。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">   datetime daytimes[];
+   int      shift=10,dayshift;
+   // Time[]中所有数值降序排列
+   ArrayCopySeries(daytimes,MODE_TIME,Symbol(),PERIOD_D1);
+   if(Time[shift]&gt;=daytimes[0]) dayshift=0;
+   else
+     {
+      dayshift=ArrayBsearch(daytimes,Time[shift],WHOLE_ARRAY,0,MODE_DESCEND);
+      if(Period()&lt;PERIOD_D1) dayshift++;
+     }
+   Print(TimeToStr(Time[shift])," corresponds to ",dayshift," day bar opened at ",
+         TimeToStr(daytimes[dayshift]));</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="ArrayCopy"></a>ArrayCopy() – 数组复制</h2> 
+ <pre class="brush: mql4; toolbar: false;">int ArrayCopy(void dest[], object source[], void start_dest,
+              void start_source,
+              void count)</pre> 
+ <p>复制一个数组数据到另外一个数组。数组必须类型相同，只有同类型的double, int, datetime,&nbsp; color和bool型数组之间可以被复制。</p> 
+ <p>返回被复制元素的个数。</p> 
+ <p>参数:</p> 
+ <pre>dest[] - 目标数组。
+source[] - 源数组。
+start_dest - 接收数据的目标数组起始下标，默认为0。
+start_source - 读取数据的源数组起始下标，默认为0。
+count - 要复制的元素个数；默认值为 WHOLE_ARRAY 常数。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  double array1[][6];
+  double array2[10][6];
+  // 用数据填充array2数组
+  ArrayCopyRates(array1);
+  ArrayCopy(array2,array1,0,0,60);
+  // 现在array2有了来自于历史的前10柱数据(第一个柱子索引为[Bar-1])
+  ArrayCopy(array2,array1,0,Bars*6-60,60);
+  // 现在array2有了来自于历史的后10柱数据(最后一柱索引为[0])</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="ArrayCopyRates"></a>ArrayCopyRates() – 复制柱体(K线)数据到二维数组</h2> 
+ <pre class="brush: mql4; toolbar: false;">int ArrayCopyRates(void dest_array[], void symbol, void timeframe)</pre> 
+ <p>复制图表上柱体(K线)数据到一个二维数组，并返回已复制的柱数。如果返回-1,表示复制失败。数组的第二维有6个项目，分别是:</p> 
+ <ul> 
+  <li>0 – 开盘时间 </li> 
+  <li>1 – 开盘价 </li> 
+  <li>2 – 最低价 </li> 
+  <li>3 – 最高价 </li> 
+  <li>4 – 收盘价 </li> 
+  <li>5 – 成交量 </li> 
+ </ul> 
+ <p>如果想从另一个图表获取数据(货币对名称/图表时段与当前不同)，而相应的图表又没有打开，需要从服务器下载必要的数据，那么出现这种状况是有可能的。这种情况下，<a href="377.html#Error_codes">错误信息</a>ERR-HISTORY-WILL-UPDATED (4066 – 历史数据正在更新)将被放到 last_error 变量中，并且不得不再次下载数据( 查看范例 ArrayCopySeries() )。</p> 
+ <p>注：此数组通常用于向DLL函数传递数据。没有真正为数据数组分配内存，也没有真正地执行复制。当存取这样的数组时，访问将被重定向。</p> 
+ <p>参数:</p> 
+ <pre>dest_array[] - 二维目标数组（double类型数组）。
+symbol - 货币对名称
+timeframe - 时间周期，可以是 <a href="374.html#Timeframes">列出时间周期</a> 的任意值。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  double array1[][6];
+  ArrayCopyRates(array1,"EURUSD", PERIOD_H1);
+  Print("当前柱 ",TimeToStr(array1[0][0]),"开盘价格", array1[0][1]);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="ArrayCopySeries"></a>ArrayCopySeries() – 复制柱体(K线)数据到一维数组</h2> 
+ <pre class="brush: mql4; toolbar: false;">int ArrayCopySeries(void array[], int series_index, void symbol,
+                    void timeframe)</pre> 
+ <p>复制一组柱体(K线)数据到一个一维数组，并返回复制的元素个数。</p> 
+ <p>没有真正为数据数组分配内存，也没有真正地执行复制。当存取这样数组时，访问将被重定向。自定义指标中指标数组是例外情况，这种情况下，数组被真正复制。</p> 
+ <p>如果数据从不同货币对/图表时段复制，可能会缺少数据。这种情况下，错误信息ERR-HISTORY-WILL-UPDATED(4066 – 历史数据正在更新)将被放到last_error变量中，在一段时间之后重新尝试复制。</p> 
+ <p>注：如果series_index是MODE_TIME，那么传递给函数的数组数据类型必须是日期时间型。</p> 
+ <p>参数:</p> 
+ <pre>array[] - 一维目标数组。
+series_index - 序列数组标示符，必须是 <a href="374.html#Series_arrays">序列化数组常量列表</a> 中标示符。
+symbol - 货币对名称。
+timeframe - 时间周期，可以是 <a href="374.html#Timeframes">列出时间周期</a> 的任意值。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">datetime daytimes[];
+int      shift=10,dayshift,error;
+//---- 此 Time[] 数组降序排列
+ArrayCopySeries(daytimes,MODE_TIME,Symbol(),PERIOD_D1);
+error=GetLastError();
+if(error==4066)
+  {
+   //---- 试读两次以上
+   for(int i=0;i&lt;2; i++)
+     {
+      Sleep(5000);
+      ArrayCopySeries(daytimes,MODE_TIME,Symbol(),PERIOD_D1);
+      //---- 检查每日柱体时间
+      datetime last_day=daytimes[0];
+      if(Year()==TimeYear(last_day) &amp;&amp; Month()==TimeMonth(last_day) &amp;&amp; Day()==TimeDay(last_day)) break;
+     }
+  }
+if(Time[shift]&gt;=daytimes[0]) dayshift=0;
+else
+  {
+   dayshift=ArrayBsearch(daytimes,Time[shift],WHOLE_ARRAY,0,MODE_DESCEND);
+   if(Period()&lt;PERIOD_D1) dayshift++;
+  }
+Print(TimeToStr(Time[shift])," corresponds to ",dayshift," day bar opened at ", TimeToStr(daytimes[dayshift]));</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="383.html" rel="bookmark"><b>383.html</b></a> 
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+*{font-size:16px;line-height:22px;}
+
+a{color:#666;text-decoration:none;}
+a:hover{text-decoration:underline;}
+h1{font-size:2em;}
+h2{font-size:1.5em;}
+h2.toggle{background:#666;padding:10px;}
+h2.toggle a{color:#fff;}
+
+.custom-table {border-collapse:collapse;border:1px solid #ccc;}
+.custom-table th,.custom-table td{border:1px solid #ccc;padding:5px;}
+.custom-table th{background:#ddd;}
+
+pre{background:#666;color:#fff;padding:10px;font-size:12px;}

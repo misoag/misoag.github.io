@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <p>MQL4不仅可以计算当前图表中任何指标，还可以计算任何有效的货币对/图表时段的数据。如果请求数据(货币对名称/图表时段不同于当前图表)来自其他图表，出现这种情况如果相应的图表没有在客户端内打开，数据需要从服务器上下载。这种情况下，<a href="377.html#Error_codes">错误信息</a>ERR_HISTORY_WILL_UPDATED(4066-历史数据正在更新中)将被放置于 <a href="381.html">last_error</a> 变量中，需要再次请求更新数据(参见 <a href="383.html#ArrayCopySeries">ArrayCopySeries()</a> 范例)。</p> 
+ <ul> 
+  <li><strong><a href="405.html#iAC">iAC()</a></strong> – 加速震荡指标 </li> 
+  <li><strong><a href="405.html#iAD">iAD()</a></strong> – 离散指标 </li> 
+  <li><strong><a href="405.html#iAlligator">iAlligator()</a></strong> – 鳄鱼指标 </li> 
+  <li><strong><a href="405.html#iADX">iADX()</a></strong> – ADX指标 </li> 
+  <li><strong><a href="405.html#iATR">iATR()</a></strong> – ATR指标 </li> 
+  <li><strong><a href="405.html#iAO">iAO()</a></strong> – 动量震荡指标 </li> 
+  <li><strong><a href="405.html#iBearsPower">iBearsPower()</a></strong> – 熊力指标 </li> 
+  <li><strong><a href="405.html#iBands">iBands()</a></strong> – 布林线指标 </li> 
+  <li><strong><a href="405.html#iBandsOnArray">iBandsOnArray()</a></strong> – 基于数组计算布林线指标 </li> 
+  <li><strong><a href="406.html#iBullsPower">iBullsPower()</a></strong> – 牛力指标 </li> 
+  <li><strong><a href="406.html#iCCI">iCCI()</a></strong> – CCI指标 </li> 
+  <li><strong><a href="406.html#iCCIOnArray">iCCIOnArray()</a></strong> – 基于数组计算CCI指标 </li> 
+  <li><strong><a href="406.html#iCustom">iCustom()</a></strong> – 自定义指标 </li> 
+  <li><strong><a href="406.html#iDeMarker">iDeMarker()</a></strong> – DeMarker指标 </li> 
+  <li><strong><a href="406.html#iEnvelopes">iEnvelopes()</a></strong> – Envelopes包络线指标 </li> 
+  <li><strong><a href="406.html#iEnvelopesOnArray">iEnvelopesOnArray()</a></strong> – 基于数组计算包络线指标 </li> 
+  <li><strong><a href="407.html#iForce">iForce()</a></strong> – 强力指标 </li> 
+  <li><strong><a href="407.html#iFractals">iFractals()</a></strong> – 分型指标 </li> 
+  <li><strong><a href="407.html#iGator">iGator()</a></strong> – 鳄鱼振荡指标 </li> 
+  <li><strong><a href="407.html#iIchimoku">iIchimoku()</a></strong> – Ichimoku云图指标 </li> 
+  <li><strong><a href="407.html#iBWMFI">iBWMFI()</a></strong> – BWMFI指标 </li> 
+  <li><strong><a href="407.html#iMomentum">iMomentum()</a></strong> – 动量指标 </li> 
+  <li><strong><a href="407.html#iMomentumOnArray">iMomentumOnArray()</a></strong> – 基于数组计算动量指标 </li> 
+  <li><strong><a href="#iMFI">iMFI()</a></strong> – 资金流量指标 </li> 
+  <li><strong><a href="#iMA">iMA()</a></strong> – 移动平均线 </li> 
+  <li><strong><a href="#iMAOnArray">iMAOnArray()</a></strong> – 基于数组计算移动平均线 </li> 
+  <li><strong><a href="#iOsMA">iOsMA()</a></strong> – OsMA指标 </li> 
+  <li><strong><a href="#iMACD">iMACD()</a></strong> – MACD指标 </li> 
+  <li><strong><a href="#iOBV">iOBV()</a></strong> – OBV指标 </li> 
+  <li><strong><a href="#iSAR">iSAR()</a></strong> – SAR抛物线指标 </li> 
+  <li><strong><a href="#iRSI">iRSI()</a></strong> – RSI指标 </li> 
+  <li><strong><a href="#iRSIOnArray">iRSIOnArray()</a></strong> – 基于数组计算RSI指标 </li> 
+  <li><strong><a href="#iRVI">iRVI()</a></strong> – RVI指标 </li> 
+  <li><strong><a href="#iStdDev">iStdDev()</a></strong> – 标准差指标 </li> 
+  <li><strong><a href="#iStdDevOnArray">iStdDevOnArray()</a></strong> – 基于数组计算标准差 </li> 
+  <li><strong><a href="#iStochastic">iStochastic()</a></strong> – 随机震荡指标(KDJ) </li> 
+  <li><strong><a href="#iWPR">iWPR()</a></strong> – WPR指标(%R) </li> 
+ </ul> 
+ <p>&nbsp;</p> 
+ <h2><a name="iMFI"></a>iMFI() – 资金流量指标</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iMFI(string symbol, int timeframe, int period, int shift)</pre> 
+ <p>计算资金流量指标。 </p> 
+ <p>参数:</p> 
+ <pre>symbol    - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+period    - 计算的周期数。
+shift     - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">if(iMFI(NULL,0,14,0)&gt;iMFI(NULL,0,14,1)) return(0);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iMA"></a>iMA() – 移动平均线</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iMA(string symbol, int timeframe, int period, int ma_shift,
+           int ma_method, int applied_price, int shift)</pre> 
+ <p>计算<a href="172.html">移动平均线</a>。 </p> 
+ <p>参数:</p> 
+ <pre>symbol        - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe     - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+period        - MA计算的周期数。
+ma_shift      - MA偏移量。
+ma_method     - MA方法。它可以是其中 <a href="375.html#Moving_Average_methods">任意移动平均计算方法</a>。
+applied_price - 应用的价格。它可以是 <a href="374.html#Price_constants">应用价格枚举</a> 的任意值。
+shift         - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">AlligatorJawsBuffer[i]=iMA(NULL,0,13,8,MODE_SMMA,PRICE_MEDIAN,i);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iMAOnArray"></a>iMAOnArray() – 基于数组计算移动平均线</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iMA(double array[], int total, int period, int ma_shift,
+           int ma_method, int shift)</pre> 
+ <p>基于数值型数组中数据，计算<a href="172.html">移动平均线</a>。不同于 <a href="#iMA">iMA()</a> ，iMAOnArray函数并不通过货币对名称、图表时段、请求价格的方式获取数据，而是要求价格数据必须事先准备好，再从左边到右边计算指标。为了能按照序列数组那样存取数组元素(即从右到左)，你必须使用 <a href="385.html#ArraySetAsSeries">ArraySetAsSeries</a> 函数。 </p> 
+ <p>参数:</p> 
+ <pre>array[]   - 需要计算数据的数组。
+total     - 要参与计算的元素个数。0意味着使用整个数组。
+period    - MA计算的周期数。
+ma_shift  - MA偏移量。
+ma_method - MA方法。它可以是其中 <a href="375.html#Moving_Average_methods">任意移动平均计算方法</a>。
+shift     - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">   double macurrent=iMAOnArray(ExtBuffer,0,5,0,MODE_LWMA,0);
+   double macurrentslow=iMAOnArray(ExtBuffer,0,10,0,MODE_LWMA,0);
+   double maprev=iMAOnArray(ExtBuffer,0,5,0,MODE_LWMA,1);
+   double maprevslow=iMAOnArray(ExtBuffer,0,10,0,MODE_LWMA,1);
+   //----
+   if(maprev
+
+  <maprevslow &#038;&#038;="" macurrent="">
+   =macurrentslow)
+     Alert("穿过");
+  </maprevslow></pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iOsMA"></a>iOsMA() – OsMA指标</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iOsMA(string symbol, int timeframe,
+             int fast_ema_period, int slow_ema_period,
+             int signal_period, int applied_price, int shift)</pre> 
+ <p>计算<a href="248.html">移动平均震荡指标</a>。在一些系统中显示为 <a href="173.html">MACD</a> 直方柱。 </p> 
+ <p>参数:</p> 
+ <pre>symbol          - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe       - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+fast_ema_period - 快速移动平均线计算的周期数。
+slow_ema_period - 慢速移动平均线计算的周期数。
+signal_period   - 信号线移动平均计算的周期数。
+applied_price   - 应用的价格。它可以是 <a href="374.html#Price_constants">应用价格枚举</a> 的任意值。
+shift           - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">if(iOsMA(NULL,0,12,26,9,PRICE_OPEN,1)&gt;iOsMA(NULL,0,12,26,9,PRICE_OPEN,0)) return(0);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iMACD"></a>iMACD() – MACD指标</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iMACD(string symbol, int timeframe,
+             int fast_ema_period, int slow_ema_period,
+             int signal_period, int applied_price, int shift)</pre> 
+ <p>计算<a href="173.html">MACD</a>。<a href="248.html">OsMA</a>称作MACD直方柱。MACD和OsMA分别显示在不同的窗口。 </p> 
+ <p>参数:</p> 
+ <pre>symbol          - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe       - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+fast_ema_period - 快速移动平均线计算的周期数。
+slow_ema_period - 慢速移动平均线计算的周期数。
+signal_period   - 信号线移动平均计算的周期数。
+applied_price   - 应用的价格。它可以是 <a href="374.html#Price_constants">应用价格枚举</a> 的任意值。
+shift           - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">if(iMACD(NULL,0,12,26,9,PRICE_CLOSE,MODE_MAIN,0)&gt;iMACD(NULL,0,12,26,9,PRICE_CLOSE,MODE_SIGNAL,0)) return(0);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iOBV"></a>iOBV() – OBV指标</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iOBV(string symbol, int timeframe, int applied_price, int shift)</pre> 
+ <p>计算OBV指标(On Balance Volume indicator)。 </p> 
+ <p>参数:</p> 
+ <pre>symbol        - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe     - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+applied_price - 应用的价格。它可以是 <a href="374.html#Price_constants">应用价格枚举</a> 的任意值。
+shift         - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">double val=iOBV(NULL, 0, PRICE_CLOSE, 1);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iSAR"></a>iSAR() – SAR抛物线指标</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iSAR(string symbol, int timeframe, double step,
+            double maximum, int shift)</pre> 
+ <p>计算<a href="175.html">SAR抛物线指标</a>。 </p> 
+ <p>参数:</p> 
+ <pre>symbol    - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+step      - 步长(增量)，通常为0.02。
+maximum   - 最大值，通常为0.2。
+shift     - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">if(iSAR(NULL,0,0.02,0.2,0)&gt;Close[0]) return(0);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iRSI"></a>iRSI() – RSI指标</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iRSI(string symbol, int timeframe, int period,
+            int applied_price, int shift)</pre> 
+ <p>计算<a href="191.html">RSI指标</a>。 </p> 
+ <p>参数:</p> 
+ <pre>symbol        - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe     - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+period        - 计算的周期数。
+applied_price - 应用的价格。它可以是 <a href="374.html#Price_constants">应用价格枚举</a> 的任意值。
+shift         - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">if(iRSI(NULL,0,14,PRICE_CLOSE,0)&gt;iRSI(NULL,0,14,PRICE_CLOSE,1)) return(0);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iRSIOnArray"></a>iRSIOnArray() – 基于数组计算RSI指标</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iRSIOnArray(double array[], int total, int period, int shift)</pre> 
+ <p>基于数值型数组中数据，计算<a href="191.html">RSI</a>。不同于 <a href="#iRSI">iRSI()</a> ，iRSIOnArray函数并不通过货币对名称、图表时段、请求价格的方式获取数据，而是要求价格数据必须事先准备好，再从左边到右边计算指标。为了能按照序列数组那样存取数组元素(即从右到左)，你必须使用 <a href="385.html#ArraySetAsSeries">ArraySetAsSeries</a> 函数。 </p> 
+ <p>参数:</p> 
+ <pre>array[] - 需要计算数据的数组。
+total   - 要参与计算的元素个数。0意味着使用整个数组。
+period  - 计算的周期数。
+shift   - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">if(iRSIOnArray(ExtBuffer,1000,14,0)&gt;iRSI(NULL,0,14,PRICE_CLOSE,1)) return(0);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iRVI"></a>iRVI() – RVI指标</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iRVI(string symbol, int timeframe, int period,
+            int mode, int shift)</pre> 
+ <p>计算<a href="250.html">RVI指标</a>。 </p> 
+ <p>参数:</p> 
+ <pre>symbol    - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。0表示当前图表的时间周期。
+period    - 计算的周期数。
+mode      - 指标线的标识符。可以是 <a href="375.html#Indicator_lines">指标线标示符</a> 里对应值
+shift     - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">double val=iRVI(NULL, 0, 10,MODE_MAIN,0);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iStdDev"></a>iStdDev() – 标准差指标</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iStdDev(string symbol, int timeframe, int ma_period,
+               int ma_shift, int ma_method, int applied_price,
+               int shift)</pre> 
+ <p>计算<a href="189.html">标准差指标</a>。 </p> 
+ <p>参数:</p> 
+ <pre>symbol        - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe     - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+ma_period     - MA计算的周期数。
+ma_shift      - MA偏移量。
+ma_method     - MA方法。它可以是其中 <a href="375.html#Moving_Average_methods">任意移动平均计算方法</a>。
+applied_price - 应用的价格。它可以是 <a href="374.html#Price_constants">应用价格枚举</a> 的任意值。
+shift         - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">double val=iStdDev(NULL,0,10,0,MODE_EMA,PRICE_CLOSE,0);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iStdDevOnArray"></a>iStdDevOnArray() – 基于数组计算标准差</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iStdDevOnArray(double array[], int total,
+                     int ma_period, int ma_shift,
+                     int ma_method, int shift)</pre> 
+ <p>基于数值型数组中数据，计算<a href="189.html">标准差</a>。不同于 <a href="#iStdDev">iStdDev()</a> ，iStdDevOnArray函数并不通过货币对名称、图表时段、请求价格的方式获取数据，而是要求价格数据必须事先准备好，再从左边到右边计算指标。为了能按照序列数组那样存取数组元素(即从右到左)，你必须使用 <a href="385.html#ArraySetAsSeries">ArraySetAsSeries</a> 函数。 </p> 
+ <p>参数:</p> 
+ <pre>array[]   - 需要计算数据的数组。 total - 要参与计算的元素个数。0意味着使用整个数组。
+ma_period - MA计算的周期数。
+ma_shift  - MA偏移量。
+ma_method - MA方法。它可以是其中 <a href="375.html#Moving_Average_methods">任意移动平均计算方法</a>。
+shift     - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">double val=iStdDevOnArray(ExtBuffer,100,10,0,MODE_EMA,0);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iStochastic"></a>iStochastic() – 随机震荡指标(KDJ)</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iStochastic(string symbol, int timeframe,
+                   int %Kperiod, int %Dperiod,
+                   int slowing, int method,
+                   int price_field, int mode, int shift)</pre> 
+ <p>计算<a href="241.html">随机震荡指标</a>(<a href="241.html">KDJ指标</a>)。 </p> 
+ <p>参数:</p> 
+ <pre>symbol      - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe   - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。0表示当前图表的时间周期。
+%Kperiod    - %K线周期数。
+%Dperiod    - %D线周期数。
+slowing     - 减速值(Slowing value)。
+ma_method   - MA方法。可以是任意的<a href="375.html#Moving_Average_methods">移动平均计算方法</a>。
+price_field - 价格参数。可以是下列值:
+              0:Low/High 或者 1:Close/Close
+mode        - 指标线的标识符。可以是 <a href="375.html#Indicator_lines">指标线标示符</a> 里对应值
+shift       - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">if(iStochastic(NULL,0,5,3,3,MODE_SMA,0,MODE_MAIN,0)&gt;iStochastic(NULL,0,5,3,3,MODE_SMA,0,MODE_SIGNAL,0))
+    return(0);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iWPR"></a>iWPR() – WPR指标(%R)</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iWPR(string symbol, int timeframe, int period, int shift)</pre> 
+ <p>计算<a href="274.html">WPR指标</a>(<a href="274.html">%R指标</a>)。 </p> 
+ <p>参数:</p> 
+ <pre>symbol        - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe     - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+period        - 计算的周期数。
+shift         - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">if(iWPR(NULL,0,14,0)&gt;iWPR(NULL,0,14,1)) return(0);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="408.html" rel="bookmark"><b>408.html</b></a> 
+</div>
+</body>
+</html>

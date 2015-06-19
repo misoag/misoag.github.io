@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <p>任何交易相关操作(<a href="413.html#OrderSend">OrderSend()</a>, <a href="412.html#OrderClose">OrderClose()</a>, <a href="412.html#OrderCloseBy">OrderCloseBy()</a>, <a href="412.html#OrderDelete">OrderDelete()</a>和<a href="412.html#OrderModify">OrderModify()</a>函数)都会因为些原因导致失败，返回负的订单号或FALSE，我们通过调用GetLastError()函数能找出失败的原因。每一个错误必须以不同的方式加以处理，最常见的错误和处理建议如下:</p> 
+ <table class="custom-table" width="95%"> 
+  <tbody> 
+   <tr> 
+    <th width="15%">常数</th> 
+    <th width="10%">值</th> 
+    <th width="75%">描述</th> 
+   </tr> 
+   <tr> 
+    <td>ERR_NO_ERROR</td> 
+    <td>0</td> 
+    <td>交易成功。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_NO_RESULT</td> 
+    <td>1</td> 
+    <td><a href="412.html#OrderModify">OrderModify()</a>试图用个同样的值替换原先已设定好的值。应该修改其中一个或多个值，再反复尝试修改。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_COMMON_ERROR</td> 
+    <td>2</td> 
+    <td>常规错误。直到查清错误为止，所有交易必须停止运行。 如果需要客户端和交易系统必须重启。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_INVALID_TRADE_参量</td> 
+    <td>3</td> 
+    <td>无效参量， 例如， 货币对错误，未知交易业务, 不存在订单号等等。程序逻辑必须修改。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_SERVER_BUSY</td> 
+    <td>4</td> 
+    <td>交易服务器忙。稍后请重新尝试。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_OLD_VERSION</td> 
+    <td>5</td> 
+    <td>客户端的旧版本。需要安装客户端的最新版本。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_NO_CONNECTION</td> 
+    <td>6</td> 
+    <td>交易服务器没有连接。需要确认连接没有断开(例如，应用<a href="386.html#IsConnected">IsConnected函数</a>) 过一段时间(5秒之后)重试。 </td> 
+   </tr> 
+   <tr> 
+    <td>ERR_TOO_FREQUENT_REQUESTS</td> 
+    <td>8</td> 
+    <td>交易请求过于频繁。过于频繁的交易请求必须减少，程序逻辑需要修改。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_ACCOUNT_DISABLED</td> 
+    <td>64</td> 
+    <td>账户被禁用。所有运行交易必须停止。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_INVALID_ACCOUNT</td> 
+    <td>65</td> 
+    <td>账号无效。所有运行交易必须停止。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_TRADE_TIMEOUT</td> 
+    <td>128</td> 
+    <td>交易超时。在重试前(至少1分钟)必须确认交易业务确实没有成功（存在未修改或未删除的定单）</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_INVALID_PRICE</td> 
+    <td>129</td> 
+    <td>无效开价或报价格。稍后必须刷新数据，应用RefreshRates函数重试。 如果错误没有消失，尝试停止所有运行交易，修改程序逻辑。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_INVALID_STOPS</td> 
+    <td>130</td> 
+    <td>止损止盈离现价太近或是价格计算错误。一般修改止损止盈距离。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_INVALID_TRADE_VOLUME</td> 
+    <td>131</td> 
+    <td>无效交易量。 尝试停止所有运行交易，改变程序逻辑。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_MARKET_CLOSED</td> 
+    <td>132</td> 
+    <td>市场关闭。稍后重新尝试。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_TRADE_DISABLED</td> 
+    <td>133</td> 
+    <td>交易被禁止。所有运行交易必须停止。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_NOT_ENOUGH_MONEY</td> 
+    <td>134</td> 
+    <td>资金不足无法交易。稍后用小额的资金重试，确定有足够的资金完成交易。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_PRICE_CHANGED</td> 
+    <td>135</td> 
+    <td>价格已经改变，应用<a href="410.html#RefreshRates">RefreshRates()</a>函数重试。 </td> 
+   </tr> 
+   <tr> 
+    <td>ERR_OFF_QUOTES</td> 
+    <td>136</td> 
+    <td>没有报价没有报价。由于有多种原因，交易商不提供价格或拒绝提供价格(比方说，本场交易价格未启动，价格不确定，市场变化太快)。延时5秒后，有必要用RefreshRates函数更新数据，再重试。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_REQUOTE</td> 
+    <td>138</td> 
+    <td>请求的报价已过时，或者买价和卖价混淆。延时5秒后，有必要使用<a href="410.html#RefreshRates">RefreshRates()</a>函数刷新数据再次重试。如果错误依然没有消失，尝试停止所有运行交易，修改程序。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_ORDER_LOCKED</td> 
+    <td>139</td> 
+    <td>交易定单被锁住，正在处理中。尝试停止所有运行交易，修改程序逻辑。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_LONG_POSITIONS_ONLY_ALLOWED</td> 
+    <td>140</td> 
+    <td>只允许买进。禁止卖出。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_TOO_MANY_REQUESTS</td> 
+    <td>141</td> 
+    <td>请求过多。必须减少请求次数，程序逻辑需要修改。 </td> 
+   </tr> 
+   <tr> 
+    <td>&nbsp;</td> 
+    <td>142</td> 
+    <td>定单按次序排列。它不是一个错误，而是客户端和交易服务器之间一个代码。在交易执行期间，碰巧连接断开或重新连接时，这种代码的出现次数非常少。此代码和错误代码128一样处理。</td> 
+   </tr> 
+   <tr> 
+    <td>&nbsp;</td> 
+    <td>143</td> 
+    <td>定单已经被执行交易商接受。它不是一个错误，而是客户端和交易服务器之间一个代码。它和代码142出现的原因一样，处理方法参照错误128。</td> 
+   </tr> 
+   <tr> 
+    <td>&nbsp;</td> 
+    <td>144</td> 
+    <td>在手动确认期间，定单已经被客户放弃。它不是一个错误，而是客户端和交易服务器之间一个代码。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_TRADE_MODIFY_DENIED</td> 
+    <td>145</td> 
+    <td>由于定单太接近市价或被锁定，修改被否定。延时15秒后，用RefreshRates函数更新数据再次重试。 </td> 
+   </tr> 
+   <tr> 
+    <td>ERR_TRADE_CONTEXT_BUSY</td> 
+    <td>146</td> 
+    <td>交易线程忙。只有在<a href="386.html#IsTradeContextBusy">IsTradeContextBusy()</a>函数返回FALSE后重试。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_TRADE_EXPIRATION_DENIED</td> 
+    <td>147</td> 
+    <td>交易商否定挂单过期使用。如果期限为零，交易可以重试。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_TRADE_TOO_MANY_ORDERS</td> 
+    <td>148</td> 
+    <td>开仓和挂单交易总数已经达到经纪商设定的限度。只有在现有仓位平单或挂单删除之后才可以新开仓或挂单。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_TRADE_HEDGE_PROHIBITED</td> 
+    <td>149</td> 
+    <td>当对冲功能被关闭时，尝试开仓一个和现有仓位相反的订单。首先必须平掉现有仓位，停止所有此类交易操作或者修改程序逻辑。</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_TRADE_PROHIBITED_BY_FIFO</td> 
+    <td>150</td> 
+    <td>尝试关闭一个违反FIFO规则的订单。 首先平掉之前的仓位，停止所有此类交易操作或者修改程序逻辑。</td> 
+   </tr> 
+  </tbody> 
+ </table> 本文地址：
+ <a href="414.html" rel="bookmark"><b>414.html</b></a> 
+</div>
+</body>
+</html>

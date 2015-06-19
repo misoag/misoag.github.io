@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <div id="toc">
+  <strong>目录</strong>
+  <span>[hide]</span> 
+  <ul id="toc_l"> 
+   <li><a href="#Comments">注释</a> </li> 
+   <li><a href="#Identifiers">标识符</a> </li> 
+   <li><a href="#Reserved_words">保留字</a> </li> 
+  </ul>
+ </div> 
+ <p>MQL4 的语法类似于C语言，除了以下这些特点:</p> 
+ <ul> 
+  <li>没有地址运算符； </li> 
+  <li>没有 do … while 语句； </li> 
+  <li>没有 goto … 语句; </li> 
+  <li>没有 [条件][表达式 1]:[表达式 2] 语句； </li> 
+  <li>没有复合数据类型 (结构); </li> 
+  <li>不允许复合赋值，例如：val1=val2=0; arr[i++]=val; cond=(cnt=OrdersTotal)&gt;0; 等等; </li> 
+  <li>逻辑表达式的计算完成前不可以提前终止。 </li> 
+ </ul> 
+ <h2><a name="Comments"></a>注释</h2> 
+ <p>多行注释使用 /* 作为开始到 */ 结束，在这之间不能嵌套使用。单行注释以 // 开始，到行末结束，它可以被嵌套到多行注释之中。注释允许空行和空白。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">// 单行注释
+/*  multi-
+    line         // 嵌入单行注释
+    comment
+*/</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Identifiers"></a>标识符</h2> 
+ <p>标识符用来给变量、函数和数据类型进行命名，其长度不能超过31个字符。标示符可以使用数字0-9、大小写英文字母大写A-Z和小写a-z(区分大小字母)还有下划线(_)。此外标示符的首字符不能是数字，标识符也不能使用保留字。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">NAME1 namel Total_5 Paper</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Reserved_words"></a>保留字</h2> 
+ <p>下面列出的标识符是系统自用的保留字，每个保留字都有其特定含义，用户不能随意使用。</p> 
+ <table class="custom-table"> 
+  <thead> 
+   <tr> 
+    <th>数据类型</th> 
+    <th>储存类型</th> 
+    <th>操作符</th> 
+    <th>其他</th> 
+   </tr> 
+  </thead> 
+  <tbody> 
+   <tr> 
+    <td>bool</td> 
+    <td>extern</td> 
+    <td>break</td> 
+    <td>false</td> 
+   </tr> 
+   <tr> 
+    <td>color</td> 
+    <td>static</td> 
+    <td>case</td> 
+    <td>true</td> 
+   </tr> 
+   <tr> 
+    <td>datetime</td> 
+    <td>&nbsp;</td> 
+    <td>continue</td> 
+    <td>&nbsp;</td> 
+   </tr> 
+   <tr> 
+    <td>double</td> 
+    <td>&nbsp;</td> 
+    <td>default</td> 
+    <td>&nbsp;</td> 
+   </tr> 
+   <tr> 
+    <td>int</td> 
+    <td>&nbsp;</td> 
+    <td>else</td> 
+    <td>&nbsp;</td> 
+   </tr> 
+   <tr> 
+    <td>string</td> 
+    <td>&nbsp;</td> 
+    <td>for</td> 
+    <td>&nbsp;</td> 
+   </tr> 
+   <tr> 
+    <td>void</td> 
+    <td>&nbsp;</td> 
+    <td>if</td> 
+    <td>&nbsp;</td> 
+   </tr> 
+   <tr> 
+    <td>&nbsp;</td> 
+    <td>&nbsp;</td> 
+    <td>return</td> 
+    <td>&nbsp;</td> 
+   </tr> 
+   <tr> 
+    <td>&nbsp;</td> 
+    <td>&nbsp;</td> 
+    <td>switch</td> 
+    <td>&nbsp;</td> 
+   </tr> 
+   <tr> 
+    <td>&nbsp;</td> 
+    <td>&nbsp;</td> 
+    <td>while</td> 
+    <td>&nbsp;</td> 
+   </tr> 
+  </tbody> 
+ </table> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="367.html" rel="bookmark"><b>367.html</b></a> 
+</div>
+</body>
+</html>

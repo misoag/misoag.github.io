@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <p>本组函数提供从一种格式到另一种格式的数据转换功能。</p> 
+ <p>特别要注意 <a href="#NormalizeDouble">NormalizeDouble()</a> 函数，它确保了表示价格所需的准确性。在交易过程中，MT4不可能使用非标准价格，即使价格的小数位数多出一位，超出了交易服务器的要求的精度也是不能接受的。</p> 
+ <ul> 
+  <li><strong><a href="#CharToStr">CharToStr()</a></strong> – ASCII码转换成字符串 </li> 
+  <li><strong><a href="#DoubleToStr">DoubleToStr()</a></strong> – 浮点型数据转换成字符串 </li> 
+  <li><strong><a href="#NormalizeDouble">NormalizeDouble()</a></strong> – 标准化双精度型数值 </li> 
+  <li><strong><a href="#StrToDouble">StrToDouble()</a></strong> – 字符串型数据转换成浮点型 </li> 
+  <li><strong><a href="#StrToInteger">StrToInteger()</a></strong> – 字符串数据转换成整型数值 </li> 
+  <li><strong><a href="#StrToTime">StrToTime()</a></strong> – 字符串数据转换成日期时间 </li> 
+  <li><strong><a href="#TimeToStr">TimeToStr()</a></strong> – 日期时间型数据转换成字符串 </li> 
+ </ul> 
+ <p>&nbsp;</p> 
+ <h2><a name="CharToStr"></a>CharToStr() – ASCII码转换成字符串</h2> 
+ <pre class="brush: mql4; toolbar: false;">string CharToStr(int char_code)</pre> 
+ <p>该函数将ASCII码转换成字符串。</p> 
+ <p>参数:</p> 
+ <pre>char_code - 字符的ACSII码。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  string str="WORL" + CharToStr(44); // 44 是 'D' 的ASCII码。
+  // str的结果为WORLD</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="DoubleToStr"></a>DoubleToStr() – 浮点型数据转换成字符串</h2> 
+ <pre class="brush: mql4; toolbar: false;">string DoubleToStr(double value, int digits)</pre> 
+ <p>该函数将双精度浮点型数值转换成指定精度(指定小数位数)的字符串。</p> 
+ <p>参数:</p> 
+ <pre>value - 要转换的数值。
+digits - 精度要求，小数点后位数(0-8)</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  string value=DoubleToStr(1.28473418, 5);
+  // 值为"1.28473"</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="NormalizeDouble"></a>NormalizeDouble() – 标准化双精度型数值</h2> 
+ <pre class="brush: mql4; toolbar: false;">double NormalizeDouble(double value, int digits)</pre> 
+ <p>浮点型数值四舍五入到指定的精度，返回标准化双精度型数值。</p> 
+ <p>计算止损值和赢利值，挂单交易，即时交易的价格都要求将价格标准化(即指定价格的小数位数不能超过服务器所要求的精度)。这个精度要求可以从预定义的 <a href="378.html#Digits">digits变量</a> 中获得。</p> 
+ <p><strong>注意：</strong>NormalizeDouble() 函数，它确保了表示价格所需的准确性。在交易过程中，MT4不可能使用非标准价格，即使价格的小数位数多出一位，超出了交易服务器的要求的精度也是不能接受的</p> 
+ <p>参数:</p> 
+ <pre>value - 要转换的数值。
+digits - 精度要求，小数点后位数(0-8)</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  double var1=0.123456789;
+  Print(DoubleToStr(NormalizeDouble(var1,5),8));
+  //  输出的信息为: 0.12346000</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="StrToDouble"></a>StrToDouble() – 字符串数据转换成浮点型数值</h2> 
+ <pre class="brush: mql4; toolbar: false;">double StrToDouble(string value)</pre> 
+ <p>该函数将数值形式的字符串转换成双精度型数值。</p> 
+ <p>参数:</p> 
+ <pre>value - 数字形式的字符串。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  double var=StrToDouble("103.2812");</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="StrToInteger"></a>StrToInteger() – 字符串数据转换成整型数值</h2> 
+ <pre class="brush: mql4; toolbar: false;">int StrToInteger(string value)</pre> 
+ <p>该函数将数值形式的字符串转换成整型数值。</p> 
+ <p>参数:</p> 
+ <pre>value - 数字形式的字符串。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  int var1=StrToInteger("1024");</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="StrToTime"></a>StrToTime() – 字符串数据转换成日期时间</h2> 
+ <pre class="brush: mql4; toolbar: false;">datetime StrToTime(string value)</pre> 
+ <p>该函数将数值形式的字符串转换成日期时间数据，输入格式为 "yyyy.mm.dd hh:mm"。</p> 
+ <p>参数:</p> 
+ <pre>value - "yyyy.mm.dd hh:mm" 形式的字符串。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  datetime var1;
+  var1=StrToTime("2003.8.12 17:35");
+  var1=StrToTime("17:35");      // 返回当前日期，给指定的时间
+  var1=StrToTime("2003.8.12");  // 返回日期时间为"2003.8.12 00:00"</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="TimeToStr"></a>TimeToStr() – 日期时间型数据转换成字符串 </h2> 
+ <pre class="brush: mql4; toolbar: false;">string TimeToStr(datetime value, void mode)</pre> 
+ <p>该函数将日期时间型数据(从1970年1月1日起经过的秒数)转换为 "yyyy.mm.dd hh:mm" 形式的字符串。</p> 
+ <p>参数:</p> 
+ <pre>value - 从1970年1月1}1 00:00所经过的秒数。
+mode - 数据输出形式可以是下列一个或者多个组合:
+       TIME_DATE 结果格式为 "yyyy. mm. dd",
+       TIME_MINUTES 结果格式为"hh:mm",
+       TIME_SECONDS 结果格式为“hh:mm:ss".</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  string var1=TimeToStr(TimeCurrent(),TIME_DATE|TIME_SECONDS);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="390.html" rel="bookmark"><b>390.html</b></a> 
+</div>
+</body>
+</html>

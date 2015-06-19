@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <p>用于获取货币对/时段内价格数据的一组函数。</p> 
+ <p>如果请求数据(货币对名称/时段不同于当前图表)来自其他图表，这种情况可能是相应的图表没有在客户端内打开，并且需要从服务器端下载数据。这种情况下，<a href="377.html#Error_codes">错误信息</a>ERR_HISTORY_WILL_UPDATED(4066-请求的历史数据正在更新中)将被放置到<a href="381.html">last_error变量</a>中，并且不得不重新请求更新(参看<a href="383.html#ArrayCopySeries">ArrayCopySeries()</a>范例)。</p> 
+ <p>在测试中，同货币对价格数据或不同时段的价格数据被精确地模拟(除成交量外)。其他时段的成交量不模拟，其它货币对的价格数据同样也不模拟。无论何种情况，一个时段内柱子总数会被精确地模拟。</p> 
+ <ul> 
+  <li><strong><a href="#iBars">iBars()</a></strong> – 获取柱体数 </li> 
+  <li><strong><a href="#iBarShift">iBarShift()</a></strong> – 搜索指定柱体 </li> 
+  <li><strong><a href="#iClose">iClose()</a></strong> – 获取柱体收盘价 </li> 
+  <li><strong><a href="#iHigh">iHigh()</a></strong> – 获取柱体最高价 </li> 
+  <li><strong><a href="#iHighest">iHighest()</a></strong> – 柱体最高值偏移量 </li> 
+  <li><strong><a href="#iLow">iLow()</a></strong> – 获取柱体最低价 </li> 
+  <li><strong><a href="#iLowest">iLowest()</a></strong> – 柱体最低值偏移量 </li> 
+  <li><strong><a href="#iOpen">iOpen()</a></strong> – 获取柱体开盘价 </li> 
+  <li><strong><a href="#iTime">iTime()</a></strong> – 获取柱体开盘时间 </li> 
+  <li><strong><a href="#iVolume">iVolume()</a></strong> – 获取柱体成交量 </li> 
+ </ul> 
+ <p>&nbsp;</p> 
+ <h2><a name="iBars"></a>iBars() – 获取柱体数</h2> 
+ <pre class="brush: mql4; toolbar: false;">int iBars(string symbol, int timeframe)</pre> 
+ <p>返回指定的图表中柱体(K线)的数量。</p> 
+ <p>对于当前图表，柱子数量的信息保存在<a href="378.html#Bars">预定义的变量Bars</a>中。</p> 
+ <p>参数:</p> 
+ <pre>symbol    - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">Print("'EURUSD'在PERIOD_H1时段的柱数:",iBars("EUROUSD",PERIOD_H1)); </pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iBarShift"></a>iBarShift() – 搜索指定柱体</h2> 
+ <pre class="brush: mql4; toolbar: false;">int iBarShift(string symbol, int timeframe, datetime time, void exact)</pre> 
+ <p>根据开盘时间搜索柱体(K线)。本函数返回带指定开盘时间的柱体。如果带指定开盘时间的柱体丢失，函数将返回-1或最近的柱体，这取决护exact参数设置。</p> 
+ <p>参数:</p> 
+ <pre>symbol    - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+time - 柱体(K线)的开盘时间。
+exact - 未发现柱子的返回模式。false-返回最近的柱子，true-返回-1。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">datetime some_time=D'2004.03.21 12:00';
+  int      shift=iBarShift("EUROUSD",PERIOD_M1,some_time);
+  Print("带有打开时间的柱体 ",TimeToStr(some_time)," 是 ",shift);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iClose"></a>iClose() – 获取柱体收盘价</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iClose(string symbol, int timeframe, int shift)</pre> 
+ <p>返回带有时段和偏移量的指定货币对柱体(K线)的收盘价。如果本地历史表为空(历史数据未加载)，函数返回0。</p> 
+ <p>对于当前图表，收盘价的信息保存在 <a href="379.html#Close">预定义数组Close[]</a> 中。</p> 
+ <p>参数:</p> 
+ <pre>symbol    - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+shift     - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">Print("对于 USDCHF H1当前柱: ",iTime("USDCHF",PERIOD_H1,i),", ",  iOpen("USDCHF",PERIOD_H1,i),", ",
+                                      iHigh("USDCHF",PERIOD_H1,i),", ",  iLow("USDCHF",PERIOD_H1,i),", ",
+                                      iClose("USDCHF",PERIOD_H1,i),", ", iVolume("USDCHF",PERIOD_H1,i));</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iHigh"></a>iHigh() – 获取柱体最高价</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iHigh(string symbol, int timeframe, int shift)</pre> 
+ <p>返回带有时段和偏移量的指定货币对柱体(K线)的最高价。如果本地历史表为空(历史数据未加载)，函数返回0。</p> 
+ <p>对于当前图表，最盘价的信息保存在 <a href="379.html#High">预定义数组High[]</a> 中。</p> 
+ <p>参数:</p> 
+ <pre>symbol    - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+shift     - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">Print("对于 USDCHF H1当前柱: ",iTime("USDCHF",PERIOD_H1,i),", ",  iOpen("USDCHF",PERIOD_H1,i),", ",
+                                      iHigh("USDCHF",PERIOD_H1,i),", ",  iLow("USDCHF",PERIOD_H1,i),", ",
+                                      iClose("USDCHF",PERIOD_H1,i),", ", iVolume("USDCHF",PERIOD_H1,i));</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iHighest"></a>iHighest() – 柱体最高值偏移量</h2> 
+ <pre class="brush: mql4; toolbar: false;">int iHighest(string symbol, int timeframe, int type, void count, void start)</pre> 
+ <p>根据类型返回在一个指定时间周期内最大值的偏移量。</p> 
+ <p>参数:</p> 
+ <pre>symbol    - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+type      - 序列数组的识别符。它可以是 <a href="374.html#Series_arrays">序列数据识别符枚举</a> 的任意值。
+count     - 要计算出的周期数(沿着开头柱子到后而柱子的方向)。
+start     - 开始柱子，相对于当前柱子，开始采集数据的柱子。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">double val;
+  // 在20个连续柱子范围内计算最大值
+  // 在当前图表上从第4个至第23个的索引
+  val=High[iHighest(NULL,0,MODE_HIGH,20,4)];</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iLow"></a>iLow() – 获取柱体最低价</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iLow(string symbol, int timeframe, int shift)</pre> 
+ <p>返回带有时段和偏移量的指定货币对柱体(K线)的最低价。如果本地历史表为空(历史数据未加载)，函数返回0。</p> 
+ <p>对于当前图表，最盘价的信息保存在 <a href="379.html#Low">预定义数组Low[]</a> 中。</p> 
+ <p>参数:</p> 
+ <pre>symbol    - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+shift     - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">Print("对于 USDCHF H1当前柱: ",iTime("USDCHF",PERIOD_H1,i),", ",  iOpen("USDCHF",PERIOD_H1,i),", ",
+                                      iHigh("USDCHF",PERIOD_H1,i),", ",  iLow("USDCHF",PERIOD_H1,i),", ",
+                                      iClose("USDCHF",PERIOD_H1,i),", ", iVolume("USDCHF",PERIOD_H1,i));</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iLowest"></a>iLowest() – 柱体最低值偏移量</h2> 
+ <pre class="brush: mql4; toolbar: false;">int iLowest(string symbol, int timeframe, int type, void count, void start)</pre> 
+ <p>根据类型返回在一个指定时间周期内最低值的偏移量。</p> 
+ <p>参数:</p> 
+ <pre>symbol    - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+type      - 序列数组的识别符。它可以是 <a href="374.html#Series_arrays">序列数据识别符枚举</a> 的任意值。
+count     - 要计算出的周期数(沿着开头柱子到后而柱子的方向)。
+start     - 开始柱子，相对于当前柱子，开始采集数据的柱子。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">double val;
+  // 在20个连续柱子范围内计算最小值
+  // 在当前图表上从第4个至第23个的索引
+  val=Low[iLowest(NULL,0,MODE_LOW,20,4)];</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iOpen"></a>iOpen() – 获取柱体开盘价</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iOpen(string symbol, int timeframe, int shift)</pre> 
+ <p>返回带有时段和偏移量的指定货币对柱体(K线)的开盘价。如果本地历史表为空(历史数据未加载)，函数返回0。</p> 
+ <p>对于当前图表，最盘价的信息保存在 <a href="379.html#Open">预定义数组Open[]</a> 中。</p> 
+ <p>参数:</p> 
+ <pre>symbol    - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+shift     - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">Print("对于 USDCHF H1当前柱: ",iTime("USDCHF",PERIOD_H1,i),", ",  iOpen("USDCHF",PERIOD_H1,i),", ",
+                                      iHigh("USDCHF",PERIOD_H1,i),", ",  iLow("USDCHF",PERIOD_H1,i),", ",
+                                      iClose("USDCHF",PERIOD_H1,i),", ", iVolume("USDCHF",PERIOD_H1,i));</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iTime"></a>iTime() – 获取柱体开盘时间</h2> 
+ <pre class="brush: mql4; toolbar: false;">datetime iTime(string symbol, int timeframe, int shift)</pre> 
+ <p>返回带有时段和偏移量的指定货币对柱体(K线)的开盘时间。如果本地历史表为空(历史数据未加载)，函数返回0。</p> 
+ <p>对于当前图表，最盘价的信息保存在 <a href="379.html#Time">预定义数组Time[]</a> 中。</p> 
+ <p>参数:</p> 
+ <pre>symbol    - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+shift     - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">Print("对于 USDCHF H1当前柱: ",iTime("USDCHF",PERIOD_H1,i),", ",  iOpen("USDCHF",PERIOD_H1,i),", ",
+                                      iHigh("USDCHF",PERIOD_H1,i),", ",  iLow("USDCHF",PERIOD_H1,i),", ",
+                                      iClose("USDCHF",PERIOD_H1,i),", ", iVolume("USDCHF",PERIOD_H1,i));</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iVolume"></a>iVolume() – 获取柱体成交量</h2> 
+ <pre class="brush: mql4; toolbar: false;">datetime iVolume(string symbol, int timeframe, int shift)</pre> 
+ <p>返回带有时段和偏移量的指定货币对柱体(K线)的成交量。如果本地历史表为空(历史数据未加载)，函数返回0。</p> 
+ <p>对于当前图表，最盘价的信息保存在 <a href="379.html#Volume">预定义数组Volume[]</a> 中。</p> 
+ <p><strong>注</strong>：该成交量并非真正意义上的成交量，这是一个估计值，其值为该K线下tick价格变动的数量，其背后的意义为如果tick价格变动很快，表示成交量越大；tick价格变动越慢，表示成交量越小。</p> 
+ <p>参数:</p> 
+ <pre>symbol    - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe - 时间周期。 可以 <a href="374.html#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+shift     - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">Print("对于 USDCHF H1当前柱: ",iTime("USDCHF",PERIOD_H1,i),", ",  iOpen("USDCHF",PERIOD_H1,i),", ",
+                                      iHigh("USDCHF",PERIOD_H1,i),", ",  iLow("USDCHF",PERIOD_H1,i),", ",
+                                      iClose("USDCHF",PERIOD_H1,i),", ", iVolume("USDCHF",PERIOD_H1,i));</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="409.html" rel="bookmark"><b>409.html</b></a> 
+</div>
+</body>
+</html>

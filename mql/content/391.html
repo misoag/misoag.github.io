@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <p>本组函数用于设计和编写自定义指标。</p> 
+ <p>这些函数不能用在智能交易和脚本中。</p> 
+ <ul> 
+  <li><strong><a href="#IndicatorBuffers">IndicatorBuffers()</a></strong> – 指标数据缓冲区 </li> 
+  <li><strong><a href="#IndicatorCounted">IndicatorCounted()</a></strong> – 指标计数 </li> 
+  <li><strong><a href="#IndicatorDigits">IndicatorDigits()</a></strong> – 设置指标精度 </li> 
+  <li><strong><a href="#IndicatorShortName">IndicatorShortName()</a></strong> – 设置指标简称 </li> 
+  <li><strong><a href="#SetIndexArrow">SetIndexArrow()</a></strong> – 设置指标箭头符号 </li> 
+  <li><strong><a href="#SetIndexBuffer">SetIndexBuffer()</a></strong> – 设置指标缓冲区位置 </li> 
+  <li><strong><a href="392.html#SetIndexDrawBegin">SetIndexDrawBegin()</a></strong> – 设置指标线起始位置 </li> 
+  <li><strong><a href="392.html#SetIndexEmptyValue">SetIndexEmptyValue()</a></strong> – 设置图表画线空值 </li> 
+  <li><strong><a href="392.html#SetIndexLabel">SetIndexLabel()</a></strong> – 设置指标线标签 </li> 
+  <li><strong><a href="392.html#SetIndexShift">SetIndexShift()</a></strong> – 设置指标线偏移值 </li> 
+  <li><strong><a href="392.html#SetIndexStyle">SetIndexStyle()</a></strong> – 设置指标线样式 </li> 
+  <li><strong><a href="392.html#SetLevelStyle">SetLevelStyle()</a></strong> – 设置水平线样式 </li> 
+  <li><strong><a href="392.html#SetLevelValue">SetLevelValue()</a></strong> – 设置水平线值 </li> 
+ </ul> 
+ <p>&nbsp;</p> 
+ <h2><a name="IndicatorBuffers"></a>IndicatorBuffers() – 指标数据缓冲区</h2> 
+ <pre class="brush: mql4; toolbar: false;">void IndicatorBuffers(int count)</pre> 
+ <p>为指标缓冲区分配内存，用于自定义指标计算。缓冲区的个数不能超过8个或者是小于在自定义缓冲区属性中所给出的值。</p> 
+ <p>如果自定义指标要求额外的缓冲区用于统计，那么这个函数必须使用指定的总缓冲区数。</p> 
+ <p>参数:</p> 
+ <pre>count - 分配缓冲区的总数。缓冲区数应该在 <a href="373.html#Constant_declaration">indicator_buffers常量值</a> 和8之间。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">#property  indicator_separate_window
+#property  indicator_buffers 1
+#property  indicator_color1  Silver
+//---- 指标参数
+extern int FastEMA=12;
+extern int SlowEMA=26;
+extern int SignalSMA=9;
+//---- 指标缓冲区
+double     ind_buffer1[];
+double     ind_buffer2[];
+double     ind_buffer3[];
+//+------------------------------------------------------------------+
+//| Custom indicator initialization function                         |
+//+------------------------------------------------------------------+
+int init()
+  {
+//---- 使用2个额外的缓冲区用于计算。
+   IndicatorBuffers(3);
+//---- 画线设置
+   SetIndexStyle(0,DRAW_HISTOGRAM,STYLE_SOLID,3);
+   SetIndexDrawBegin(0,SignalSMA);
+   IndicatorDigits(MarketInfo(Symbol(),MODE_DIGITS)+2);
+//---- 设置 3 个指标缓冲区位置
+   SetIndexBuffer(0,ind_buffer1);
+   SetIndexBuffer(1,ind_buffer2);
+   SetIndexBuffer(2,ind_buffer3);
+//----  数据窗口和自定义窗口的指标标签名称
+   IndicatorShortName("OsMA("+FastEMA+","+SlowEMA+","+SignalSMA+")");
+//---- 初始化结束
+   return(0);
+  }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="IndicatorCounted"></a>IndicatorCounted() – 指标计数</h2> 
+ <pre class="brush: mql4; toolbar: false;">int IndicatorCounted()</pre> 
+ <p>在自定义指标上次计算运行之后，本函数返回已经计算好的的柱体(K线)数量。曾计算过的柱体(K线)不必重新计算。大多数情况下，相同的指标值不需要重算，因此本函数用于优化计算。</p> 
+ <p>注：最新的柱体(K线)不必考虑重算，在多数情况下，这个柱子有必要重算，然而，有时会遇到边界情况，也就是在新柱体的第一个价位时从智能交易调用自定义指标。可能先前柱子的最后一个价位还没有处理完(因为在这一跳进入时上一跳还没有处理完)，因为这个原因，自定义指标将不会被调用和计算。为了避免指标计算出错，IndicatorCounted()函数将返回前一个柱数。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  int start()
+    {
+     int limit;
+     int counted_bars=IndicatorCounted();
+  //---- 检验可能出现错误
+     if(counted_bars&lt;0) return(-1);
+  //---- 最后没有计算过的柱将被重算
+     if(counted_bars&gt;0) counted_bars--;
+     limit=Bars-counted_bars;
+  //---- 主循环
+     for(int i=0; i&lt;limit; i++)
+       {
+        //---- ma_shift set to 0 because SetIndexShift called abowe
+        ExtBlueBuffer[i]=iMA(NULL,0,JawsPeriod,0,MODE_SMMA,PRICE_MEDIAN,i);
+        ExtRedBuffer[i]=iMA(NULL,0,TeethPeriod,0,MODE_SMMA,PRICE_MEDIAN,i);
+        ExtLimeBuffer[i]=iMA(NULL,0,LipsPeriod,0,MODE_SMMA,PRICE_MEDIAN,i);
+       }
+  //---- 完成
+     return(0);
+    }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="IndicatorDigits"></a>IndicatorDigits() – 设置指标精度</h2> 
+ <pre class="brush: mql4; toolbar: false;">void IndicatorDigits(int digits)</pre> 
+ <p>设置指标精度(小数点后位数)使其值显示直观化。货币对价格精度采用默认值，指标会添加到图表上。</p> 
+ <p>参数:</p> 
+ <pre>digits - 精度要求(小数点后位数)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">int init()
+  {
+//---- 使用2个额外的缓冲区用于计算。
+   IndicatorBuffers(3);
+//---- 画出参数设置
+   SetIndexStyle(0,DRAW_HISTOGRAM,STYLE_SOLID,3);
+   SetIndexDrawBegin(0,SignalSMA);
+   IndicatorDigits(Digits+2); //设置指标精度
+//----设置 3 个指标缓冲区位置
+   SetIndexBuffer(0,ind_buffer1);
+   SetIndexBuffer(1,ind_buffer2);
+   SetIndexBuffer(2,ind_buffer3);
+//---- 数据窗口和自定义窗口的指标标签名称
+   IndicatorShortName("OsMA("+FastEMA+","+SlowEMA+","+SignalSMA+")");
+//---- 初始化完成
+   return(0);
+  }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="IndicatorShortName"></a>IndicatorShortName() – 设置指标简称</h2> 
+ <pre class="brush: mql4; toolbar: false;">void IndicatorShortName(string name)</pre> 
+ <p>设置显示在数据窗口和子窗口中自定义指标的“简称”。</p> 
+ <p>参数:</p> 
+ <pre>name - 设置的名称。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">int init()
+  {
+//----使用2个额外的缓冲区用于计算
+   IndicatorBuffers(3);
+//---- 画出参数设置
+   SetIndexStyle(0,DRAW_HISTOGRAM,STYLE_SOLID,3);
+   SetIndexDrawBegin(0,SignalSMA);
+   IndicatorDigits(MarketInfo(Symbol(),MODE_DIGITS)+2);
+//---- 设置 3 个指标缓冲区位置
+   SetIndexBuffer(0,ind_buffer1);
+   SetIndexBuffer(1,ind_buffer2);
+   SetIndexBuffer(2,ind_buffer3);
+//---- 数据窗口和自定义窗口的指标标签名称
+   IndicatorShortName("OsMA("+FastEMA+","+SlowEMA+","+SignalSMA+")");
+//---- 初始化完成
+   return(0);
+  }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="SetIndexArrow"></a>SetIndexArrow() – 设置指标箭头符号</h2> 
+ <pre class="brush: mql4; toolbar: false;">void SetIndexArrow(int index, int code)</pre> 
+ <p>为 <a href="374.html#Drawing_styles">DRAW_ARROW类型</a> 的指标线设置一个箭头符号。</p> 
+ <p><a href="374.html#Arrow_codes">箭头代码</a> 范围限于33到255之间，超过无效。</p> 
+ <p>参数:</p> 
+ <pre>index - 指标线。必须是 0 - 7 之间
+code - 来自 <a href="375.html#Wingdings">Wingdings字体</a> 或 <a href="374.html#Arrow_codes">箭头代码</a> 的符号代码</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">int init()
+  {
+//---- 2 个指标缓冲区
+    SetIndexBuffer(0,ExtUppperBuffer);
+    SetIndexBuffer(1,ExtLowerBuffer);
+//---- 画线参数设置
+    SetIndexStyle(0,DRAW_ARROW);
+    SetIndexArrow(0,217);
+    SetIndexStyle(1,DRAW_ARROW);
+    SetIndexArrow(1,218);
+//---- 显示在DataWindow窗口
+    SetIndexLabel(0,"Fractal Up");
+    SetIndexLabel(1,"Fractal Down");
+//---- 初始化完成
+   return(0);
+  }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="SetIndexBuffer"></a>SetIndexBuffer() – 设置指标缓冲区位置</h2> 
+ <pre class="brush: mql4; toolbar: false;">void SetIndexBuffer(int index, double array[])</pre> 
+ <p>将自定义指标预定义的缓冲区绑定到全局数组。需要计算指标缓冲区的个数由 <a href="#IndicatorBuffers">IndicatorBuffers()</a> 函数设定并且不能超过8个。如果成功，返回TRUE，否则，将返回FALSE。如果想获得更详细的信息，可以调用 <a href="386.html#GetLastError">GetLastError()</a> 函数。</p> 
+ <p>参数:</p> 
+ <pre>index - 指标线。必须是 0 - 7 之间
+array[] - 存储计算指标值的数组。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  double ExtBufferSilver[];
+  int init()
+    {
+      SetIndexBuffer(0, ExtBufferSilver); // 第1个指标线指标值的缓冲区
+      // ...
+    }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="391.html" rel="bookmark"><b>391.html</b></a> 
+</div>
+</body>
+</html>

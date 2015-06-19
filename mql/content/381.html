@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <p>在客户端程序运行子系统时，执行一个MQL4程序发生了异外情况，其错误代码将被保存下来。对于每一个MQL4程序执行，存在一个特殊的last_error变量。在init()函数运行之前，last_error变量必须重置为零。如果在计算阶段或调用内置函数时发生错误，last_error变量会收到相应的<a href="377.html#Error_codes">错误代码</a>。存储在这个变量中的值可以用<a href="386.html#GetLastError">GetLastError()函数</a>访问，之后，last_error变量将重置为零。</p> 
+ <p>这里罗列了直接导致程序立即停止运行的关键错误:</p> 
+ <table class="custom-table"> 
+  <tbody> 
+   <tr> 
+    <th width="15%">常数</th> 
+    <th width="10%">值</th> 
+    <th width="75%">描述</th> 
+   </tr> 
+   <tr> 
+    <td>ERR_WRONG_FUNCTION_POINTER</td> 
+    <td>4001</td> 
+    <td>在调用内部函数时，发现错误的函数指针</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_NO_MEMORY_FOR_CALL_STACK</td> 
+    <td>4003</td> 
+    <td>在调用内部函数时，不能为函数调用堆栈再分配内存</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_RECURSIVE_STACK_OVERFLOW</td> 
+    <td>4004</td> 
+    <td>递归调用函数时，数据堆栈溢出</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_NO_MEMORY_FOR_PARAM_STRING</td> 
+    <td>4006</td> 
+    <td>在调用内部函数时，不能为作为函数参数的字符串分配内存</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_NO_MEMORY_FOR_TEMP_STRING</td> 
+    <td>4007</td> 
+    <td>不能为字符串操作分配临时缓冲区</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_NO_MEMORY_FOR_ARRAYSTRING</td> 
+    <td>4010</td> 
+    <td>赋值时，不能为数组中字符串重新分配内存</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_TOO_LONG_STRING</td> 
+    <td>4011</td> 
+    <td>赋值时，太长的字符串被送到服务缓冲区(不能再为服务缓冲区分配内存)</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_REMAINDER_FROM_ZERO_DIVIDE</td> 
+    <td>4012</td> 
+    <td>余数除0错误</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_ZERO_DIVIDE</td> 
+    <td>4013</td> 
+    <td>除0 错误</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_UNKNOWN_COMMAND</td> 
+    <td>4014</td> 
+    <td>无效指令</td> 
+   </tr> 
+  </tbody> 
+ </table> 
+ <p>如果在产生致命错误时程序停止了工作，这些错误代码可能被下次启动的程序用GetLastError()函数读取，也可被非初始化函数读取。在程序或非初始化函数开始运行之前，last_error变量不会归零。</p> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <p>这里罗列了调用<a href="380.html#Imported_functions_call">导入函数</a>时发生的致命错误，这些错误会引起智能交易或自定义指标立即停止启动函数的执行，直到用户重新初始化为止。</p> 
+ <table class="custom-table"> 
+  <tbody> 
+   <tr> 
+    <th width="15%">常数</th> 
+    <th width="10%">值</th> 
+    <th width="75%">描述</th> 
+   </tr> 
+   <tr> 
+    <td>ERR_CANNOT_LOAD_LIBRARY</td> 
+    <td>4018</td> 
+    <td>调用导入函数时，载入DLL或EX4库发生错误</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_CANNOT_CALL_FUNCTION</td> 
+    <td>4019</td> 
+    <td>调用导入函数时，发现DLL或EX4库不包含被调用函数</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_DLL_CALLS_NOT_ALLOWED</td> 
+    <td>4017</td> 
+    <td>调用导入DLL函数时，发现禁止DLL导入</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_EXTERNAL_CALLS_NOT_ALLOWED</td> 
+    <td>4020</td> 
+    <td>调用导入EX4函数时，发现禁止导入外部EX4</td> 
+   </tr> 
+  </tbody> 
+ </table> 
+ <p>其他错误不中断程序执行。</p> 
+ <table class="custom-table"> 
+  <tbody> 
+   <tr> 
+    <th width="15%">常数</th> 
+    <th width="10%">值</th> 
+    <th width="75%">描述</th> 
+   </tr> 
+   <tr> 
+    <td>ERR_ARRAY_INDEX_OUT_OF_RANGE</td> 
+    <td>4002</td> 
+    <td>超界访问数组</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_NOT_INITIALIZED_STRING</td> 
+    <td>4008</td> 
+    <td>未初始化字符串；没有值赋给在表达式中充当操作数的字符串</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_NOT_INITIALIZED_ARRAYSTRING</td> 
+    <td>4009</td> 
+    <td>未初始化字符串数组；没有值赋给在表达式中充当操作数的字符串</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_NO_MEMORY_FOR_RETURNED_STR</td> 
+    <td>4021</td> 
+    <td>不能为函数返回的字符串重新分配内存</td> 
+   </tr> 
+  </tbody> 
+ </table> 
+ <p>从不产生ERR_NO_MQLERROR (4000)代码。</p> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <p>这里罗列了可能只是由于软件或硬件故障而产生的许多错误。如果下列描述的错误反复出现，应与开发商联络。</p> 
+ <table class="custom-table"> 
+  <tbody> 
+   <tr> 
+    <th width="15%">常数</th> 
+    <th width="10%">值</th> 
+    <th width="75%">描述</th> 
+   </tr> 
+   <tr> 
+    <td>ERR_WRONG_FUNCTION_POINTER</td> 
+    <td>4001</td> 
+    <td>在调用内部函数时，发现错误的函数指针</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_UNKNOWN_COMMAND</td> 
+    <td>4014</td> 
+    <td>无效指令</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_NOT_INITIALIZED_ARRAY</td> 
+    <td>4016</td> 
+    <td>未初始化数组</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_INVALID_FUNCTION_PARAMSCNT</td> 
+    <td>4050</td> 
+    <td>函数参数个数不正确</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_STRING_FUNCTION_INTERNAL</td> 
+    <td>4052</td> 
+    <td>字符串函数内部出错</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_TRADE_ERROR</td> 
+    <td>4067</td> 
+    <td>交易函数执行出错</td> 
+   </tr> 
+   <tr> 
+    <td>ERR_SOME_OBJECT_ERROR</td> 
+    <td>4207</td> 
+    <td>对象函数出错</td> 
+   </tr> 
+  </tbody> 
+ </table> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <p>下面这些函数会经常的修改last_error变量的值（即使没有发生错误也可能会修改last_error变量的值）。</p> 
+ <table class="custom-table"> 
+  <tbody> 
+   <tr> 
+    <th width="15%">函数</th> 
+    <th width="85%">错误代码</th> 
+   </tr> 
+   <tr> 
+    <td><a href="382.html#AccountFreeMarginCheck">AccountFreeMarginCheck</a></td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_INTEGER_PARAMETER_EXPECTED (4063), ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_UNKNOWN_SYMBOL (4106), ERR_NOT_ENOUGH_MONEY (134)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="413.html#OrderSend">OrderSend</a></td> 
+    <td>ERR_CUSTOM_INDICATOR_ERROR (4055), ERR_STRING_PARAMETER_EXPECTED (4062), ERR_INTEGER_PARAMETER_EXPECTED (4063), ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_INVALID_PRICE_PARAM (4107), ERR_UNKNOWN_SYMBOL (4106), ERR_TRADE_NOT_ALLOWED (4109), ERR_LONGS_NOT_ALLOWED (4110), ERR_SHORTS_NOT_ALLOWED (4111), <a href="414.html">交易服务器返回的错误代码</a></td> 
+   </tr> 
+   <tr> 
+    <td><a href="412.html#OrderClose">OrderClose</a></td> 
+    <td>ERR_CUSTOM_INDICATOR_ERROR (4055), ERR_INTEGER_PARAMETER_EXPECTED (4063), ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_INVALID_PRICE_PARAM (4107), ERR_INVALID_TICKET (4108), ERR_UNKNOWN_SYMBOL (4106), ERR_TRADE_NOT_ALLOWED (4109), <a href="414.html">交易服务器返回的错误代码</a></td> 
+   </tr> 
+   <tr> 
+    <td><a href="412.html#OrderCloseBy">OrderCloseBy</a></td> 
+    <td>ERR_CUSTOM_INDICATOR_ERROR (4055), ERR_INTEGER_PARAMETER_EXPECTED (4063), ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_INVALID_TICKET (4108), ERR_UNKNOWN_SYMBOL (4106), ERR_TRADE_NOT_ALLOWED (4109), <a href="414.html">交易服务器返回的错误代码</a></td> 
+   </tr> 
+   <tr> 
+    <td><a href="412.html#OrderDelete">OrderDelete</a></td> 
+    <td>ERR_CUSTOM_INDICATOR_ERROR (4055), ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_INVALID_TICKET (4108), ERR_UNKNOWN_SYMBOL (4106), ERR_TRADE_NOT_ALLOWED (4109), <a href="414.html">交易服务器返回的错误代码</a></td> 
+   </tr> 
+   <tr> 
+    <td><a href="412.html#OrderModify">OrderModify</a></td> 
+    <td>ERR_CUSTOM_INDICATOR_ERROR (4055), ERR_INTEGER_PARAMETER_EXPECTED (4063), ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_INVALID_PRICE_PARAM (4107), ERR_INVALID_TICKET (4108), ERR_UNKNOWN_SYMBOL (4106), ERR_TRADE_NOT_ALLOWED (4109), <a href="414.html">交易服务器返回的错误代码</a></td> 
+   </tr> 
+   <tr> 
+    <td><a href="386.html#GetLastError">GetLastError</a></td> 
+    <td>ERR_NO_ERROR (0)</td> 
+   </tr> 
+  </tbody> 
+ </table> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <p>下面这些函数只有发生错误的时候才会修改last_error变量值。</p> 
+ <table class="custom-table"> 
+  <tbody> 
+   <tr> 
+    <th width="15%">函数</th> 
+    <th width="85%">错误代码</th> 
+   </tr> 
+   <tr> 
+    <td><a href="383.html#ArrayBsearch">ArrayBsearch</a></td> 
+    <td>ERR_ARRAY_AS_PARAMETER_EXPECTED (4065), ERR_SOME_ARRAY_ERROR (4053), ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="383.html#ArrayCopy">ArrayCopy</a></td> 
+    <td>ERR_ARRAY_AS_PARAMETER_EXPECTED (4065), ERR_SOME_ARRAY_ERROR (4053), ERR_INCOMPATIBLE_ARRAYS (4056), ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="383.html#ArrayCopyRates">ArrayCopyRates</a></td> 
+    <td>ERR_ARRAY_AS_PARAMETER_EXPECTED (4065), ERR_SOME_ARRAY_ERROR (4053), ERR_INCOMPATIBLE_ARRAYS (4056), ERR_STRING_PARAMETER_EXPECTED (4062),</td> 
+   </tr> 
+   <tr> 
+    <td><a href="383.html#ArrayCopySeries">ArrayCopySeries</a></td> 
+    <td>ERR_ARRAY_AS_PARAMETER_EXPECTED (4065), ERR_SOME_ARRAY_ERROR (4053), ERR_INCORRECT_SERIESARRAY_USING (4054), ERR_INCOMPATIBLE_ARRAYS (4056), ERR_STRING_PARAMETER_EXPECTED (4062), ERR_HISTORY_WILL_UPDATED (4066), ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="384.html#ArrayDimension">ArrayDimension</a></td> 
+    <td>ERR_ARRAY_AS_PARAMETER_EXPECTED (4065), ERR_SOME_ARRAY_ERROR (4053)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="384.html#ArrayGetAsSeries">ArrayGetAsSeries</a></td> 
+    <td>ERR_ARRAY_AS_PARAMETER_EXPECTED (4065), ERR_SOME_ARRAY_ERROR (4053)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="384.html#ArrayInitialize">ArrayInitialize</a></td> 
+    <td>ERR_ARRAY_AS_PARAMETER_EXPECTED (4065), ERR_SOME_ARRAY_ERROR (4053), ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="384.html#ArrayIsSeries">ArrayIsSeries</a></td> 
+    <td>ERR_ARRAY_AS_PARAMETER_EXPECTED (4065), ERR_SOME_ARRAY_ERROR (4053)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="384.html#ArrayMaximum">ArrayMaximum</a></td> 
+    <td>ERR_ARRAY_AS_PARAMETER_EXPECTED (4065), ERR_SOME_ARRAY_ERROR (4053), ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="384.html#ArrayMinimum">ArrayMinimum</a></td> 
+    <td>ERR_ARRAY_AS_PARAMETER_EXPECTED (4065), ERR_SOME_ARRAY_ERROR (4053), ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="385.html#ArrayRange">ArrayRange</a></td> 
+    <td>ERR_ARRAY_AS_PARAMETER_EXPECTED (4065), ERR_SOME_ARRAY_ERROR (4053), ERR_INTEGER_PARAMETER_EXPECTED (4063), ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="385.html#ArrayResize">ArrayResize</a></td> 
+    <td>ERR_ARRAY_AS_PARAMETER_EXPECTED (4065), ERR_SOME_ARRAY_ERROR (4053), ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="385.html#ArraySetAsSeries">ArraySetAsSeries</a></td> 
+    <td>ERR_ARRAY_AS_PARAMETER_EXPECTED (4065), ERR_SOME_ARRAY_ERROR (4053)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="385.html#ArraySize">ArraySize</a></td> 
+    <td>ERR_ARRAY_AS_PARAMETER_EXPECTED (4065), ERR_SOME_ARRAY_ERROR (4053)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="385.html#ArraySort">ArraySort</a></td> 
+    <td>ERR_ARRAY_AS_PARAMETER_EXPECTED (4065), ERR_SOME_ARRAY_ERROR (4053), ERR_INCORRECT_SERIESARRAY_USING (4054), ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>FileClose</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>FileDelete</td> 
+    <td>ERR_WRONG_FILE_NAME (4101), ERR_SOME_FILE_ERROR (4100)</td> 
+   </tr> 
+   <tr> 
+    <td>FileFlush</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>FileIsEnding</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>FileIsLineEnding</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>FileOpen</td> 
+    <td>ERR_TOO_MANY_OPENED_FILES (4102), ERR_WRONG_FILE_NAME (4101), ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_SOME_FILE_ERROR (4100), ERR_CANNOT_OPEN_FILE (4103)</td> 
+   </tr> 
+   <tr> 
+    <td>FileOpenHistory</td> 
+    <td>ERR_TOO_MANY_OPENED_FILES (4102), ERR_WRONG_FILE_NAME (4101), ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_SOME_FILE_ERROR (4100), ERR_CANNOT_OPEN_FILE (4103)</td> 
+   </tr> 
+   <tr> 
+    <td>FileReadArray</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_INCOMPATIBLE_FILEACCESS (4104), ERR_SOME_ARRAY_ERROR (4053), ERR_SOME_FILE_ERROR (4100), ERR_END_OF_FILE (4099)</td> 
+   </tr> 
+   <tr> 
+    <td>FileReadDouble</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_INCOMPATIBLE_FILEACCESS (4104), ERR_END_OF_FILE (4099)</td> 
+   </tr> 
+   <tr> 
+    <td>FileReadInteger</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_INCOMPATIBLE_FILEACCESS (4104), ERR_END_OF_FILE (4099)</td> 
+   </tr> 
+   <tr> 
+    <td>FileReadNumber</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_INCOMPATIBLE_FILEACCESS (4104), ERR_SOME_FILE_ERROR (4100), ERR_END_OF_FILE (4099)</td> 
+   </tr> 
+   <tr> 
+    <td>FileReadString</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_INCOMPATIBLE_FILEACCESS (4104), ERR_SOME_FILE_ERROR (4100), ERR_TOO_LONG_STRING (4011), ERR_END_OF_FILE (4099)</td> 
+   </tr> 
+   <tr> 
+    <td>FileSeek</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>FileSize</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>FileTell</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>FileWrite</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_SOME_FILE_ERROR (4100)</td> 
+   </tr> 
+   <tr> 
+    <td>FileWriteDouble</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_INCOMPATIBLE_FILEACCESS (4104), ERR_SOME_FILE_ERROR (4100)</td> 
+   </tr> 
+   <tr> 
+    <td>FileWriteInteger</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_INCOMPATIBLE_FILEACCESS (4104), ERR_SOME_FILE_ERROR (4100)</td> 
+   </tr> 
+   <tr> 
+    <td>FileWriteString</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_INCOMPATIBLE_FILEACCESS (4104), ERR_SOME_FILE_ERROR (4100), ERR_STRING_PARAMETER_EXPECTED (4062)</td> 
+   </tr> 
+   <tr> 
+    <td>FileWriteArray</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_INCOMPATIBLE_FILEACCESS (4104), ERR_SOME_FILE_ERROR (4100),</td> 
+   </tr> 
+   <tr> 
+    <td>GlobalVariableCheck</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062)</td> 
+   </tr> 
+   <tr> 
+    <td>GlobalVariableDel</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_GLOBAL_VARIABLES_PROCESSING (4057)</td> 
+   </tr> 
+   <tr> 
+    <td>GlobalVariableGet</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_GLOBAL_VARIABLE_NOT_FOUND (4058)</td> 
+   </tr> 
+   <tr> 
+    <td>GlobalVariablesDeleteAll</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_GLOBAL_VARIABLES_PROCESSING (4057)</td> 
+   </tr> 
+   <tr> 
+    <td>GlobalVariableSet</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_GLOBAL_VARIABLES_PROCESSING (4057), ERR_GLOBAL_VARIABLE_NOT_FOUND (4058)</td> 
+   </tr> 
+   <tr> 
+    <td>GlobalVariableSetOnCondition</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_GLOBAL_VARIABLE_NOT_FOUND (4058)</td> 
+   </tr> 
+   <tr> 
+    <td>iCustom</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>technical indicators, series access functions</td> 
+    <td>ERR_HISTORY_WILL_UPDATED (4066)</td> 
+   </tr> 
+   <tr> 
+    <td>technical indicators OnArray</td> 
+    <td>ERR_ARRAY_AS_PARAMETER_EXPECTED (4065), ERR_SOME_ARRAY_ERROR (4053)</td> 
+   </tr> 
+   <tr> 
+    <td>IndicatorBuffers</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>IndicatorDigits</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>IndicatorShortName</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>MarketInfo</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_FUNC_NOT_ALLOWED_IN_TESTING (4059), ERR_UNKNOWN_SYMBOL (4106), ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>MathArccos</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>MathArcsin</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>MathMod</td> 
+    <td>ERR_ZERO_DIVIDE (4013)</td> 
+   </tr> 
+   <tr> 
+    <td>MathSqrt</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>MessageBox</td> 
+    <td>ERR_FUNC_NOT_ALLOWED_IN_TESTING (4059), ERR_CUSTOM_INDICATOR_ERROR (4055), ERR_STRING_PARAMETER_EXPECTED (4062)</td> 
+   </tr> 
+   <tr> 
+    <td>ObjectCreate</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_NO_OBJECT_NAME (4204), ERR_UNKNOWN_OBJECT_TYPE (4203), ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_OBJECT_ALREADY_EXISTS (4200), ERR_NO_SPECIFIED_SUBWINDOW (4206)</td> 
+   </tr> 
+   <tr> 
+    <td>ObjectDelete</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_NO_OBJECT_NAME (4204), ERR_OBJECT_DOES_NOT_EXIST (4202)</td> 
+   </tr> 
+   <tr> 
+    <td>ObjectDescription</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_NO_OBJECT_NAME (4204), ERR_OBJECT_DOES_NOT_EXIST (4202)</td> 
+   </tr> 
+   <tr> 
+    <td>ObjectFind</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_NO_OBJECT_NAME (4204)</td> 
+   </tr> 
+   <tr> 
+    <td>ObjectGet</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_NO_OBJECT_NAME (4204), ERR_OBJECT_DOES_NOT_EXIST (4202), ERR_UNKNOWN_OBJECT_PROPERTY (4201)</td> 
+   </tr> 
+   <tr> 
+    <td>ObjectGetFiboDescription</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_NO_OBJECT_NAME (4204), ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_OBJECT_DOES_NOT_EXIST (4202), ERR_UNKNOWN_OBJECT_TYPE (4203), ERR_UNKNOWN_OBJECT_PROPERTY (4201)</td> 
+   </tr> 
+   <tr> 
+    <td>ObjectGetShiftByValue</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_NO_OBJECT_NAME (4204), ERR_OBJECT_DOES_NOT_EXIST (4202), ERR_OBJECT_COORDINATES_ERROR (4205)</td> 
+   </tr> 
+   <tr> 
+    <td>ObjectGetValueByShift</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_NO_OBJECT_NAME (4204), ERR_OBJECT_DOES_NOT_EXIST (4202), ERR_OBJECT_COORDINATES_ERROR (4205)</td> 
+   </tr> 
+   <tr> 
+    <td>ObjectMove</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_NO_OBJECT_NAME (4204), ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_OBJECT_DOES_NOT_EXIST (4202)</td> 
+   </tr> 
+   <tr> 
+    <td>ObjectName</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_ARRAY_INDEX_OUT_OF_RANGE (4002)</td> 
+   </tr> 
+   <tr> 
+    <td>ObjectSet</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_NO_OBJECT_NAME (4204), ERR_OBJECT_DOES_NOT_EXIST (4202), ERR_UNKNOWN_OBJECT_PROPERTY (4201)</td> 
+   </tr> 
+   <tr> 
+    <td>ObjectSetText</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_NO_OBJECT_NAME (4204), ERR_OBJECT_DOES_NOT_EXIST (4202)</td> 
+   </tr> 
+   <tr> 
+    <td>ObjectSetFiboDescription</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_NO_OBJECT_NAME (4204), ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_STRING_PARAMETER_EXPECTED (4062), ERR_OBJECT_DOES_NOT_EXIST (4202), ERR_UNKNOWN_OBJECT_TYPE (4203), ERR_UNKNOWN_OBJECT_PROPERTY (4201)</td> 
+   </tr> 
+   <tr> 
+    <td>ObjectType</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_NO_OBJECT_NAME (4204), ERR_OBJECT_DOES_NOT_EXIST (4202)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="412.html#OrderClosePrice">OrderClosePrice</a></td> 
+    <td>ERR_NO_ORDER_SELECTED (4105)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="412.html#OrderCloseTime">OrderCloseTime</a></td> 
+    <td>ERR_NO_ORDER_SELECTED (4105)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="412.html#OrderComment">OrderComment</a></td> 
+    <td>ERR_NO_ORDER_SELECTED (4105)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="412.html#OrderCommission">OrderCommission</a></td> 
+    <td>ERR_NO_ORDER_SELECTED (4105)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="412.html#OrderExpiration">OrderExpiration</a></td> 
+    <td>ERR_NO_ORDER_SELECTED (4105)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="412.html#OrderLots">OrderLots</a></td> 
+    <td>ERR_NO_ORDER_SELECTED (4105)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="412.html#OrderMagicNumber">OrderMagicNumber</a></td> 
+    <td>ERR_NO_ORDER_SELECTED (4105)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="413.html#OrderOpenPrice">OrderOpenPrice</a></td> 
+    <td>ERR_NO_ORDER_SELECTED (4105)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="413.html#OrderOpenTime">OrderOpenTime</a></td> 
+    <td>ERR_NO_ORDER_SELECTED (4105)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="413.html#OrderPrint">OrderPrint</a></td> 
+    <td>ERR_NO_ORDER_SELECTED (4105)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="413.html#OrderProfit">OrderProfit</a></td> 
+    <td>ERR_NO_ORDER_SELECTED (4105)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="413.html#OrderStopLoss">OrderStopLoss</a></td> 
+    <td>ERR_NO_ORDER_SELECTED (4105)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="413.html#OrderSwap">OrderSwap</a></td> 
+    <td>ERR_NO_ORDER_SELECTED (4105)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="413.html#OrderSymbol">OrderSymbol</a></td> 
+    <td>ERR_NO_ORDER_SELECTED (4105)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="413.html#OrderTakeProfit">OrderTakeProfit</a></td> 
+    <td>ERR_NO_ORDER_SELECTED (4105)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="413.html#OrderTicket">OrderTicket</a></td> 
+    <td>ERR_NO_ORDER_SELECTED (4105)</td> 
+   </tr> 
+   <tr> 
+    <td><a href="413.html#OrderType">OrderType</a></td> 
+    <td>ERR_NO_ORDER_SELECTED (4105)</td> 
+   </tr> 
+   <tr> 
+    <td>PlaySound</td> 
+    <td>ERR_WRONG_FILE_NAME (4101)</td> 
+   </tr> 
+   <tr> 
+    <td>SendFTP</td> 
+    <td>ERR_FUNC_NOT_ALLOWED_IN_TESTING (4059), ERR_CUSTOM_INDICATOR_ERROR (4055), ERR_STRING_PARAMETER_EXPECTED (4062)</td> 
+   </tr> 
+   <tr> 
+    <td>SendMail</td> 
+    <td>ERR_FUNC_NOT_ALLOWED_IN_TESTING (4059), ERR_STRING_PARAMETER_EXPECTED (4062), ERR_FUNCTION_NOT_CONFIRMED (4060), ERR_SEND_MAIL_ERROR (4061)</td> 
+   </tr> 
+   <tr> 
+    <td>SetIndexArrow</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>SetIndexBuffer</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_INCORRECT_SERIESARRAY_USING (4054), ERR_INCOMPATIBLE_ARRAYS (4056)</td> 
+   </tr> 
+   <tr> 
+    <td>SetIndexDrawBegin</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>SetIndexEmptyValue</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>SetIndexLabel</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_STRING_PARAMETER_EXPECTED (4062)</td> 
+   </tr> 
+   <tr> 
+    <td>SetIndexShift</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>SetIndexStyle</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>SetLevelValue</td> 
+    <td>ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+   <tr> 
+    <td>Sleep</td> 
+    <td>ERR_CUSTOM_INDICATOR_ERROR (4055)</td> 
+   </tr> 
+   <tr> 
+    <td>StringFind</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062)</td> 
+   </tr> 
+   <tr> 
+    <td>StringGetChar</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_NOT_INITIALIZED_STRING (4008), ERR_ARRAY_INDEX_OUT_OF_RANGE (4002)</td> 
+   </tr> 
+   <tr> 
+    <td>StringLen</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062)</td> 
+   </tr> 
+   <tr> 
+    <td>StringSetChar</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_INVALID_FUNCTION_PARAMVALUE (4051), ERR_NOT_INITIALIZED_STRING (4008), ERR_TOO_LONG_STRING (4011), ERR_ARRAY_INDEX_OUT_OF_RANGE (4002)</td> 
+   </tr> 
+   <tr> 
+    <td>StringSubstr</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062), ERR_TOO_LONG_STRING (4011)</td> 
+   </tr> 
+   <tr> 
+    <td>StringTrimLeft</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062)</td> 
+   </tr> 
+   <tr> 
+    <td>StringTrimRight</td> 
+    <td>ERR_STRING_PARAMETER_EXPECTED (4062)</td> 
+   </tr> 
+   <tr> 
+    <td>WindowIsVisible</td> 
+    <td>ERR_FUNC_NOT_ALLOWED_IN_TESTING (4059)</td> 
+   </tr> 
+   <tr> 
+    <td>WindowFind</td> 
+    <td>ERR_FUNC_NOT_ALLOWED_IN_TESTING (4059), ERR_STRING_PARAMETER_EXPECTED (4062), ERR_NOT_INITIALIZED_STRING (4008)</td> 
+   </tr> 
+   <tr> 
+    <td>WindowHandle</td> 
+    <td>ERR_FUNC_NOT_ALLOWED_IN_TESTING (4059), ERR_STRING_PARAMETER_EXPECTED (4062), ERR_NOT_INITIALIZED_STRING (4008)</td> 
+   </tr> 
+   <tr> 
+    <td>WindowScreenShot</td> 
+    <td>ERR_WRONG_FILE_NAME (4101), ERR_INVALID_FUNCTION_PARAMVALUE (4051)</td> 
+   </tr> 
+  </tbody> 
+ </table> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <p>下面的函数从不改变last_error变量值。</p> 
+ <p>AccountBalance, AccountCompany, AccountCredit, AccountCurrency, AccountEquity, AccountFreeMargin, AccountLeverage, AccountMargin, AccountName, AccountNumber, AccountProfit, AccountServer, Alert, CharToStr, Comment, Day, DayOfWeek, DayOfYear, DoubleToStr, GetTickCount, HideTestIndicators, Hour, IndicatorCounted, IsConnected, IsDemo, IsDllsAllowed, IsExpertEnabled, IsLibrariesAllowed, IsOptimization, IsStopped, IsTesting, IsTradeAllowed, IsTradeContextBusy, IsVisualMode, MathAbs, MathArctan, MathCeil, MathCos, MathExp, MathFloor, MathLog, MathMax, MathMin, MathPow, MathRand, MathRound, MathSin, MathSrand, MathTan, Minute, Month, NormalizeDouble, ObjectsDeleteAll, ObjectsTotal, OrderSelect, OrdersHistoryTotal, Period, Print, RefreshRates, Seconds, SetLevelStyle, StringConcatenate, StrToTime, StrToDouble, Symbol, TerminalCompany, TerminalName, TerminalPath, TimeCurrent, TimeDay, TimeDayOfWeek, TimeDayOfYear, TimeHour, TimeLocal, TimeMinute, TimeMonth, TimeSeconds, TimeToStr, TimeYear, UninitializeReason, WindowBarsPerChart, WindowFirstVisibleBar, WindowPriceOnDropped, WindowRedraw, WindowTimeOnDropped, WindowsTotal, WindowOnDropped, WindowXOnDropped, WindowYOnDropped, Year</p> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="381.html" rel="bookmark"><b>381.html</b></a> 
+</div>
+</body>
+</html>

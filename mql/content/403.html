@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <ul> 
+  <li><strong><a href="402.html#ObjectCreate">ObjectCreate()</a></strong> – 创建对象 </li> 
+  <li><strong><a href="402.html#ObjectDelete">ObjectDelete()</a></strong> – 删除对象 </li> 
+  <li><strong><a href="402.html#ObjectDescription">ObjectDescription()</a></strong> – 获取对象描述 </li> 
+  <li><strong><a href="402.html#ObjectFind">ObjectFind()</a></strong> – 查找指定对象 </li> 
+  <li><strong><a href="402.html#ObjectGet">ObjectGet()</a></strong> – 获取指定对象的属性值 </li> 
+  <li><strong><a href="402.html#ObjectSet">ObjectSet()</a></strong> – 修改指定对象属性值 </li> 
+  <li><strong><a href="402.html#ObjectGetFiboDescription">ObjectGetFiboDescription()</a></strong> – 获取斐波纳契对象描述 </li> 
+  <li><strong><a href="402.html#ObjectSetFiboDescription">ObjectSetFiboDescription()</a></strong> – 设置斐波纳契对象描述 </li> 
+  <li><strong><a href="#ObjectGetShiftByValue">ObjectGetShiftByValue()</a></strong> – 计算并返回柱体索引 </li> 
+  <li><strong><a href="#ObjectGetValueByShift">ObjectGetValueByShift()</a></strong> – 计算并返回指定柱体价格值 </li> 
+  <li><strong><a href="#ObjectMove">ObjectMove()</a></strong> – 移动对象 </li> 
+  <li><strong><a href="#ObjectName">ObjectName()</a></strong> – 获取对象名 </li> 
+  <li><strong><a href="#ObjectsDeleteAll">ObjectsDeleteAll()</a></strong> – 删除指定对象 </li> 
+  <li><strong><a href="#ObjectSetText">ObjectSetText()</a></strong> – 设置对象描述 </li> 
+  <li><strong><a href="#ObjectsTotal">ObjectsTotal()</a></strong> – 获取指定类型对象总数 </li> 
+  <li><strong><a href="#ObjectType">ObjectType()</a></strong> – 获取对象类型 </li> 
+ </ul> 
+ <p>&nbsp;</p> 
+ <h2><a name="ObjectGetShiftByValue"></a>ObjectGetShiftByValue() – 计算并返回柱体索引</h2> 
+ <pre class="brush: mql4; toolbar: false;">int ObjectGetShiftByValue(string name, double value)</pre> 
+ <p>本函数计算并返回已给出价格的柱体(K线)索引(相对于当前柱体的偏移量)。柱体索引由第一坐标和第二坐标应用线性方程计算出来，适用于趋势线和相似的对象。</p> 
+ <p>参见 <a href="#ObjectGetValueByShift">ObjectGetValueByShift()</a> 函数。</p> 
+ <p>参数:</p> 
+ <pre>name - 对象名称。
+value - 价格值。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">int shift=ObjectGetShiftByValue("MyTrendLine#123", 1.34);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="ObjectGetValueByShift"></a>ObjectGetValueByShift() – 计算并返回指定柱体价格值</h2> 
+ <pre class="brush: mql4; toolbar: false;">double ObjectGetValueByShift(string name, int shift)</pre> 
+ <p>本函数计算并返回指定柱体的价格值(相对于当前柱体的偏移量)。柱子索引由第一坐标和第二坐标应用线性方程计算出来，适用于趋势线和相似的对象。</p> 
+ <p>参见 <a href="#ObjectGetShiftByValue">ObjectGetShiftByValue()</a> 函数。</p> 
+ <p>参数:</p> 
+ <pre>name - 对象名称。
+value - 价格值。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">double price=ObjectGetValueByShift("MyTrendLine#123", 11);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="ObjectMove"></a>ObjectMove() – 移动对象</h2> 
+ <pre class="brush: mql4; toolbar: false;">bool ObjectMove(string name, int point, datetime time1, double price1)</pre> 
+ <p>本函数在图表中可以移动一个对象的坐标。对象可能根据他们的类型有一个到三个坐标。如果函数执行成功，返回TRUE，否则，FALSE。</p> 
+ <p>对象坐标从0开始。</p> 
+ <p>参数:</p> 
+ <pre>name - 对象名称。
+point - 坐标索引(0-2)。
+time1 - 新的时间值
+price1 - 新的价格值</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">ObjectMove("MyTrend", 1, D'2005.02.25 12:30', 1.2345);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="ObjectName"></a>ObjectName() – 获取对象名</h2> 
+ <pre class="brush: mql4; toolbar: false;">string ObjectName(int index)</pre> 
+ <p>本函数根据对象列表中对象索引返回其对象名称。</p> 
+ <p>参数:</p> 
+ <pre>index - 对象列表中对象索引。对象索引必须大于等于0，小于 <a href="#ObjectsTotal">ObjectsTotal()</a> 值。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">int    obj_total=ObjectsTotal();
+  string name;
+  for(int i=0;i&lt;obj_total;i++)
+    {
+     name=ObjectName(i);
+     Print(i,"物件名称为 " + name);
+    }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="ObjectsDeleteAll"></a>ObjectsDeleteAll() – 删除指定对象</h2> 
+ <pre class="brush: mql4; toolbar: false;">int ObjectsDeleteAll(void window, void type)</pre> 
+ <p>在指定的图表子窗口中删除指定类型的全部对象。本函数返回已删除的对象个数。</p> 
+ <p>注：图表子窗口(如果子窗口图表带有指标)编号从1开始。主窗口总是存在且索引为零。如果窗口索引错误或值为-1，将从全部图表中删除对象。</p> 
+ <p>如果type值等于-1或者这个参数丢失，全部对象将从指定的子窗口中删除。</p> 
+ <p>参数:</p> 
+ <pre>window - 可选的参数。要删除的对象所在的窗口索引，必须大于等于-1(EMPTY为默认值)并且小于 WindowsTotal() 值。
+type - 可选的参数。被删除的对象类型。它可以是 <a href="376.html#Object_types">对象类型</a> 的任意枚举值或用EMPTY常量表示删除所有任意类型的全部对象。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  ObjectsDeleteAll(2, OBJ_HLINE); // 从第二子窗口删除全部水平线。
+  ObjectsDeleteAll(2);            // 从第二子窗口删除全部对象。
+  ObjectsDeleteAll();             //从图表中删除全部对象。</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="ObjectSetText"></a>ObjectSetText() – 设置对象描述</h2> 
+ <pre class="brush: mql4; toolbar: false;">bool ObjectSetText(string name, string text, int font_size, void font, void text_color)</pre> 
+ <p>修改对象描述。对于OBJ_TEXT和OBJ_LABEL对象，这个说明作为图表上个文本行显示。如果函数成功，返回TRUE，否则，返回FALSE。</p> 
+ <p>font_size(字体大小)，font_name(字体名称) 和 text_color(文本颜色)参数只能用于OBJ_TEXT和OBJ_LABEL对象。对于其它类型对象，这些参数被忽略。</p> 
+ <p>参数:</p> 
+ <pre>name       -  对象名称。
+text       -  描述对象的文本。
+font_size  -  字体大小。
+font       -  字体名称。
+text_color -  文本颜色。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  ObjectSetText("text_object", "Hello world!", 10, "Times New Roman", Green);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="ObjectsTotal"></a>ObjectsTotal() – 获取指定类型对象总数</h2> 
+ <pre class="brush: mql4; toolbar: false;">int ObjectsTotal(void type)</pre> 
+ <p>返回图表中指定类型对象总数。</p> 
+ <p>参数:</p> 
+ <pre>type - 可选的参数。要统计的对象类型，它可以是任意 <a href="376.html#Object_types">对象类型</a> 枚举值，
+        或用EMPTY常量表示统计任意类型的全部对象个数。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  int obj_total=ObjectsTotal();
+  string name;
+  for(int i=0;i&lt;obj_total;i++)
+    {
+     name=ObjectName(i);
+     Print(i,"对于 #的对象名称",i," is " + name);
+    } </pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="ObjectType"></a>ObjectType() – 获取对象类型</h2> 
+ <pre class="brush: mql4; toolbar: false;">int ObjectType(string name)</pre> 
+ <p>本函数返回对象的类型值。</p> 
+ <p>参数:</p> 
+ <pre>name - 对象名称</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  if(ObjectType("line_object2")!=OBJ_HLINE) return(0);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="403.html" rel="bookmark"><b>403.html</b></a> 
+</div>
+</body>
+</html>
