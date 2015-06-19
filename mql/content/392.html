@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <p>本组函数用于设计和编写自定义指标。</p> 
+ <p>这些函数不能用在智能交易和脚本中。</p> 
+ <ul> 
+  <li><strong><a href="http://www.myeatrade.com/zh/391/#IndicatorBuffers">IndicatorBuffers()</a></strong> – 指标数据缓冲区 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/391/#IndicatorCounted">IndicatorCounted()</a></strong> – 指标计数 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/391/#IndicatorDigits">IndicatorDigits()</a></strong> – 设置指标精度 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/391/#IndicatorShortName">IndicatorShortName()</a></strong> – 设置指标简称 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/391/#SetIndexArrow">SetIndexArrow()</a></strong> – 设置指标箭头符号 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/391/#SetIndexBuffer">SetIndexBuffer()</a></strong> – 设置指标缓冲区位置 </li> 
+  <li><strong><a href="#SetIndexDrawBegin">SetIndexDrawBegin()</a></strong> – 设置指标线起始位置 </li> 
+  <li><strong><a href="#SetIndexEmptyValue">SetIndexEmptyValue()</a></strong> – 设置图表画线空值 </li> 
+  <li><strong><a href="#SetIndexLabel">SetIndexLabel()</a></strong> – 设置指标线标签 </li> 
+  <li><strong><a href="#SetIndexShift">SetIndexShift()</a></strong> – 设置指标线偏移值 </li> 
+  <li><strong><a href="#SetIndexStyle">SetIndexStyle()</a></strong> – 设置指标线样式 </li> 
+  <li><strong><a href="#SetLevelStyle">SetLevelStyle()</a></strong> – 设置水平线样式 </li> 
+  <li><strong><a href="#SetLevelValue">SetLevelValue()</a></strong> – 设置水平线值 </li> 
+ </ul> 
+ <p>&nbsp;</p> 
+ <h2><a name="SetIndexDrawBegin"></a>SetIndexDrawBegin() – 设置指标线起始位置</h2> 
+ <pre class="brush: mql4; toolbar: false;">void SetIndexDrawBegin(int index, int begin)</pre> 
+ <p>设置开始绘制指标线的柱体(指标线从什么位置开始绘制)。指标线从左边绘制到右边，已给出的柱子左边的数组值不会显示在图表或数据窗口中。设置0作为默认值，所有数据将被绘出。</p> 
+ <p>参数:</p> 
+ <pre>index - 指标线。必须在0至7之间。
+begin - 开始绘制指标线的柱体编号。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">int init()
+  {
+//----使用2个额外的缓冲区用于计算。
+   IndicatorBuffers(3);
+//----画线设置
+   SetIndexStyle(0,DRAW_HISTOGRAM,STYLE_SOLID,3);
+   SetIndexDrawBegin(0,SignalSMA);
+   IndicatorDigits(MarketInfo(Symbol(),MODE_DIGITS)+2);
+//---- 设置 3 个指标缓冲区位置
+   SetIndexBuffer(0,ind_buffer1);
+   SetIndexBuffer(1,ind_buffer2);
+   SetIndexBuffer(2,ind_buffer3);
+//---- DataWindow 和自定义子窗口标签名称
+   IndicatorShortName("OsMA("+FastEMA+","+SlowEMA+","+SignalSMA+")");
+//---- 初始化完成
+   return(0);
+  }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="SetIndexEmptyValue"></a>SetIndexEmptyValue() – 设置图表画线空值</h2> 
+ <pre class="brush: mql4; toolbar: false;">void SetIndexEmptyValue(int index, double value)</pre> 
+ <p>设置图表画线空值。设置的值不绘出或不显示在数据窗口。默认值为 EMPTY VALUE。</p> 
+ <p>参数:</p> 
+ <pre>index - 指标线。必须在0至7之间。
+value - 设置的"空值"。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">int init()
+  {
+//----设置 2 个指标缓冲区位置
+    SetIndexBuffer(0,ExtUppperBuffer);
+    SetIndexBuffer(1,ExtLowerBuffer);
+//---- 画出参数设置
+    SetIndexStyle(0,DRAW_ARROW);
+    SetIndexArrow(0,217);
+    SetIndexStyle(1,DRAW_ARROW);
+    SetIndexArrow(1,218);
+//---- 值为 0 不显示
+    SetIndexEmptyValue(0,0.0);
+    SetIndexEmptyValue(1,0.0);
+//----
+    SetIndexLabel(0,"Fractal Up");
+    SetIndexLabel(1,"Fractal Down");
+//---- 初始化完成
+   return(0);
+  }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <p></p> 
+ <ul></ul> 
+ <h2><a name="SetIndexLabel"></a>SetIndexLabel() – 设置指标线标签</h2> 
+ <pre class="brush: mql4; toolbar: false;">void SetIndexLabel(int index, string text)</pre> 
+ <p>设置在数据窗口和快速提示中显示的指标线说明。</p> 
+ <p>参数:</p> 
+ <pre>index - 指标线。必须在0至7之间。
+text - 标签文本。NULL表示指标值在数据窗口中不显示。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">//+------------------------------------------------------------------+
+//| Ichimoku Kinko Hyo initialization function                       |
+//+------------------------------------------------------------------+
+int init()
+  {
+//----
+   SetIndexStyle(0,DRAW_LINE);
+   SetIndexBuffer(0,Tenkan_Buffer);
+   SetIndexDrawBegin(0,Tenkan-1);
+   SetIndexLabel(0,"Tenkan Sen");
+//----
+   SetIndexStyle(1,DRAW_LINE);
+   SetIndexBuffer(1,Kijun_Buffer);
+   SetIndexDrawBegin(1,Kijun-1);
+   SetIndexLabel(1,"Kijun Sen");
+//----
+   a_begin=Kijun; if(a_begin&lt;Tenkan) a_begin=Tenkan;
+   SetIndexStyle(2,DRAW_HISTOGRAM,STYLE_DOT);
+   SetIndexBuffer(2,SpanA_Buffer);
+   SetIndexDrawBegin(2,Kijun+a_begin-1);
+   SetIndexShift(2,Kijun);
+//---- 在DataWindow窗口 Up Kumo 线不显示
+   SetIndexLabel(2,NULL);
+   SetIndexStyle(5,DRAW_LINE,STYLE_DOT);
+   SetIndexBuffer(5,SpanA2_Buffer);
+   SetIndexDrawBegin(5,Kijun+a_begin-1);
+   SetIndexShift(5,Kijun);
+   SetIndexLabel(5,"Senkou Span A");
+//----
+   SetIndexStyle(3,DRAW_HISTOGRAM,STYLE_DOT);
+   SetIndexBuffer(3,SpanB_Buffer);
+   SetIndexDrawBegin(3,Kijun+Senkou-1);
+   SetIndexShift(3,Kijun);
+//---- 在DataWindow窗口上 Down Kumo 线不显示
+   SetIndexLabel(3,NULL);
+//----
+   SetIndexStyle(6,DRAW_LINE,STYLE_DOT);
+   SetIndexBuffer(6,SpanB2_Buffer);
+   SetIndexDrawBegin(6,Kijun+Senkou-1);
+   SetIndexShift(6,Kijun);
+   SetIndexLabel(6,"Senkou Span B");
+//----
+   SetIndexStyle(4,DRAW_LINE);
+   SetIndexBuffer(4,Chinkou_Buffer);
+   SetIndexShift(4,-Kijun);
+   SetIndexLabel(4,"Chinkou Span");
+//----
+   return(0);
+  }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="SetIndexShift"></a>SetIndexShift() – 设置指标线偏移值</h2> 
+ <pre class="brush: mql4; toolbar: false;">void SetIndexShift(int index, int shift)</pre> 
+ <p>设置在数据窗口和快速提示中显示的指标线说明。</p> 
+ <p>参数:</p> 
+ <pre>index - 指标线。必须在0至7之间。
+shift - 柱体(K线)偏移值。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">//+------------------------------------------------------------------+
+//| Alligator initialization function                                |
+//+------------------------------------------------------------------+
+int init()
+  {
+//----当画线时指标线的偏移
+   SetIndexShift(0,JawsShift);
+   SetIndexShift(1,TeethShift);
+   SetIndexShift(2,LipsShift);
+//---- 当画线时指标线跳过的位置
+   SetIndexDrawBegin(0,JawsShift+JawsPeriod);
+   SetIndexDrawBegin(1,TeethShift+TeethPeriod);
+   SetIndexDrawBegin(2,LipsShift+LipsPeriod);
+//---- 设置 3 个指标缓冲区位置
+   SetIndexBuffer(0,ExtBlueBuffer);
+   SetIndexBuffer(1,ExtRedBuffer);
+   SetIndexBuffer(2,ExtLimeBuffer);
+//---- 画出设置
+   SetIndexStyle(0,DRAW_LINE);
+   SetIndexStyle(1,DRAW_LINE);
+   SetIndexStyle(2,DRAW_LINE);
+//---- 指标线标签文本
+   SetIndexLabel(0,"Gator Jaws");
+   SetIndexLabel(1,"Gator Teeth");
+   SetIndexLabel(2,"Gator Lips");
+//---- 初始化完成
+   return(0);
+  }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="SetIndexStyle"></a>SetIndexStyle() – 设置指标线样式</h2> 
+ <pre class="brush: mql4; toolbar: false;">void SetIndexStyle(int index, int type, void style, void width, void clr)</pre> 
+ <p>为指定的指标线设置新类型、样式、宽度和颜色。</p> 
+ <p>参数:</p> 
+ <pre>index - 指标线。必须在0至7之间。
+type - 形状样式，可以是 <a href="http://www.myeatrade.com/zh/374/#Drawing_styles">划线形状样式列表</a> 中任意一个。
+style - 线型。可以应用一个像素的粗线，可以是 <a href="http://www.myeatrade.com/zh/374/#Drawing_styles">划线形状样式列表</a> 其中一个。EMPTY值表示线型不变。
+width - 线宽。有效值是1,2,3,4,5。EMPTY值表示线宽不变。
+clr - 线的颜色。省略本参数表示颜色将保持不变</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  SetIndexStyle(3, DRAW_LINE, EMPTY, 2, Red);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="SetLevelStyle"></a>SetLevelStyle() – 设置水平线样式</h2> 
+ <pre class="brush: mql4; toolbar: false;">void SetLevelStyle(int draw_style, int line_width, void clr)</pre> 
+ <p>本函数设置输出到独立窗口的指标水平线的样式、宽度和颜色。</p> 
+ <p>参数:</p> 
+ <pre>draw_style - 形状样式，可以是 <a href="http://www.myeatrade.com/zh/374/#Drawing_styles">划线形状样式列表</a> 中任意一个。
+line_width - 线宽。有效值是1,2,3,4,5。EMPTY值表示线宽不变。
+clr - 线的颜色。空值CLR_NONE表示颜色不变。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  //---- 红色单线显示水平
+   SetLevelStyle(STYLE_SOLID,2,Red)</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="SetLevelValue"></a>SetLevelValue() – 设置水平线值</h2> 
+ <pre class="brush: mql4; toolbar: false;">void SetLevelValue(int level, double value)</pre> 
+ <p>本函数设置在独立窗口输出的水平指标线的值。</p> 
+ <p>参数:</p> 
+ <pre>level - 水平线编号，0到31。
+value - 给出的水平线值。
+clr - 线的颜色。空值CLR_NONE表示颜色不变。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  SetLevelValue(1,3.14);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="http://www.myeatrade.com/zh/392/" rel="bookmark"><b>http://www.myeatrade.com/zh/392/</b></a> 
+</div>
+</body>
+</html>

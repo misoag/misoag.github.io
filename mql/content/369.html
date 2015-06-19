@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <div id="toc">
+  <strong>目录</strong>
+  <span>[hide]</span> 
+  <ul id="toc_l"> 
+   <li><a href="#Expressions">表达式</a></li> 
+   <li><a href="#Arithmetical_operations">算术运算符</a></li> 
+   <li><a href="#Assignment_operation">赋值运算符 </a></li> 
+   <li><a href="#Operations_of_relation">关系运算符 </a></li> 
+   <li><a href="#Boolean_operations">布尔运算符 </a></li> 
+   <li><a href="#Bitwise_operations">位运算符 </a></li> 
+   <li><a href="#Other_operations">其他运算符 </a></li> 
+   <li><a href="#Precedence_rules">优先级规则 </a></li> 
+  </ul> 
+ </div> 
+ <p>某些数字和字符的组合是特别重要的，它们被称为运算符，例如:</p> 
+ <p>算术运算符：<strong>+ – * / %</strong></p> 
+ <p>逻辑运算符：<strong>&amp;&amp; ||</strong></p> 
+ <p>赋值运算符：<strong>= += *=</strong></p> 
+ <p>运算符常用在表达式中，只有结合操作数时才有意义。</p> 
+ <p>需要特别注意标点符号，如圆括号、方括号、逗号、冒号、分号。</p> 
+ <p>运算符、标点符号、空格用来分割语句的不同部分。</p> 
+ <h2><a name="Expressions"></a>表达式</h2> 
+ <p>一个表达式由一个或多个操作数和运算符组成，一个表达式可以分成若干行来书写。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">a++; b = 10;
+x = (y * z) /
+    (w + 2) + 127;</pre> 
+ <p>一个表达式的最后<strong>必须</strong>由一个分号(;) 来表示结束。</p> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Arithmetical_operations"></a>算术运算符</h2> 
+ <p>算术运算符包括加减法、乘除法运算等:</p> 
+ <pre class="brush: mql4; toolbar: false;">求和                   i = j + 2;
+求差                   i = j - 3;
+改变符号               x = - x;
+求积                   z = 3 * x;
+求商                   i = j / 5;
+求模                   minutes = time % 60;
+自增                   i++;
+自减                   k--;</pre> 
+ <p>自增/自减运算符不能使用在表达式中。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">int a=3;
+a++;              // 有效表达式
+int b=(a++)*3;    // 无效表达式</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Assignment_operation"></a>赋值运算符</h2> 
+ <p>表达式的值赋给<strong>左边</strong>的变量。</p> 
+ <pre class="brush: mql4; toolbar: false;">y = x;   //把变量 x 的值赋予变量 y</pre> 
+ <p>下列表达式中赋值运算符结合了算术运算符或位运算符:</p> 
+ <pre class="brush: mql4; toolbar: false;">y += x;         //在 y 值上加上 x
+y -= x;         //在 y 值上减去 x
+y *= x;         //在 y 值上乘以 x
+y /= x;         //在 y 值上除以 x
+y %= x;         //在 y 值上求 x 的模
+y &gt;&gt;= x;        //把 y 值向右做 x 位逻辑移位
+y &lt;&lt;= x;        //把 y 值向左做 x 位逻辑移位
+y &amp;= x;         //AND 位运算符
+y |= x;         //OR 位运算符
+y ^= x;         //把 x 和 y 按做逻辑异或的操作</pre> 
+ <p>表达式中只能有一个赋值运算符。 位运算符只能用于整型数据。逻辑移位运算符中 x 值只能是小于 5 位的二进制数，过大的数值将会被拒绝。所以移动范围只能是 0 到 31 。 用 %= 运算符求模 ( 求y/x的模)，其结果赋予y。</p> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Operations_of_relation"></a>关系运算符</h2> 
+ <p>整数0代表逻辑假值FALSE，任何非零的值代表逻辑真值TRUE。</p> 
+ <p>用关系运算符或逻辑运算符组成的表达式值是0 (False)或1 (True)</p> 
+ <pre class="brush: mql4; toolbar: false;">a = b;     //a等于b
+a != b;    //a不等于b
+a&lt; b;      //a小于b
+a &gt;b;      //a大于b
+a &lt;=b;     //a小于等于b
+a &gt;= b;    //a大于等于b</pre> 
+ <p>2个浮点型数据不能用 = 或 != 运算符比较，但是我们可以把2者相减， 并将所得结果和null进行比较。</p> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Boolean_operations"></a>布尔运算符</h2> 
+ <p>逻辑非运算符(!)的操作数必须是算术类型。如果运算值是FALSE (0)，其非运算的结果为TRUE (1)；如果运算值不同于FALSE (0)，其非运算的结果等于FALSE (0)。</p> 
+ <pre class="brush: mql4; toolbar: false;">if(!a) Print("不是 'a'");</pre> 
+ <p>x和y值的<strong>逻辑或</strong>运算符 (||)用来表示两个表达式只要有一个成立即可。如果x和y值只要有1个值为真的，表达式值为TRUE (1)。否则，值为FALSE (0)。</p> 
+ <pre class="brush: mql4; toolbar: false;">if(x&lt;0 || x&gt;=max_bars) Print("超出范围");</pre> 
+ <p>x和y值的<strong>逻辑与</strong>运算符 (&amp;&amp;)。如果x和y的值<strong>都是</strong>真实的，表达式值为TRUE (1)。否则，值为FALSE (0).</p> 
+ <pre class="brush: mql4; toolbar: false;">if(p!=x &amp;&amp; p&gt;y) Print("TRUE");</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Bitwise_operations"></a>位运算符</h2> 
+ <p>取反运算符(~)对变量值二进制代码按位取反。表达式值中所有1变为0，0变为1 。</p> 
+ <pre class="brush: mql4; toolbar: false;">b = ~n;</pre> 
+ <p>将二进制代码表示的X逻辑右移Y位。右移是逻辑运算，即左侧用零填满。</p> 
+ <pre class="brush: mql4; toolbar: false;">x = x &gt;&gt; y;</pre> 
+ <p>将二进制代码表示的X逻辑左移Y位，右侧(低位)用零填满。</p> 
+ <pre class="brush: mql4; toolbar: false;">x = x &lt;&lt; y;</pre> 
+ <p>二进制表示的x和Y位运算与(&amp;)。如果x和y两个相应的二进制位都为1，则该位的结果为1，否则为0。</p> 
+ <pre class="brush: mql4; toolbar: false;">b = ((x &amp; y) != 0);</pre> 
+ <p>二进制表示的x和Y位运算或(|)。如果x和y两个相应的二进制位都为0，则该位的结果为0，否则为1。</p> 
+ <pre class="brush: mql4; toolbar: false;">b = x | y;</pre> 
+ <p>二进制表示的x和Y位运算异或(~)。如果x和y两个相应的二进制位相异，则该位的结果为1，否则为0。</p> 
+ <pre class="brush: mql4; toolbar: false;">b = x ^ y;</pre> 
+ <p>位运算符只适合<strong>整型</strong>数据类型。</p> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Other_operations"></a>其他运算符</h2> 
+ <p><strong>下标</strong></p> 
+ <p>数组的第i个元素的序号，i可以为整数或整型表达式。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">array[i] = 3; //将3赋予数组的第i个元素。</pre> 
+ <p>只有整数才能成为数组的下标。只允许使用四维或四维以下的数组。每维索引是从0到（数组总长度-1）。举一个例子，一个有50个元素组成的一维数组，引用第一个数组元素用array [0]，这样，最后一个数组元素将足array[49]。</p> 
+ <p>如果访问数组超出了数组下标范围，系统将会出错 <a href="http://www.myeatrade.com/zh/377/#Error_codes">ERR_ARRAY_INDEX_OUT_OF_RANGE</a> (下标超过范围)，通过调用<a href="http://www.myeatrade.com/zh/386/#GetLastError">GetLastError()</a>函数，获取这些错误信息。</p> 
+ <p><strong>调用xl,x2,…,xn形式参数的函数</strong></p> 
+ <p>每个形参可以是一个常量、一个变量和相应类型的表达式。传递的参数用逗号隔开，并放在圆括号()内，函数名放在圆括号()前。</p> 
+ <p>用此函数返回表达式值。如果函数返回值定义为void型，这些函数调用就不能放在赋值号右边。请确认表达式xl,x2,…,xn是按序执行的。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">double SL=Bid-25*Point;
+int    ticket=OrderSend(Symbol(),OP_BUY,1,Ask,3,SL,Ask+25*Point,"My comment",123,0,Red);</pre> 
+ <p><strong>逗号运算符</strong></p> 
+ <p>用逗号分隔的表达式是按从左到右的顺序执行。所有表达式都是先算左边的，再算右边的，其结果的类型和值由右边表达式决定。函数的参数表也可视为一个范例(参见上面)。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">for(i=0,j=99; i&lt;100; i++,j--) Print(数组[i][j]);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Precedence_rules"></a>优先级规则</h2> 
+ <p>下表中同组运算符优先级相同。排在前面的运算符优先级高，排在后而的运算符优先级低。运算符按优先级顺序从高到低排列如下:</p> 
+ <pre class="brush: mql4; toolbar: false;">()     函数调用                     从左到右
+[]     引用数组元素</pre> 
+ <pre class="brush: mql4; toolbar: false;">!      真假运算符                   从右到左
+-      改变符号
+++     自增
+--     自减
+~      "按位取反"运算符</pre> 
+ <pre class="brush: mql4; toolbar: false;">&amp;      "按位与"位运算符             从左到右
+|      "按位或"位运算符
+^      "按位异或"位运算符
+&lt;&lt;     逻辑左移
+&gt;&gt;     逻辑右移</pre> 
+ <pre class="brush: mql4; toolbar: false;">*      乘法                        从左到右
+/      除法
+%      求模</pre> 
+ <pre class="brush: mql4; toolbar: false;">+      加法                        从左到右
+-      减法</pre> 
+ <pre class="brush: mql4; toolbar: false;">&lt;      小于                        从左到右
+&lt;=     小于等于
+&gt;      大于
+&gt;=     大于等于
+==     等于
+!=     不等于</pre> 
+ <pre class="brush: mql4; toolbar: false;">||     逻辑 或                      从左到右</pre> 
+ <pre class="brush: mql4; toolbar: false;">&amp;&amp;     逻辑 与                      从左到右</pre> 
+ <pre class="brush: mql4; toolbar: false;">=      赋值                            从右到左
++=     加法复合赋值运算符
+-=     减法复合赋值运算符
+*=     乘法复合赋值运算符
+/=     除法复合赋值运算符
+%=     求模复合赋值运算符
+&gt;&gt;=    右移复合赋值运算符
+&lt;&lt;=    左移复合赋值运算符
+&amp;=     按位与复合赋值运算符
+|=     按位或复合赋值运算符
+^=     按位异或复合赋值运算符</pre> 
+ <pre class="brush: mql4; toolbar: false;">,     逗号                         从左到右</pre> 
+ <p>高优先级的圆括号可以改变运算符的执行顺序。</p> 
+ <p><strong>注意：</strong>在MQL4程序中，运算符的优先级不同于C 语言。</p> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="http://www.myeatrade.com/zh/369/" rel="bookmark"><b>http://www.myeatrade.com/zh/369/</b></a> 
+</div>
+</body>

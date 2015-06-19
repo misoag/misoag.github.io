@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <div id="toc">
+  <strong>目录</strong>
+  <span>[hide]</span> 
+  <ul id="toc_l"> 
+   <li><a href="#Close">获取每个柱体(K线)的收盘价 Close[ ]</a></li> 
+   <li><a href="#Open">获取每个柱体(K线)的开盘价 Open[ ]</a></li> 
+   <li><a href="#High">获取每个柱体(K线)的最高价 High[ ]</a></li> 
+   <li><a href="#Low">获取每个柱体(K线)的最低价 Low[ ]</a></li> 
+   <li><a href="#Time">获取每个柱体(K线)的开盘时间 Time[ ]</a></li> 
+   <li><a href="#Volume">获取每个柱体(K线)的成交量 Volume[ ]</a></li> 
+  </ul> 
+ </div> 
+ <p>对于每个可执行的MQL4程序，在程序启动时（智能交易、脚本或是自定义指标），诸多的预定义变量可以轻松应对图表中的各种价格状态等价格相关信息。</p> 
+ <p>库可以使用模块中的预定义变量。</p> 
+ <p>为了能安全、快速地访问这些数据，客户端程序会为每个单独启动的程序提供预定义变量的本地副本。这些数据会在每次运行智能交易或自定义指标后自动更新，或调用RefreshRates()函数更新。</p> 
+ <h2><a name="Close"></a>获取每个柱体(K线)的收盘价 Close[ ]</h2> 
+ <p><strong>double Close[ ]</strong></p> 
+ <p>收盘价序列数组，包含了当前图表中每个柱子的收盘价。</p> 
+ <p>收盘价<strong>按逆序方式保存</strong>在数组元素中，即最新的K线收盘价下标为0，上一个K线下标为1，上上一个K线下标为2，图表中最后一个K线的下标为<a href="http://www.myeatrade.com/zh/378/#Bars">Bars</a>-1。</p> 
+ <p><strong>参见</strong> <strong><a href="http://www.myeatrade.com/zh/409/#iClose">iClose()</a></strong>.</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  int handle = FileOpen("file.csv", FILE_CSV|FILE_WRITE, ";");
+  if(handle&gt;0)
+    {
+     // 写入表格栏标题
+     FileWrite(handle, "Time;Open;High;Low;Close;Volume");
+     // 记录数据
+     for(int i=0; i&lt;Bars; i++)
+       FileWrite(handle, Time[i], Open[i], High[i], Low[i], Close[i], Volume[i]);
+     FileClose(handle);
+    }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Open"></a>获取每个柱体(K线)的开盘价 Open[ ]</h2> 
+ <p><strong>double Open[ ]</strong></p> 
+ <p>开盘价序列数组，包含了当前图表中每个柱体(K线)的开盘价。</p> 
+ <p>开盘价<strong>按逆序方式保存</strong>在数组元素中，即最新的K线开盘价下标为0，上一个K线下标为1，上上一个K线下标为2，图表中最后一个K线的下标为<a href="http://www.myeatrade.com/zh/378/#Bars">Bars</a>-1。</p> 
+ <p><strong>参见</strong> <strong><a href="http://www.myeatrade.com/zh/409/#iOpen">iOpen()</a></strong>.</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">   i = Bars - counted_bars - 1;
+   while(i&gt;=0)
+     {
+      double high  = High[i];
+      double low   = Low[i];
+      double open  = Open[i];
+      double close = Close[i];
+      AccumulationBuffer[i] = (close-low) - (high-close);
+      if(AccumulationBuffer[i] != 0)
+        {
+         double diff = high - low;
+         if(0==diff)
+            AccumulationBuffer[i] = 0;
+         else
+           {
+            AccumulationBuffer[i] /= diff;
+            AccumulationBuffer[i] *= Volume[i];
+           }
+        }
+      if(i&lt;Bars-1) AccumulationBuffer[i] += AccumulationBuffer[i+1];
+      i--;
+     }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="High"></a>获取每个柱体(K线)的最高价 High[ ]</h2> 
+ <p><strong>double High[ ]</strong></p> 
+ <p>最高价序列数组，包含了当前图表中每个柱体(K线)的最高价。</p> 
+ <p>最高价<strong>按逆序方式保存</strong>在数组元素中，即最新的K线最高价下标为0，上一个K线下标为1，上上一个K线下标为2，图表中最后一个K线的下标为<a href="http://www.myeatrade.com/zh/378/#Bars">Bars</a>-1。</p> 
+ <p><strong>参见</strong> <strong><a href="http://www.myeatrade.com/zh/409/#iHigh">iHigh()</a></strong>.</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">//---- 最大值
+   i=Bars-KPeriod;
+   if(counted_bars&gt;KPeriod) i=Bars-counted_bars-1;
+   while(i&gt;=0)
+     {
+      double max=-1000000;
+      k = i + KPeriod-1;
+      while(k&gt;=i)
+        {
+         price=High[k];
+         if(max&lt;price) max=price;
+         k--;
+        }
+      HighesBuffer[i]=max;
+      i--;
+     }
+//----</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Low"></a>获取每个柱体(K线)的最低价 Low[ ]</h2> 
+ <p><strong>double Low[ ]</strong></p> 
+ <p>最低价序列数组，包含了当前图表中每个柱体(K线)的最低价。</p> 
+ <p>最低价<strong>按逆序方式保存</strong>在数组元素中，即最新的K线最低价下标为0，上一个K线下标为1，上上一个K线下标为2，图表中最后一个K线的下标为<a href="http://www.myeatrade.com/zh/378/#Bars">Bars</a>-1。</p> 
+ <p><strong>参见</strong> <strong><a href="http://www.myeatrade.com/zh/409/#iLow">iLow()</a></strong>.</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">//---- 最小值
+   i=Bars-KPeriod;
+   if(counted_bars&gt;KPeriod) i=Bars-counted_bars-1;
+   while(i&gt;=0)
+     {
+      double min=1000000;
+      k = i + KPeriod-1;
+      while(k&gt;=i)
+        {
+         price=Low[k];
+         if(min&gt;price) min=price;
+         k--;
+        }
+      LowesBuffer[i]=min;
+      i--;
+     }
+//----</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Time"></a>获取每个柱体(K线)的开盘时间 Time[ ]</h2> 
+ <p><strong>datetime Time[ ]</strong></p> 
+ <p>开盘时间序列数组，包含了当前图表中每个柱体(K线)的开盘时间。日期时间型数据按秒计算，是从1970年1月1日00:00开始的总秒数。</p> 
+ <p>开盘时间<strong>按逆序方式保存</strong>在数组元素中，即最新的K线开盘时间下标为0，上一个K线下标为1，上上一个K线下标为2，图表中最后一个K线的下标为<a href="http://www.myeatrade.com/zh/378/#Bars">Bars</a>-1。</p> 
+ <p><strong>参见</strong> <strong><a href="http://www.myeatrade.com/zh/409/#iTime">iTime()</a></strong>.</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">   for(i=Bars-2; i&gt;=0; i--)
+     {
+      if(High[i+1] &gt; LastHigh) LastHigh = High[i+1];
+      if(Low[i+1] &lt; LastLow)   LastLow  = Low[i+1];
+      //----
+      if(TimeDay(Time[i]) != TimeDay(Time[i+1]))
+        {
+         P = (LastHigh + LastLow + Close[i+1])/3;
+         R1 = P*2 - LastLow;
+         S1 = P*2 - LastHigh;
+         R2 = P + LastHigh - LastLow;
+         S2 = P - (LastHigh - LastLow);
+         R3 = P*2 + LastHigh - LastLow*2;
+         S3 = P*2 - (LastHigh*2 - LastLow);
+         LastLow  = Open[i];
+         LastHigh = Open[i];
+        }
+      //----
+      PBuffer[i]  = P;
+      S1Buffer[i] = S1;
+      R1Buffer[i] = R1;
+      S2Buffer[i] = S2;
+      R2Buffer[i] = R2;
+      S3Buffer[i] = S3;
+      R3Buffer[i] = R3;
+     }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Volume"></a>获取每个柱体(K线)的成交量 Volume[ ]</h2> 
+ <p><strong>double Volume[ ]</strong></p> 
+ <p>成交量序列数组，包含了当前图表中每个柱体(K线)的tick成交量。</p> 
+ <p>成交量<strong>按逆序方式保存</strong>在数组元素中，即最新的K线成交量下标为0，上一个K线下标为1，上上一个K线下标为2，图表中最后一个K线的下标为<a href="http://www.myeatrade.com/zh/378/#Bars">Bars</a>-1。</p> 
+ <p><strong>注</strong>：该成交量并非真正意义上的成交量，这是一个估计值，其值为该K线下tick价格变动的数量，其背后的意义为如果tick价格变动很快，表示成交量越大；tick价格变动越慢，表示成交量越小。</p> 
+ <p><strong>参见</strong> <strong><a href="http://www.myeatrade.com/zh/409/#iVolume">iVolume()</a></strong>.</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">      if(i==0 &amp;&amp; time0&lt;i_time+periodseconds)
+        {
+         d_volume += Volume[0];
+         if(Low[0]&lt;d_low)   d_low = Low[0];
+         if(High[0]&gt;d_high) d_high = High[0];
+         d_close = Close[0];
+        }
+      last_fpos = FileTell(ExtHandle);
+      last_volume = Volume[i];
+      FileWriteInteger(ExtHandle, i_time, LONG_VALUE);
+      FileWriteDouble(ExtHandle, d_open, DOUBLE_VALUE);
+      FileWriteDouble(ExtHandle, d_low, DOUBLE_VALUE);
+      FileWriteDouble(ExtHandle, d_high, DOUBLE_VALUE);
+      FileWriteDouble(ExtHandle, d_close, DOUBLE_VALUE);
+      FileWriteDouble(ExtHandle, d_volume, DOUBLE_VALUE);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="http://www.myeatrade.com/zh/379/" rel="bookmark"><b>http://www.myeatrade.com/zh/379/</b></a> 
+</div>
+</body>
+</html>

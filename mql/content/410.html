@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <ul> 
+  <li><strong><a href="#HideTestIndicators">HideTestIndicators()</a></strong> – 隐藏测试指标 </li> 
+  <li><strong><a href="#Period">Period()</a></strong> – 获取图表时段 </li> 
+  <li><strong><a href="#RefreshRates">RefreshRates()</a></strong> – 刷新数据 </li> 
+  <li><strong><a href="#Symbol">Symbol()</a></strong> – 获取图表货币对名称 </li> 
+  <li><strong><a href="#WindowBarsPerChart">WindowBarsPerChart()</a></strong> – 获取图表中柱体总数 </li> 
+  <li><strong><a href="#WindowExpertName">WindowExpertName()</a></strong> – 获取图表上程序名称 </li> 
+  <li><strong><a href="#WindowFind">WindowFind()</a></strong> – 搜索图表上指标 </li> 
+  <li><strong><a href="#WindowFirstVisibleBar">WindowFirstVisibleBar()</a></strong> – 获取图表上第一个显示的柱体 </li> 
+  <li><strong><a href="#WindowHandle">WindowHandle()</a></strong> – 获取图表句柄 </li> 
+  <li><strong><a href="#WindowIsVisible">WindowIsVisible()</a></strong> – 图表是否可见 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/411/#WindowOnDropped">WindowOnDropped()</a></strong> – 获取窗口索引 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/411/#WindowPriceMax">WindowPriceMax()</a></strong> – 获取窗口纵坐标刻度最大值 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/411/#WindowPriceMin">WindowPriceMin()</a></strong> – 获取窗口纵坐标刻度最小值 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/411/#WindowPriceOnDropped">WindowPriceOnDropped()</a></strong> – 获取下滑价格 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/411/#WindowRedraw">WindowRedraw()</a></strong> – 重绘当前图表 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/411/#WindowScreenShot">WindowScreenShot()</a></strong> – 窗口图表快照 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/411/#WindowTimeOnDropped">WindowTimeOnDropped()</a></strong> – 价格下滑时间 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/411/#WindowsTotal">WindowsTotal()</a></strong> – 获取指标窗口数 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/411/#WindowXOnDropped">WindowXOnDropped()</a></strong> – x轴下滑像素值 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/411/#WindowYOnDropped">WindowYOnDropped()</a></strong> – y轴下滑像素值 </li> 
+ </ul> 
+ <p>&nbsp;</p> 
+ <h2><a name="HideTestIndicators"></a>HideTestIndicators() – 隐藏测试指标</h2> 
+ <pre class="brush: mql4; toolbar: false;">void HideTestIndicators(bool hide)</pre> 
+ <p>本函数设置一个供智能交易调用的隐藏指标标志。在智能交易测试完成，打开了相应的图表，标出过的指标将不会出现在测试图表中。每个调用过的指标将首先用当前隐藏的标志标记。</p> 
+ <p>特别要注意到，只有那些直接从智能交易调用的指标才可以在测试图表中画出。</p> 
+ <p>参数:</p> 
+ <pre>hide - 如果需要隐藏指标为TRUE，否则为FALSE。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">   HideTestIndicators(true);
+   MaCurrent=iMA(NULL,0,56,0,MODE_EMA,PRICE_CLOSE,0);
+   MaPrevious=iMA(NULL,0,56,0,MODE_EMA,PRICE_CLOSE,1);
+   HideTestIndicators(false);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Period"></a>Period() – 获取图表时段</h2> 
+ <pre class="brush: mql4; toolbar: false;">int Period()</pre> 
+ <p>返回当前窗口在用时段(图表周期)的分钟总数。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  Print("时间周期 ", Period());</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="RefreshRates"></a>RefreshRates() – 刷新数据</h2> 
+ <pre class="brush: mql4; toolbar: false;">bool RefreshRates()</pre> 
+ <p>刷新<a href="http://www.myeatrade.com/zh/378/">预定义变量和序列数组中数据</a>。当智能交易计算时间过长时，本函数可以自动更新数据。如果数据被更新，返回TRUE，否则，返回FALSE。数据不被更新的唯一原因就是他们是客户端的当前数据。</p> 
+ <p>智能交易和脚本只处理它们自己的历史数据的副本。在智能交易和脚本第一次启动的时候，当前货币对数据就已经被复制过。每次钊能交易或脚本启动时，会更新最初得到的副本。在智能交易和脚本运行时，可能会收到一个或多个新的步进数据，现有数据可能会过期。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">   int ticket;
+   while(true)
+     {
+      ticket=OrderSend(Symbol(),OP_BUY,1.0,Ask,3,0,0,"expert comment",255,0,CLR_NONE);
+      if(ticket&lt;=0)
+        {
+         int error=GetLastError();
+         //---- 资金不足
+         if(error==134) break;
+         //---- 等待 10 秒钟
+         Sleep(10000);
+         //---- 刷新价格数据
+         RefreshRates();
+         break;
+        }
+      else
+        {
+         OrderSelect(ticket,SELECT_BY_TICKET);
+         OrderPrint();
+         break;
+        }
+     }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Symbol"></a>Symbol() – 获取图表货币对名称</h2> 
+ <pre class="brush: mql4; toolbar: false;">string Symbol()</pre> 
+ <p>返回当前窗口图表货币对名称。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">   int total=OrdersTotal();
+   for(int pos=0;pos&lt;total;pos++)
+     {
+      // 因为此时可能平仓或删除定单，检测选择结果!
+      if(OrderSelect(pos, SELECT_BY_POS)==false) continue;
+      if(OrderType()&gt;OP_SELL || OrderSymbol()!=Symbol()) continue;
+      // 执行过程...
+     }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="WindowBarsPerChart"></a>WindowBarsPerChart() – 获取图表中柱体总数</h2> 
+ <pre class="brush: mql4; toolbar: false;">int WindowBarsPerChart()</pre> 
+ <p>返回当前窗口图表可见柱体(K线)总数。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">// 对于可见柱工作。
+int bars_count=WindowBarsPerChart();
+int bar=WindowFirstVisibleBar();
+for(int i=0; i&lt;bars_count; i++,bar--)
+  {
+   // ...
+  }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="WindowExpertName"></a>WindowExpertName() – 获取图表上程序名称</h2> 
+ <pre class="brush: mql4; toolbar: false;">string WindowExpertName()</pre> 
+ <p>返回智能交易、脚本、自定义指标和库的名称，这取决于MQL4程序的调用。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">string name=WindowExpertName();
+GlobalVariablesDeleteAll(name);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="WindowFind"></a>WindowFind() – 搜索图表上指标</h2> 
+ <pre class="brush: mql4; toolbar: false;">int WindowFind(string name)</pre> 
+ <p>如果发现有名称的指标，本函数返回包含指定指标的窗口索引，否则，返回-1。</p> 
+ <p>参数:</p> 
+ <pre>name - 指标名称。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">int win_idx=WindowFind("MACD(12,26,9)");</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="WindowFirstVisibleBar"></a>WindowFirstVisibleBar() – 获取图表上第一个显示的柱体</h2> 
+ <pre class="brush: mql4; toolbar: false;">int WindowFirstVisibleBar()</pre> 
+ <p>本函数在当前图表窗口中返回第1个显示的柱体(K线)。必须考虑到价格柱子的逆序编号，即从最后个价格到第个价格排列。在价格数组中当前柱子是最新的，索引为0，最老的柱子索引为 <a href="http://www.myeatrade.com/zh/378/#Bars">Bars</a>-1。如果第一个显示的柱子编号为2或更高，但少于图表中能显示的柱子总数，这就意味着图表窗口没有完全填满，离窗口侧边还有空白。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">   // 可见柱的工作
+   int bars_count=WindowBarsPerChart();
+   int bar=WindowFirstVisibleBar();
+   for(int i=0; i&lt;bars_count; i++,bar--)
+     {
+      // ...
+     }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="WindowHandle"></a>WindowHandle() – 获取图表句柄</h2> 
+ <pre class="brush: mql4; toolbar: false;">int WindowHandle(string symbol, int timeframe)</pre> 
+ <p>返回包含特定图表的系统窗口句柄。如果图表在函数调用时还没有打开，返回为0。</p> 
+ <p>参数:</p> 
+ <pre>symbol - 货币对名称。
+timeframe - 时段。可以是任意的<a href="http://www.myeatrade.com/zh/374/#Timeframes">时段枚举值</a>，0意味着使用当前图表中时段。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  int win_handle=WindowHandle("USDX",PERIOD_H1);
+  if(win_handle!=0)
+    Print("发现带有USDX,H1 的窗口。数组将会被立即复制。");</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="WindowIsVisible"></a>WindowIsVisible() – 图表是否可见</h2> 
+ <pre class="brush: mql4; toolbar: false;">bool WindowIsVisible(int index)</pre> 
+ <p>如果图表子窗口可见，返回TRUE，否则，返回FALSE。由于指标的可视属性可以放置在图表子窗口里，图表子窗口能被隐藏。</p> 
+ <p>参数:</p> 
+ <pre>index - 图表子窗口索引。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  int win_handle=WindowHandle("USDX",PERIOD_H1);
+  if(win_handle!=0)
+    Print("发现带有USDX,H1 的窗口。数组将会被立即复制。");</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="http://www.myeatrade.com/zh/410/" rel="bookmark"><b>http://www.myeatrade.com/zh/410/</b></a> 
+</div>
+</body>
+</html>

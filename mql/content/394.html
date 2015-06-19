@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <p>本组函数用于处理日期时间型数据(从1970年1月1日00:00开始已经过的秒数)。</p> 
+ <ul> 
+  <li><strong><a href="http://www.myeatrade.com/zh/393/#Year">Year()</a></strong> – 获取当前年份 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/393/#Month">Month()</a></strong> – 获取当前月份 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/393/#Day">Day()</a></strong> – 获取今日是本月第几天 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/393/#DayOfWeek">DayOfWeek()</a></strong> – 获取今日是星期几 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/393/#DayOfYear">DayOfYear()</a></strong> – 获取今日是本年第几天 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/393/#Hour">Hour()</a></strong> – 获取当前小时数 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/393/#Minute">Minute()</a></strong> – 获取当前分钟数 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/393/#Seconds">Seconds()</a></strong> – 获取当前秒数 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/393/#TimeCurrent">TimeCurrent()</a></strong> – 获取当前时间 </li> 
+  <li><strong><a href="#TimeDay">TimeDay()</a></strong> – 获取指定日期中天数 </li> 
+  <li><strong><a href="#TimeDayOfWeek">TimeDayOfWeek()</a></strong> – 获取指定日期是星期几 </li> 
+  <li><strong><a href="#TimeDayOfYear">TimeDayOfYear()</a></strong> – 获取指定日期是一年中第几天 </li> 
+  <li><strong><a href="#TimeHour">TimeHour()</a></strong> – 获取指定日期中小时数 </li> 
+  <li><strong><a href="#TimeMinute">TimeMinute()</a></strong> – 获取指定时间中分钟数 </li> 
+  <li><strong><a href="#TimeMonth">TimeMonth()</a></strong> – 获取指日期的月份 </li> 
+  <li><strong><a href="#TimeSeconds">TimeSeconds()</a></strong> – 获取指时间中秒数 </li> 
+  <li><strong><a href="#TimeYear">TimeYear()</a></strong> – 获取指定日期的年份 </li> 
+  <li><strong><a href="#TimeLocal">TimeLocal()</a></strong> – 获取当前本地时间 </li> 
+ </ul> 
+ <p>&nbsp;</p> 
+ <h2><a name="TimeDay"></a>TimeDay() – 获取指定日期中天数</h2> 
+ <pre class="brush: mql4; toolbar: false;">int TimeDay(datetime date)</pre> 
+ <p>返回指定日期中天数。</p> 
+ <p>参数:</p> 
+ <pre>date - 日期时间，从1970年1月1日00:00开始所经历的总秒数</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">   int day=TimeDay(D'2003.12.31');
+  // 天数为31</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Day"></a><a name="TimeDayOfWeek"></a>TimeDayOfWeek() – 获取指定日期是星期几</h2> 
+ <pre class="brush: mql4; toolbar: false;">int TimeDayOfWeek(datetime date)</pre> 
+ <p>返回指定日期是星期几(0代表星期天，1，2, 3, 4, 5, 6类推)。</p> 
+ <p>参数:</p> 
+ <pre>date - 日期时间，从1970年1月1日00:00开始所经历的总秒数</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">   int weekday=TimeDayOfWeek(D'2004.11.2');
+  // 数字2 - 星期二</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Day"></a><a name="TimeDayOfYear"></a>TimeDayOfYear() – 获取指定日期是一年中第几天</h2> 
+ <pre class="brush: mql4; toolbar: false;">int TimeDayOfYear(datetime date)</pre> 
+ <p>返回指定日期是一年中第几天(1是1月1日，365(6)是12月31日)。</p> 
+ <p>参数:</p> 
+ <pre>date - 日期时间，从1970年1月1日00:00开始所经历的总秒数</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">   int day=TimeDayOfYear(TimeCurrent());</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Day"></a><a name="TimeHour"></a>TimeHour() – 获取指定时间中小时数</h2> 
+ <pre class="brush: mql4; toolbar: false;">int TimeHour(datetime time)</pre> 
+ <p>返回指定日期中小时数。</p> 
+ <p>参数:</p> 
+ <pre>time - 日期时间，从1970年1月1日00:00开始所经历的总秒数</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">   int h=TimeHour(TimeCurrent());</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Day"></a><a name="TimeLocal"></a><a name="Day"></a><a name="TimeMinute"></a>TimeMinute() – 获取指定时间中分钟数</h2> 
+ <pre class="brush: mql4; toolbar: false;">int TimeMinute(datetime time)</pre> 
+ <p>返回指定时间中分钟数。</p> 
+ <p>参数:</p> 
+ <pre>time - 日期时间，从1970年1月1日00:00开始所经历的总秒数</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">   int m=TimeMinute(TimeCurrent());</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Day"></a><a name="TimeMonth"></a>TimeMonth() – 获取指定日期的月份</h2> 
+ <pre class="brush: mql4; toolbar: false;">int TimeMonth(datetime time)</pre> 
+ <p>返回指定日期的月份。</p> 
+ <p>参数:</p> 
+ <pre>time - 日期时间，从1970年1月1日00:00开始所经历的总秒数</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">   int m=TimeMonth(TimeCurrent());</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Day"></a><a name="TimeSeconds"></a>TimeSeconds() – 获取指定时间中秒数</h2> 
+ <pre class="brush: mql4; toolbar: false;">int TimeSeconds(datetime time)</pre> 
+ <p>返回指定时间中秒数。</p> 
+ <p>参数:</p> 
+ <pre>time - 日期时间，从1970年1月1日00:00开始所经历的总秒数</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">   int s=TimeSeconds(TimeCurrent());</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Day"></a><a name="TimeYear"></a>TimeYear() – 获取指定日期的年份</h2> 
+ <pre class="brush: mql4; toolbar: false;">int TimeYear(datetime time)</pre> 
+ <p>返回指定日期的年份。返回值的范围可以在1970 到 2037之间。</p> 
+ <p>参数:</p> 
+ <pre>time - 日期时间，从1970年1月1日00:00开始所经历的总秒数</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">   int y=TimeYear(TimeCurrent());</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Day"></a><a name="TimeLocal"></a>TimeLocal() – 获取当前本地时间</h2> 
+ <pre class="brush: mql4; toolbar: false;">datetime  TimeLocal()</pre> 
+ <p>返回本地计算机的当前时间，从1970年1月1日00:00算起所经历的总秒数。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">   if(TimeLocal()-OrderOpenTime()&lt;360) return(0);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="http://www.myeatrade.com/zh/394/" rel="bookmark"><b>http://www.myeatrade.com/zh/394/</b></a> 
+</div>
+</body>
+</html>

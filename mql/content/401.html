@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <ul id="toc_l"> 
+  <li><strong><a href="http://www.myeatrade.com/zh/400/#MathAbs">MathAbs()</a></strong> – 求绝对值 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/400/#MathArccos">MathArccos()</a></strong> – 求反余弦 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/400/#MathArcsin">MathArcsin()</a></strong> – 求反正弦 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/400/#MathArctan">MathArctan()</a></strong> – 求反正切 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/400/#MathCeil">MathCeil()</a></strong> – 取最小整数 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/400/#MathCos">MathCos()</a></strong> – 求余弦 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/400/#MathExp">MathExp()</a></strong> – 求e的幂 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/400/#MathFloor">MathFloor()</a></strong> – 取最大整数 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/400/#MathLog">MathLog()</a></strong> – 求自然对数 </li> 
+  <li><strong><a href="#MathMax">MathMax()</a></strong> – 求最大值 </li> 
+  <li><strong><a href="#MathMin">MathMin()</a></strong> – 求最小值 </li> 
+  <li><strong><a href="#MathMod">MathMod()</a></strong> – 求模 </li> 
+  <li><strong><a href="#MathPow">MathPow()</a></strong> – 求幂 </li> 
+  <li><strong><a href="#MathRand">MathRand()</a></strong> – 获取随机整数 </li> 
+  <li><strong><a href="#MathRound">MathRound()</a></strong> – 求四舍五入值 </li> 
+  <li><strong><a href="#MathSin">MathSin()</a></strong> – 求正弦 </li> 
+  <li><strong><a href="#MathSqrt">MathSqrt()</a></strong> – 求平方根 </li> 
+  <li><strong><a href="#MathSrand">MathSrand()</a></strong> – 随机数设置 </li> 
+  <li><strong><a href="#MathTan">MathTan()</a></strong> – 求正切 </li> 
+ </ul> 
+ <p>&nbsp;</p> 
+ <h2><a name="MathMax"></a>MathMax() – 求最大值</h2> 
+ <pre class="brush: mql4; toolbar: false;">double MathMax(double value1, double value2)</pre> 
+ <p>返回两个数值中最大值。 </p> 
+ <p>参数:</p> 
+ <pre>value1 - 第一个数值。
+value2 - 第二个数值。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  double result=MathMax(1.08,Bid);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="MathMin"></a>MathMin() – 求最小值</h2> 
+ <pre class="brush: mql4; toolbar: false;">double MathMin(double value1, double value2)</pre> 
+ <p>返回两个数值中最小值。 </p> 
+ <p>参数:</p> 
+ <pre>value1 - 第一个数值。
+value2 - 第二个数值。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  double result=MathMin(1.08,Ask);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="MathMod"></a>MathMod() – 求模</h2> 
+ <pre class="brush: mql4; toolbar: false;">double MathMod(double value, double value2)</pre> 
+ <p>此函数返回两个数相除的浮点型余数。</p> 
+ <p>MathMod函数计算x/y的浮点余数f，因此x=i*y+f，其中i是整数，f与x有相同的正负号，且f的绝对值要小于y的绝对值。</p> 
+ <p>参数:</p> 
+ <pre>value1 - 被除数。
+value2 - 除数。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  double x=-10.0,y=3.0,z;
+  z=MathMod(x,y);
+  Print("余数 ",x," / ",y," 为 ",z);
+  //输出数据:  -10 / 3 的余数为 -1</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="MathPow"></a>MathPow() – 求幂</h2> 
+ <pre class="brush: mql4; toolbar: false;">double MathPow(double base, double exponent)</pre> 
+ <p>返回基数指定次方的值。</p> 
+ <p>参数:</p> 
+ <pre>base - 基数。
+exponent - 指数值。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  double x=2.0,y=3.0,z;
+  z=MathPow(x,y);
+  Printf(x," 的",y,"次乘方为", z);
+  //输出数据: 2 的 3次乘方为8</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="MathRand"></a>MathRand() – 获取随机整数</h2> 
+ <pre class="brush: mql4; toolbar: false;">int MathRand()</pre> 
+ <p>MathRand函数返回一个在0到32767范围内的伪随机整数。在调用MathRand之前，需要先使用 <a href="#MathSrand">MathSrand()</a> 函数。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  MathSrand(TimeLocal());
+  // 显示 10 个数字.
+  for(int i=0;i&lt;10;i++ )
+  Print("随机数 ", MathRand());</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="MathRound"></a>MathRound() – 求四舍五入值</h2> 
+ <pre class="brush: mql4; toolbar: false;">double MathRound(double value)</pre> 
+ <p>返回四舍五入到最接近指定数值的整数。</p> 
+ <p>参数:</p> 
+ <pre>value - 要四舍五入的值。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  double y=MathRound(2.8);
+  Print("The round of 2.8 is ",y);
+  y=MathRound(2.4);
+  Print("The round of -2.4 is ",y);
+  //输出 : The round of 2.8 is 3
+  //      The round of -2.4 is -2</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="MathSin"></a>MathSin() – 求正弦</h2> 
+ <pre class="brush: mql4; toolbar: false;">double MathSin(double value)</pre> 
+ <p>返回指定角的正弦。</p> 
+ <p>参数:</p> 
+ <pre>value - 弧度表示的角度值。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  double pi=3.1415926535;
+  double x, y;
+  x=pi/2;
+  y=MathSin(x);
+  Print("MathSin(",x,") = ",y);
+  y=MathCos(x);
+  Print("MathCos(",x,") = ",y);
+  //输出: MathSin(1.5708)=1
+  //      MathCos(1.5708)=0</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="MathSqrt"></a>MathSqrt() – 求平方根</h2> 
+ <pre class="brush: mql4; toolbar: false;">double MathSqrt(double x)</pre> 
+ <p>MathSgrt函数返回x的平方根。如果x为负值，返回无穷大(NaN)。</p> 
+ <p>参数:</p> 
+ <pre>x - 求平方根的数值。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  double question=45.35, answer;
+  answer=MathSqrt(question);
+  if(question&lt;0)
+    Print("Error: MathSqrt returns ",answer," answer");
+  else
+    Print("The square root of ",question," is ", answer);
+  //输出:  45.35 的平方根是 6.73</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="MathSrand"></a>MathSrand() – 随机数设置</h2> 
+ <pre class="brush: mql4; toolbar: false;">void MathSrand(int seed)</pre> 
+ <p>MathSrand()函数为生成一组伪随机整数设置一个起点。为了重新初始化随机数生成器，使用1作为种子。用其它数值作为种子可以将生成器设定到一个随机起点。用 <a href="#MathRand">MathRand</a> 取回已生成的伪随机数。在调用MathSrand()之前，调用MathRand函数和用1作为种子调用MathSrand函数都会生成相同的随机数。</p> 
+ <p>参数:</p> 
+ <pre>seed - 生成随机数的种子。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  MathSrand(TimeLocal());
+  // 显示 10 个 随机数.
+  for(int i=0;i&lt;10;i++ )
+    Print("random value ", MathRand());</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="MathTan"></a>MathTan() – 求正切</h2> 
+ <pre class="brush: mql4; toolbar: false;">double MathTan(double x)</pre> 
+ <p>MathTan返回x的正切值。如果x大于等于263，或者x小于等于-263，这种情况下函数返回无穷大(NaN)</p> 
+ <p>参数:</p> 
+ <pre>x - 弧度表示的角度值。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  double pi=3.1415926535;
+  double x,y;
+  x=MathTan(pi/4);
+  Print("MathTan(",pi/4," = ",x);
+  //输出: MathTan(0.7856)=1</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="http://www.myeatrade.com/zh/401/" rel="bookmark"><b>http://www.myeatrade.com/zh/401/</b></a> 
+</div>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <p>本组函数用于处理文件。</p> 
+ <p>存放工作文件的三个目录(含子目录):</p> 
+ <ul> 
+  <li>/HISTORY/&lt;当前经纪商&gt; – 特别提供的FileOpenHistory函数: </li> 
+  <li>/EXPERTS/FILES – 公用目录; </li> 
+  <li>/TESTER/FILES – 测试专用。 </li> 
+ </ul> 
+ <p>禁止访问来自于其他目录的工作文件。</p> 
+ <ul id="toc_l"> 
+  <li><strong><a href="http://www.myeatrade.com/zh/395/#FileClose">FileClose()</a></strong> – 关闭文件 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/395/#FileDelete">FileDelete()</a></strong> – 删除文件 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/395/#FileFlush">FileFlush()</a></strong> – 清除文件缓冲区并存盘 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/395/#FileIsEnding">FileIsEnding()</a></strong> – 判断文件指针是否到文件尾 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/395/#FileIsLineEnding">FileIsLineEnding()</a></strong> – 判断文件指针是否指向行尾 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/395/#FileOpen">FileOpen()</a></strong> – 打开文件 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/396/#FileOpenHistory">FileOpenHistory()</a></strong> – 打开历史目录下文件 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/396/#FileReadArray">FileReadArray()</a></strong> – 文件读取到数组 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/396/#FileReadDouble">FileReadDouble()</a></strong> – 从文件读取浮点型数据 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/396/#FileReadInteger">FileReadInteger()</a></strong> – 从文件读取整型数据 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/396/#FileReadNumber">FileReadNumber()</a></strong> – 从文本文件读取数值 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/396/#FileReadString">FileReadString()</a></strong> – 从文件读取字符串 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/396/#FileSeek">FileSeek()</a></strong> – 移动文件指针 </li> 
+  <li><strong><a href="#FileSize">FileSize()</a></strong> – 获取文件大小 </li> 
+  <li><strong><a href="#FileTell">FileTell()</a></strong> – 获取文件指针位置 </li> 
+  <li><strong><a href="#FileWrite">FileWrite()</a></strong> – 写入CSV文件 </li> 
+  <li><strong><a href="#FileWriteArray">FileWriteArray()</a></strong> – 数组内容写入文件 </li> 
+  <li><strong><a href="#FileWriteDouble">FileWriteDouble()</a></strong> – 双精度数值写入文件 </li> 
+  <li><strong><a href="#FileWriteInteger">FileWriteInteger()</a></strong> – 整型数值写入文件 </li> 
+  <li><strong><a href="#FileWriteString">FileWriteString()</a></strong> – 字符串写入文件 </li> 
+ </ul> 
+ <p>&nbsp;</p> 
+ <h2><a name="FileSize"></a>FileSize() – 获取文件大小</h2> 
+ <pre class="brush: mql4; toolbar: false;">int FileSize(int handle)</pre> 
+ <p>本函数返回文件大小(字节数)。</p> 
+ <p>如果想获取详细的错误信息，请调用 <a href="http://www.myeatrade.com/zh/386/#GetLastError">GetLastError()</a> 函数。</p> 
+ <p>参数:</p> 
+ <pre>handle - 用 FileOpen()函数返回的句柄。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  int handle;
+  int size;
+  handle=FileOpen("my_table.dat", FILE_BIN|FILE_READ);
+  if(handle&gt;0)
+    {
+     size=FileSize(handle);
+     Print("my_table.dat 大小为 ", size, " bytes");
+     FileClose(handle);
+    }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="FileTell"></a>FileTell() – 获取文件指针位置</h2> 
+ <pre class="brush: mql4; toolbar: false;">int FileSize(int handle)</pre> 
+ <p>本函数返回文件指针的当前位置。</p> 
+ <p>如果想获取详细的错误信息，请调用 <a href="http://www.myeatrade.com/zh/386/#GetLastError">GetLastError()</a> 函数。</p> 
+ <p>参数:</p> 
+ <pre>handle - 用 FileOpen()函数返回的句柄。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  int handle;
+  int pos;
+  handle=FileOpen("my_table.dat", FILE_BIN|FILE_READ);
+  // 读取数据
+  pos=FileTell(handle);
+  Print("current position is ", pos);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="FileWrite"></a>FileWrite() – 写入CSV文件</h2> 
+ <pre class="brush: mql4; toolbar: false;">int FileSize(int handle,...)</pre> 
+ <p>本函数用于向CSV文件写入数据，并自动插入数据分隔符。在写入文件后，每行的尾端将会添加"\r\n"回车换行符。数值将会转变成文本(参看 <a href="http://www.myeatrade.com/zh/388/#Print">Print()</a> 函数)。</p> 
+ <p>本函数返回写入的字符个数，如果写入出错，返回一个负数。</p> 
+ <p>参数:</p> 
+ <pre>handle - 用 FileOpen()函数返回的句柄。
+...    - 用户写入的数据用逗号分隔，最多支持63个参数。int型和double型数据自动转换
+          成字符串，但不自动转换颜色型、日期时间型、布尔型数据，他们被当作数值写入
+          文件。数组不能作为参数传递。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  int handle;
+  datetime orderOpen=OrderOpenTime();
+  handle=FileOpen("filename", FILE_CSV|FILE_WRITE, ';');
+  if(handle&gt;0)
+    {
+     FileWrite(handle, Close[0], Open[0], High[0], Low[0], TimeToStr(orderOpen));
+     FileClose(handle);
+    }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="FileWriteArray"></a>FileWriteArray() – 数组内容写入文件</h2> 
+ <pre class="brush: mql4; toolbar: false;">int FileWriteArray(int handle,object array[], int start, int count)</pre> 
+ <p>本函数将数组内容写入一个二进制文件。整型、布尔型、日期时间型和颜色型数组元素作为4字节整数写入文件；双精度型数组元素作为8字节浮点数写入文件；字符串型数组直接写入文件；并在每串末尾自动添加 "\r\n” 回车换行符。</p> 
+ <p>本函数返回写入内容的个数，如果写入出错，返回负值。</p> 
+ <p>参数:</p> 
+ <pre>handle - 用 FileOpen()函数返回的句柄。
+array[] - 要写入文件的数组。
+start - 写入数据的开始位置(写入文件的第一个元素的数组下标)。
+count - 要写入文件数组元素的个数。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  int handle;
+  double BarOpenValues[10];
+  //  复制前十个柱体(K线)到数组
+  for(int i=0;i&lt;10; i++)
+    BarOpenValues[i]=Open[i];
+  // 将数组数据写入到文件
+  handle=FileOpen("mydata.dat", FILE_BIN|FILE_WRITE);
+  if(handle&gt;0)
+    {
+     FileWriteArray(handle, BarOpenValues, 3, 7); // 写入最后7个元素
+     FileClose(handle);
+    }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="FileWriteDouble"></a>FileWriteDouble() – 双精度数值写入文件</h2> 
+ <pre class="brush: mql4; toolbar: false;">int FileWriteDouble(int handle, double value, void size)</pre> 
+ <p>本函数将双精度数写入二进制文件。如果格式被指定为FLOAT_VALUE，值将作为4字节浮点数写入(浮点型)，否则，它以8字节浮点数格式写入(双精度型)。</p> 
+ <p>返回实际写入的字节数，如果写入出错，返回负值。</p> 
+ <p>参数:</p> 
+ <pre>handle - 用 FileOpen()函数返回的句柄。
+value - 要写入文件的数值。
+size - 选择格式。可以是以下的任意值：
+       DOUBLE_VALUE (8 字节，默认值)
+       FLOAT_VALUE (4 字节)</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  int handle;
+  double var1=0.345;
+  handle=FileOpen("mydata.dat", FILE_BIN|FILE_WRITE);
+  if(handle&lt;1)
+    {
+     Print("不能打开文件错误-",GetLastError());
+     return(0);
+    }
+  FileWriteDouble(h1, var1, DOUBLE_VALUE);
+  //...
+  FileClose(handle);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="FileWriteInteger"></a>FileWriteInteger() – 整型数值写入文件</h2> 
+ <pre class="brush: mql4; toolbar: false;">int FileWriteInteger(int handle, int value, void size)</pre> 
+ <p>本函数将整型数值写入二进制文件。如果格式被指定为SHORT_VALUE，值将作为2字节整型(短整型)，如果格式被指定为CHAR_VALUE，值将作为1字节整型(字符型)，否则，它以4字节整型格式(长整型)写入。</p> 
+ <p>返回实际写入的字节数，如果写入出错，返回负值。</p> 
+ <p>参数:</p> 
+ <pre>handle - 用 FileOpen()函数返回的句柄。
+value - 要写入文件的数值。
+size - 选择格式。可以是以下的任意值：
+       CHAR_VALUE (1 字节)
+       SHORT_VALU (2 字节)
+       LONG_VALUE (4 字节，默认值)</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  int handle;
+  int value=10;
+  handle=FileOpen("filename.dat", FILE_BIN|FILE_WRITE);
+  if(handle&lt;1)
+    {
+     Print("不能打开文件错误-",GetLastError());
+     return(0);
+    }
+  FileWriteInteger(handle, value, SHORT_VALUE);
+  //...
+  FileClose(handle);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="FileWriteString"></a>FileWriteString() – 字符串写入文件</h2> 
+ <pre class="brush: mql4; toolbar: false;">int FileWriteString(int handle, string value, int length)</pre> 
+ <p>本函数将字符串写入二进制文件的当前位置。</p> 
+ <p>本函数返回实际写入的字节数，如果写入出错，返回负值。</p> 
+ <p>参数:</p> 
+ <pre>handle - 用 FileOpen()函数返回的句柄。
+value - 要写入文件的字符串。
+length - 写入的字符串长度。如果字符串长度超出给定的值，多余部分将被截掉。
+         如果它较短，不足部分将用二进制0填充到给定的长度。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  int handle;
+  string str="some string";
+  handle=FileOpen("filename.bin", FILE_BIN|FILE_WRITE);
+    if(handle&lt;1)
+    {
+     Print("不能打开文件错误-",GetLastError());
+     return(0);
+    }
+  FileWriteString(h1, str, 8);
+  FileClose(handle);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="http://www.myeatrade.com/zh/397/" rel="bookmark"><b>http://www.myeatrade.com/zh/397/</b></a> 
+</div>
+</body>
+</html>

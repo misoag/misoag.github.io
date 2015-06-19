@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <p>常规用途函数，不涉及任何专用函数。</p> 
+ <ul> 
+  <li><strong><a href="http://www.myeatrade.com/zh/388/#Alert">Alert()</a></strong> – 弹出警告窗口 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/388/#Comment">Comment()</a></strong> – 图表上显示信息 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/388/#Print">Print()</a></strong> – 输出文本信息 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/388/#PlaySound">PlaySound()</a></strong> – 播放声音文件 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/388/#MarketInfo">MarketInfo()</a></strong> – 获取市场相关信息 </li> 
+  <li><strong><a href="#GetTickCount">GetTickCount()</a></strong> – 获取运行时间 </li> 
+  <li><strong><a href="#MessageBox">MessageBox()</a></strong> – 显示信息框 </li> 
+  <li><strong><a href="#SendFTP">SendFTP()</a></strong> – 发送文件到FTP服务器 </li> 
+  <li><strong><a href="#SendMail">SendMail()</a></strong> – 发送电子邮件 </li> 
+  <li><strong><a href="#SendNotification">SendNotification()</a></strong> – 发送推送通知 </li> 
+  <li><strong><a href="#Sleep">Sleep()</a></strong> – 程序暂停运行 </li> 
+ </ul> 
+ <p>&nbsp;</p> 
+ <h2><a name="GetTickCount"></a>GetTickCount() – 获取运行时间</h2> 
+ <pre class="brush: mql4; toolbar: false;">int GetTickCount()</pre> 
+ <p>GetTickCount()函数取回自从系统被启动以来已经过去的毫秒数。它的值取决于系统时间的设定。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  int start=GetTickCount();
+  // 计算...
+  Print("Calculation time is ", GetTickCount()-start, " milliseconds.");</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="MessageBox"></a>MessageBox() – 显示信息框</h2> 
+ <pre class="brush: mql4; toolbar: false;">int MessageBox(void text, void caption, void flags)</pre> 
+ <p>MessageBox()函数可以创建、显示和控制信息框。信息框内包含应用程序定义的信息内容和标题，也可以足预定义的图标和按钮的任意组合。如果函数成功运行，返回值就是<a href="http://www.myeatrade.com/zh/375/#MessageBox">MessageBox函数返回码</a>的其中之一。</p> 
+ <p>由于本函数在接口线程内执行，而且还不能放慢速度，所以本函数不能从自定义指标中调用。</p> 
+ <p>参数:</p> 
+ <pre>text - 窗口上显示的文字。
+caption - 窗口上显示的标题。如果参数为 NULL, 智能交易名称将显示在标题上。
+flags - 决定窗口类型和操作的可选项。它们可用为 <a href="http://www.myeatrade.com/zh/375/#MessageBox">messagebox函数标志常量</a> 的一种组合。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  #include &lt;WinUser32.mqh&gt;
+
+  if(ObjectCreate("text_object", OBJ_TEXT, 0, D'2004.02.20 12:30', 1.0045)==false)
+    {
+     int ret=MessageBox(" ObjectCreate() function returned the "+GetLastError()+" error\nContinue?", "Question", MB_YESNO|MB_ICONQUESTION);
+     if(ret==IDNO) return(false);
+    }
+  // 继续</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="SendFTP"></a>SendFTP() – 发送文件到FTP服务器</h2> 
+ <pre class="brush: mql4; toolbar: false;">bool SendFTP(string filename, void ftp_path)</pre> 
+ <p>发送文件到FTP服务器，其通信参数在“工具&gt;选项&gt;公开”标签内设置。如果发送失败，返回FALSE。</p> 
+ <p>本函数在测试模式下不起作用，也不能从自定义指标中调用。</p> 
+ <p>发送的文件必须在 <em>terminal_directory\experts\files </em>目录或子目录下，如果未设置FTP地址，或未提供访问密码，文件不会发送成功。</p> 
+ <p>参数:</p> 
+ <pre><b>filename</b> - 发送的文件。
+ftp_path - FTP路径。如果没有指定路径，则使用设置中说明的路径。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  int lasterror=0;
+  if(!SendFTP("report.txt"))
+    lasterror=GetLastError();</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="SendMail"></a>SendMail() – 发送电子邮件</h2> 
+ <pre class="brush: mql4; toolbar: false;">void SendMail(string subject, string some_text)</pre> 
+ <p>发送电子邮件。邮件地址设置在 "工具&gt;选项&gt;EMail” 标签内。</p> 
+ <p>此项功能可以在客户端设置为禁用，或者省略指定的邮件地址。调用 <a href="http://www.myeatrade.com/zh/386/#GetLastError">GetLastError()</a> 函数可以获得详细出错信息。</p> 
+ <p>参数:</p> 
+ <pre>subject - 邮件标题。
+some_text - 邮件文本内容。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  double lastclose=Close[0];
+  if(lastclose&lt;my_signal)
+    SendMail("从你的智能交易", "价格下降到"+DoubleToStr(lastclose,Digits));</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="SendNotification"></a>SendNotification() – 发送推送通知</h2> 
+ <pre class="brush: mql4; toolbar: false;">bool SendNotification(string message)</pre> 
+ <p>向选项窗口的“通知”标签上指定的MetaQuotes ID的移动程序端发送推送通知。</p> 
+ <p>可以在设置中禁止发送通知。也可以省略ID。</p> 
+ <p>如果出错的话，函数会返回false。若要获取有关错误的信息，调用 <a href="http://www.myeatrade.com/zh/386/#GetLastError">GetLastError()</a> 函数。</p> 
+ <p>注意: SendNotification()函数具有严格的使用限制：每秒钟不得调用2次以上并且每分钟调用不超过10次。动态控制频繁调用，如若违背函数会被封锁。</p> 
+ <p>参数:</p> 
+ <pre>message - 发送的信息，最多255个字符。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  double lastclose=Close[0];
+  if(lastclose&lt;my_signal)
+    SendNotification("价格更改 "+DoubleToStr(lastclose,Digits));</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Sleep"></a>Sleep() – 程序暂停运行</h2> 
+ <pre class="brush: mql4; toolbar: false;">void Sleep(int milliseconds)</pre> 
+ <p>Sleep()函数可以临时暂停运行当前智能交易程序一段时间。</p> 
+ <p>由于Sleep()函数运行在接口线程中，而且又不能减速，所以本函数不能在自定义指标内调用。</p> 
+ <p>当Sleep()函数运行时，智能交易每隔0. 1秒会自动检测一次停止标志的状态。</p> 
+ <p>参数:</p> 
+ <pre>milliseconds - 暂停毫秒数。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">//---- 等待10秒
+   Sleep(10000);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="http://www.myeatrade.com/zh/389/" rel="bookmark"><b>http://www.myeatrade.com/zh/389/</b></a> 
+</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <p>常规用途函数，不涉及任何专用函数。</p> 
+ <ul> 
+  <li><strong><a href="#Alert">Alert()</a></strong> – 弹出警告窗口</li> 
+  <li><strong><a href="#Comment">Comment()</a></strong> – 图表上显示信息</li> 
+  <li><strong><a href="#Print">Print()</a></strong> – 输出文本信息</li> 
+  <li><strong><a href="#PlaySound">PlaySound()</a></strong> – 播放声音文件</li> 
+  <li><strong><a href="#MarketInfo">MarketInfo()</a></strong> – 获取市场相关信息</li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/389/#GetTickCount">GetTickCount()</a></strong> – 获取运行时间</li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/389/#MessageBox">MessageBox()</a></strong> – 显示信息框</li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/389/#SendFTP">SendFTP()</a></strong> – 发送文件到FTP服务器</li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/389/#SendMail">SendMail()</a></strong> – 发送电子邮件</li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/389/#SendNotification">SendNotification()</a></strong> – 发送推送通知</li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/389/#Sleep">Sleep()</a></strong> – 程序暂停运行</li> 
+ </ul> 
+ <p><br></p> 
+ <h2><a name="Alert"></a>Alert() – 弹出警告窗口</h2> 
+ <pre class="brush: mql4; toolbar: false;">void Alert(...)</pre> 
+ <p>弹出一个包含用户提示信息的警告窗口。参数可以是任意类型，总数不得超过64个。</p> 
+ <p>数组不能作为参数传递给 Alert() 函数。</p> 
+ <p>双精度型数据可以输出到小数点后4位。要想输出更高精度的数据，请使用 <a href="http://www.myeatrade.com/zh/390/#DoubleToStr">DoubleToStr() 函数</a>。</p> 
+ <p>布尔型、日期时间型和颜色型数据作为数值型数据输出。</p> 
+ <p>使用 <a href="http://www.myeatrade.com/zh/390/#TimeToStr">TimeToStr() 函数</a>将日期时间型数据转换成字符串，再以字符串形式输出。</p> 
+ <p>参见 <a href="#Comment">Comment()</a> 和 <a href="#Print">Print()</a> 函数。</p> 
+ <p>参数:</p> 
+ <pre>... - 任意值，如有多个可用逗号分割 。最多为64个参数。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  if(Close[0]&gt;SignalLevel)
+    Alert("收盘价进入 ", Close[0],"!!!");</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Comment"></a>Comment() – 图表上显示信息</h2> 
+ <pre class="brush: mql4; toolbar: false;">void Comment(...)</pre> 
+ <p>本函数可以在图表左上角显示相关信息。参数可以是任意类型，最多64个。</p> 
+ <p>数组不能作为参数传递给 Comment() 函数。</p> 
+ <p>双精度型数据可以输出到小数点后4位。要想输出更高精度的数据，请使用 <a href="http://www.myeatrade.com/zh/390/#DoubleToStr">DoubleToStr() 函数</a>。</p> 
+ <p>布尔型、日期时间型和颜色型数据作为数值型数据输出。</p> 
+ <p>使用 <a href="http://www.myeatrade.com/zh/390/#TimeToStr">TimeToStr() 函数</a>将日期时间型数据转换成字符串，再以字符串形式输出。</p> 
+ <p>参见 <a href="#Alert">Alert()</a> 和 <a href="#Print">Print()</a> 函数。</p> 
+ <p>参数:</p> 
+ <pre>... - 任意值，如有多个可用逗号分割 。最多为64个参数。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  double free=AccountFreeMargin();
+  Comment("账户自由保证金 ",DoubleToStr(free,2),"\n","Current time is ",TimeToStr(TimeCurrent()));</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="Print"></a>Print() – 输出文本信息</h2> 
+ <pre class="brush: mql4; toolbar: false;">void Print(...)</pre> 
+ <p>本函数可以向智能交易日志输出文本信息。参数可以是任意类型，最多64个。</p> 
+ <p>数组不能作为参数传递给 Print() 函数。</p> 
+ <p>双精度型数据可以输出到小数点后4位。要想输出更高精度的数据，请使用 <a href="http://www.myeatrade.com/zh/390/#DoubleToStr">DoubleToStr() 函数</a>。</p> 
+ <p>布尔型、日期时间型和颜色型数据作为数值型数据输出。</p> 
+ <p>使用 <a href="http://www.myeatrade.com/zh/390/#TimeToStr">TimeToStr() 函数</a>将日期时间型数据转换成字符串，再以字符串形式输出。</p> 
+ <p>参见 <a href="#Comment">Comment()</a> 和 <a href="#Print">Print()</a> 函数。</p> 
+ <p>参数:</p> 
+ <pre>... - 任意值，如有多个可用逗号分割 。最多为64个参数。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">Print("当前可用保证金 ", AccountFreeMargin());
+  Print("当前时间 ", TimeToStr(TimeCurrent()));
+  double pi=3.141592653589793;
+  Print("PI number is ", DoubleToStr(pi,8)); // 输出: PI number is 3.14159265
+  for(int i=0;i</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="PlaySound"></a>PlaySound() – 播放声音文件</h2> 
+ <pre class="brush: mql4; toolbar: false;">void PlaySound(string filename)</pre> 
+ <p>本函数播放一个声音文件。文件必须放在 <em>terminal_dir\sounds</em> 目录或子目录内。</p> 
+ <p>参数:</p> 
+ <pre>filename - 音频文件名称。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  if(IsDemo()) PlaySound("alert.wav");</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="MarketInfo"></a>MarketInfo() – 获取市场相关信息</h2> 
+ <pre class="brush: mql4; toolbar: false;">double MarketInfo(string symbol, int type)</pre> 
+ <p>返回在市场观察窗口中列出的不同货币对的相关信息数据。当前货币对的部分信息已经存储在 <a href="http://www.myeatrade.com/zh/378/">预定义变量</a> 中。</p> 
+ <p>参数:</p> 
+ <pre>symbol - 货币对名称。
+type - 请求返回定义的信息类型标识符，可以是 <a href="http://www.myeatrade.com/zh/374/#MarketInfo">请求标别符</a> 的任意值。</pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">   double bid   =MarketInfo("EURUSD",MODE_BID);
+   double ask   =MarketInfo("EURUSD",MODE_ASK);
+   double point =MarketInfo("EURUSD",MODE_POINT);
+   int    digits=MarketInfo("EURUSD",MODE_DIGITS);
+   int    spread=MarketInfo("EURUSD",MODE_SPREAD);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="http://www.myeatrade.com/zh/388/" rel="bookmark"><b>http://www.myeatrade.com/zh/388/</b></a> 
+</div>
+</body>
+</html>

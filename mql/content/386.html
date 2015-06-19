@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <p>这组函数可以检测客户端的当前状态，包括运行MQL4程序的环境状态。</p> 
+ <ul> 
+  <li><strong><a href="#GetLastError">GetLastError()</a></strong> – 获取最新产生的错误信息 </li> 
+  <li><strong><a href="#IsConnected">IsConnected()</a></strong> – 判断连接状态 </li> 
+  <li><strong><a href="#IsDemo">IsDemo()</a></strong> – 判断是否是模拟账户 </li> 
+  <li><strong><a href="#IsDllsAllowed">IsDllsAllowed()</a></strong> – 判断是否允许调用DLL函数 </li> 
+  <li><strong><a href="#IsExpertEnabled">IsExpertEnabled()</a></strong> – 判断智能交易是否开启 </li> 
+  <li><strong><a href="#IsLibrariesAllowed">IsLibrariesAllowed()</a></strong> – 判断是否允许调用库函数 </li> 
+  <li><strong><a href="#IsOptimization">IsOptimization()</a></strong> – 判断是否在优化模式中运行 </li> 
+  <li><strong><a href="#IsStopped">IsStopped()</a></strong> – 判断智能交易是否中止 </li> 
+  <li><strong><a href="#IsTesting">IsTesting()</a></strong> – 判断是否在测试模式中运行 </li> 
+  <li><strong><a href="#IsTradeAllowed">IsTradeAllowed()</a></strong> – 判断是否允许交易 </li> 
+  <li><strong><a href="#IsTradeContextBusy">IsTradeContextBusy()</a></strong> – 判断交易是否忙 </li> 
+  <li><strong><a href="#IsVisualMode">IsVisualMode()</a></strong> – 判断是否在可视模式下测试 </li> 
+  <li><strong><a href="#UninitializeReason">UninitializeReason()</a></strong> – 获取未初始化原因 </li> 
+ </ul> 
+ <p>&nbsp;</p> 
+ <h2><a name="GetLastError"></a>GetLastError() – 获取最新产生的错误信息</h2> 
+ <pre class="brush: mql4; toolbar: false;">int GetLastError()</pre> 
+ <p>本函数先返回最新<a href="http://www.myeatrade.com/zh/377/#Error_codes">产生的错误信息</a>，然后将保存出错代码的<a href="http://www.myeatrade.com/zh/381/">last_error变量</a>值归零，所以，再次调用GetLastError()函数将返回0。 </p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  int err;
+  int handle=FileOpen("somefile.dat", FILE_READ|FILE_BIN);
+  if(handle&lt;1)
+    {
+     err=GetLastError();
+     Print("错误(",err,"): ",ErrorDescription(err));
+     return(0);
+    }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="IsConnected"></a>IsConnected() – 判断连接状态</h2> 
+ <pre class="brush: mql4; toolbar: false;">bool IsConnected()</pre> 
+ <p>本函数返回在客户端和执行数据中转任务的服务器之间主连接状态。如果成功建立到服务器的连接，返回true，否则，返回false。 </p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  if(!IsConnected())
+    {
+     Print("没有连接到服务器!");
+     return(0);
+    }
+  // 需要建立连接才能执行下面的代码
+  // ...</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="IsDemo"></a>IsDemo() – 判断是否是模拟账户</h2> 
+ <pre class="brush: mql4; toolbar: false;">bool IsDemo()</pre> 
+ <p>如果智能交易在模拟账户里运行，返回true，否则，返回false。 </p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  if(IsDemo()) Print("在模拟账户运行");
+  else Print("在真实账户运行");</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="IsDllsAllowed"></a>IsDllsAllowed() – 判断是否允许调用DLL函数</h2> 
+ <pre class="brush: mql4; toolbar: false;">bool IsDllsAllowed()</pre> 
+ <p>如果智能交易允许调用DLL函数，返回true，否则，返回false。 </p> 
+ <p><b>参见</b> <a href="#IsLibrariesAllowed">IsLibrariesAllowed()</a>, <a href="#IsTradeAllowed">IsTradeAllowed()</a>.</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  #import "user32.dll"
+     int     MessageBoxA(int hWnd, string szText, string szCaption,int nType);
+  ...
+  ...
+  if(IsDllsAllowed()==false)
+    {
+     Print("DLL不允许调用。智能交易不能运行。");
+     return(0);
+    }
+  // 智能交易程序调用外部DLL函数
+    MessageBoxA(0,"an message","Message",MB_OK);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="IsExpertEnabled"></a>IsExpertEnabled() – 判断智能交易是否开启</h2> 
+ <pre class="brush: mql4; toolbar: false;">bool IsExpertEnabled()</pre> 
+ <p>如果智能交易开启，返回true，否则，返回false。 </p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">   while(!IsStopped())
+    {
+     ...
+     if(!IsExpertEnabled()) break;
+    }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="IsLibrariesAllowed"></a>IsLibrariesAllowed() – 判断是否允许调用库函数</h2> 
+ <pre class="brush: mql4; toolbar: false;">bool IsLibrariesAllowed()</pre> 
+ <p>如果智能交易允许调用库函数，返回true，否则，返回false。</p> 
+ <p><b>参见</b> <a href="#IsDllsAllowed">IsDllsAllowed()</a>, <a href="#IsTradeAllowed">IsTradeAllowed()</a>. </p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  #import "somelibrary.ex4"
+     int somefunc();
+  ...
+  ...
+  if(IsLibrariesAllowed()==false)
+    {
+     Print("不允许调用数据库");
+     return(0);
+    }
+  // 智能交易调用外部 DLL 函数
+  somefunc();</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="IsOptimization"></a>IsOptimization() – 判断是否在优化模式中运行</h2> 
+ <pre class="brush: mql4; toolbar: false;">bool IsOptimization()</pre> 
+ <p>如果智能交易运行在策略测试器的优化模式，返回true，否则，返回false。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  if(IsOptimization()) return(0);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="IsStopped"></a>IsStopped() – 判断智能交易是否中止</h2> 
+ <pre class="brush: mql4; toolbar: false;">bool IsStopped()</pre> 
+ <p>如果程序(一个智能交易程序或一个脚本程序)得到了停止运行的命令，返回true，否则，返回false。在 <a href="http://www.myeatrade.com/zh/380/#Program Run">客户端强制中止执行</a> 之前，程序还能继续运行2.5秒。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  while(expr!=false)
+    {
+     if(IsStopped()==true) return(0);
+     // 长时间运行循环
+     // ...
+    }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="IsTesting"></a>IsTesting() – 判断是否在测试模式中运行</h2> 
+ <pre class="brush: mql4; toolbar: false;">bool IsTesting()</pre> 
+ <p>如果智能交易运行在测试模式中，返回true，否则，返回false。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  if(IsTesting()) Print("测试中");</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="IsTradeAllowed"></a>IsTradeAllowed() – 判断是否允许交易</h2> 
+ <pre class="brush: mql4; toolbar: false;">bool IsTradeAllowed()</pre> 
+ <p>如果智能交易程序允许交易，而且执行交易的线程没有被占用，返回true，否则，返回false。</p> 
+ <p><b>参见</b> <a href="#IsDllsAllowed">IsDllsAllowed()</a>, <a href="#IsLibrariesAllowed">IsLibrariesAllowed()</a>, <a href="#IsTradeContextBusy">IsTradeContextBusy()</a></p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  if(IsTradeAllowed()) Print("允许交易");</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="IsTradeContextBusy"></a>IsTradeContextBusy() – 判断交易是否忙</h2> 
+ <pre class="brush: mql4; toolbar: false;">bool IsTradeContextBusy()</pre> 
+ <p>如果执行交易的线程被另一个智能交易占用，返回true，否则，返回false。</p> 
+ <p><b>参见</b> <a href="#IsTradeAllowed">IsTradeAllowed()</a></p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  if(IsTradeContextBusy()) Print("交易繁忙中，请稍等");</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="IsVisualMode"></a>IsVisualMode() – 判断是否在可视模式下测试</h2> 
+ <pre class="brush: mql4; toolbar: false;">bool IsVisualMode()</pre> 
+ <p>如果智能交易运行在“可视模式”下进行测试，返回true，否则，返回false。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  if(IsVisualMode()) Comment("可视模式开启");</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="UninitializeReason"></a>UninitializeReason() – 获取未初始化原因</h2> 
+ <pre class="brush: mql4; toolbar: false;">int UninitializeReason()</pre> 
+ <p>返回智能交易、自定义指标和脚本的未初始化原因代码。返回值为 <a href="http://www.myeatrade.com/zh/377/#Uninitialize_reason_codes">未初始化原因代码</a> 之一。本函数同样可以在函数init()中调用，用于分析上次运行出错原因。</p> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">  // 这是范例
+  int deinit()
+    {
+     switch(UninitializeReason())
+       {
+        case REASON_CHARTCLOSE:
+        case REASON_REMOVE:      CleanUp(); break; // 清理和所有资源重分配
+        case REASON_RECOMPILE:
+        case REASON_CHARTCHANGE:
+        case REASON_参量:
+        case REASON_ACCOUNT:     StoreData(); break;  // 准备重新开始
+       }
+     //...
+    }</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="http://www.myeatrade.com/zh/386/" rel="bookmark"><b>http://www.myeatrade.com/zh/386/</b></a> 
+</div>
+</body>
+</html>

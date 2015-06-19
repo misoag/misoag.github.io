@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+</head>
+<body>
+    <div class="entry"> 
+ <p>MQL4不仅可以计算当前图表中任何指标，还可以计算任何有效的货币对/图表时段的数据。如果请求数据(货币对名称/图表时段不同于当前图表)来自其他图表，出现这种情况如果相应的图表没有在客户端内打开，数据需要从服务器上下载。这种情况下，<a href="http://www.myeatrade.com/zh/377/#Error_codes">错误信息</a>ERR_HISTORY_WILL_UPDATED(4066-历史数据正在更新中)将被放置于 <a href="http://www.myeatrade.com/zh/381/">last_error</a> 变量中，需要再次请求更新数据(参见 <a href="http://www.myeatrade.com/zh/383/#ArrayCopySeries">ArrayCopySeries()</a> 范例)。</p> 
+ <ul> 
+  <li><strong><a href="http://www.myeatrade.com/zh/405/#iAC">iAC()</a></strong> – 加速震荡指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/405/#iAD">iAD()</a></strong> – 离散指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/405/#iAlligator">iAlligator()</a></strong> – 鳄鱼指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/405/#iADX">iADX()</a></strong> – ADX指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/405/#iATR">iATR()</a></strong> – ATR指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/405/#iAO">iAO()</a></strong> – 动量震荡指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/405/#iBearsPower">iBearsPower()</a></strong> – 熊力指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/405/#iBands">iBands()</a></strong> – 布林线指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/405/#iBandsOnArray">iBandsOnArray()</a></strong> – 基于数组计算布林线指标 </li> 
+  <li><strong><a href="#iBullsPower">iBullsPower()</a></strong> – 牛力指标 </li> 
+  <li><strong><a href="#iCCI">iCCI()</a></strong> – CCI指标 </li> 
+  <li><strong><a href="#iCCIOnArray">iCCIOnArray()</a></strong> – 基于数组计算CCI指标 </li> 
+  <li><strong><a href="#iCustom">iCustom()</a></strong> – 自定义指标 </li> 
+  <li><strong><a href="#iDeMarker">iDeMarker()</a></strong> – DeMarker指标 </li> 
+  <li><strong><a href="#iEnvelopes">iEnvelopes()</a></strong> – Envelopes包络线指标 </li> 
+  <li><strong><a href="#iEnvelopesOnArray">iEnvelopesOnArray()</a></strong> – 基于数组计算包络线指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/407/#iForce">iForce()</a></strong> – 强力指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/407/#iFractals">iFractals()</a></strong> – 分型指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/407/#iGator">iGator()</a></strong> – 鳄鱼振荡指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/407/#iIchimoku">iIchimoku()</a></strong> – Ichimoku云图指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/407/#iBWMFI">iBWMFI()</a></strong> – BWMFI指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/407/#iMomentum">iMomentum()</a></strong> – 动量指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/407/#iMomentumOnArray">iMomentumOnArray()</a></strong> – 基于数组计算动量指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/408/#iMFI">iMFI()</a></strong> – 资金流量指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/408/#iMA">iMA()</a></strong> – 移动平均线 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/408/#iMAOnArray">iMAOnArray()</a></strong> – 基于数组计算移动平均线 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/408/#iOsMA">iOsMA()</a></strong> – OsMA指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/408/#iMACD">iMACD()</a></strong> – MACD指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/408/#iOBV">iOBV()</a></strong> – OBV指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/408/#iSAR">iSAR()</a></strong> – SAR抛物线指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/408/#iRSI">iRSI()</a></strong> – RSI指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/408/#iRSIOnArray">iRSIOnArray()</a></strong> – 基于数组计算RSI指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/408/#iRVI">iRVI()</a></strong> – RVI指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/408/#iStdDev">iStdDev()</a></strong> – 标准差指标 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/408/#iStdDevOnArray">iStdDevOnArray()</a></strong> – 基于数组计算标准差 </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/408/#iStochastic">iStochastic()</a></strong> – 随机震荡指标(KDJ) </li> 
+  <li><strong><a href="http://www.myeatrade.com/zh/408/#iWPR">iWPR()</a></strong> – WPR指标(%R) </li> 
+ </ul> 
+ <p>&nbsp;</p> 
+ <h2><a name="iBullsPower"></a>iBullsPower() – 牛力指标</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iBullsPower(string symbol, int timeframe, int period,
+                   int applied_price, int shift)</pre> 
+ <p>计算<a href="http://www.myeatrade.com/zh/252/">牛力指标</a>。 </p> 
+ <p>参数:</p> 
+ <pre>symbol        - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe     - 时间周期。 可以 <a href="http://www.myeatrade.com/zh/374/#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+period        - 计算的周期数。
+applied_price - 应用的价格。它可以是 <a href="http://www.myeatrade.com/zh/374/#Price_constants">应用价格枚举</a> 的任意值。
+shift         - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">double val=iBullsPower(NULL, 0, 13,PRICE_CLOSE,0);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top"></a>
+ </div> 
+ <h2><a name="iCCI"></a>iCCI() – CCI指标</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iCCI(string symbol, int timeframe, int period,
+                   int applied_price, int shift)</pre> 
+ <p>计算<a href="http://www.myeatrade.com/zh/188/">CCI指标</a>。 </p> 
+ <p>参数:</p> 
+ <pre>symbol        - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe     - 时间周期。 可以 <a href="http://www.myeatrade.com/zh/374/#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+period        - 计算的周期数。
+applied_price - 应用的价格。它可以是 <a href="http://www.myeatrade.com/zh/374/#Price_constants">应用价格枚举</a> 的任意值。
+shift         - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">if(iCCI(NULL,0,12,PRICE_TYPICAL,0)&gt;iCCI(NULL,0,20,PRICE_TYPICAL,0)) return(0);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iCCIOnArray"></a>iCCIOnArray() – 基于数组计算CCI指标</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iCCIOnArray(double array[], int total, int period, int shift)</pre> 
+ <p>基于数值型数组中数据，计算<a href="http://www.myeatrade.com/zh/188/">CCI指标</a>。不同于 <a href="#iCCI">iCCI()</a> ，iCCIOnArray函数并不通过货币对名称、图表时段、请求价格的方式获取数据，而是要求价格数据必须事先准备好，再从左边到右边计算指标。为了能按照序列数组那样存取数组元素(即从右到左)，你必须使用 <a href="http://www.myeatrade.com/zh/385/#ArraySetAsSeries">ArraySetAsSeries</a> 函数。 </p> 
+ <p>参数:</p> 
+ <pre>array[]     - 需要计算数据的数组。
+total       - 要参与计算的元素个数。0意味着使用整个数组。
+period      - 计算的周期数。
+shift       - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">if(iCCIOnArray(ExtBuffer,total,12,0)&gt;iCCI(NULL,0,20,PRICE_TYPICAL, 0)) return(0);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iCustom"></a>iCustom() – 自定义指标</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iCustom(string symbol, int timeframe, string name,
+               ..., int mode, int shift)</pre> 
+ <p>计算指定的自定义指标并返回它的值。自定义指标程序文件(*.EX4文件)需要编译；并且自定义指标程序文件必须放在 <em>terminal_directory\experts\indicators </em>目录内。 </p> 
+ <p>参数:</p> 
+ <pre>symbol    - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe - 时间周期。 可以 <a href="http://www.myeatrade.com/zh/374/#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+name      - 自定义指标编译过的程序名。
+...       - 参数设置(如果需要)。传递的参数和他们的顺序必须与自定义指标外部参数声明的顺序和类型一致。
+mode      - 指标线索引。可以从0到7；仁且必须与 <a href="http://www.myeatrade.com/zh/391/#IndicatorBuffers">SetIndexBuffer函数</a> 使用的索引一致。
+shift     - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">double val=iCustom(NULL, 0, "示例Ind",13,1,0);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iDeMarker"></a>iDeMarker() – DeMarker指标</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iDeMarker(string symbol, int timeframe, int period, int shift)</pre> 
+ <p>计算<a href="http://www.myeatrade.com/zh/247/">DeMarker指标</a>。 </p> 
+ <p>参数:</p> 
+ <pre>symbol        - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe     - 时间周期。 可以 <a href="http://www.myeatrade.com/zh/374/#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+period        - 计算的周期数。
+shift         - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;"> double val=iDeMarker(NULL, 0, 13, 1);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iEnvelopes"></a>iEnvelopes() – Envelopes包络线指标</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iEnvelopes(string symbol, int timeframe, int ma_period,
+                  int ma_method, int ma_shift, int applied_price,
+                  double deviation, int mode, int shift)</pre> 
+ <p>计算<a href="http://www.myeatrade.com/zh/222/">Envelopes包络线指标</a>。 </p> 
+ <p>参数:</p> 
+ <pre>symbol        - 要计算指标数据的货币对名称。 NULL表示当前货币对。
+timeframe     - 时间周期。 可以 <a href="http://www.myeatrade.com/zh/374/#Timeframes">时间周期列举</a> 任意值。 0表示当前图表的时间周期。
+ma_period     - MA计算的周期数。
+ma_method     - MA方法。它可以是任意的 移动平均方法枚举值。
+ma_shift      - MA偏移量。
+applied_price - 应用的价格。它可以是 <a href="http://www.myeatrade.com/zh/374/#Price_constants">应用价格枚举</a> 的任意值。
+deviation     - 与主线的百分比偏差。
+mode          - 指标线的标识符。可以是 <a href="http://www.myeatrade.com/zh/375/#Indicator_lines">指标线标示符</a> 里对应值。
+shift         - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">double val=iEnvelopes(NULL, 0, 13,MODE_SMA,10,PRICE_CLOSE,0.2,MODE_UPPER,0);</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 
+ <h2><a name="iEnvelopesOnArray"></a>iEnvelopesOnArray() – 基于数组计算包络线指标</h2> 
+ <pre class="brush: mql4; toolbar: false;">double iEnvelopesOnArray(double array[], int total, int ma_period,
+                         int ma_method, int ma_shift,
+                         double deviation, int mode, int shift)</pre> 
+ <p>基于数值型数组中数据，计算<a href="http://www.myeatrade.com/zh/222/">Envelopes包络线指标</a>。不同于 <a href="#iEnvelopes">iEnvelopes()</a> ，iEnvelopesOnArray函数并不通过货币对名称、图表时段、请求价格的方式获取数据，而是要求价格数据必须事先准备好，再从左边到右边计算指标。为了能按照序列数组那样存取数组元素(即从右到左)，你必须使用 <a href="http://www.myeatrade.com/zh/385/#ArraySetAsSeries">ArraySetAsSeries</a> 函数。 </p> 
+ <p>参数:</p> 
+ <pre>array[]       - 需要计算数据的数组。
+total         - 要参与计算的元素个数。0意味着使用整个数组。
+ma_period     - MA计算的周期数。
+ma_method     - MA方法。它可以是任意的 移动平均方法枚举值。
+ma_shift      - MA偏移量。
+deviation     - 与主线的百分比偏差。
+mode          - 指标线的标识符。可以是 <a href="http://www.myeatrade.com/zh/375/#Indicator_lines">指标线标示符</a> 里对应值。
+shift         - 从指标缓冲区中获取值的索引(相对当前柱子向前移动一定数量周期的偏移量)。 </pre> 
+ <p>示例:</p> 
+ <pre class="brush: mql4; toolbar: false;">double val=iEnvelopesOnArray(ExtBuffer, 0, 13, MODE_SMA, 0.2, MODE_UPPER,0 );</pre> 
+ <div class="divider top-of-page">
+  <a title="Top of Page" href="#top">Back to Top</a>
+ </div> 本文地址：
+ <a href="http://www.myeatrade.com/zh/406/" rel="bookmark"><b>http://www.myeatrade.com/zh/406/</b></a> 
+</div>
+</body>
+</html>
