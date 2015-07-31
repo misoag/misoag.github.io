@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="keywords" content="online documentation, web online help, web help, chm2web" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="generator" content="chm2web Pro 2.85 (unicode)" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<title>Global Variables of the Terminal</title>
+<meta name="keywords" content="">
+<link rel="stylesheet" href="files/helpindex.css" type="text/css">
+<link rel="stylesheet" href="default.css" type="text/css">
+
+<script type="text/JavaScript" src="files/supply.js"></script>
+<script type="text/JavaScript">
+chmtop.c2wtopf.pageid = "globals.htm";
+</script>
+
+</head>
+<body style=
+"background-color:#FFFFFF; font-family:'Trebuchet MS',Tahoma,Arial,Helvetica,sans-serif; margin:0px;"><script type="text/JavaScript"> 
+if (window.name != "content") 
+  document.write(" <table width=\"100%\" bgcolor=\"#e1e1e1\"cellspacing=\"2\" cellpadding=\"0\" style=\"border-collapse: collapse; font-family: sans-serif; font-size: 14px; color: #000000; text-decoration: none;  \"> <tr> <td align=\"center\" style=\"border-bottom: 2px solid gray\" > <br>&nbsp;Click <a href=\"index.html?page=globals.htm\">here</a> to show toolbars of the Web Online Help System: <a href=\"index.html?page=globals.htm\">show toolbars</a><br>&nbsp;</td></tr></table><br> "); 
+</script>
+<!-- !chm2web! -->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+style=
+"margin:0; background: #7F90A5 url('gradient_header.png') repeat-x left top; border-bottom: 3px solid #DBE0E5;">
+<tr>
+<td valign="middle">
+<table style="margin: 10px 0" width="100%" border="0" cellspacing=
+"0" cellpadding="0">
+<tr valign="middle">
+<td class="nav"><a class="h_m" href="index.htm">MQL5 Reference</a>
+/ Global Variables of the Terminal</td>
+<td align="right" style="white-space: nowrap; padding: 0 10px;">
+<a href="signalunsubscribe.htm"><img style="vertical-align:middle;"
+src="previous.png" alt="Back" width="27" height="27" border=
+"0"></a><a href="globalvariablecheck.htm"><img style=
+"vertical-align:middle;margin-left: 7px;" src="next.png" alt=
+"Forward" width="27" height="27" border="0"></a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<div id="help">
+<p class="p_H1"><span class="f_H1">Global Variables of the Client
+Terminal</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">There is a group set of
+functions for working with global variables.</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">Global variables of the
+client terminal should not be mixed up with variables declared in
+the <a href="global.htm" class="topiclink">global scope</a> of the
+mql5 program.</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">Global variables are kept in
+the client terminal within 4 weeks since the last access, then they
+will be deleted automatically. An access to a global variable is
+not only setting of a new value, but reading of the global variable
+value, as well.</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">Global variables of the
+client terminal are accessible simultaneously from all mql5
+programs launched in the client terminal.</span>
+</p>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 8px 17px 7px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:194px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Function</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Action</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:194px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"globalvariablecheck.htm" class=
+"topiclink">GlobalVariableCheck</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Checks the existence
+of a global variable with the specified name</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:194px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"globalvariabletime.htm" class=
+"topiclink">GlobalVariableTime</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Returns time of the
+last accessing the global variable</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:194px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"globalvariabledel.htm" class=
+"topiclink">GlobalVariableDel</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Deletes a global
+variable</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:194px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"globalvariableget.htm" class=
+"topiclink">GlobalVariableGet</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Returns the value of
+a global variable</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:194px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"globalvariablename.htm" class=
+"topiclink">GlobalVariableName</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Returns the name of
+a global variable by it's ordinal number in the list of global
+variables</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:194px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"globalvariableset.htm" class=
+"topiclink">GlobalVariableSet</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Sets the new value
+to a global variable</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:194px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"globalvariablesflush.htm" class=
+"topiclink">GlobalVariablesFlush</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Forcibly saves
+contents of all global variables to a disk</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:194px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"globalvariabletemp.htm" class=
+"topiclink">GlobalVariableTemp</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Sets the new value
+to a global variable, that exists only in the current session of
+the terminal</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:194px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"globalvariablesetoncondition.htm" class=
+"topiclink">GlobalVariableSetOnCondition</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Sets the new value
+of the existing global variable by condition</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:194px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"globalvariablesdeleteall.htm" class=
+"topiclink">GlobalVariablesDeleteAll</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Deletes global
+variables with the specified prefix in their names</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:194px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"globalvariablestotal.htm" class=
+"topiclink">GlobalVariablesTotal</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Returns the total
+number of global variables</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+<br>
+</div>
+
+<script type="text/JavaScript">
+var fe = FindFrame("toc", top);
+if ((fe != null) && (chmtop.c2wtopf.jstree != null)) {
+  if (chmtop.c2wtopf.FITEMS[chmtop.c2wtopf.pagenum] != chmtop.c2wtopf.pageid)
+    chmtop.c2wtopf.jstree.OpenTreeNode("" + chmtop.c2wtopf.pageid);
+}
+</script>
+
+<!-- CHM2WEB -->
+<!-- DO NOT DELETE OR MODIFY THIS CODE WITHOUT 
+     WRITTEN PERMISSION OF A!K RESEARCH LABS -->
+<table width="100%" cellspacing="0" cellpadding="0" 
+style="margin-top: 0pt; border-collapse: collapse;"> 
+<tr> <td align="right" style="background-color:white; border-top: 1px solid gray;"> 
+<a href="http://chm2web.aklabs.com" target="_blank" style="font-family: sans-serif;  font-size: 11px; text-decoration: none;"><font color="gray">Converted from CHM to HTML with <b>chm2web Pro 2.85 (unicode)</b></font></a>
+</td></tr></table> 
+<!-- /CHM2WEB -->
+
+</body>
+</html>

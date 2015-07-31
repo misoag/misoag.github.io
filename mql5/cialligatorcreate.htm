@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="keywords" content="online documentation, web online help, web help, chm2web" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="generator" content="chm2web Pro 2.85 (unicode)" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<title>Create</title>
+<meta name="keywords" content="">
+<link rel="stylesheet" href="files/helpindex.css" type="text/css">
+<link rel="stylesheet" href="default.css" type="text/css">
+
+<script type="text/JavaScript" src="files/supply.js"></script>
+<script type="text/JavaScript">
+chmtop.c2wtopf.pageid = "cialligatorcreate.htm";
+</script>
+
+</head>
+<body style=
+"background-color:#FFFFFF; font-family:'Trebuchet MS',Tahoma,Arial,Helvetica,sans-serif; margin:0px;"><script type="text/JavaScript"> 
+if (window.name != "content") 
+  document.write(" <table width=\"100%\" bgcolor=\"#e1e1e1\"cellspacing=\"2\" cellpadding=\"0\" style=\"border-collapse: collapse; font-family: sans-serif; font-size: 14px; color: #000000; text-decoration: none;  \"> <tr> <td align=\"center\" style=\"border-bottom: 2px solid gray\" > <br>&nbsp;Click <a href=\"index.html?page=cialligatorcreate.htm\">here</a> to show toolbars of the Web Online Help System: <a href=\"index.html?page=cialligatorcreate.htm\">show toolbars</a><br>&nbsp;</td></tr></table><br> "); 
+</script>
+<!-- !chm2web! -->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+style=
+"margin:0; background: #7F90A5 url('gradient_header.png') repeat-x left top; border-bottom: 3px solid #DBE0E5;">
+<tr>
+<td valign="middle">
+<table style="margin: 10px 0" width="100%" border="0" cellspacing=
+"0" cellpadding="0">
+<tr valign="middle">
+<td class="nav"><a class="h_m" href="index.htm">MQL5 Reference</a>
+/ <a class="h_m" href="standardlibrary.htm">Standard Library</a> /
+<a class="h_m" href="technicalindicators.htm">Classes for working
+with Indicators</a> / <a class="h_m" href="bwindicators.htm">Bill
+Williams Indicators</a> / <a class="h_m" href=
+"cialligator.htm">CiAlligator</a> / Create</td>
+<td align="right" style="white-space: nowrap; padding: 0 10px;">
+<a href="cialligatorapplied.htm"><img style=
+"vertical-align:middle;" src="previous.png" alt="Back" width="27"
+height="27" border="0"></a><a href="cialligatorjaw.htm"><img style=
+"vertical-align:middle;margin-left: 7px;" src="next.png" alt=
+"Forward" width="27" height="27" border="0"></a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<div id="help">
+<p class="p_H1"><span class="f_H1">Create</span>
+</p>
+
+<p class="p_Function"><span class="f_Function">It creates the
+indicator with specified parameters. Use <a href=
+"cindicatorrefresh.htm" class="topiclink">Refresh()</a> and
+<a href="cindicatorgetdata.htm" class="topiclink">GetData()</a> to
+update and get the indicator values.</span>
+</p>
+
+<div style=
+"text-align: left; text-indent: 0px; border-color: #b3b3b3; border-style: solid; border-width: 1px; background: #fbf9f5; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table cellspacing="0" cellpadding="3" border="0" style=
+"text-align: justify;border:none; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; padding:3px;">
+<p class="p_CodeExample"><span class=
+"f_Keywords">bool&nbsp;&nbsp;</span><span class=
+"f_Functions">Create</span><span class="f_CodeExample">(</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_Keywords">string</span><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Param">symbol</span><span class="f_CodeExample">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Comments">//&nbsp;Symbol</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_Keywords">ENUM_TIMEFRAMES</span><span class=
+"f_CodeExample">&nbsp;&nbsp;</span><span class=
+"f_Param">period</span><span class=
+"f_CodeExample">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Comments">//&nbsp;Period</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_Keywords">int</span><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Param">jaw_period</span><span class="f_CodeExample">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Comments">//&nbsp;Jaws&nbsp;period</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_Keywords">int</span><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Param">jaw_shift</span><span class="f_CodeExample">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Comments">//&nbsp;Jaws&nbsp;shift</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_Keywords">int</span><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Param">teeth_period</span><span class="f_CodeExample">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Comments">//&nbsp;Teeths&nbsp;period</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_Keywords">int</span><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Param">teeth_shift</span><span class="f_CodeExample">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Comments">//&nbsp;Teeths&nbsp;shift</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_Keywords">int</span><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Param">lips_period</span><span class="f_CodeExample">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Comments">//&nbsp;Lips&nbsp;period</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_Keywords">int</span><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Param">lips_shift</span><span class="f_CodeExample">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Comments">//&nbsp;Lips&nbsp;shift</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_Keywords">ENUM_MA_METHOD</span><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_Param">ma_method</span><span class=
+"f_CodeExample">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Comments">//&nbsp;Averaging&nbsp;method</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_Keywords">int</span><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Param">applied</span><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Comments">//&nbsp;Volume&nbsp;type&nbsp;to&nbsp;apply</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;)</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_BoldTitles"><span class=
+"f_BoldTitles">Parameters</span>
+</p>
+
+<p class="p_FunctionParameter"><span class=
+"f_FunctionParameter">symbol</span>
+</p>
+
+<p class="p_ParameterDesrciption"><span class=
+"f_ParameterDesrciption">[in] &nbsp;Symbol.</span>
+</p>
+
+<p class="p_FunctionParameter"><span class=
+"f_FunctionParameter">period</span>
+</p>
+
+<p class="p_ParameterDesrciption"><span class=
+"f_ParameterDesrciption">[in] &nbsp;Timeframe (<a href=
+"enum_timeframes.htm" class="topiclink">ENUM_TIMEFRAMES</a>
+enumeration).</span>
+</p>
+
+<p class="p_FunctionParameter"><span class=
+"f_FunctionParameter">jaw_period</span>
+</p>
+
+<p class="p_ParameterDesrciption"><span class=
+"f_ParameterDesrciption">[in] &nbsp;Jaws period.</span>
+</p>
+
+<p class="p_FunctionParameter"><span class=
+"f_FunctionParameter">jaw_shift</span>
+</p>
+
+<p class="p_ParameterDesrciption"><span class=
+"f_ParameterDesrciption">[in] &nbsp;Jaws shift.</span>
+</p>
+
+<p class="p_FunctionParameter"><span class=
+"f_FunctionParameter">teeth_period</span>
+</p>
+
+<p class="p_ParameterDesrciption"><span class=
+"f_ParameterDesrciption">[in] &nbsp;Teeths period.</span>
+</p>
+
+<p class="p_FunctionParameter"><span class=
+"f_FunctionParameter">teeth_shift</span>
+</p>
+
+<p class="p_ParameterDesrciption"><span class=
+"f_ParameterDesrciption">[in] &nbsp;Teeths shift.</span>
+</p>
+
+<p class="p_FunctionParameter"><span class=
+"f_FunctionParameter">lips_period</span>
+</p>
+
+<p class="p_ParameterDesrciption"><span class=
+"f_ParameterDesrciption">[in] &nbsp;Lips period.</span>
+</p>
+
+<p class="p_FunctionParameter"><span class=
+"f_FunctionParameter">lips_shift</span>
+</p>
+
+<p class="p_ParameterDesrciption"><span class=
+"f_ParameterDesrciption">[in] &nbsp;Lips shift.</span>
+</p>
+
+<p class="p_FunctionParameter"><span class=
+"f_FunctionParameter">ma_method</span>
+</p>
+
+<p class="p_ParameterDesrciption"><span class=
+"f_ParameterDesrciption">[in] &nbsp;Moving average method (<a href=
+"enum_ma_method.htm" class="topiclink">ENUM_MA_METHOD</a>
+enumeration).</span>
+</p>
+
+<p class="p_FunctionParameter"><span class=
+"f_FunctionParameter">applied</span>
+</p>
+
+<p class="p_ParameterDesrciption"><span class=
+"f_ParameterDesrciption">[in] &nbsp;Volume type to apply.</span>
+</p>
+
+<p class="p_BoldTitles"><span class="f_BoldTitles">Returned
+value</span>
+</p>
+
+<p class="p_FunctionRemark"><span class="f_FunctionRemark">true if
+successful, false if indicator hasn't been created.</span>
+</p>
+<br>
+</div>
+
+<script type="text/JavaScript">
+var fe = FindFrame("toc", top);
+if ((fe != null) && (chmtop.c2wtopf.jstree != null)) {
+  if (chmtop.c2wtopf.FITEMS[chmtop.c2wtopf.pagenum] != chmtop.c2wtopf.pageid)
+    chmtop.c2wtopf.jstree.OpenTreeNode("" + chmtop.c2wtopf.pageid);
+}
+</script>
+
+<!-- CHM2WEB -->
+<!-- DO NOT DELETE OR MODIFY THIS CODE WITHOUT 
+     WRITTEN PERMISSION OF A!K RESEARCH LABS -->
+<table width="100%" cellspacing="0" cellpadding="0" 
+style="margin-top: 0pt; border-collapse: collapse;"> 
+<tr> <td align="right" style="background-color:white; border-top: 1px solid gray;"> 
+<a href="http://chm2web.aklabs.com" target="_blank" style="font-family: sans-serif;  font-size: 11px; text-decoration: none;"><font color="gray">Converted from CHM to HTML with <b>chm2web Pro 2.85 (unicode)</b></font></a>
+</td></tr></table> 
+<!-- /CHM2WEB -->
+
+</body>
+</html>

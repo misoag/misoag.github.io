@@ -1,0 +1,762 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="keywords" content="online documentation, web online help, web help, chm2web" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="generator" content="chm2web Pro 2.85 (unicode)" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<title>Trade Server Return Codes</title>
+<meta name="keywords" content=
+"10004,10006,10007,10008,10009,10010,10011,10012,10013,10014,10015,10016,10017,10018,10019,10020,10021,10022,10023,10024,10025,10026,10027,10028,10029,10030,10031,10032,10033,10034,10035,10036,ENUM_TRADE_RETURN_CODES,TRADE_RETCODE_CANCEL,TRADE_RETCODE_CLIENT_DISABLES_AT,TRADE_RETCODE_CONNECTION,TRADE_RETCODE_DONE,TRADE_RETCODE_DONE_PARTIAL,TRADE_RETCODE_ERROR,TRADE_RETCODE_FROZEN,TRADE_RETCODE_INVALID,TRADE_RETCODE_INVALID_EXPIRATION,TRADE_RETCODE_INVALID_FILL,TRADE_RETCODE_INVALID_ORDER,TRADE_RETCODE_INVALID_PRICE,TRADE_RETCODE_INVALID_STOPS,TRADE_RETCODE_INVALID_VOLUME,TRADE_RETCODE_LIMIT_ORDERS,TRADE_RETCODE_LIMIT_VOLUME,TRADE_RETCODE_LOCKED,TRADE_RETCODE_MARKET_CLOSED,TRADE_RETCODE_NO_CHANGES,TRADE_RETCODE_NO_MONEY,TRADE_RETCODE_ONLY_REAL,TRADE_RETCODE_ORDER_CHANGED,TRADE_RETCODE_PLACED,TRADE_RETCODE_POSITION_CLOSED,TRADE_RETCODE_PRICE_CHANGED,TRADE_RETCODE_PRICE_OFF,TRADE_RETCODE_REJECT,TRADE_RETCODE_REQUOTE,TRADE_RETCODE_SERVER_DISABLES_AT,TRADE_RETCODE_TIMEOUT,TRADE_RETCODE_TOO_MANY_REQUESTS,TRADE_RETCODE_TRADE_DISABLED">
+<link rel="stylesheet" href="files/helpindex.css" type="text/css">
+<link rel="stylesheet" href="default.css" type="text/css">
+
+<script type="text/JavaScript" src="files/supply.js"></script>
+<script type="text/JavaScript">
+chmtop.c2wtopf.pageid = "enum_trade_return_codes.htm";
+</script>
+
+</head>
+<body style=
+"background-color:#FFFFFF; font-family:'Trebuchet MS',Tahoma,Arial,Helvetica,sans-serif; margin:0px;"><script type="text/JavaScript"> 
+if (window.name != "content") 
+  document.write(" <table width=\"100%\" bgcolor=\"#e1e1e1\"cellspacing=\"2\" cellpadding=\"0\" style=\"border-collapse: collapse; font-family: sans-serif; font-size: 14px; color: #000000; text-decoration: none;  \"> <tr> <td align=\"center\" style=\"border-bottom: 2px solid gray\" > <br>&nbsp;Click <a href=\"index.html?page=enum_trade_return_codes.htm\">here</a> to show toolbars of the Web Online Help System: <a href=\"index.html?page=enum_trade_return_codes.htm\">show toolbars</a><br>&nbsp;</td></tr></table><br> "); 
+</script>
+<!-- !chm2web! -->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+style=
+"margin:0; background: #7F90A5 url('gradient_header.png') repeat-x left top; border-bottom: 3px solid #DBE0E5;">
+<tr>
+<td valign="middle">
+<table style="margin: 10px 0" width="100%" border="0" cellspacing=
+"0" cellpadding="0">
+<tr valign="middle">
+<td class="nav"><a class="h_m" href="index.htm">MQL5 Reference</a>
+/ <a class="h_m" href="constants.htm">Standard Constants,
+Enumerations and Structures</a> / <a class="h_m" href=
+"errorswarnings.htm">Codes of Errors and Warnings</a> / Trade
+Server Return Codes</td>
+<td align="right" style="white-space: nowrap; padding: 0 10px;">
+<a href="errorswarnings.htm"><img style="vertical-align:middle;"
+src="previous.png" alt="Back" width="27" height="27" border=
+"0"></a><a href="warningscompile.htm"><img style=
+"vertical-align:middle;margin-left: 7px;" src="next.png" alt=
+"Forward" width="27" height="27" border="0"></a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<div id="help">
+<p class="p_H1"><span class="f_H1">Return Codes of the Trade
+Server</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">All requests to execute
+trade operations are sent as a structure of a trade request
+<a href="mqltraderequest.htm" class="topiclink">MqlTradeRequest</a>
+using function <a href="ordersend.htm" class=
+"topiclink">OrderSend()</a>. The function execution result is
+placed to structure <a href="mqltraderesult.htm" class=
+"topiclink">MqlTradeResult</a>, whose</span> <span class="f_Text"
+style="font-style: italic;">retcode</span> <span class=
+"f_Text">field contains the trade server return code.</span></p>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class="f_EnumHeader">Code</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class="f_EnumHeader">Constant</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Description</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10004</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_REQUOTE</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Requote</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10006</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_REJECT</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Request
+rejected</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10007</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_CANCEL</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Request canceled by
+trader</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10008</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_PLACED</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order placed</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10009</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_DONE</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Request
+completed</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10010</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_DONE_PARTIAL</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Only part of the
+request was completed</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10011</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_ERROR</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Request processing
+error</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10012</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_TIMEOUT</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Request canceled by
+timeout</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10013</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_INVALID</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Invalid
+request</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10014</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_INVALID_VOLUME</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Invalid volume in
+the request</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10015</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_INVALID_PRICE</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Invalid price in the
+request</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10016</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_INVALID_STOPS</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Invalid stops in the
+request</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10017</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_TRADE_DISABLED</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Trade is
+disabled</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10018</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_MARKET_CLOSED</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Market is
+closed</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10019</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_NO_MONEY</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">There is not enough
+money to complete the request</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10020</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_PRICE_CHANGED</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Prices
+changed</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10021</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_PRICE_OFF</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">There are no quotes
+to process the request</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10022</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_INVALID_EXPIRATION</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Invalid order
+expiration date in the request</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10023</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_ORDER_CHANGED</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order state
+changed</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10024</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_TOO_MANY_REQUESTS</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Too frequent
+requests</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10025</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_NO_CHANGES</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">No changes in
+request</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10026</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_SERVER_DISABLES_AT</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Autotrading disabled
+by server</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10027</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_CLIENT_DISABLES_AT</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Autotrading disabled
+by client terminal</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10028</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_LOCKED</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Request locked for
+processing</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10029</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_FROZEN</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order or position
+frozen</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10030</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_INVALID_FILL</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Invalid <a href=
+"orderproperties.htm#enum_order_type_filling" class=
+"topiclink">order filling type</a></span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10031</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_CONNECTION</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">No connection with
+the trade server</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10032</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_ONLY_REAL</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Operation is allowed
+only for live accounts</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10033</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_LIMIT_ORDERS</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">The number of
+pending orders has reached the limit</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10034</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_LIMIT_VOLUME</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">The volume of orders
+and positions for the symbol has reached the limit</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10035</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_INVALID_ORDER</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Incorrect or
+prohibited <a href="orderproperties.htm#enum_order_type" class=
+"topiclink">order type</a></span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:52px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">10036</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:255px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">TRADE_RETCODE_POSITION_CLOSED</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Position with the
+specified</span> <span class="f_EnumID"><a href=
+"positionproperties.htm#enum_position_property_integer" class=
+"topiclink">POSITION_IDENTIFIER</a></span> <span class=
+"f_EnumDesc">has already been closed</span></p>
+</td>
+</tr>
+</table>
+</div>
+<br>
+</div>
+
+<script type="text/JavaScript">
+var fe = FindFrame("toc", top);
+if ((fe != null) && (chmtop.c2wtopf.jstree != null)) {
+  if (chmtop.c2wtopf.FITEMS[chmtop.c2wtopf.pagenum] != chmtop.c2wtopf.pageid)
+    chmtop.c2wtopf.jstree.OpenTreeNode("" + chmtop.c2wtopf.pageid);
+}
+</script>
+
+<!-- CHM2WEB -->
+<!-- DO NOT DELETE OR MODIFY THIS CODE WITHOUT 
+     WRITTEN PERMISSION OF A!K RESEARCH LABS -->
+<table width="100%" cellspacing="0" cellpadding="0" 
+style="margin-top: 0pt; border-collapse: collapse;"> 
+<tr> <td align="right" style="background-color:white; border-top: 1px solid gray;"> 
+<a href="http://chm2web.aklabs.com" target="_blank" style="font-family: sans-serif;  font-size: 11px; text-decoration: none;"><font color="gray">Converted from CHM to HTML with <b>chm2web Pro 2.85 (unicode)</b></font></a>
+</td></tr></table> 
+<!-- /CHM2WEB -->
+
+</body>
+</html>

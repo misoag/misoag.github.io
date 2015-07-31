@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="keywords" content="online documentation, web online help, web help, chm2web" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="generator" content="chm2web Pro 2.85 (unicode)" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<title>Trade Orders in DOM</title>
+<meta name="keywords" content=
+"BOOK_TYPE_BUY,BOOK_TYPE_BUY_MARKET,BOOK_TYPE_SELL,BOOK_TYPE_SELL_MARKET,ENUM_BOOK_TYPE">
+<link rel="stylesheet" href="files/helpindex.css" type="text/css">
+<link rel="stylesheet" href="default.css" type="text/css">
+
+<script type="text/JavaScript" src="files/supply.js"></script>
+<script type="text/JavaScript">
+chmtop.c2wtopf.pageid = "enum_book_type.htm";
+</script>
+
+</head>
+<body style=
+"background-color:#FFFFFF; font-family:'Trebuchet MS',Tahoma,Arial,Helvetica,sans-serif; margin:0px;"><script type="text/JavaScript"> 
+if (window.name != "content") 
+  document.write(" <table width=\"100%\" bgcolor=\"#e1e1e1\"cellspacing=\"2\" cellpadding=\"0\" style=\"border-collapse: collapse; font-family: sans-serif; font-size: 14px; color: #000000; text-decoration: none;  \"> <tr> <td align=\"center\" style=\"border-bottom: 2px solid gray\" > <br>&nbsp;Click <a href=\"index.html?page=enum_book_type.htm\">here</a> to show toolbars of the Web Online Help System: <a href=\"index.html?page=enum_book_type.htm\">show toolbars</a><br>&nbsp;</td></tr></table><br> "); 
+</script>
+<!-- !chm2web! -->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+style=
+"margin:0; background: #7F90A5 url('gradient_header.png') repeat-x left top; border-bottom: 3px solid #DBE0E5;">
+<tr>
+<td valign="middle">
+<table style="margin: 10px 0" width="100%" border="0" cellspacing=
+"0" cellpadding="0">
+<tr valign="middle">
+<td class="nav"><a class="h_m" href="index.htm">MQL5 Reference</a>
+/ <a class="h_m" href="constants.htm">Standard Constants,
+Enumerations and Structures</a> / <a class="h_m" href=
+"tradingconstants.htm">Trade Constants</a> / Trade Orders in
+DOM</td>
+<td align="right" style="white-space: nowrap; padding: 0 10px;">
+<a href="enum_trade_transaction_type.htm"><img style=
+"vertical-align:middle;" src="previous.png" alt="Back" width="27"
+height="27" border="0"></a><a href=
+"signalproperties.htm"><img style=
+"vertical-align:middle;margin-left: 7px;" src="next.png" alt=
+"Forward" width="27" height="27" border="0"></a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<div id="help">
+<p class="p_H1"><span class="f_H1">Trade Orders in Depth Of
+Market</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">For equity securities, the
+Depth of Market window is available, where you can see the current
+Buy and Sell orders. Desired direction of a trade operation,
+required amount and requested price are specified for each
+order.</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">To obtain information about
+the current state of the DOM by MQL5 means, the <a href=
+"marketbookget.htm" class="topiclink">MarketBookGet()</a> function
+is used, which places the DOM "screen shot" into the <a href=
+"mqlbookinfo.htm" class="topiclink">MqlBookInfo</a> array of
+structures. Each element of the array in the</span> <span class=
+"f_Text" style="font-style: italic;">type</span> <span class=
+"f_Text">field contains information about the direction of the
+order - the value of the ENUM_BOOK_TYPE enumeration.</span></p>
+
+<p class="p_Text"><span class="f_Text" style=
+"font-weight: bold;">ENUM_BOOK_TYPE</span>
+</p>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Identifier</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Description</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">BOOK_TYPE_SELL</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Sell order
+(Offer)</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">BOOK_TYPE_BUY</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Buy order
+(Bid)</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">BOOK_TYPE_SELL_MARKET</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Sell order by
+Market</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">BOOK_TYPE_BUY_MARKET</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Buy order by
+Market</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_BoldTitles"><span class="f_BoldTitles">See also</span>
+</p>
+
+<p class="p_FunctionRemark"><span class="f_FunctionRemark"><a href=
+"classes.htm" class="topiclink">Structures and classes</a>,
+<a href="mqlbookinfo.htm" class="topiclink">Structure of the
+DOM</a>, <a href="enum_trade_request_actions.htm" class=
+"topiclink">Trade operation types</a>, <a href=
+"marketinformation.htm" class="topiclink">Market Info</a></span>
+</p>
+<br>
+</div>
+
+<script type="text/JavaScript">
+var fe = FindFrame("toc", top);
+if ((fe != null) && (chmtop.c2wtopf.jstree != null)) {
+  if (chmtop.c2wtopf.FITEMS[chmtop.c2wtopf.pagenum] != chmtop.c2wtopf.pageid)
+    chmtop.c2wtopf.jstree.OpenTreeNode("" + chmtop.c2wtopf.pageid);
+}
+</script>
+
+<!-- CHM2WEB -->
+<!-- DO NOT DELETE OR MODIFY THIS CODE WITHOUT 
+     WRITTEN PERMISSION OF A!K RESEARCH LABS -->
+<table width="100%" cellspacing="0" cellpadding="0" 
+style="margin-top: 0pt; border-collapse: collapse;"> 
+<tr> <td align="right" style="background-color:white; border-top: 1px solid gray;"> 
+<a href="http://chm2web.aklabs.com" target="_blank" style="font-family: sans-serif;  font-size: 11px; text-decoration: none;"><font color="gray">Converted from CHM to HTML with <b>chm2web Pro 2.85 (unicode)</b></font></a>
+</td></tr></table> 
+<!-- /CHM2WEB -->
+
+</body>
+</html>

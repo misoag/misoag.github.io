@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="keywords" content="online documentation, web online help, web help, chm2web" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="generator" content="chm2web Pro 2.85 (unicode)" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<title>Working with Optimization Results</title>
+<meta name="keywords" content="">
+<link rel="stylesheet" href="files/helpindex.css" type="text/css">
+<link rel="stylesheet" href="default.css" type="text/css">
+
+<script type="text/JavaScript" src="files/supply.js"></script>
+<script type="text/JavaScript">
+chmtop.c2wtopf.pageid = "optimization_frames.htm";
+</script>
+
+</head>
+<body style=
+"background-color:#FFFFFF; font-family:'Trebuchet MS',Tahoma,Arial,Helvetica,sans-serif; margin:0px;"><script type="text/JavaScript"> 
+if (window.name != "content") 
+  document.write(" <table width=\"100%\" bgcolor=\"#e1e1e1\"cellspacing=\"2\" cellpadding=\"0\" style=\"border-collapse: collapse; font-family: sans-serif; font-size: 14px; color: #000000; text-decoration: none;  \"> <tr> <td align=\"center\" style=\"border-bottom: 2px solid gray\" > <br>&nbsp;Click <a href=\"index.html?page=optimization_frames.htm\">here</a> to show toolbars of the Web Online Help System: <a href=\"index.html?page=optimization_frames.htm\">show toolbars</a><br>&nbsp;</td></tr></table><br> "); 
+</script>
+<!-- !chm2web! -->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+style=
+"margin:0; background: #7F90A5 url('gradient_header.png') repeat-x left top; border-bottom: 3px solid #DBE0E5;">
+<tr>
+<td valign="middle">
+<table style="margin: 10px 0" width="100%" border="0" cellspacing=
+"0" cellpadding="0">
+<tr valign="middle">
+<td class="nav"><a class="h_m" href="index.htm">MQL5 Reference</a>
+/ Working with Optimization Results</td>
+<td align="right" style="white-space: nowrap; padding: 0 10px;">
+<a href="ivolumes.htm"><img style="vertical-align:middle;" src=
+"previous.png" alt="Back" width="27" height="27" border=
+"0"></a><a href="framefirst.htm"><img style=
+"vertical-align:middle;margin-left: 7px;" src="next.png" alt=
+"Forward" width="27" height="27" border="0"></a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<div id="help">
+<p class="p_H1"><span class="f_H1">Working with Optimization
+Results</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">Functions for organizing
+custom processing of the optimization results in the strategy
+tester. They can be called during optimization in testing agents,
+as well as locally in Expert Advisors and scripts.</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">When you run an Expert
+Advisor in the strategy tester, you can create your own data array
+based on the simple types or <a href="classes.htm#simple_structure"
+class="topiclink">simple structures</a> (they do not contain
+strings, class objects or objects of dynamic arrays). This data set
+can be saved using the <a href="frameadd.htm" class=
+"topiclink">FrameAdd()</a> function in a special structure called a
+frame. During the optimization of an Expert Advisor, each agent can
+send a series of frames to the terminal. All the received frames
+are written in the file *.MQD in the folder
+terminal_directory/MQL5/Files/Tester expert named as the Expert
+Advisor. They are written in the order they are received from the
+agents. Receipt of a frame in the client terminal from a testing
+agent generates the <a href="event_fire.htm#testerpass" class=
+"topiclink">TesterPass</a> event.</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">Frames can be stored in the
+computer memory and in a file with the specified name. The MQL5
+language sets no limitations on the number of frames.</span>
+</p>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 8px 17px 7px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:153px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Function</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Action</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:153px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"framefirst.htm" class="topiclink">FrameFirst</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Moves a pointer of
+frame reading to the beginning and resets the previously set
+filter</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:153px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"framefilter.htm" class="topiclink">FrameFilter</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Sets the frame
+reading filter and moves the pointer to the beginning</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:153px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"framenext.htm" class="topiclink">FrameNext</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Reads a frame and
+moves the pointer to the next one</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:153px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"frameinputs.htm" class="topiclink">FrameInputs</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Receives <a href=
+"inputvariables.htm" class="topiclink">input parameters</a>, on
+which the frame is formed</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:153px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"frameadd.htm" class="topiclink">FrameAdd</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Adds a frame with
+data</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:153px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"parametergetrange.htm" class=
+"topiclink">ParameterGetRange</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Receives data on the
+values range and the change step for an <a href=
+"inputvariables.htm" class="topiclink">input variable</a> when
+optimizing an Expert Advisor in the Strategy Tester</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:153px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"parametersetrange.htm" class=
+"topiclink">ParameterSetRange</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Specifies the use of
+<a href="inputvariables.htm" class="topiclink">input variable</a>
+when optimizing an Expert Advisor in the Strategy Tester: value,
+change step, initial and final values</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_BoldTitles"><span class="f_BoldTitles">See also</span>
+</p>
+
+<p class="p_SeeAlso"><span class="f_SeeAlso"><a href=
+"statistics.htm" class="topiclink">Testing Statistics</a>, <a href=
+"mql5_programm_info.htm" class="topiclink">Properties of a Running
+MQL5 Program</a></span>
+</p>
+<br>
+</div>
+
+<script type="text/JavaScript">
+var fe = FindFrame("toc", top);
+if ((fe != null) && (chmtop.c2wtopf.jstree != null)) {
+  if (chmtop.c2wtopf.FITEMS[chmtop.c2wtopf.pagenum] != chmtop.c2wtopf.pageid)
+    chmtop.c2wtopf.jstree.OpenTreeNode("" + chmtop.c2wtopf.pageid);
+}
+</script>
+
+<!-- CHM2WEB -->
+<!-- DO NOT DELETE OR MODIFY THIS CODE WITHOUT 
+     WRITTEN PERMISSION OF A!K RESEARCH LABS -->
+<table width="100%" cellspacing="0" cellpadding="0" 
+style="margin-top: 0pt; border-collapse: collapse;"> 
+<tr> <td align="right" style="background-color:white; border-top: 1px solid gray;"> 
+<a href="http://chm2web.aklabs.com" target="_blank" style="font-family: sans-serif;  font-size: 11px; text-decoration: none;"><font color="gray">Converted from CHM to HTML with <b>chm2web Pro 2.85 (unicode)</b></font></a>
+</td></tr></table> 
+<!-- /CHM2WEB -->
+
+</body>
+</html>

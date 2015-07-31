@@ -1,0 +1,369 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="keywords" content="online documentation, web online help, web help, chm2web" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="generator" content="chm2web Pro 2.85 (unicode)" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<title>CopyTicks</title>
+<meta name="keywords" content="CopyTicks">
+<link rel="stylesheet" href="files/helpindex.css" type="text/css">
+<link rel="stylesheet" href="default.css" type="text/css">
+
+<script type="text/JavaScript" src="files/supply.js"></script>
+<script type="text/JavaScript">
+chmtop.c2wtopf.pageid = "copyticks.htm";
+</script>
+
+</head>
+<body style=
+"background-color:#FFFFFF; font-family:'Trebuchet MS',Tahoma,Arial,Helvetica,sans-serif; margin:0px;"><script type="text/JavaScript"> 
+if (window.name != "content") 
+  document.write(" <table width=\"100%\" bgcolor=\"#e1e1e1\"cellspacing=\"2\" cellpadding=\"0\" style=\"border-collapse: collapse; font-family: sans-serif; font-size: 14px; color: #000000; text-decoration: none;  \"> <tr> <td align=\"center\" style=\"border-bottom: 2px solid gray\" > <br>&nbsp;Click <a href=\"index.html?page=copyticks.htm\">here</a> to show toolbars of the Web Online Help System: <a href=\"index.html?page=copyticks.htm\">show toolbars</a><br>&nbsp;</td></tr></table><br> "); 
+</script>
+<!-- !chm2web! -->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+style=
+"margin:0; background: #7F90A5 url('gradient_header.png') repeat-x left top; border-bottom: 3px solid #DBE0E5;">
+<tr>
+<td valign="middle">
+<table style="margin: 10px 0" width="100%" border="0" cellspacing=
+"0" cellpadding="0">
+<tr valign="middle">
+<td class="nav"><a class="h_m" href="index.htm">MQL5 Reference</a>
+/ <a class="h_m" href="series.htm">Timeseries and Indicators
+Access</a> / CopyTicks</td>
+<td align="right" style="white-space: nowrap; padding: 0 10px;">
+<a href="copyspread.htm"><img style="vertical-align:middle;" src=
+"previous.png" alt="Back" width="27" height="27" border=
+"0"></a><a href="chart_operations.htm"><img style=
+"vertical-align:middle;margin-left: 7px;" src="next.png" alt=
+"Forward" width="27" height="27" border="0"></a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<div id="help">
+<p class="p_H1"><span class="f_H1">CopyTicks</span>
+</p>
+
+<p class="p_Function"><span class="f_Function">The function
+receives ticks accumulated by the terminal for the current work
+session and writes them into the ticks_array. It should be noted
+that the order of indexing goes from the past to the present, that
+is tick index 0 is the oldest one in the array.</span>
+</p>
+
+<div style=
+"text-align: left; text-indent: 0px; border-color: #b3b3b3; border-style: solid; border-width: 1px; background: #fbf9f5; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table cellspacing="0" cellpadding="3" border="0" style=
+"text-align: justify;border:none; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; padding:3px;">
+<p class="p_CodeExample"><span class=
+"f_Keywords">int&nbsp;&nbsp;</span><span class=
+"f_Functions">CopyTicks</span><span class=
+"f_CodeExample">(</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_Keywords">string</span><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Param">symbol_name</span><span class="f_CodeExample">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Comments">//&nbsp;symbol&nbsp;name</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_Keywords">MqlTick&amp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Param">ticks_array[]</span><span class="f_CodeExample">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Comments">//&nbsp;the&nbsp;array&nbsp;for&nbsp;receiving&nbsp;ticks</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_Keywords">uint</span><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Param">flags=COPY_TICKS_ALL</span><span class="f_CodeExample">,&nbsp;&nbsp;</span><span class="f_Comments">//&nbsp;the&nbsp;flag&nbsp;that&nbsp;defines&nbsp;the&nbsp;type&nbsp;of&nbsp;the&nbsp;ticks&nbsp;that&nbsp;are&nbsp;received</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_Keywords">ulong</span><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Param">from=0</span><span class="f_CodeExample">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Comments">//&nbsp;date&nbsp;starting&nbsp;from&nbsp;which&nbsp;ticks&nbsp;are&nbsp;requested</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_Keywords">uint</span><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Param">count=0</span><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Comments">//&nbsp;the&nbsp;number&nbsp;of&nbsp;last&nbsp;ticks&nbsp;that&nbsp;you&nbsp;need&nbsp;to&nbsp;receive</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;);</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_BoldTitles"><span class=
+"f_BoldTitles">Parameters</span>
+</p>
+
+<p class="p_FunctionParameter"><span class=
+"f_FunctionParameter">symbol_name</span>
+</p>
+
+<p class="p_ParameterDesrciption"><span class=
+"f_ParameterDesrciption">[in] &nbsp;Symbol.</span>
+</p>
+
+<p class="p_FunctionParameter"><span class=
+"f_FunctionParameter">ticks_array</span>
+</p>
+
+<p class="p_ParameterDesrciption"><span class=
+"f_ParameterDesrciption">[out] <a href="mqltick.htm" class=
+"topiclink">MqlTick</a> type array for receiving ticks.</span>
+</p>
+
+<p class="p_FunctionParameter"><span class=
+"f_FunctionParameter">flags</span>
+</p>
+
+<p class="p_ParameterDesrciption"><span class=
+"f_ParameterDesrciption">[in] &nbsp;The flag to define the type of
+the ticks you want to receive.</span> <span class=
+"f_ParameterDesrciption" style=
+"color: #0000ff;">COPY_TICKS_INFO</span> <span class=
+"f_ParameterDesrciption"> only Bid and Ask,</span> <span class=
+"f_ParameterDesrciption" style=
+"color: #0000ff;">COPY_TICKS_TRADE</span> <span class=
+"f_ParameterDesrciption"> only Last and Volume,</span>
+<span class="f_ParameterDesrciption" style=
+"color: #0000ff;">COPY_TICKS_ALL</span> <span class=
+"f_ParameterDesrciption"> all ticks.</span></p>
+
+<p class="p_FunctionParameter"><span class=
+"f_FunctionParameter">from</span>
+</p>
+
+<p class="p_ParameterDesrciption"><span class=
+"f_ParameterDesrciption">[in] &nbsp;The first date of requested
+ticks. In milliseconds since 1970.01.01. If the parameter</span>
+<span class="f_ParameterDesrciption" style=
+"font-style: italic;">from</span><span class=
+"f_ParameterDesrciption">=0 then last</span> <span class=
+"f_ParameterDesrciption" style="font-style: italic;">count</span>
+<span class="f_ParameterDesrciption">tick will be
+written.</span></p>
+
+<p class="p_FunctionParameter"><span class=
+"f_FunctionParameter">count</span>
+</p>
+
+<p class="p_ParameterDesrciption"><span class=
+"f_ParameterDesrciption">[in] &nbsp;The number of requested ticks.
+If the date and number are not specified, all available ticks are
+received, but not more than 2000.</span>
+</p>
+
+<p class="p_BoldTitles"><span class="f_BoldTitles">Returned
+value</span>
+</p>
+
+<p class="p_FunctionRemark"><span class="f_FunctionRemark">The
+number of copied tick or -1 in case of an <a href="errorcodes.htm"
+class="topiclink">error</a>.</span>
+</p>
+
+<p class="p_BoldTitles"><span class="f_BoldTitles">Note</span>
+</p>
+
+<p class="p_FunctionRemark"><span class="f_FunctionRemark">The
+<a href="events.htm#ontick" class="topiclink">OnTick()</a> function
+does not handle every tick, it notifies the Expert Advisor of
+market changes. It can be a batch of changes: the terminal can
+simultaneously make a few ticks, but OnTick() will be called only
+once to notify the EA of the latest market state. The CopyTicks()
+function allows you to request and analyze all the ticks.</span>
+</p>
+
+<p class="p_FunctionRemark"><span class="f_FunctionRemark">If
+the</span> <span class="f_FunctionRemark" style=
+"font-style: italic;">from</span> <span class=
+"f_FunctionRemark">and</span> <span class="f_FunctionRemark" style=
+"font-style: italic;">count</span> <span class=
+"f_FunctionRemark">parameters are not specified, all available
+ticks, but no more than 2000, will be written in the</span>
+<span class="f_FunctionRemark" style=
+"font-style: italic;">ticks_array[]</span><span class=
+"f_FunctionRemark">. The flags parameter allows setting the type of
+required ticks.</span></p>
+
+<p class="p_Text"><span class="f_Text" style=
+"font-weight: bold;">Example:</span>
+</p>
+
+<div style=
+"text-align: left; text-indent: 0px; border-color: #b3b3b3; border-style: solid; border-width: 1px; background: #fbf9f5; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table cellspacing="0" cellpadding="3" border="0" style=
+"text-align: justify;border:none; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; padding:3px;">
+<p class="p_CodeExample"><span class="f_CodeExample" style=
+"color: #808080;">//---&nbsp;input&nbsp;parameters</span><br>
+<span class="f_CodeExample" style=
+"color: #0000ff;">input</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #0000ff;">int</span><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style="color: #800000;">ticks</span><span class=
+"f_CodeExample">=10;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style=
+"color: #808080;">//&nbsp;the&nbsp;number&nbsp;of&nbsp;requested&nbsp;ticks</span><br>
+<span class="f_CodeExample" style=
+"color: #808080;">//+------------------------------------------------------------------+</span><br>
+<span class="f_CodeExample" style=
+"color: #808080;">//|&nbsp;Expert&nbsp;tick&nbsp;function&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span><br>
+<span class="f_CodeExample" style=
+"color: #808080;">//+------------------------------------------------------------------+</span><br>
+<span class="f_CodeExample" style=
+"color: #0000ff;">void</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #0000ff;">OnTick</span><span class=
+"f_CodeExample">()</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;{</span><br>
+<span class="f_CodeExample" style=
+"color: #808080;">/---&nbsp;the&nbsp;array&nbsp;that&nbsp;receives&nbsp;ticks</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">MqlTick</span><span class=
+"f_CodeExample">&nbsp;tick_array[];</span><br>
+<span class="f_CodeExample" style=
+"color: #808080;">//---&nbsp;requesting&nbsp;ticks</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">int</span><span class=
+"f_CodeExample">&nbsp;copied=</span><span class="f_CodeExample"
+style="color: #0000ff;">CopyTicks</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #0000ff;">_Symbol</span><span class=
+"f_CodeExample">,tick_array,</span><span class="f_CodeExample"
+style="color: #0000ff;">COPY_TICKS_ALL</span><span class=
+"f_CodeExample">,0,</span><span class="f_CodeExample" style=
+"color: #800000;">ticks</span><span class=
+"f_CodeExample">);</span><br>
+<span class="f_CodeExample" style=
+"color: #808080;">//---&nbsp;if&nbsp;ticks&nbsp;are&nbsp;received,&nbsp;show&nbsp;the&nbsp;Bid&nbsp;and&nbsp;Ask&nbsp;values&nbsp;on&nbsp;the&nbsp;chart&nbsp;&nbsp;</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">if</span><span class=
+"f_CodeExample">(copied&gt;0)</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style="color: #0000ff;">string</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #0000ff;">comment</span><span class=
+"f_CodeExample">=</span><span class="f_CodeExample" style=
+"color: #008080;">"#&nbsp;&nbsp;Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ask\r\n"</span><span class="f_CodeExample">;</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style=
+"color: #808080;">//---&nbsp;generate&nbsp;the&nbsp;comment&nbsp;contents&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style="color: #0000ff;">for</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #0000ff;">int</span><span class=
+"f_CodeExample">&nbsp;i=0;i&lt;copied;i++)</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style="color: #0000ff;">MqlTick</span><span class=
+"f_CodeExample">&nbsp;tick=tick_array[i];</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style="color: #0000ff;">string</span><span class=
+"f_CodeExample">&nbsp;tick_string=</span><span class=
+"f_CodeExample" style=
+"color: #0000ff;">StringFormat</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #008080;">"%d:&nbsp;%s&nbsp;&nbsp;%G&nbsp;&nbsp;%G"</span><span class="f_CodeExample">,</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i,</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style="color: #0000ff;">TimeToString</span><span class=
+"f_CodeExample">(tick.time,</span><span class="f_CodeExample"
+style="color: #0000ff;">TIME_MINUTES</span><span class=
+"f_CodeExample">|</span><span class="f_CodeExample" style=
+"color: #0000ff;">TIME_SECONDS</span><span class=
+"f_CodeExample">),</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tick.bid,</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tick.ask);</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style="color: #0000ff;">comment</span><span class=
+"f_CodeExample">=</span><span class="f_CodeExample" style=
+"color: #0000ff;">comment</span><span class=
+"f_CodeExample">+tick_string+</span><span class="f_CodeExample"
+style="color: #008080;">"\r\n"</span><span class=
+"f_CodeExample">;</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style=
+"color: #808080;">//---&nbsp;show&nbsp;a&nbsp;comment&nbsp;on&nbsp;the&nbsp;chart&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style="color: #0000ff;">Comment</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #0000ff;">comment</span><span class=
+"f_CodeExample">);</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">else</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #808080;">//&nbsp;report&nbsp;an&nbsp;error&nbsp;that&nbsp;occurred&nbsp;when&nbsp;receiving&nbsp;ticks</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style="color: #0000ff;">Comment</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #008080;">"Ticks&nbsp;could&nbsp;not&nbsp;be&nbsp;loaded.&nbsp;GetLastError()="</span><span class="f_CodeExample">,</span><span class="f_CodeExample"
+style="color: #0000ff;">GetLastError</span><span class=
+"f_CodeExample">());</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;}</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_BoldTitles"><span class="f_BoldTitles">See also</span>
+</p>
+
+<p class="p_SeeAlso"><span class="f_SeeAlso"><a href=
+"symbolinfotick.htm" class="topiclink">SymbolInfoTick</a>, <a href=
+"mqltick.htm" class="topiclink">Structure for Current Prices</a>,
+<a href="events.htm#ontick" class="topiclink">OnTick()</a></span>
+</p>
+<br>
+</div>
+
+<script type="text/JavaScript">
+var fe = FindFrame("toc", top);
+if ((fe != null) && (chmtop.c2wtopf.jstree != null)) {
+  if (chmtop.c2wtopf.FITEMS[chmtop.c2wtopf.pagenum] != chmtop.c2wtopf.pageid)
+    chmtop.c2wtopf.jstree.OpenTreeNode("" + chmtop.c2wtopf.pageid);
+}
+</script>
+
+<!-- CHM2WEB -->
+<!-- DO NOT DELETE OR MODIFY THIS CODE WITHOUT 
+     WRITTEN PERMISSION OF A!K RESEARCH LABS -->
+<table width="100%" cellspacing="0" cellpadding="0" 
+style="margin-top: 0pt; border-collapse: collapse;"> 
+<tr> <td align="right" style="background-color:white; border-top: 1px solid gray;"> 
+<a href="http://chm2web.aklabs.com" target="_blank" style="font-family: sans-serif;  font-size: 11px; text-decoration: none;"><font color="gray">Converted from CHM to HTML with <b>chm2web Pro 2.85 (unicode)</b></font></a>
+</td></tr></table> 
+<!-- /CHM2WEB -->
+
+</body>
+</html>

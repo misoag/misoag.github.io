@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="keywords" content="online documentation, web online help, web help, chm2web" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="generator" content="chm2web Pro 2.85 (unicode)" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<title>Function Call</title>
+<meta name="keywords" content="(,)">
+<link rel="stylesheet" href="files/helpindex.css" type="text/css">
+<link rel="stylesheet" href="default.css" type="text/css">
+
+<script type="text/JavaScript" src="files/supply.js"></script>
+<script type="text/JavaScript">
+chmtop.c2wtopf.pageid = "call.htm";
+</script>
+
+</head>
+<body style=
+"background-color:#FFFFFF; font-family:'Trebuchet MS',Tahoma,Arial,Helvetica,sans-serif; margin:0px;"><script type="text/JavaScript"> 
+if (window.name != "content") 
+  document.write(" <table width=\"100%\" bgcolor=\"#e1e1e1\"cellspacing=\"2\" cellpadding=\"0\" style=\"border-collapse: collapse; font-family: sans-serif; font-size: 14px; color: #000000; text-decoration: none;  \"> <tr> <td align=\"center\" style=\"border-bottom: 2px solid gray\" > <br>&nbsp;Click <a href=\"index.html?page=call.htm\">here</a> to show toolbars of the Web Online Help System: <a href=\"index.html?page=call.htm\">show toolbars</a><br>&nbsp;</td></tr></table><br> "); 
+</script>
+<!-- !chm2web! -->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+style=
+"margin:0; background: #7F90A5 url('gradient_header.png') repeat-x left top; border-bottom: 3px solid #DBE0E5;">
+<tr>
+<td valign="middle">
+<table style="margin: 10px 0" width="100%" border="0" cellspacing=
+"0" cellpadding="0">
+<tr valign="middle">
+<td class="nav"><a class="h_m" href="index.htm">MQL5 Reference</a>
+/ <a class="h_m" href="basis.htm">Language Basics</a> / <a class=
+"h_m" href="function.htm">Functions</a> / Function Call</td>
+<td align="right" style="white-space: nowrap; padding: 0 10px;">
+<a href="function.htm"><img style="vertical-align:middle;" src=
+"previous.png" alt="Back" width="27" height="27" border=
+"0"></a><a href="parameterpass.htm"><img style=
+"vertical-align:middle;margin-left: 7px;" src="next.png" alt=
+"Forward" width="27" height="27" border="0"></a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<div id="help">
+<p class="p_H1"><span class="f_H1">Function Call</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">If a name that has not been
+described before, appears in the expression and is followed by the
+left parenthesis, it is contextually considered as the name of a
+function.</span>
+</p>
+
+<div style=
+"text-align: left; text-indent: 0px; border-color: #b3b3b3; border-style: solid; border-width: 1px; background: #fbf9f5; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table cellspacing="0" cellpadding="3" border="0" style=
+"text-align: justify;border:none; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; padding:3px;">
+<p class="p_CodeExample"><span class=
+"f_CodeExample">function_name&nbsp;(x1,&nbsp;x2,...,&nbsp;xn)</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span>
+</p>
+
+<p class="p_Text"><a class="help" name="argument" id=
+"argument"></a><span class="f_Text">Arguments (<a href="formal.htm"
+class="topiclink">formal parameters</a>) are passed by value, i.e.
+each expression x1,..., xn is calculated, and the value is passed
+to the function. The order of expressions calculation and the order
+of values loading are not guaranteed. During the execution, the
+system checks the number and type of arguments passed to the
+function. Such way of addressing to the function is called a value
+call.</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">Function call is an
+expression, the value of which is the value returned by the
+function. The function type described above must correspond with
+the type of the return value. The function can be declared or
+described in any part of the program on the <a href="global.htm"
+class="topiclink">global scope</a>, i.e., outside other functions.
+The function cannot be declared or described inside of another
+function.</span>
+</p>
+
+<p class="p_Text"><span class="f_Text" style=
+"font-weight: bold;">Examples:</span>
+</p>
+
+<div style=
+"text-align: left; text-indent: 0px; border-color: #b3b3b3; border-style: solid; border-width: 1px; background: #fbf9f5; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table cellspacing="0" cellpadding="3" border="0" style=
+"text-align: justify;border:none; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; padding:3px;">
+<p class="p_CodeExample"><span class="f_CodeExample" style=
+"color: #0000ff;">int</span><span class=
+"f_CodeExample">&nbsp;start()</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;{</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">double</span><span class=
+"f_CodeExample">&nbsp;some_array[4]={0.3,&nbsp;1.4,&nbsp;2.5,&nbsp;3.6};</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">double</span><span class=
+"f_CodeExample">&nbsp;a=linfunc(some_array,&nbsp;10.5,&nbsp;8);</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #808080;">//...</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;}</span><br>
+<span class="f_CodeExample" style=
+"color: #0000ff;">double</span><span class=
+"f_CodeExample">&nbsp;linfunc(</span><span class="f_CodeExample"
+style="color: #0000ff;">double</span><span class=
+"f_CodeExample">&nbsp;x[],&nbsp;</span><span class="f_CodeExample"
+style="color: #0000ff;">double</span><span class=
+"f_CodeExample">&nbsp;a,&nbsp;</span><span class="f_CodeExample"
+style="color: #0000ff;">double</span><span class=
+"f_CodeExample">&nbsp;b)</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;{</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">return</span><span class=
+"f_CodeExample">&nbsp;(a*x[0]&nbsp;+&nbsp;b);</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;}</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_Text"><span class="f_Text">At calling of a function
+with default parameters, the list of parameters to be passed can be
+limited, but not before the first default parameter.</span>
+</p>
+
+<p class="p_Text"><span class="f_Text" style=
+"font-weight: bold;">Examples:</span>
+</p>
+
+<div style=
+"text-align: left; text-indent: 0px; border-color: #b3b3b3; border-style: solid; border-width: 1px; background: #fbf9f5; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table cellspacing="0" cellpadding="3" border="0" style=
+"text-align: justify;border:none; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; padding:3px;">
+<p class="p_CodeExample"><span class="f_CodeExample" style=
+"color: #0000ff;">void</span><span class=
+"f_CodeExample">&nbsp;somefunc(</span><span class="f_CodeExample"
+style="color: #0000ff;">double</span><span class=
+"f_CodeExample">&nbsp;init,</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style="color: #0000ff;">double</span><span class=
+"f_CodeExample">&nbsp;sec=0.0001,&nbsp;</span><span class=
+"f_CodeExample" style=
+"color: #808080;">//set&nbsp;default&nbsp;values</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style="color: #0000ff;">int</span><span class=
+"f_CodeExample">&nbsp;level=10);&nbsp;&nbsp;</span><br>
+<span class="f_CodeExample" style=
+"color: #808080;">//...</span><br>
+<span class=
+"f_CodeExample">somefunc();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style=
+"color: #808080;">//&nbsp;Wrong&nbsp;call.&nbsp;The&nbsp;first&nbsp;parameter&nbsp;must&nbsp;be&nbsp;presented.</span><br>
+<span class=
+"f_CodeExample">somefunc(3.14);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style="color: #808080;">//&nbsp;Correct&nbsp;call</span><br>
+<span class=
+"f_CodeExample">somefunc(3.14,0.0002);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style="color: #808080;">//&nbsp;Correct&nbsp;call</span><br>
+<span class=
+"f_CodeExample">somefunc(3.14,0.0002,10);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style="color: #808080;">//&nbsp;Correct&nbsp;call</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_Text"><span class="f_Text">When calling a function, one
+may not skip parameters, even those having default values:</span>
+</p>
+
+<div style=
+"text-align: left; text-indent: 0px; border-color: #b3b3b3; border-style: solid; border-width: 1px; background: #fbf9f5; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table cellspacing="0" cellpadding="3" border="0" style=
+"text-align: justify;border:none; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; padding:3px;">
+<p class="p_CodeExample"><span class=
+"f_CodeExample">somefunc(3.14,&nbsp;,&nbsp;10);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style=
+"color: #808080;">//&nbsp;Wrong&nbsp;call&nbsp;-&gt;&nbsp;the&nbsp;second&nbsp;parameter&nbsp;was&nbsp;skipped.</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_BoldTitles"><span class="f_BoldTitles">See also</span>
+</p>
+
+<p class="p_SeeAlso"><span class="f_SeeAlso"><a href="overload.htm"
+class="topiclink">Overload</a>, <a href="virtual.htm" class=
+"topiclink">Virtual Functions</a>, <a href="polymorphism.htm"
+class="topiclink">Polymorphism</a></span>
+</p>
+<br>
+</div>
+
+<script type="text/JavaScript">
+var fe = FindFrame("toc", top);
+if ((fe != null) && (chmtop.c2wtopf.jstree != null)) {
+  if (chmtop.c2wtopf.FITEMS[chmtop.c2wtopf.pagenum] != chmtop.c2wtopf.pageid)
+    chmtop.c2wtopf.jstree.OpenTreeNode("" + chmtop.c2wtopf.pageid);
+}
+</script>
+
+<!-- CHM2WEB -->
+<!-- DO NOT DELETE OR MODIFY THIS CODE WITHOUT 
+     WRITTEN PERMISSION OF A!K RESEARCH LABS -->
+<table width="100%" cellspacing="0" cellpadding="0" 
+style="margin-top: 0pt; border-collapse: collapse;"> 
+<tr> <td align="right" style="background-color:white; border-top: 1px solid gray;"> 
+<a href="http://chm2web.aklabs.com" target="_blank" style="font-family: sans-serif;  font-size: 11px; text-decoration: none;"><font color="gray">Converted from CHM to HTML with <b>chm2web Pro 2.85 (unicode)</b></font></a>
+</td></tr></table> 
+<!-- /CHM2WEB -->
+
+</body>
+</html>

@@ -1,0 +1,721 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="keywords" content="online documentation, web online help, web help, chm2web" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="generator" content="chm2web Pro 2.85 (unicode)" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<title>CArrayChar</title>
+<meta name="keywords" content="">
+<link rel="stylesheet" href="files/helpindex.css" type="text/css">
+<link rel="stylesheet" href="default.css" type="text/css">
+
+<script type="text/JavaScript" src="files/supply.js"></script>
+<script type="text/JavaScript">
+chmtop.c2wtopf.pageid = "carraychar.htm";
+</script>
+
+</head>
+<body style=
+"background-color:#FFFFFF; font-family:'Trebuchet MS',Tahoma,Arial,Helvetica,sans-serif; margin:0px;"><script type="text/JavaScript"> 
+if (window.name != "content") 
+  document.write(" <table width=\"100%\" bgcolor=\"#e1e1e1\"cellspacing=\"2\" cellpadding=\"0\" style=\"border-collapse: collapse; font-family: sans-serif; font-size: 14px; color: #000000; text-decoration: none;  \"> <tr> <td align=\"center\" style=\"border-bottom: 2px solid gray\" > <br>&nbsp;Click <a href=\"index.html?page=carraychar.htm\">here</a> to show toolbars of the Web Online Help System: <a href=\"index.html?page=carraychar.htm\">show toolbars</a><br>&nbsp;</td></tr></table><br> "); 
+</script>
+<!-- !chm2web! -->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+style=
+"margin:0; background: #7F90A5 url('gradient_header.png') repeat-x left top; border-bottom: 3px solid #DBE0E5;">
+<tr>
+<td valign="middle">
+<table style="margin: 10px 0" width="100%" border="0" cellspacing=
+"0" cellpadding="0">
+<tr valign="middle">
+<td class="nav"><a class="h_m" href="index.htm">MQL5 Reference</a>
+/ <a class="h_m" href="standardlibrary.htm">Standard Library</a> /
+<a class="h_m" href="datastructures.htm">Classes of data</a> /
+CArrayChar</td>
+<td align="right" style="white-space: nowrap; padding: 0 10px;">
+<a href="carrayload.htm"><img style="vertical-align:middle;" src=
+"previous.png" alt="Back" width="27" height="27" border=
+"0"></a><a href="carraycharreserve.htm"><img style=
+"vertical-align:middle;margin-left: 7px;" src="next.png" alt=
+"Forward" width="27" height="27" border="0"></a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<div id="help">
+<p class="p_H1"><span class="f_H1">CArrayChar</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">CArrayChar class is a class
+of dynamic array of variables of type char or uchar.</span>
+</p>
+
+<p class="p_H3"><span class="f_H3">Description</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">Class CArrayChar provides
+the ability to work with a dynamic array of variables of type char
+or uchar.In the class implemented the ability to add / insert /
+delete elements in an array, sort array, searching in sorted
+array.In addition, the implemented methods of work with the
+file.</span>
+</p>
+
+<p class="p_H3"><span class="f_H3">Declaration</span>
+</p>
+
+<div style=
+"text-align: left; text-indent: 0px; border-color: #b3b3b3; border-style: solid; border-width: 1px; background: #fbf9f5; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table cellspacing="0" cellpadding="3" border="0" style=
+"text-align: justify;border:none; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; padding:3px;">
+<p class="p_CodeExample"><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">class</span><span class=
+"f_CodeExample">&nbsp;CArrayChar&nbsp;:&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">public</span><span class=
+"f_CodeExample">&nbsp;CArray</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_H3"><span class="f_H3">Title</span>
+</p>
+
+<div style=
+"text-align: left; text-indent: 0px; border-color: #b3b3b3; border-style: solid; border-width: 1px; background: #fbf9f5; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table cellspacing="0" cellpadding="3" border="0" style=
+"text-align: justify;border:none; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; padding:3px;">
+<p class="p_CodeExample"><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style=
+"color: #0000ff;">#include&nbsp;</span><span class=
+"f_CodeExample">&lt;Arrays\ArrayChar.mqh&gt;</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_H3"><span class="f_H3">Class Methods</span>
+</p>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 8px 17px 7px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Memory control</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharreserve.htm" class="topiclink">Reserve</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Allocates memory to
+increase the size of the array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharresize.htm" class="topiclink">Resize</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Sets a new (smaller)
+size of the array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharshutdown.htm" class="topiclink">Shutdown</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Clears the array
+with a full memory release</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Add methods</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharadd.htm" class="topiclink">Add</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Adds an element to
+the end of the array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharaddarray.htm" class="topiclink">AddArray</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Adds to the end of
+the array elements from another array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharaddarrayconst.htm" class="topiclink">AddArray</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Adds to the end of
+the array elements from another array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharinsert.htm" class="topiclink">Insert</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Inserts an element
+in the array to the specified position</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharinsertarray.htm" class=
+"topiclink">InsertArray</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Inserts an array of
+elements from another array with the specified position</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharinsertarrayconst.htm" class=
+"topiclink">InsertArray</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Inserts an array of
+elements from another array with the specified position</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharassignarray.htm" class=
+"topiclink">AssignArray</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Copies the array
+elements from another array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharassignarrayconst.htm" class=
+"topiclink">AssignArray</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Copies the array
+elements from another array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Modify methods</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharupdate.htm" class="topiclink">Update</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Changes the element
+at the specified position array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharshift.htm" class="topiclink">Shift</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Moves an item from a
+given position in the array to the specified offset</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Delete methods</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraychardelete.htm" class="topiclink">Delete</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Removes the element
+from the specified position array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraychardeleterange.htm" class=
+"topiclink">DeleteRange</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Deletes a group of
+elements from the specified position array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Access methods</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharat.htm" class="topiclink">At</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Gets the element
+from the specified position array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Compare methods</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharcomparearray.htm" class=
+"topiclink">CompareArray</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Compares array with
+another array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharcomparearrayconst.htm" class=
+"topiclink">CompareArray</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Compares array with
+another array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Sorted array methods</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharinsertsort.htm" class="topiclink">InsertSort</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Inserts element in a
+sorted array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharsearch.htm" class="topiclink">Search</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Searches for an
+element equal to the sample in the sorted array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharsearchgreat.htm" class=
+"topiclink">SearchGreat</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Searches for an
+element of more samples in sorted array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharsearchless.htm" class="topiclink">SearchLess</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Searches for an
+element less than the sample in the sorted array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharsearchgreatorequal.htm" class=
+"topiclink">SearchGreatOrEqual</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Searches for an
+element greater than or equal to the model in sorted array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharsearchlessorequal.htm" class=
+"topiclink">SearchLessOrEqual</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Searches for an
+element less than or equal to the model in sorted array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharsearchfirst.htm" class=
+"topiclink">SearchFirst</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Finds the first
+element equal to the model in sorted array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharsearchlast.htm" class="topiclink">SearchLast</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Finds the last
+element equal to the model in sorted array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"carraycharsearchlinear.htm" class=
+"topiclink">SearchLinear</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Searches for the
+element equal to the sample in the array</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Input/output</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">virtual <a href=
+"carraysave.htm" class="topiclink">Save</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Saves data array in
+the file</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">virtual <a href=
+"carraycharload.htm" class="topiclink">Load</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Loads data array
+from a file</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:160px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">virtual <a href=
+"carraychartype.htm" class="topiclink">Type</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:611px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Gets the type
+identifier of the array</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+<br>
+</div>
+
+<script type="text/JavaScript">
+var fe = FindFrame("toc", top);
+if ((fe != null) && (chmtop.c2wtopf.jstree != null)) {
+  if (chmtop.c2wtopf.FITEMS[chmtop.c2wtopf.pagenum] != chmtop.c2wtopf.pageid)
+    chmtop.c2wtopf.jstree.OpenTreeNode("" + chmtop.c2wtopf.pageid);
+}
+</script>
+
+<!-- CHM2WEB -->
+<!-- DO NOT DELETE OR MODIFY THIS CODE WITHOUT 
+     WRITTEN PERMISSION OF A!K RESEARCH LABS -->
+<table width="100%" cellspacing="0" cellpadding="0" 
+style="margin-top: 0pt; border-collapse: collapse;"> 
+<tr> <td align="right" style="background-color:white; border-top: 1px solid gray;"> 
+<a href="http://chm2web.aklabs.com" target="_blank" style="font-family: sans-serif;  font-size: 11px; text-decoration: none;"><font color="gray">Converted from CHM to HTML with <b>chm2web Pro 2.85 (unicode)</b></font></a>
+</td></tr></table> 
+<!-- /CHM2WEB -->
+
+</body>
+</html>

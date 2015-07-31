@@ -1,0 +1,1017 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="keywords" content="online documentation, web online help, web help, chm2web" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="generator" content="chm2web Pro 2.85 (unicode)" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<title>Class for creating custom graphics</title>
+<meta name="keywords" content="">
+<link rel="stylesheet" href="files/helpindex.css" type="text/css">
+<link rel="stylesheet" href="default.css" type="text/css">
+
+<script type="text/JavaScript" src="files/supply.js"></script>
+<script type="text/JavaScript">
+chmtop.c2wtopf.pageid = "ccanvas.htm";
+</script>
+
+</head>
+<body style=
+"background-color:#FFFFFF; font-family:'Trebuchet MS',Tahoma,Arial,Helvetica,sans-serif; margin:0px;"><script type="text/JavaScript"> 
+if (window.name != "content") 
+  document.write(" <table width=\"100%\" bgcolor=\"#e1e1e1\"cellspacing=\"2\" cellpadding=\"0\" style=\"border-collapse: collapse; font-family: sans-serif; font-size: 14px; color: #000000; text-decoration: none;  \"> <tr> <td align=\"center\" style=\"border-bottom: 2px solid gray\" > <br>&nbsp;Click <a href=\"index.html?page=ccanvas.htm\">here</a> to show toolbars of the Web Online Help System: <a href=\"index.html?page=ccanvas.htm\">show toolbars</a><br>&nbsp;</td></tr></table><br> "); 
+</script>
+<!-- !chm2web! -->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+style=
+"margin:0; background: #7F90A5 url('gradient_header.png') repeat-x left top; border-bottom: 3px solid #DBE0E5;">
+<tr>
+<td valign="middle">
+<table style="margin: 10px 0" width="100%" border="0" cellspacing=
+"0" cellpadding="0">
+<tr valign="middle">
+<td class="nav"><a class="h_m" href="index.htm">MQL5 Reference</a>
+/ <a class="h_m" href="standardlibrary.htm">Standard Library</a> /
+Class for creating custom graphics</td>
+<td align="right" style="white-space: nowrap; padding: 0 10px;">
+<a href="cchartobjectrectlabeltype.htm"><img style=
+"vertical-align:middle;" src="previous.png" alt="Back" width="27"
+height="27" border="0"></a><a href=
+"ccanvaschartobjectname.htm"><img style=
+"vertical-align:middle;margin-left: 7px;" src="next.png" alt=
+"Forward" width="27" height="27" border="0"></a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<div id="help">
+<p class="p_H1"><span class="f_H1">CCanvas</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">CCanvas is a class for
+simplified creation of custom images.</span>
+</p>
+
+<p class="p_H3"><span class="f_H3">Description</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">CCanvas provides creation of
+a graphical resource (with or without binding to a chart object)
+and drawing graphic primitives.</span>
+</p>
+
+<p class="p_H3"><span class="f_H3">Declaration</span>
+</p>
+
+<div style=
+"text-align: left; text-indent: 0px; border-color: #b3b3b3; border-style: solid; border-width: 1px; background: #fbf9f5; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table cellspacing="0" cellpadding="3" border="0" style=
+"text-align: justify;border:none; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; padding:3px;">
+<p class="p_CodeExample"><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">class</span><span class=
+"f_CodeExample">&nbsp;CCanvas</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_H3"><span class="f_H3">Title</span>
+</p>
+
+<div style=
+"text-align: left; text-indent: 0px; border-color: #b3b3b3; border-style: solid; border-width: 1px; background: #fbf9f5; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table cellspacing="0" cellpadding="3" border="0" style=
+"text-align: justify;border:none; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; padding:3px;">
+<p class="p_CodeExample"><span class="f_CodeExample" style=
+"color: #0000ff;">&nbsp;&nbsp;&nbsp;#include</span><span class=
+"f_CodeExample">&nbsp;&lt;Canvas\Canvas.mqh&gt;</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_H3"><span class="f_H3">Class Methods by Groups</span>
+</p>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 8px 17px 7px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Creating</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvascreate.htm" class="topiclink">Create</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Creates a graphical
+resource without binding to a chart object</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvascreatebitmap.htm" class="topiclink">CreateBitmap</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Creates a graphical
+resource bound to a chart object</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvascreatebitmaplabel.htm" class=
+"topiclink">CreateBitmapLabel</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Creates a graphical
+resource bound to a chart object</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasdestroy.htm" class="topiclink">Destroy</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Destroys a graphical
+resource</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Properties</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvaschartobjectname.htm" class=
+"topiclink">ChartObjectName</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Receives the name of
+a bound chart object</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasresourcename.htm" class="topiclink">ResourceName</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Receives the name of
+a graphical resource</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvaswidth.htm" class="topiclink">Width</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Receives the width
+of a graphical resource</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasheight.htm" class="topiclink">Height</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Receives the height
+of a graphical resource</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvaslinestyleset.htm" class="topiclink">LineStyleSet</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Sets the line
+style</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Updating an object on the screen</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasupdate.htm" class="topiclink">Update</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Displays changes on
+the screen</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasresize.htm" class="topiclink">Resize</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Resizes a graphical
+resource</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Erasing/Filling with color</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvaserase.htm" class="topiclink">Erase</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Erases or fills with
+the specified color</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Data access</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvaspixelget.htm" class="topiclink">PixelGet</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Receives color of
+the dot with the specified coordinates</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvaspixelset.htm" class="topiclink">PixelSet</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Sets color of the
+dot with the specified coordinates</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Drawing primitives</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvaslinevertical.htm" class="topiclink">LineVertical</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Draws a vertical
+line</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvaslinehorizontal.htm" class=
+"topiclink">LineHorizontal</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Draws a horizontal
+line</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasline.htm" class="topiclink">Line</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Draws a freehand
+line</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvaspolyline.htm" class="topiclink">Polyline</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Draws a
+polyline</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvaspolygon.htm" class="topiclink">Polygon</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Draws a
+polygon</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasrectangle.htm" class="topiclink">Rectangle</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Draws a
+rectangle</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvascircle.htm" class="topiclink">Circle</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Draws a
+circle</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvastriangle.htm" class="topiclink">Triangle</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Draws a
+triangle</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable" style="text-align: left;"><span class=
+"f_fortable" style="font-weight: bold;">Drawing filled
+primitives</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasfillrectangle.htm" class=
+"topiclink">FillRectangle</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Draws a filled
+rectangle</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasfillcircle.htm" class="topiclink">FillCircle</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Draws a filled
+circle</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasfilltriangle.htm" class="topiclink">FillTriangle</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Draws a filled
+triangle</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasfill.htm" class="topiclink">Fill</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Fills an area</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable" style="text-align: left;"><span class=
+"f_fortable" style="font-weight: bold;">Drawing primitives with
+antialiasing</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvaspixelsetaa.htm" class="topiclink">PixelSetAA</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Draws a pixel</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvaslineaa.htm" class="topiclink">LineAA</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Draws a line</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvaspolylineaa.htm" class="topiclink">PolylineAA</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Draws a
+polyline</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvaspolygonaa.htm" class="topiclink">PolygonAA</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Draws a
+polygon</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvastriangleaa.htm" class="topiclink">TriangleAA</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Draws a
+triangle</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvascircleaa.htm" class="topiclink">CircleAA</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Draws a
+circle</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Text</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasfontset.htm" class="topiclink">FontSet</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Sets font
+parameters</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasfontnameset.htm" class="topiclink">FontNameSet</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Sets font
+name</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasfontsizeset.htm" class="topiclink">FontSizeSet</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Sets font
+size</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasfontflagsset.htm" class="topiclink">FontFlagsSet</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Sets font
+flags</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasfontangleset.htm" class="topiclink">FontAngleSet</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Sets font slope
+angle</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasfontget.htm" class="topiclink">FontGet</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Receives font
+parameters</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasfontnameget.htm" class="topiclink">FontNameGet</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Receives font
+name</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasfontsizeget.htm" class="topiclink">FontSizeGet</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Receives font
+size</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasfontflagsget.htm" class="topiclink">FontFlagsGet</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Receives font
+flags</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasfontangleget.htm" class="topiclink">FontAngleGet</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Receives font slope
+angle</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvastextout.htm" class="topiclink">TextOut</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Displays text</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvastextwidth.htm" class="topiclink">TextWidth</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Receives the text
+width</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvastextheight.htm" class="topiclink">TextHeight</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Receives the text
+height</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvastextsize.htm" class="topiclink">TextSize</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Receives the text
+size</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Transparency</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvastransparentlevelset.htm" class=
+"topiclink">TransparentLevelSet</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Sets transparency
+level</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Input/output</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:210px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ccanvasloadfromfile.htm" class="topiclink">LoadFromFile</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:513px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Reads an image from
+a BMP file</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+<br>
+</div>
+
+<script type="text/JavaScript">
+var fe = FindFrame("toc", top);
+if ((fe != null) && (chmtop.c2wtopf.jstree != null)) {
+  if (chmtop.c2wtopf.FITEMS[chmtop.c2wtopf.pagenum] != chmtop.c2wtopf.pageid)
+    chmtop.c2wtopf.jstree.OpenTreeNode("" + chmtop.c2wtopf.pageid);
+}
+</script>
+
+<!-- CHM2WEB -->
+<!-- DO NOT DELETE OR MODIFY THIS CODE WITHOUT 
+     WRITTEN PERMISSION OF A!K RESEARCH LABS -->
+<table width="100%" cellspacing="0" cellpadding="0" 
+style="margin-top: 0pt; border-collapse: collapse;"> 
+<tr> <td align="right" style="background-color:white; border-top: 1px solid gray;"> 
+<a href="http://chm2web.aklabs.com" target="_blank" style="font-family: sans-serif;  font-size: 11px; text-decoration: none;"><font color="gray">Converted from CHM to HTML with <b>chm2web Pro 2.85 (unicode)</b></font></a>
+</td></tr></table> 
+<!-- /CHM2WEB -->
+
+</body>
+</html>

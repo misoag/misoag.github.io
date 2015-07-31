@@ -1,0 +1,596 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="keywords" content="online documentation, web online help, web help, chm2web" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="generator" content="chm2web Pro 2.85 (unicode)" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<title>Position Properties</title>
+<meta name="keywords" content=
+"ENUM_POSITION_PROPERTY_DOUBLE,ENUM_POSITION_PROPERTY_INTEGER,ENUM_POSITION_PROPERTY_STRING,ENUM_POSITION_TYPE,POSITION_COMMENT,POSITION_COMMISSION,POSITION_IDENTIFIER,POSITION_MAGIC,POSITION_PRICE_CURRENT,POSITION_PRICE_OPEN,POSITION_PROFIT,POSITION_SL,POSITION_SWAP,POSITION_SYMBOL,POSITION_TIME,POSITION_TIME_MSC,POSITION_TIME_UPDATE,POSITION_TIME_UPDATE_MSC,POSITION_TP,POSITION_TYPE,POSITION_TYPE_BUY,POSITION_TYPE_SELL,POSITION_VOLUME">
+<link rel="stylesheet" href="files/helpindex.css" type="text/css">
+<link rel="stylesheet" href="default.css" type="text/css">
+
+<script type="text/JavaScript" src="files/supply.js"></script>
+<script type="text/JavaScript">
+chmtop.c2wtopf.pageid = "positionproperties.htm";
+</script>
+
+</head>
+<body style=
+"background-color:#FFFFFF; font-family:'Trebuchet MS',Tahoma,Arial,Helvetica,sans-serif; margin:0px;"><script type="text/JavaScript"> 
+if (window.name != "content") 
+  document.write(" <table width=\"100%\" bgcolor=\"#e1e1e1\"cellspacing=\"2\" cellpadding=\"0\" style=\"border-collapse: collapse; font-family: sans-serif; font-size: 14px; color: #000000; text-decoration: none;  \"> <tr> <td align=\"center\" style=\"border-bottom: 2px solid gray\" > <br>&nbsp;Click <a href=\"index.html?page=positionproperties.htm\">here</a> to show toolbars of the Web Online Help System: <a href=\"index.html?page=positionproperties.htm\">show toolbars</a><br>&nbsp;</td></tr></table><br> "); 
+</script>
+<!-- !chm2web! -->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+style=
+"margin:0; background: #7F90A5 url('gradient_header.png') repeat-x left top; border-bottom: 3px solid #DBE0E5;">
+<tr>
+<td valign="middle">
+<table style="margin: 10px 0" width="100%" border="0" cellspacing=
+"0" cellpadding="0">
+<tr valign="middle">
+<td class="nav"><a class="h_m" href="index.htm">MQL5 Reference</a>
+/ <a class="h_m" href="constants.htm">Standard Constants,
+Enumerations and Structures</a> / <a class="h_m" href=
+"tradingconstants.htm">Trade Constants</a> / Position
+Properties</td>
+<td align="right" style="white-space: nowrap; padding: 0 10px;">
+<a href="orderproperties.htm"><img style="vertical-align:middle;"
+src="previous.png" alt="Back" width="27" height="27" border=
+"0"></a><a href="dealproperties.htm"><img style=
+"vertical-align:middle;margin-left: 7px;" src="next.png" alt=
+"Forward" width="27" height="27" border="0"></a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<div id="help">
+<p class="p_H1"><span class="f_H1">Position Properties</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">Execution of <a href=
+"enum_trade_request_actions.htm" class="topiclink">trade
+operations</a> results in the opening of a position, changing of
+its volume and/or direction, or its disappearance. Trade operations
+are conducted based on <a href="orderproperties.htm" class=
+"topiclink">orders</a>, sent by the <a href="ordersend.htm" class=
+"topiclink">OrderSend()</a> function in the form of <a href=
+"mqltraderequest.htm" class="topiclink">trade requests</a>. For
+each financial <a href="marketinfoconstants.htm" class=
+"topiclink">security</a> (symbol) only one open position is
+possible. A position has a set of properties available for reading
+by the</span> <span class="f_Text" style=
+"color: #0000ff;">PositionGet...()</span> <span class=
+"f_Text">functions.</span></p>
+
+<p class="p_Text"><span class="f_Text">For the function <a href=
+"positiongetinteger.htm" class=
+"topiclink">PositionGetInteger()</a></span>
+</p>
+
+<p class="p_Text"><a class="help" name=
+"enum_position_property_integer" id=
+"enum_position_property_integer"></a><span class="f_Text" style=
+"font-weight: bold;">ENUM_POSITION_PROPERTY_INTEGER</span>
+</p>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Identifier</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Description</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class="f_EnumHeader">Type</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">POSITION_TIME</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Position open
+time</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">datetime</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">POSITION_TIME_MSC</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Position opening
+time in milliseconds since 01.01.1970</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">long</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">POSITION_TIME_UPDATE</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Position changing
+time in seconds since 01.01.1970</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">long</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">POSITION_TIME_UPDATE_MSC</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Position changing
+time in milliseconds since 01.01.1970</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">long</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">POSITION_TYPE</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Position type</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType"><a href=
+"positionproperties.htm#enum_position_type" class=
+"topiclink">ENUM_POSITION_TYPE</a></span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">POSITION_MAGIC</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Position magic
+number (see <a href="orderproperties.htm" class=
+"topiclink">ORDER_MAGIC</a>)</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">long</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">POSITION_IDENTIFIER</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Position identifier
+is a unique number that is assigned to every newly opened position
+and doesn't change during the entire lifetime of the position.
+Position turnover doesn't change its identifier.</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">long</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_Text"><span class="f_Text">For the function <a href=
+"positiongetdouble.htm" class=
+"topiclink">PositionGetDouble()</a></span>
+</p>
+
+<p class="p_Text"><a class="help" name=
+"enum_position_property_double" id=
+"enum_position_property_double"></a><span class="f_Text" style=
+"font-weight: bold;">ENUM_POSITION_PROPERTY_DOUBLE</span>
+</p>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Identifier</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Description</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class="f_EnumHeader">Type</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">POSITION_VOLUME</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Position
+volume</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">double</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">POSITION_PRICE_OPEN</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Position open
+price</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">double</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">POSITION_SL</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Stop Loss level of
+opened position</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">double</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">POSITION_TP</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Take Profit level of
+opened position</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">double</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">POSITION_PRICE_CURRENT</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Current price of the
+position symbol</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">double</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">POSITION_SWAP</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Cumulative
+swap</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">double</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">POSITION_PROFIT</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Current
+profit</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">double</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_Text"><span class="f_Text">For the function <a href=
+"positiongetstring.htm" class=
+"topiclink">PositionGetString()</a></span>
+</p>
+
+<p class="p_Text"><a class="help" name=
+"enum_position_property_string" id=
+"enum_position_property_string"></a><span class="f_Text" style=
+"font-weight: bold;">ENUM_POSITION_PROPERTY_STRING</span>
+</p>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Identifier</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Description</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class="f_EnumHeader">Type</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">POSITION_SYMBOL</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Symbol of the
+position</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">string</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">POSITION_COMMENT</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Position
+comment</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">string</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_Text"><span class="f_Text">&nbsp;</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">Direction of an open
+position (buy or sell) is defined by the value from the
+ENUM_POSITION_TYPE enumeration. In order to obtain the type of an
+open position use the <a href="positiongetinteger.htm" class=
+"topiclink">PositionGetInteger()</a> function with the
+POSITION_TYPE modifier.</span>
+</p>
+
+<p class="p_Text"><a class="help" name="enum_position_type" id=
+"enum_position_type"></a><span class="f_Text" style=
+"font-weight: bold;">ENUM_POSITION_TYPE</span>
+</p>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Identifier</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Description</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">POSITION_TYPE_BUY</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Buy</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">POSITION_TYPE_SELL</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Sell</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_Text"><span class="f_Text">&nbsp;</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">&nbsp;</span>
+</p>
+<br>
+</div>
+
+<script type="text/JavaScript">
+var fe = FindFrame("toc", top);
+if ((fe != null) && (chmtop.c2wtopf.jstree != null)) {
+  if (chmtop.c2wtopf.FITEMS[chmtop.c2wtopf.pagenum] != chmtop.c2wtopf.pageid)
+    chmtop.c2wtopf.jstree.OpenTreeNode("" + chmtop.c2wtopf.pageid);
+}
+</script>
+
+<!-- CHM2WEB -->
+<!-- DO NOT DELETE OR MODIFY THIS CODE WITHOUT 
+     WRITTEN PERMISSION OF A!K RESEARCH LABS -->
+<table width="100%" cellspacing="0" cellpadding="0" 
+style="margin-top: 0pt; border-collapse: collapse;"> 
+<tr> <td align="right" style="background-color:white; border-top: 1px solid gray;"> 
+<a href="http://chm2web.aklabs.com" target="_blank" style="font-family: sans-serif;  font-size: 11px; text-decoration: none;"><font color="gray">Converted from CHM to HTML with <b>chm2web Pro 2.85 (unicode)</b></font></a>
+</td></tr></table> 
+<!-- /CHM2WEB -->
+
+</body>
+</html>

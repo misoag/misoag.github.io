@@ -1,0 +1,1166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="keywords" content="online documentation, web online help, web help, chm2web" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="generator" content="chm2web Pro 2.85 (unicode)" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<title>Order Properties</title>
+<meta name="keywords" content=
+"ENUM_ORDER_PROPERTY_DOUBLE,ENUM_ORDER_PROPERTY_INTEGER,ENUM_ORDER_PROPERTY_STRING,ENUM_ORDER_STATE,ENUM_ORDER_TYPE,ENUM_ORDER_TYPE_FILLING,ENUM_ORDER_TYPE_TIME,ORDER_COMMENT,ORDER_FILLING_FOK,ORDER_FILLING_IOC,ORDER_FILLING_RETURN,ORDER_MAGIC,ORDER_POSITION_ID,ORDER_PRICE_CURRENT,ORDER_PRICE_OPEN,ORDER_PRICE_STOPLIMIT,ORDER_SL,ORDER_STATE,ORDER_STATE_CANCELED,ORDER_STATE_EXPIRED,ORDER_STATE_FILLED,ORDER_STATE_PARTIAL,ORDER_STATE_PLACED,ORDER_STATE_REJECTED,ORDER_STATE_REQUEST_ADD,ORDER_STATE_REQUEST_CANCEL,ORDER_STATE_REQUEST_MODIFY,ORDER_STATE_STARTED,ORDER_SYMBOL,ORDER_TIME_DAY,ORDER_TIME_DONE,ORDER_TIME_DONE_MSC,ORDER_TIME_EXPIRATION,ORDER_TIME_GTC,ORDER_TIME_SETUP,ORDER_TIME_SETUP_MSC,ORDER_TIME_SPECIFIED,ORDER_TIME_SPECIFIED_DAY,ORDER_TP,ORDER_TYPE,ORDER_TYPE_BUY,ORDER_TYPE_BUY_LIMIT,ORDER_TYPE_BUY_STOP,ORDER_TYPE_BUY_STOP_LIMIT,ORDER_TYPE_FILLING,ORDER_TYPE_SELL,ORDER_TYPE_SELL_LIMIT,ORDER_TYPE_SELL_STOP,ORDER_TYPE_SELL_STOP_LIMIT,ORDER_TYPE_TIME,ORDER_VOLUME_CURRENT,ORDER_VOLUME_INITIAL">
+<link rel="stylesheet" href="files/helpindex.css" type="text/css">
+<link rel="stylesheet" href="default.css" type="text/css">
+
+<script type="text/JavaScript" src="files/supply.js"></script>
+<script type="text/JavaScript">
+chmtop.c2wtopf.pageid = "orderproperties.htm";
+</script>
+
+</head>
+<body style=
+"background-color:#FFFFFF; font-family:'Trebuchet MS',Tahoma,Arial,Helvetica,sans-serif; margin:0px;"><script type="text/JavaScript"> 
+if (window.name != "content") 
+  document.write(" <table width=\"100%\" bgcolor=\"#e1e1e1\"cellspacing=\"2\" cellpadding=\"0\" style=\"border-collapse: collapse; font-family: sans-serif; font-size: 14px; color: #000000; text-decoration: none;  \"> <tr> <td align=\"center\" style=\"border-bottom: 2px solid gray\" > <br>&nbsp;Click <a href=\"index.html?page=orderproperties.htm\">here</a> to show toolbars of the Web Online Help System: <a href=\"index.html?page=orderproperties.htm\">show toolbars</a><br>&nbsp;</td></tr></table><br> "); 
+</script>
+<!-- !chm2web! -->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+style=
+"margin:0; background: #7F90A5 url('gradient_header.png') repeat-x left top; border-bottom: 3px solid #DBE0E5;">
+<tr>
+<td valign="middle">
+<table style="margin: 10px 0" width="100%" border="0" cellspacing=
+"0" cellpadding="0">
+<tr valign="middle">
+<td class="nav"><a class="h_m" href="index.htm">MQL5 Reference</a>
+/ <a class="h_m" href="constants.htm">Standard Constants,
+Enumerations and Structures</a> / <a class="h_m" href=
+"tradingconstants.htm">Trade Constants</a> / Order Properties</td>
+<td align="right" style="white-space: nowrap; padding: 0 10px;">
+<a href="enum_series_info_integer.htm"><img style=
+"vertical-align:middle;" src="previous.png" alt="Back" width="27"
+height="27" border="0"></a><a href=
+"positionproperties.htm"><img style=
+"vertical-align:middle;margin-left: 7px;" src="next.png" alt=
+"Forward" width="27" height="27" border="0"></a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<div id="help">
+<p class="p_H1"><span class="f_H1">Order Properties</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">Requests to execute trade
+operations are formalized as orders. Each order has a variety of
+properties for reading. Information on them can be obtained using
+functions</span> <span class="f_Text" style=
+"color: #0000ff;">OrderGet...()</span> <span class=
+"f_Text">and</span> <span class="f_Text" style=
+"color: #0000ff;">HistoryOrderGet...()</span><span class=
+"f_Text">.</span></p>
+
+<p class="p_Text"><span class="f_Text">For functions <a href=
+"ordergetinteger.htm" class="topiclink">OrderGetInteger()</a> and
+<a href="historyordergetinteger.htm" class=
+"topiclink">HistoryOrderGetInteger()</a></span>
+</p>
+
+<p class="p_Text"><a class="help" name=
+"enum_order_property_integer" id=
+"enum_order_property_integer"></a><span class="f_Text" style=
+"font-weight: bold;">ENUM_ORDER_PROPERTY_INTEGER</span>
+</p>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Identifier</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Description</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class="f_EnumHeader">Type</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">ORDER_TIME_SETUP</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order setup
+time</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">datetime</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">ORDER_TYPE</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order type</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType"><a href=
+"orderproperties.htm#enum_order_type" class=
+"topiclink">ENUM_ORDER_TYPE</a></span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">ORDER_STATE</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order state</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType"><a href=
+"orderproperties.htm#enum_order_state" class=
+"topiclink">ENUM_ORDER_STATE</a></span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_TIME_EXPIRATION</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order expiration
+time</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">datetime</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">ORDER_TIME_DONE</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order execution or
+cancellation time</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">datetime</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_TIME_SETUP_MSC</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">The time of placing
+an order for execution in milliseconds since 01.01.1970</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">long</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_TIME_DONE_MSC</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order
+execution/cancellation time in milliseconds since 01.01.1970</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">long</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_TYPE_FILLING</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order filling
+type</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType"><a href=
+"orderproperties.htm#enum_order_type_filling" class=
+"topiclink">ENUM_ORDER_TYPE_FILLING</a></span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">ORDER_TYPE_TIME</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order
+lifetime</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType"><a href=
+"orderproperties.htm#enum_order_type_time" class=
+"topiclink">ENUM_ORDER_TYPE_TIME</a></span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">ORDER_MAGIC</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">ID of an Expert
+Advisor that has placed the order (designed to ensure that each
+Expert Advisor places its own unique number)</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">long</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">ORDER_POSITION_ID</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc"><a href=
+"positionproperties.htm#enum_position_property_integer" class=
+"topiclink">Position identifier</a> that is set to an order as soon
+as it is executed. Each executed order results in a <a href=
+"dealproperties.htm" class="topiclink">deal</a> that opens or
+modifies an already existing position. The identifier of exactly
+this position is set to the executed order at this moment.</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">long</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_Text"><span class="f_Text">For functions <a href=
+"ordergetdouble.htm" class="topiclink">OrderGetDouble()</a> and
+<a href="historyordergetdouble.htm" class=
+"topiclink">HistoryOrderGetDouble()</a></span>
+</p>
+
+<p class="p_Text"><a class="help" name="enum_order_property_double"
+id="enum_order_property_double"></a><span class="f_Text" style=
+"font-weight: bold;">ENUM_ORDER_PROPERTY_DOUBLE</span>
+</p>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Identifier</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Description</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class="f_EnumHeader">Type</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; height:16px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_VOLUME_INITIAL</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; height:16px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order initial
+volume</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; height:16px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">double</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_VOLUME_CURRENT</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order current
+volume</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">double</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">ORDER_PRICE_OPEN</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Price specified in
+the order</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">double</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">ORDER_SL</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Stop Loss
+value</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">double</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">ORDER_TP</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Take Profit
+value</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">double</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_PRICE_CURRENT</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">The current price of
+the order symbol</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">double</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_PRICE_STOPLIMIT</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">The Limit order
+price for the StopLimit order</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">double</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_Text"><span class="f_Text">For functions <a href=
+"ordergetstring.htm" class="topiclink">OrderGetString()</a> and
+<a href="historyordergetstring.htm" class=
+"topiclink">HistoryOrderGetString()</a></span>
+</p>
+
+<p class="p_Text"><a class="help" name="enum_order_property_string"
+id="enum_order_property_string"></a><span class="f_Text" style=
+"font-weight: bold;">ENUM_ORDER_PROPERTY_STRING</span>
+</p>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Identifier</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Description</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class="f_EnumHeader">Type</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">ORDER_SYMBOL</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Symbol of the
+order</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">string</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">ORDER_COMMENT</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order comment</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:260px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumType"><span class="f_EnumType">string</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_Text"><span class="f_Text">&nbsp;</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">When sending a trade request
+using the <a href="ordersend.htm" class="topiclink">OrderSend()</a>
+function, some operations require the indication of the order type.
+The order type is specified in the</span> <span class="f_Text"
+style="font-style: italic;">type</span> <span class="f_Text">field
+of the special structure <a href="mqltraderequest.htm" class=
+"topiclink">MqlTradeRequest</a>, and can accept values of the
+ENUM_ORDER_TYPE enumeration.</span></p>
+
+<p class="p_Text"><a class="help" name="enum_order_type" id=
+"enum_order_type"></a><span class="f_Text" style=
+"font-weight: bold;">ENUM_ORDER_TYPE</span>
+</p>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Identifier</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Description</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">ORDER_TYPE_BUY</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Market Buy
+order</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">ORDER_TYPE_SELL</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Market Sell
+order</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_TYPE_BUY_LIMIT</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Buy Limit pending
+order</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_TYPE_SELL_LIMIT</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Sell Limit pending
+order</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_TYPE_BUY_STOP</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Buy Stop pending
+order</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_TYPE_SELL_STOP</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Sell Stop pending
+order</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_TYPE_BUY_STOP_LIMIT</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Upon reaching the
+order price, a pending Buy Limit order is places at the StopLimit
+price</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_TYPE_SELL_STOP_LIMIT</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Upon reaching the
+order price, a pending Sell Limit order is places at the StopLimit
+price</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_Text"><span class="f_Text">&nbsp;</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">Each order has a status that
+describes its state. To obtain information, use <a href=
+"ordergetinteger.htm" class="topiclink">OrderGetInteger()</a> or
+<a href="historyordergetinteger.htm" class=
+"topiclink">HistoryOrderGetInteger()</a> with the ORDER_STATE
+modifier. Allowed values are stored in the ENUM_ORDER_STATE
+enumeration.</span>
+</p>
+
+<p class="p_Text"><a class="help" name="enum_order_state" id=
+"enum_order_state"></a><span class="f_Text" style=
+"font-weight: bold;">ENUM_ORDER_STATE</span>
+</p>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Identifier</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Description</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_STATE_STARTED</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order checked, but
+not yet accepted by broker</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_STATE_PLACED</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order
+accepted</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_STATE_CANCELED</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order canceled by
+client</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_STATE_PARTIAL</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order partially
+executed</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_STATE_FILLED</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order fully
+executed</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_STATE_REJECTED</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order
+rejected</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:200px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_STATE_EXPIRED</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order expired</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; height:16px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_STATE_REQUEST_ADD</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; height:16px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order is being
+registered (placing to the trading system)</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; height:16px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_STATE_REQUEST_MODIFY</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; height:16px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order is being
+modified (changing its parameters)</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; height:16px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_STATE_REQUEST_CANCEL</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; height:16px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Order is being
+deleted (deleting from the trading system)</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_Text"><span class="f_Text">&nbsp;</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">When sending a trade request
+using the <a href="ordersend.htm" class="topiclink">OrderSend()</a>
+function, the filling policy can be set for an order in the</span>
+<span class="f_Text" style=
+"font-style: italic;">type_filling</span> <span class=
+"f_Text">field of the special structure <a href=
+"mqltraderequest.htm" class="topiclink">MqlTradeRequest</a>. Values
+of the ENUM_ORDER_TYPE_FILLING enumeration are allowed. To obtain
+the value of this property, use the function <a href=
+"ordergetinteger.htm" class="topiclink">OrderGetInteger()</a> or
+<a href="historyordergetinteger.htm" class=
+"topiclink">HistoryOrderGetInteger()</a> with the
+ORDER_TYPE_FILLING modifier.</span></p>
+
+<p class="p_Text"><a class="help" name="enum_order_type_filling"
+id="enum_order_type_filling"></a><span class="f_Text" style=
+"font-weight: bold;">ENUM_ORDER_TYPE_FILLING</span>
+</p>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Identifier</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Description</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">ORDER_FILLING_FOK</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">This filling policy
+means that an order can be filled only in the specified amount. If
+the necessary amount of a financial instrument is currently
+unavailable in the market, the order will not be executed. The
+required volume can be filled using several offers available on the
+market at the moment.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">ORDER_FILLING_IOC</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">This mode means that
+a trader agrees to execute a deal with the volume maximally
+available in the market within that indicated in the order. In case
+the the entire volume of an order cannot be filled, the available
+volume of it will be filled, and the remaining volume will be
+canceled.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_FILLING_RETURN</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">This policy is used
+only for market orders (ORDER_TYPE_BUY and ORDER_TYPE_SELL), limit
+and stop limit orders (ORDER_TYPE_BUY_LIMIT, ORDER_TYPE_SELL_LIMIT,
+ORDER_TYPE_BUY_STOP_LIMIT and ORDER_TYPE_SELL_STOP_LIMIT ) and only
+for the symbols with Market or Exchange <a href=
+"marketinfoconstants.htm#enum_symbol_trade_execution" class=
+"topiclink">execution</a>. In case of partial filling a market or
+limit order with remaining volume is not canceled but processed
+further.</span>
+</p>
+
+<p class="p_EnumDesc"><span class="f_EnumDesc">For the activation
+of the ORDER_TYPE_BUY_STOP_LIMIT and ORDER_TYPE_SELL_STOP_LIMIT
+orders, a corresponding limit order
+ORDER_TYPE_BUY_LIMIT/ORDER_TYPE_SELL_LIMIT with the
+ORDER_FILLING_RETURN execution type is created.</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_Text"><span class="f_Text">&nbsp;</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">The order validity period
+can be set in the</span> <span class="f_Text" style=
+"font-style: italic;">type_time</span> <span class="f_Text">field
+of the special structure <a href="mqltraderequest.htm" class=
+"topiclink">MqlTradeRequest</a> when sending a trade request using
+the <a href="ordersend.htm" class="topiclink">OrderSend()</a>
+function. Values of the ENUM_ORDER_TYPE_TIME enumeration are
+allowed. To obtain the value of this property use the function
+<a href="ordergetinteger.htm" class=
+"topiclink">OrderGetInteger()</a> or <a href=
+"historyordergetinteger.htm" class=
+"topiclink">HistoryOrderGetInteger()</a> with the ORDER_TYPE_TIME
+modifier.</span></p>
+
+<p class="p_Text"><a class="help" name="enum_order_type_time" id=
+"enum_order_type_time"></a><span class="f_Text" style=
+"font-weight: bold;">ENUM_ORDER_TYPE_TIME</span>
+</p>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Identifier</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumHeader"><span class=
+"f_EnumHeader">Description</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">ORDER_TIME_GTC</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Good till cancel
+order</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class="f_EnumID">ORDER_TIME_DAY</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Good till current
+trade day order</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_TIME_SPECIFIED</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">Good till expired
+order</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:220px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumID"><span class=
+"f_EnumID">ORDER_TIME_SPECIFIED_DAY</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_EnumDesc"><span class="f_EnumDesc">The order will be
+effective till 23:59:59 of the specified day. If this time is
+outside a trading session, the order expires in the nearest trading
+time.</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+<br>
+</div>
+
+<script type="text/JavaScript">
+var fe = FindFrame("toc", top);
+if ((fe != null) && (chmtop.c2wtopf.jstree != null)) {
+  if (chmtop.c2wtopf.FITEMS[chmtop.c2wtopf.pagenum] != chmtop.c2wtopf.pageid)
+    chmtop.c2wtopf.jstree.OpenTreeNode("" + chmtop.c2wtopf.pageid);
+}
+</script>
+
+<!-- CHM2WEB -->
+<!-- DO NOT DELETE OR MODIFY THIS CODE WITHOUT 
+     WRITTEN PERMISSION OF A!K RESEARCH LABS -->
+<table width="100%" cellspacing="0" cellpadding="0" 
+style="margin-top: 0pt; border-collapse: collapse;"> 
+<tr> <td align="right" style="background-color:white; border-top: 1px solid gray;"> 
+<a href="http://chm2web.aklabs.com" target="_blank" style="font-family: sans-serif;  font-size: 11px; text-decoration: none;"><font color="gray">Converted from CHM to HTML with <b>chm2web Pro 2.85 (unicode)</b></font></a>
+</td></tr></table> 
+<!-- /CHM2WEB -->
+
+</body>
+</html>

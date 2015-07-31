@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="keywords" content="online documentation, web online help, web help, chm2web" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="generator" content="chm2web Pro 2.85 (unicode)" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<title>Print</title>
+<meta name="keywords" content="Print">
+<link rel="stylesheet" href="files/helpindex.css" type="text/css">
+<link rel="stylesheet" href="default.css" type="text/css">
+
+<script type="text/JavaScript" src="files/supply.js"></script>
+<script type="text/JavaScript">
+chmtop.c2wtopf.pageid = "print.htm";
+</script>
+
+</head>
+<body style=
+"background-color:#FFFFFF; font-family:'Trebuchet MS',Tahoma,Arial,Helvetica,sans-serif; margin:0px;"><script type="text/JavaScript"> 
+if (window.name != "content") 
+  document.write(" <table width=\"100%\" bgcolor=\"#e1e1e1\"cellspacing=\"2\" cellpadding=\"0\" style=\"border-collapse: collapse; font-family: sans-serif; font-size: 14px; color: #000000; text-decoration: none;  \"> <tr> <td align=\"center\" style=\"border-bottom: 2px solid gray\" > <br>&nbsp;Click <a href=\"index.html?page=print.htm\">here</a> to show toolbars of the Web Online Help System: <a href=\"index.html?page=print.htm\">show toolbars</a><br>&nbsp;</td></tr></table><br> "); 
+</script>
+<!-- !chm2web! -->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+style=
+"margin:0; background: #7F90A5 url('gradient_header.png') repeat-x left top; border-bottom: 3px solid #DBE0E5;">
+<tr>
+<td valign="middle">
+<table style="margin: 10px 0" width="100%" border="0" cellspacing=
+"0" cellpadding="0">
+<tr valign="middle">
+<td class="nav"><a class="h_m" href="index.htm">MQL5 Reference</a>
+/ <a class="h_m" href="common.htm">Common Functions</a> /
+Print</td>
+<td align="right" style="white-space: nowrap; padding: 0 10px;">
+<a href="playsound.htm"><img style="vertical-align:middle;" src=
+"previous.png" alt="Back" width="27" height="27" border=
+"0"></a><a href="printformat.htm"><img style=
+"vertical-align:middle;margin-left: 7px;" src="next.png" alt=
+"Forward" width="27" height="27" border="0"></a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<div id="help">
+<p class="p_H1"><span class="f_H1">Print</span>
+</p>
+
+<p class="p_Function"><span class="f_Function">It enters a message
+in the Expert Advisor log. Parameters can be of any type.</span>
+</p>
+
+<div style=
+"text-align: left; text-indent: 0px; border-color: #b3b3b3; border-style: solid; border-width: 1px; background: #fbf9f5; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table cellspacing="0" cellpadding="3" border="0" style=
+"text-align: justify;border:none; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; padding:3px;">
+<p class="p_CodeExample"><span class=
+"f_Keywords">void&nbsp;&nbsp;</span><span class=
+"f_Functions">Print</span><span class="f_CodeExample">(</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_Param">argument</span><span class=
+"f_CodeExample">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class=
+"f_Comments">//&nbsp;first&nbsp;value</span><br>
+<span class="f_Param">&nbsp;&nbsp;&nbsp;...</span><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_Comments">//&nbsp;next&nbsp;values</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;);</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_BoldTitles"><span class=
+"f_BoldTitles">Parameters</span>
+</p>
+
+<p class="p_FunctionParameter"><span class=
+"f_FunctionParameter">...</span>
+</p>
+
+<p class="p_ParameterDesrciption"><span class=
+"f_ParameterDesrciption">[in] &nbsp;Any values separated by commas.
+The number of parameters cannot exceed 64.</span>
+</p>
+
+<p class="p_BoldTitles"><span class="f_BoldTitles">Note</span>
+</p>
+
+<p class="p_FunctionRemark"><span class="f_FunctionRemark">Arrays
+cannot be passed to the Print() function. Arrays must be input
+element-by-element.</span>
+</p>
+
+<p class="p_FunctionRemark"><span class="f_FunctionRemark">Data of
+double type are shown with the accuracy of up to &nbsp;16 digits
+after a decimal point, and can be output either in traditional or
+in scientific format, depending on what entry will be more compact.
+Data of float type are output with 5 digits after a decimal point.
+To output real numbers with another accuracy or in a predefined
+format, use the</span> <span class="f_SeeAlso"><a href=
+"printformat.htm" class="topiclink">PrintFormat()</a></span>
+<span class="f_FunctionRemark">function.</span></p>
+
+<p class="p_FunctionRemark"><span class="f_FunctionRemark">Data of
+bool type are output as "true" or "false" lines. Dates are shown as
+YYYY.MM.DD HH:MI:SS. To show data in another format, use <a href=
+"timetostring.htm" class="topiclink">TimeToString()</a>. Data of
+color type are returned either as R,G,B line or as a color name, if
+this color is present in the color set.</span>
+</p>
+
+<p class="p_FunctionRemark"><span class="f_FunctionRemark">Print()
+function does not work during optimization in the <a href=
+"testing.htm#print" class="topiclink">Strategy Tester</a>.</span>
+</p>
+
+<p class="p_Text"><span class="f_Text" style=
+"font-weight: bold;">Example:</span>
+</p>
+
+<div style=
+"text-align: left; text-indent: 0px; border-color: #b3b3b3; border-style: solid; border-width: 1px; background: #fbf9f5; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table cellspacing="0" cellpadding="3" border="0" style=
+"text-align: justify;border:none; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; padding:3px;">
+<p class="p_CodeExample"><span class="f_CodeExample" style=
+"color: #0000ff;">void</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #0000ff;">OnStart</span><span class=
+"f_CodeExample">()</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;{</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//---&nbsp;Output&nbsp;DBL_MAX&nbsp;using&nbsp;Print(),&nbsp;this&nbsp;is&nbsp;equivalent&nbsp;to&nbsp;PrintFormat(%%.16G,DBL_MAX)</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">Print</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #008080;">"----&nbsp;how&nbsp;DBL_MAX&nbsp;looks&nbsp;like&nbsp;-----"</span><span class="f_CodeExample">);</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">Print</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #008080;">"Print(DBL_MAX)="</span><span class=
+"f_CodeExample">,</span><span class="f_CodeExample" style=
+"color: #0000ff;">DBL_MAX</span><span class=
+"f_CodeExample">);</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//---&nbsp;Now&nbsp;output&nbsp;a&nbsp;DBL_MAX&nbsp;number&nbsp;using&nbsp;PrintFormat()</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style=
+"color: #0000ff;">PrintFormat</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #008080;">"PrintFormat(%%.16G,DBL_MAX)=%.16G"</span><span class="f_CodeExample">,</span><span class="f_CodeExample"
+style="color: #0000ff;">DBL_MAX</span><span class=
+"f_CodeExample">);</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//---&nbsp;Output&nbsp;to&nbsp;the&nbsp;Experts&nbsp;journal</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//&nbsp;Print(DBL_MAX)=1.797693134862316e+308</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//&nbsp;PrintFormat(%.16G,DBL_MAX)=1.797693134862316E+308</span><br>
+
+<span class="f_CodeExample" style=
+"color: #999999;">&nbsp;</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//---&nbsp;See&nbsp;how&nbsp;float&nbsp;is&nbsp;output</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">float</span><span class=
+"f_CodeExample">&nbsp;c=(</span><span class="f_CodeExample" style=
+"color: #0000ff;">float</span><span class=
+"f_CodeExample">)</span><span class="f_CodeExample" style=
+"color: #0000ff;">M_PI</span><span class=
+"f_CodeExample">;&nbsp;</span><span class="f_CodeExample" style=
+"color: #999999;">//&nbsp;We&nbsp;should&nbsp;explicitly&nbsp;cast&nbsp;to&nbsp;the&nbsp;target&nbsp;type</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">Print</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #008080;">"c="</span><span class=
+"f_CodeExample">,c,&nbsp;</span><span class="f_CodeExample" style=
+"color: #008080;">"&nbsp;&nbsp;&nbsp;&nbsp;Pi="</span><span class=
+"f_CodeExample">,</span><span class="f_CodeExample" style=
+"color: #0000ff;">M_PI</span><span class=
+"f_CodeExample">,&nbsp;</span><span class="f_CodeExample" style=
+"color: #008080;">"&nbsp;&nbsp;&nbsp;&nbsp;(float)M_PI="</span><span class="f_CodeExample">,(</span><span class="f_CodeExample"
+style="color: #0000ff;">float</span><span class=
+"f_CodeExample">)</span><span class="f_CodeExample" style=
+"color: #0000ff;">M_PI</span><span class=
+"f_CodeExample">);</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//&nbsp;c=3.14159&nbsp;&nbsp;&nbsp;&nbsp;Pi=3.141592653589793&nbsp;&nbsp;&nbsp;&nbsp;(float)M_PI=3.14159</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//---&nbsp;Show&nbsp;what&nbsp;can&nbsp;happen&nbsp;with&nbsp;arithmetic&nbsp;operations&nbsp;with&nbsp;real&nbsp;types</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">double</span><span class=
+"f_CodeExample">&nbsp;a=7,b=200;</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">Print</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #008080;">"----&nbsp;Before&nbsp;arithmetic&nbsp;operations"</span><span class="f_CodeExample">);</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">Print</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #008080;">"a="</span><span class=
+"f_CodeExample">,a,</span><span class="f_CodeExample" style=
+"color: #008080;">"&nbsp;&nbsp;&nbsp;b="</span><span class=
+"f_CodeExample">,b);</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">Print</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #008080;">"Print(DoubleToString(b,16))="</span><span class=
+"f_CodeExample">,</span><span class="f_CodeExample" style=
+"color: #0000ff;">DoubleToString</span><span class=
+"f_CodeExample">(b,16));</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//---&nbsp;Divide&nbsp;a&nbsp;by&nbsp;b&nbsp;(7/200)</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;a=a/b;</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//---&nbsp;Now&nbsp;emulate&nbsp;restoring&nbsp;a&nbsp;value&nbsp;in&nbsp;the&nbsp;b&nbsp;variable</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;b=7.0/a;&nbsp;</span><span class=
+"f_CodeExample" style=
+"color: #999999;">//&nbsp;It&nbsp;is&nbsp;expected&nbsp;that&nbsp;b=7.0/(7.0/200.0)=&gt;7.0/7.0*200.0=200&nbsp;-&nbsp;but&nbsp;it&nbsp;differs</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//---&nbsp;Output&nbsp;the&nbsp;newly&nbsp;calculated&nbsp;value&nbsp;of&nbsp;b</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">Print</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #008080;">"-----&nbsp;After&nbsp;arithmetic&nbsp;operations"</span><span class="f_CodeExample">);</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">Print</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #008080;">"Print(b)="</span><span class=
+"f_CodeExample">,b);</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">Print</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #008080;">"Print(DoubleToString(b,16))="</span><span class=
+"f_CodeExample">,</span><span class="f_CodeExample" style=
+"color: #0000ff;">DoubleToString</span><span class=
+"f_CodeExample">(b,16));</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//---&nbsp;Output&nbsp;to&nbsp;the&nbsp;Experts&nbsp;journal</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//&nbsp;Print(b)=200.0</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//&nbsp;Print(DoubleToString(b,16))=199.9999999999999716&nbsp;(see&nbsp;that&nbsp;b&nbsp;is&nbsp;no&nbsp;more&nbsp;equal&nbsp;to&nbsp;200.0)&nbsp;&nbsp;&nbsp;</span><br>
+
+<span class="f_CodeExample" style=
+"color: #999999;">&nbsp;</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//---&nbsp;Create&nbsp;a&nbsp;very&nbsp;small&nbsp;value&nbsp;epsilon=1E-013</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">double</span><span class=
+"f_CodeExample">&nbsp;epsilon=1e-13;</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">Print</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #008080;">"----&nbsp;Create&nbsp;a&nbsp;very&nbsp;small&nbsp;value"</span><span class="f_CodeExample">);</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">Print</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #008080;">"epsilon="</span><span class=
+"f_CodeExample">,epsilon);&nbsp;</span><span class="f_CodeExample"
+style="color: #999999;">//&nbsp;Get&nbsp;epsilon=1E-013</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//---&nbsp;Now&nbsp;subtract&nbsp;epsilon&nbsp;from&nbsp;b&nbsp;and&nbsp;again&nbsp;output&nbsp;the&nbsp;value&nbsp;to&nbsp;the&nbsp;Experts&nbsp;journal</span><br>
+<span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;b=b-epsilon;</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//---&nbsp;Use&nbsp;two&nbsp;ways</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">Print</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #008080;">"----&nbsp;After&nbsp;subtracting&nbsp;epsilon&nbsp;from&nbsp;the&nbsp;b&nbsp;variable"</span><span class="f_CodeExample">);</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">Print</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #008080;">"Print(b)="</span><span class=
+"f_CodeExample">,b);</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">Print</span><span class=
+"f_CodeExample">(</span><span class="f_CodeExample" style=
+"color: #008080;">"Print(DoubleToString(b,16))="</span><span class=
+"f_CodeExample">,</span><span class="f_CodeExample" style=
+"color: #0000ff;">DoubleToString</span><span class=
+"f_CodeExample">(b,16));</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//---&nbsp;Output&nbsp;to&nbsp;the&nbsp;Experts&nbsp;journal</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//&nbsp;Print(b)=199.9999999999999&nbsp;&nbsp;(now&nbsp;the&nbsp;value&nbsp;of&nbsp;b&nbsp;after&nbsp;subtracting&nbsp;epsilon&nbsp;cannot&nbsp;be&nbsp;rounded&nbsp;to&nbsp;200)</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//&nbsp;Print(DoubleToString(b,16))=199.9999999999998578</span><br>
+<span class="f_CodeExample" style=
+"color: #999999;">//&nbsp;&nbsp;&nbsp;&nbsp;(now&nbsp;the&nbsp;value&nbsp;of&nbsp;b&nbsp;after&nbsp;subtracting&nbsp;epsilon&nbsp;cannot&nbsp;be&nbsp;rounded&nbsp;to&nbsp;200)</span><br>
+<span class="f_CodeExample">&nbsp;&nbsp;}</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_BoldTitles"><span class="f_BoldTitles">See also</span>
+</p>
+
+<p class="p_SeeAlso"><span class="f_FunctionRemark"><a href=
+"doubletostring.htm" class=
+"topiclink">DoubleToString</a></span><span class="f_SeeAlso">,
+<a href="stringformat.htm" class=
+"topiclink">StringFormat</a></span>
+</p>
+<br>
+</div>
+
+<script type="text/JavaScript">
+var fe = FindFrame("toc", top);
+if ((fe != null) && (chmtop.c2wtopf.jstree != null)) {
+  if (chmtop.c2wtopf.FITEMS[chmtop.c2wtopf.pagenum] != chmtop.c2wtopf.pageid)
+    chmtop.c2wtopf.jstree.OpenTreeNode("" + chmtop.c2wtopf.pageid);
+}
+</script>
+
+<!-- CHM2WEB -->
+<!-- DO NOT DELETE OR MODIFY THIS CODE WITHOUT 
+     WRITTEN PERMISSION OF A!K RESEARCH LABS -->
+<table width="100%" cellspacing="0" cellpadding="0" 
+style="margin-top: 0pt; border-collapse: collapse;"> 
+<tr> <td align="right" style="background-color:white; border-top: 1px solid gray;"> 
+<a href="http://chm2web.aklabs.com" target="_blank" style="font-family: sans-serif;  font-size: 11px; text-decoration: none;"><font color="gray">Converted from CHM to HTML with <b>chm2web Pro 2.85 (unicode)</b></font></a>
+</td></tr></table> 
+<!-- /CHM2WEB -->
+
+</body>
+</html>

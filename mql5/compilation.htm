@@ -1,0 +1,914 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="keywords" content="online documentation, web online help, web help, chm2web" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="generator" content="chm2web Pro 2.85 (unicode)" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<title>Program Properties (#property)</title>
+<meta name="keywords" content=
+"#property,copyright,description,icon,indicator_applied_price,indicator_buffers,indicator_chart_window,indicator_color,indicator_label,indicator_level,indicator_levelcolor,indicator_levelstyle,indicator_levelwidth,indicator_maximum,indicator_minimum,indicator_plots,indicator_separate_window,indicator_style,indicator_type,indicator_width,library,link,script_show_confirm,script_show_inputs,stacksize,tester_file,tester_indicator,tester_library,version">
+<link rel="stylesheet" href="files/helpindex.css" type="text/css">
+<link rel="stylesheet" href="default.css" type="text/css">
+
+<script type="text/JavaScript" src="files/supply.js"></script>
+<script type="text/JavaScript">
+chmtop.c2wtopf.pageid = "compilation.htm";
+</script>
+
+</head>
+<body style=
+"background-color:#FFFFFF; font-family:'Trebuchet MS',Tahoma,Arial,Helvetica,sans-serif; margin:0px;"><script type="text/JavaScript"> 
+if (window.name != "content") 
+  document.write(" <table width=\"100%\" bgcolor=\"#e1e1e1\"cellspacing=\"2\" cellpadding=\"0\" style=\"border-collapse: collapse; font-family: sans-serif; font-size: 14px; color: #000000; text-decoration: none;  \"> <tr> <td align=\"center\" style=\"border-bottom: 2px solid gray\" > <br>&nbsp;Click <a href=\"index.html?page=compilation.htm\">here</a> to show toolbars of the Web Online Help System: <a href=\"index.html?page=compilation.htm\">show toolbars</a><br>&nbsp;</td></tr></table><br> "); 
+</script>
+<!-- !chm2web! -->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+style=
+"margin:0; background: #7F90A5 url('gradient_header.png') repeat-x left top; border-bottom: 3px solid #DBE0E5;">
+<tr>
+<td valign="middle">
+<table style="margin: 10px 0" width="100%" border="0" cellspacing=
+"0" cellpadding="0">
+<tr valign="middle">
+<td class="nav"><a class="h_m" href="index.htm">MQL5 Reference</a>
+/ <a class="h_m" href="basis.htm">Language Basics</a> / <a class=
+"h_m" href="preprosessor.htm">Preprocessor</a> / Program Properties
+(#property)</td>
+<td align="right" style="white-space: nowrap; padding: 0 10px;">
+<a href="constant.htm"><img style="vertical-align:middle;" src=
+"previous.png" alt="Back" width="27" height="27" border=
+"0"></a><a href="include.htm"><img style=
+"vertical-align:middle;margin-left: 7px;" src="next.png" alt=
+"Forward" width="27" height="27" border="0"></a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<div id="help">
+<p class="p_H1"><span class="f_H1">Program Properties
+(#property)</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">Every mql5-program allows to
+specify additional specific parameters named #property that help
+client terminal in proper servicing for programs without the
+necessity to launch them explicitly. This concerns external
+settings of indicators, first of all. Properties described in
+included files are completely ignored. Properties must be specified
+in the main mq5-file.</span>
+</p>
+
+<div style=
+"text-align: left; text-indent: 0px; border-color: #b3b3b3; border-style: solid; border-width: 1px; background: #fbf9f5; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table cellspacing="0" cellpadding="3" border="0" style=
+"text-align: justify;border:none; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; padding:3px;">
+<p class="p_CodeExample"><span class="f_CodeExample" style=
+"color: #0000ff;">#property</span><span class=
+"f_CodeExample">&nbsp;identifier&nbsp;value</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_Text"><span class="f_Text">The compiler will write
+declared values in the configuration of the module executed.</span>
+</p>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 8px 17px 7px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Constant</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Type</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Description</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:176px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">icon</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:80px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"stringconst.htm" class="topiclink">string</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Path to the file of
+an image that will be used as an icon of the EX5 program. Path
+specification rules are the same as for <a href="resources.htm"
+class="topiclink">resources</a>. The property must be specified in
+the main module with the MQL5 source code. The icon file must be in
+the <a href="https://en.wikipedia.org/wiki/ICO_%28file_format%29"
+target="_blank" class="weblink" title="ICO (File format)">ICO</a>
+format.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">link</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"stringconst.htm" class="topiclink">string</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Link to the company
+website</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">copyright</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"stringconst.htm" class="topiclink">string</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The company
+name</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">version</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"stringconst.htm" class="topiclink">string</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Program version,
+maximum 31 characters</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">description</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"stringconst.htm" class="topiclink">string</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Brief text
+description of a mql5-program. Several</span> <span class=
+"f_fortable" style="font-style: italic;">description</span>
+<span class="f_fortable">can be present, each of them describes one
+line of the text. The total length of all</span> <span class=
+"f_fortable" style="font-style: italic;">description</span>
+<span class="f_fortable">can not exceed 511 characters including
+line feed.</span></p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">stacksize</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"integertypes.htm" class="topiclink">int</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">MQL5 program
+<a href="local.htm#stack" class="topiclink">stack</a> size. The
+stack of sufficient size is necessary when executing function
+recursive calls.</span>
+</p>
+
+<p class="p_fortable"><span class="f_fortable">When launching a
+script or an Expert Advisor on the chart, the stack of at least 8
+MB is allocated. In case of indicators, the stack size is always
+fixed and equal to 1 MB.</span>
+</p>
+
+<p class="p_fortable"><span class="f_fortable">When a program is
+launched in the strategy tester, the stack of 16 MB is always
+allocated for it.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">library</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">A library; no start
+function is assigned, functions with <a href="export.htm" class=
+"topiclink">the export modifier</a> can be <a href="import.htm"
+class="topiclink">imported</a> in other mql5-programs</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">indicator_applied_price</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"integertypes.htm" class="topiclink">int</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Specifies the
+default value for the <a href="icustom.htm#applyto" class=
+"topiclink">"Apply to"</a> field. You can specify one of the values
+of <a href="prices.htm#enum_applied_price_enum" class=
+"topiclink">ENUM_APPLIED_PRICE</a>. If the property is not
+specified, the default value is PRICE_CLOSE</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">indicator_chart_window</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Show the indicator
+in the chart window</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">indicator_separate_window</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Show the indicator
+in a separate window</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">indicator_height</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"integertypes.htm" class="topiclink">int</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Fixed height of the
+indicator subwindow in pixels (property <a href=
+"customindicatorproperties.htm#enum_customind_property_integer"
+class="topiclink">INDICATOR_HEIGHT</a>)</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">indicator_buffers</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"integertypes.htm" class="topiclink">int</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Number of buffers
+for indicator calculation</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">indicator_plots</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"integertypes.htm" class="topiclink">int</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Number of <a href=
+"drawstyles.htm" class="topiclink">graphic series</a> in the
+indicator</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">indicator_minimum</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href="double.htm"
+class="topiclink">double</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The bottom scaling
+limit for a separate indicator window</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">indicator_maximum</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href="double.htm"
+class="topiclink">double</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The top scaling
+limit for a separate indicator window</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">indicator_labelN</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"stringconst.htm" class="topiclink">string</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Sets a label for the
+N-th <a href="drawstyles.htm" class="topiclink">graphic series</a>
+displayed in DataWindow. For graphic series requiring multiple
+indicator buffers (DRAW_CANDLES, DRAW_FILLING and others), the
+label names are defined using the separator ';'.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">indicator_colorN</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href="color.htm"
+class="topiclink">color</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The color for
+displaying line N, where N is the number of <a href=
+"drawstyles.htm" class="topiclink">graphic series</a>; numbering
+starts from 1</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">indicator_widthN</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"integertypes.htm" class="topiclink">int</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Line thickness in
+<a href="drawstyles.htm" class="topiclink">graphic series</a>,
+where N is the number of graphic series; numbering starts from
+1</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">indicator_styleN</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"integertypes.htm" class="topiclink">int</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Line style in
+<a href="drawstyles.htm" class="topiclink">graphic series</a>,
+specified by the values of <a href="drawstyles.htm#enum_line_style"
+class="topiclink">ENUM_LINE_STYLE</a>. N is the number of graphic
+series; numbering starts from 1</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">indicator_typeN</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"integertypes.htm" class="topiclink">int</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Type of graphical
+plotting, specified by the values of <a href=
+"drawstyles.htm#enum_draw_type" class=
+"topiclink">ENUM_DRAW_TYPE</a>. N is the number of graphic series;
+numbering starts from 1</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">indicator_levelN</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href="double.htm"
+class="topiclink">double</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Horizontal level of
+N in a separate indicator window</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">indicator_levelcolor</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href="color.htm"
+class="topiclink">color</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Color of horizontal
+levels of the indicator</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">indicator_levelwidth</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"integertypes.htm" class="topiclink">int</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Thickness of
+horizontal levels of the indicator</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">indicator_levelstyle</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"integertypes.htm" class="topiclink">int</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Style of horizontal
+levels of the indicator</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">script_show_confirm</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Display a
+confirmation window before running the script</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:173px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">script_show_inputs</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:69px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">&nbsp;</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Display a window
+with the properties before running the script and disable this
+confirmation window</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:176px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">tester_indicator</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:80px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"stringconst.htm" class="topiclink">string</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Name of a custom
+indicator in the format of "</span><span class="f_fortable" style=
+"font-style: italic;">indicator_name.ex5".</span> <span class=
+"f_fortable">Indicators that require testing are defined
+automatically from the call of the <a href="icustom.htm" class=
+"topiclink">iCustom()</a> function, if the corresponding parameter
+is set through a constant string. For all other cases (use of the
+<a href="indicatorcreate.htm" class=
+"topiclink">IndicatorCreate()</a> function or use of a non-constant
+string in the parameter that sets the indicator name) this property
+is required</span></p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:176px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">tester_file</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:80px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"stringconst.htm" class="topiclink">string</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">File name for a
+tester with the indication of extension, in double quotes (as a
+constant string). The specified file will be passed to tester.
+Input files to be tested, if there are necessary ones, must always
+be specified.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:176px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class=
+"f_fortable">tester_library</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:80px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"stringconst.htm" class="topiclink">string</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; padding:5px; border:solid 1px #b1c2d6;">
+<p style="margin: 0px 0px 0px 4px;"><span class=
+"f_fortable">Library name with the extension, in double quotes. A
+library can have 'dll' or 'ex5' as file extension.</span>
+<span class="f_fortable">Libraries that require testing are defined
+automatically. However, if any of libraries is used by a</span>
+<span class="f_fortable"><a href="customind.htm" class=
+"topiclink">custom</a> indicator, this property is
+required</span></p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_Text"><span class="f_Text" style=
+"font-weight: bold;">Sample Task of Description and Version
+Number</span>
+</p>
+
+<div style=
+"text-align: left; text-indent: 0px; border-color: #b3b3b3; border-style: solid; border-width: 1px; background: #fbf9f5; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table cellspacing="0" cellpadding="3" border="0" style=
+"text-align: justify;border:none; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; padding:3px;">
+<p class="p_CodeExample"><span class="f_CodeExample" style=
+"color: #0000ff;">#property</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #0000ff;">version</span><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #008080;">"3.70"</span><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="f_CodeExample"
+style=
+"color: #808080;">//&nbsp;Current&nbsp;version&nbsp;of&nbsp;the&nbsp;Expert&nbsp;Advisor</span><br>
+<span class="f_CodeExample" style=
+"color: #0000ff;">#property</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #0000ff;">description</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #008080;">"ZigZag&nbsp;universal&nbsp;with&nbsp;Pesavento&nbsp;Patterns"</span><br>
+<span class="f_CodeExample" style=
+"color: #0000ff;">#property</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #0000ff;">description</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #008080;">"At&nbsp;the&nbsp;moment&nbsp;in&nbsp;the&nbsp;indicator&nbsp;several&nbsp;ZigZags&nbsp;with&nbsp;different&nbsp;algorithms&nbsp;are&nbsp;included"</span><br>
+<span class="f_CodeExample" style=
+"color: #0000ff;">#property</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #0000ff;">description</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #008080;">"It&nbsp;is&nbsp;possible&nbsp;to&nbsp;embed&nbsp;a&nbsp;large&nbsp;number&nbsp;of&nbsp;other&nbsp;indicators&nbsp;showing&nbsp;the&nbsp;highs&nbsp;and"</span><br>
+<span class="f_CodeExample" style=
+"color: #0000ff;">#property</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #0000ff;">description</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #008080;">"lows&nbsp;and&nbsp;automatically&nbsp;build&nbsp;from&nbsp;these&nbsp;highs&nbsp;and&nbsp;lows&nbsp;various&nbsp;graphical&nbsp;tools"</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_Text" style="text-align: center;"><img class="help"
+src="property_description.png" width="619" height="312" alt=
+"Example of displaying description and version at program startup"
+title=
+"Example of displaying description and version at program startup"
+style=
+"margin:0px auto 0px auto;width:619px;height:312px;border:none">
+</p>
+
+<p class="p_Text" style="text-align: center;"><span class=
+"f_Text">&nbsp;</span>
+</p>
+
+<p class="p_Text"><span class="f_Text" style=
+"font-weight: bold;">Examples of Specifying a Separate Label for
+Each Indicator Buffer ( "C open; C high; C low; C close")</span>
+</p>
+
+<div style=
+"text-align: left; text-indent: 0px; border-color: #b3b3b3; border-style: solid; border-width: 1px; background: #fbf9f5; padding: 0px 0px 0px 0px; margin: 2px 17px 2px 17px;">
+<table cellspacing="0" cellpadding="3" border="0" style=
+"text-align: justify;border:none; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; padding:3px;">
+<p class="p_CodeExample"><span class="f_CodeExample" style=
+"color: #0000ff;">#property</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #0000ff;">indicator_chart_window</span><br>
+<span class="f_CodeExample" style=
+"color: #0000ff;">#property</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #0000ff;">indicator_buffers</span><span class=
+"f_CodeExample">&nbsp;4</span><br>
+<span class="f_CodeExample" style=
+"color: #0000ff;">#property</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #0000ff;">indicator_plots</span><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;1</span><br>
+<span class="f_CodeExample" style=
+"color: #0000ff;">#property</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #0000ff;">indicator_type1</span><span class=
+"f_CodeExample">&nbsp;&nbsp;&nbsp;</span><span class=
+"f_CodeExample" style="color: #0000ff;">DRAW_CANDLES</span><br>
+<span class="f_CodeExample" style=
+"color: #0000ff;">#property</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #0000ff;">indicator_width1</span><span class=
+"f_CodeExample">&nbsp;&nbsp;3</span><br>
+<span class="f_CodeExample" style=
+"color: #0000ff;">#property</span><span class=
+"f_CodeExample">&nbsp;</span><span class="f_CodeExample" style=
+"color: #0000ff;">indicator_label1</span><span class=
+"f_CodeExample">&nbsp;&nbsp;</span><span class="f_CodeExample"
+style=
+"color: #008080;">"C&nbsp;open;C&nbsp;high;C&nbsp;low;C&nbsp;close"</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_Text" style="text-align: center;"><img class="help"
+src="plot_label.png" width="593" height="340" alt=
+"Example of displaying a label for each indicator buffer" title=
+"Example of displaying a label for each indicator buffer" style=
+"margin:0px auto 0px auto;width:593px;height:340px;border:none">
+</p>
+<br>
+</div>
+
+<script type="text/JavaScript">
+var fe = FindFrame("toc", top);
+if ((fe != null) && (chmtop.c2wtopf.jstree != null)) {
+  if (chmtop.c2wtopf.FITEMS[chmtop.c2wtopf.pagenum] != chmtop.c2wtopf.pageid)
+    chmtop.c2wtopf.jstree.OpenTreeNode("" + chmtop.c2wtopf.pageid);
+}
+</script>
+
+<!-- CHM2WEB -->
+<!-- DO NOT DELETE OR MODIFY THIS CODE WITHOUT 
+     WRITTEN PERMISSION OF A!K RESEARCH LABS -->
+<table width="100%" cellspacing="0" cellpadding="0" 
+style="margin-top: 0pt; border-collapse: collapse;"> 
+<tr> <td align="right" style="background-color:white; border-top: 1px solid gray;"> 
+<a href="http://chm2web.aklabs.com" target="_blank" style="font-family: sans-serif;  font-size: 11px; text-decoration: none;"><font color="gray">Converted from CHM to HTML with <b>chm2web Pro 2.85 (unicode)</b></font></a>
+</td></tr></table> 
+<!-- /CHM2WEB -->
+
+</body>
+</html>

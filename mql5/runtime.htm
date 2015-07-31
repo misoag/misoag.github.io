@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="keywords" content="online documentation, web online help, web help, chm2web" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="generator" content="chm2web Pro 2.85 (unicode)" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<title>MQL5 programs</title>
+<meta name="keywords" content="">
+<link rel="stylesheet" href="files/helpindex.css" type="text/css">
+<link rel="stylesheet" href="default.css" type="text/css">
+
+<script type="text/JavaScript" src="files/supply.js"></script>
+<script type="text/JavaScript">
+chmtop.c2wtopf.pageid = "runtime.htm";
+</script>
+
+</head>
+<body style=
+"background-color:#FFFFFF; font-family:'Trebuchet MS',Tahoma,Arial,Helvetica,sans-serif; margin:0px;"><script type="text/JavaScript"> 
+if (window.name != "content") 
+  document.write(" <table width=\"100%\" bgcolor=\"#e1e1e1\"cellspacing=\"2\" cellpadding=\"0\" style=\"border-collapse: collapse; font-family: sans-serif; font-size: 14px; color: #000000; text-decoration: none;  \"> <tr> <td align=\"center\" style=\"border-bottom: 2px solid gray\" > <br>&nbsp;Click <a href=\"index.html?page=runtime.htm\">here</a> to show toolbars of the Web Online Help System: <a href=\"index.html?page=runtime.htm\">show toolbars</a><br>&nbsp;</td></tr></table><br> "); 
+</script>
+<!-- !chm2web! -->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+style=
+"margin:0; background: #7F90A5 url('gradient_header.png') repeat-x left top; border-bottom: 3px solid #DBE0E5;">
+<tr>
+<td valign="middle">
+<table style="margin: 10px 0" width="100%" border="0" cellspacing=
+"0" cellpadding="0">
+<tr valign="middle">
+<td class="nav"><a class="h_m" href="index.htm">MQL5 Reference</a>
+/ MQL5 programs</td>
+<td align="right" style="white-space: nowrap; padding: 0 10px;">
+<a href="messbconstants.htm"><img style="vertical-align:middle;"
+src="previous.png" alt="Back" width="27" height="27" border=
+"0"></a><a href="running.htm"><img style=
+"vertical-align:middle;margin-left: 7px;" src="next.png" alt=
+"Forward" width="27" height="27" border="0"></a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<div id="help">
+<p class="p_H1"><span class="f_H1">MQL5 Programs</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">For the mql5-program to
+operate, it must be compiled (Compile button or F7 key).
+Compilation should pass without errors (some warnings are possible;
+they should be analyzed). At this process, an executable file with
+the same name and with EX5 extension must be created in the
+corresponding directory, terminal_dir\MQL5\Experts,
+terminal_dir\MQL5\indicators or terminal_dir\MQL5\scripts. This
+file can be run.</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">Operating features of MQL5
+programs are described in the following sections:</span>
+</p>
+
+<ul class="help_list" style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 17px; margin: 3px 17px 3px 17px;">
+<li><span class="f_li"><a href="running.htm" class=
+"topiclink">Program running</a>  order of calling predefined
+event-handlers.</span>
+</li>
+
+<li><span class="f_li"><a href="testing.htm" class=
+"topiclink">Testing trading strategies</a>  operating features of
+MQL5 programs in the Strategy Tester.</span>
+</li>
+
+<li><span class="f_li"><a href="event_fire.htm" class=
+"topiclink">Client terminal events</a>  description of events,
+which can be processed in programs.</span>
+</li>
+
+<li><span class="f_li"><a href="imports.htm" class="topiclink">Call
+of imported functions</a>  description order, allowed parameters,
+search details and call agreement for imported functions.</span>
+</li>
+
+<li><span class="f_li"><a href="errors.htm" class=
+"topiclink">Runtime errors</a>  getting information about runtime
+and critical errors.</span>
+</li>
+</ul>
+
+<p class="p_Text"><span class="f_Text">Expert Advisors, custom
+indicators and scripts are attached to one of opened charts by
+Drag'n'Drop method from the Navigator window.</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">For an expert Advisor to
+stop operating, it should be removed from a chart. To do it select
+"Expert list" in chart context menu, then select an Expert Advisor
+from list and click "Remove" button. Operation of Expert Advisors
+is also affected by the state of the "AutoTrading" button.</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">In order to stop a custom
+indicator, it should be removed from a chart.</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">Custom indicators and Expert
+Advisors work until they are explicitly removed from a chart;
+information about attached Expert Advisors and Indicators is saved
+between client terminal sessions.</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">Scripts are executed once
+and are deleted automatically upon operation completion or change
+of the current chart state, or upon client terminal shutdown. After
+the restart of the client terminal scripts are not started, because
+the information about them is not saved.</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">Maximum one Expert Advisor,
+one script and unlimited number of indicators can operate in one
+chart.</span>
+</p>
+<br>
+</div>
+
+<script type="text/JavaScript">
+var fe = FindFrame("toc", top);
+if ((fe != null) && (chmtop.c2wtopf.jstree != null)) {
+  if (chmtop.c2wtopf.FITEMS[chmtop.c2wtopf.pagenum] != chmtop.c2wtopf.pageid)
+    chmtop.c2wtopf.jstree.OpenTreeNode("" + chmtop.c2wtopf.pageid);
+}
+</script>
+
+<!-- CHM2WEB -->
+<!-- DO NOT DELETE OR MODIFY THIS CODE WITHOUT 
+     WRITTEN PERMISSION OF A!K RESEARCH LABS -->
+<table width="100%" cellspacing="0" cellpadding="0" 
+style="margin-top: 0pt; border-collapse: collapse;"> 
+<tr> <td align="right" style="background-color:white; border-top: 1px solid gray;"> 
+<a href="http://chm2web.aklabs.com" target="_blank" style="font-family: sans-serif;  font-size: 11px; text-decoration: none;"><font color="gray">Converted from CHM to HTML with <b>chm2web Pro 2.85 (unicode)</b></font></a>
+</td></tr></table> 
+<!-- /CHM2WEB -->
+
+</body>
+</html>

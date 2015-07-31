@@ -1,0 +1,719 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="keywords" content="online documentation, web online help, web help, chm2web" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="generator" content="chm2web Pro 2.85 (unicode)" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<title>Trading Strategy Classes</title>
+<meta name="keywords" content="">
+<link rel="stylesheet" href="files/helpindex.css" type="text/css">
+<link rel="stylesheet" href="default.css" type="text/css">
+
+<script type="text/JavaScript" src="files/supply.js"></script>
+<script type="text/JavaScript">
+chmtop.c2wtopf.pageid = "expertclasses.htm";
+</script>
+
+</head>
+<body style=
+"background-color:#FFFFFF; font-family:'Trebuchet MS',Tahoma,Arial,Helvetica,sans-serif; margin:0px;"><script type="text/JavaScript"> 
+if (window.name != "content") 
+  document.write(" <table width=\"100%\" bgcolor=\"#e1e1e1\"cellspacing=\"2\" cellpadding=\"0\" style=\"border-collapse: collapse; font-family: sans-serif; font-size: 14px; color: #000000; text-decoration: none;  \"> <tr> <td align=\"center\" style=\"border-bottom: 2px solid gray\" > <br>&nbsp;Click <a href=\"index.html?page=expertclasses.htm\">here</a> to show toolbars of the Web Online Help System: <a href=\"index.html?page=expertclasses.htm\">show toolbars</a><br>&nbsp;</td></tr></table><br> "); 
+</script>
+<!-- !chm2web! -->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+style=
+"margin:0; background: #7F90A5 url('gradient_header.png') repeat-x left top; border-bottom: 3px solid #DBE0E5;">
+<tr>
+<td valign="middle">
+<table style="margin: 10px 0" width="100%" border="0" cellspacing=
+"0" cellpadding="0">
+<tr valign="middle">
+<td class="nav"><a class="h_m" href="index.htm">MQL5 Reference</a>
+/ <a class="h_m" href="standardlibrary.htm">Standard Library</a> /
+Trading Strategy Classes</td>
+<td align="right" style="white-space: nowrap; padding: 0 10px;">
+<a href="cterminalinfoinfostring.htm"><img style=
+"vertical-align:middle;" src="previous.png" alt="Back" width="27"
+height="27" border="0"></a><a href=
+"expertbaseclasses.htm"><img style=
+"vertical-align:middle;margin-left: 7px;" src="next.png" alt=
+"Forward" width="27" height="27" border="0"></a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<div id="help">
+<p class="p_H1"><span class="f_H1">Trading Strategy Classes</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">This section contains
+technical details of working with classes for creation and testing
+of trading strategies and description of the relevant components of
+the MQL5 standard library.</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">The use of these classes
+will save time when creating the trading strategies.</span>
+</p>
+
+<p class="p_Text"><span class="f_Text">MQL5 Standard Library (in
+terms of trading strategies) is placed in the terminal directory,
+in the Include\Expert folder.</span>
+</p>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 8px 17px 7px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:230px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Base classes</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:523px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Description</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:230px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"cexpertbase.htm" class="topiclink">CExpertBase</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:523px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Base class for all
+trading strategy classes</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:230px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"cexpert.htm" class="topiclink">CExpert</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:523px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Base class for
+Expert Advisor</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:230px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"cexpertsignal.htm" class="topiclink">CExpertSignal</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:523px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Base class for
+Trading Signal classes</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:230px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"cexperttrailing.htm" class="topiclink">CExpertTrailing</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:523px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Base class for
+Trailing Stop classes</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:230px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"cexpertmoney.htm" class="topiclink">CExpertMoney</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:523px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">Base class for Money
+Management classes</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 8px 17px 7px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<th style=
+"vertical-align:top; width:229px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Trading signal classes</span>
+</p>
+</th>
+<th style=
+"vertical-align:top; width:524px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Description</span>
+</p>
+</th>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_ac.htm" class="topiclink">CSignalAC</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+signals based on market models of the indicator Accelerator
+Oscillator.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_ama.htm" class="topiclink">CSignalAMA</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+signals based on market models of the indicator Adaptive Moving
+Average.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_ao.htm" class="topiclink">CSignalAO</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+signals based on market models of the indicator Awesome
+Oscillator.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_bears.htm" class="topiclink">CSignalBearsPower</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+signals based on market models of the oscillator Bears
+Power.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_bulls.htm" class="topiclink">CSignalBullsPower</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+signals based on market models of the oscillator Bulls
+Power.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_cci.htm" class="topiclink">CSignalCCI</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+signals based on market models of the oscillator Commodity Channel
+Index.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_demarker.htm" class="topiclink">CSignalDeM</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+signals based on market models of the oscillator DeMarker.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_dema.htm" class="topiclink">CSignalDEMA</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+signals based on market models of the indicator Double Exponential
+Moving Average.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_envelopes.htm" class=
+"topiclink">CSignalEnvelopes</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+signals based on market models of the indicator Envelopes.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_frama.htm" class="topiclink">CSignalFrAMA</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+signals based on market models of the indicator Fractal Adaptive
+Moving Average.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_time_filter.htm" class="topiclink">CSignalITF</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+filtration of signals by time.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_macd.htm" class="topiclink">CSignalMACD</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+signals based on market models of the oscillator MACD.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_ma.htm" class="topiclink">CSignalMA</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+signals based on market models of the indicator Moving
+Average.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_sar.htm" class="topiclink">CSignalSAR</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+signals based on market models of the indicator Parabolic
+SAR.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_rsi.htm" class="topiclink">CSignalRSI</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+signals based on market models of the oscillator Relative Strength
+Index.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_rvi.htm" class="topiclink">CSignalRVI</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+signals based on market models of the oscillator Relative Vigor
+Index.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_stochastic.htm" class="topiclink">CSignalStoch</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+signals based on market models of the oscillator Stochastic.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_trix.htm" class="topiclink">CSignalTRIX</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+signals based on market models of the oscillator Triple Exponential
+Average.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_tema.htm" class="topiclink">CSignalTEMA</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+signals based on market models of the indicator Triple Exponential
+Moving Average.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:229px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"signal_wpr.htm" class="topiclink">CSignalWPR</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:524px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">The module of
+signals based on market models of the oscillator Williams Percent
+Range.</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 8px 17px 7px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:227px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Trailing Stop classes</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:526px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Description</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:227px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ctrailingfixedpips.htm" class=
+"topiclink">CTrailingFixedPips</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:526px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">This class
+implements Trailing Stop algorithm based on fixed points</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:227px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ctrailingma.htm" class="topiclink">CTrailingMA</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:526px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">This class
+implements Trailing Stop algorithm based on the values of Moving
+Average indicator</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:227px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ctrailingnone.htm" class="topiclink">CTrailingNone</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:526px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">A stub class, it
+doesn't uses any Trailing Stop algorithm</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:227px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"ctrailingpsar.htm" class="topiclink">CTrailingPSAR</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:526px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">This class
+implements Trailing Stop algorithm based on the values of Parabolic
+SAR indicator</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<div style=
+"text-align: justify; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 8px 17px 7px 17px;">
+<table class="EnumTable" cellspacing="0" cellpadding="5" border="1"
+style=
+"border:solid 2px #b1c2d6; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:228px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Money Management classes</span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:525px; background-color:#dbe9f9; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable" style=
+"font-weight: bold;">Description</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:228px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"cmoneyfixedlot.htm" class="topiclink">CMoneyFixedLot</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:525px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">A class with an
+algorithm, based on trading with predefined fixed lot size.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:228px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"cmoneyfixedmargin.htm" class=
+"topiclink">CMoneyFixedMargin</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:525px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">A class with an
+algorithm, based on trading with predefined fixed margin.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:228px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"cmoneyfixedrisk.htm" class="topiclink">CMoneyFixedRisk</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:525px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">A class with an
+algorithm, based on trading with predefined risk.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:228px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"cmoneynone.htm" class="topiclink">CMoneyNone</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:525px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">A class with an
+algorithm, based on trading with minimal allowed lot size.</span>
+</p>
+</td>
+</tr>
+
+<tr style="text-align:left;vertical-align:top;">
+<td style=
+"vertical-align:top; width:228px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable"><a href=
+"cmoneysizeoptimized.htm" class=
+"topiclink">CMoneySizeOptimized</a></span>
+</p>
+</td>
+<td style=
+"vertical-align:top; width:525px; padding:5px; border:solid 1px #b1c2d6;">
+<p class="p_fortable"><span class="f_fortable">A class with an
+algorithm, based on trading with variable lot size, depending on
+the results of the previous deals.</span>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p class="p_Text"><span class="f_Text">&nbsp;</span>
+</p>
+<br>
+</div>
+
+<script type="text/JavaScript">
+var fe = FindFrame("toc", top);
+if ((fe != null) && (chmtop.c2wtopf.jstree != null)) {
+  if (chmtop.c2wtopf.FITEMS[chmtop.c2wtopf.pagenum] != chmtop.c2wtopf.pageid)
+    chmtop.c2wtopf.jstree.OpenTreeNode("" + chmtop.c2wtopf.pageid);
+}
+</script>
+
+<!-- CHM2WEB -->
+<!-- DO NOT DELETE OR MODIFY THIS CODE WITHOUT 
+     WRITTEN PERMISSION OF A!K RESEARCH LABS -->
+<table width="100%" cellspacing="0" cellpadding="0" 
+style="margin-top: 0pt; border-collapse: collapse;"> 
+<tr> <td align="right" style="background-color:white; border-top: 1px solid gray;"> 
+<a href="http://chm2web.aklabs.com" target="_blank" style="font-family: sans-serif;  font-size: 11px; text-decoration: none;"><font color="gray">Converted from CHM to HTML with <b>chm2web Pro 2.85 (unicode)</b></font></a>
+</td></tr></table> 
+<!-- /CHM2WEB -->
+
+</body>
+</html>
